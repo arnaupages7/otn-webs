@@ -1,340 +1,471 @@
 ---
 import Layout from '../layouts/Layout.astro'
 
-const serveis = [
-  {
-    categoria: 'Tall i forma',
-    href: '/serveis/tall',
-    items: [
-      { nom: 'Tall de cabell' },
-      { nom: 'Tall i assecada' },
-      { nom: 'Tall d\'home' },
-      { nom: 'Franja i bigoti' },
-    ],
-  },
-  {
-    categoria: 'Color',
-    href: '/serveis/color',
-    items: [
-      { nom: 'Tint complet' },
-      { nom: 'Mèxes' },
-      { nom: 'Balayage', desc: 'Color gradual i natural, resultat lluminós' },
-      { nom: 'Babylights', desc: 'Aclariments ultrafins per un efecte molt natural' },
-      { nom: 'Retoc de color' },
-    ],
-  },
-  {
-    categoria: 'Tractaments',
-    href: '/serveis/tractaments',
-    items: [
-      { nom: 'Keratina' },
-      { nom: 'Hidratació profunda' },
-      { nom: 'Permanent' },
-      { nom: 'Allisat' },
-    ],
-  },
-  {
-    categoria: 'Nupcial i ocasions',
-    href: '/serveis/nupcial',
-    items: [
-      { nom: 'Pentinat de núvia' },
-      { nom: 'Pentinat de festa' },
-      { nom: 'Recollits' },
-    ],
-  },
-]
-
 const horaris = [
-  { dia: 'Dilluns',    hores: 'Tancat' },
-  { dia: 'Dimarts',   hores: '9:00 – 19:00' },
-  { dia: 'Dimecres',  hores: '9:00 – 19:00' },
-  { dia: 'Dijous',    hores: '9:00 – 19:00' },
-  { dia: 'Divendres', hores: '9:00 – 19:00' },
-  { dia: 'Dissabte',  hores: '9:00 – 14:00' },
-  { dia: 'Diumenge',  hores: 'Tancat' },
+  { label: 'Dimarts — Divendres', hores: '9 — 19h' },
+  { label: 'Dissabte',            hores: '9 — 14h' },
+  { label: 'Diumenge & Dilluns',  hores: 'Tancat' },
 ]
-
-const today = new Date().getDay()
-const dayMap: Record<number, number> = { 0: 6, 1: 0, 2: 1, 3: 2, 4: 3, 5: 4, 6: 5 }
-const todayIndex = dayMap[today] ?? 0
 ---
 
 <Layout
   title="Maria Gifra & Paula Perruquers — Porqueres"
   description="Perruqueria a Porqueres des de 1967. Especialistes en color, balayage, babylights, tall i tractaments. Demana cita al 972 572 601."
 >
-  <!-- NAV -->
-  <nav class="fixed top-0 w-full z-50 bg-warm-50/90 backdrop-blur-md border-b border-brand-100">
-    <div class="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
-      <a href="#" class="font-display text-xl font-bold text-brand-700 italic">Maria Gifra & Paula</a>
-      <div class="hidden md:flex items-center gap-8 text-sm font-medium text-warm-800">
-        <a href="#serveis" class="hover:text-brand-600 transition-colors">Serveis</a>
-        <a href="#nosaltres" class="hover:text-brand-600 transition-colors">Nosaltres</a>
-        <a href="#horaris" class="hover:text-brand-600 transition-colors">Horaris</a>
-        <a href="#contacte" class="hover:text-brand-600 transition-colors">Contacte</a>
-      </div>
-      <a
-        href="tel:+34972572601"
-        class="bg-brand-700 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-brand-800 transition-colors"
-      >
-        Demanar cita
+
+  <!-- Colour tape -->
+  <div class="tape h-1 w-full"></div>
+
+  <!-- ===== NAV ===== -->
+  <header class="nav-blur sticky top-0 z-40 border-b hairline">
+    <div class="max-w-[1360px] mx-auto px-6 md:px-10 h-16 md:h-20 flex items-center justify-between">
+      <a href="#" class="flex items-center gap-3">
+        <span class="display text-[22px] md:text-[26px] leading-none">
+          Maria Gifra <span class="italic text-taupe">&amp;</span> Paula
+        </span>
+        <span class="hidden md:inline-block mono-label text-muted border-l hairline pl-3 ml-1">Perruqueres · Porqueres</span>
       </a>
-    </div>
-  </nav>
 
-  <!-- HERO -->
-  <section class="relative min-h-[90vh] flex items-center justify-center pt-16 overflow-hidden">
-    <div
-      class="absolute inset-0 bg-cover bg-center"
-      style="background-image: url('https://images.unsplash.com/photo-1560066984-138daaa7b9e6?w=1600&q=80'), linear-gradient(135deg, #1a1514 0%, #4a3a37 100%); filter: brightness(0.28);"
-    >
-    </div>
-    <div class="relative z-10 text-center px-4 max-w-3xl">
-      <p class="text-brand-300 font-medium tracking-widest uppercase text-sm mb-4">
-        Porqueres · Des de 1967
-      </p>
-      <h1 class="font-display text-5xl md:text-7xl font-bold text-white leading-tight mb-6">
-        L'art del tall<br />
-        <span class="text-brand-300 italic font-normal">i el color</span>
-      </h1>
-      <p class="text-brand-200/80 text-lg md:text-xl max-w-xl mx-auto mb-10 leading-relaxed">
-        Perruqueria familiar a Porqueres. Especialistes en color, balayage i
-        tractaments capil·lars per a homes i dones.
-      </p>
-      <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        <a
-          href="tel:+34972572601"
-          class="bg-brand-600 text-white px-8 py-4 rounded-xl text-lg font-semibold hover:bg-brand-500 transition-colors"
-        >
-          Demanar cita — 972 572 601
-        </a>
-        <a
-          href="#serveis"
-          class="border-2 border-white/30 text-white px-8 py-4 rounded-xl text-lg font-semibold hover:bg-white/10 transition-colors"
-        >
-          Veure serveis
-        </a>
-      </div>
-    </div>
-  </section>
+      <nav class="hidden md:flex items-center gap-8 mono-label" style="color:rgba(28,26,24,0.8)">
+        <a href="#serveis"  class="hover:text-taupe transition">Serveis</a>
+        <a href="#color"    class="hover:text-taupe transition">Color</a>
+        <a href="#nupcial"  class="hover:text-taupe transition">Nupcial</a>
+        <a href="#salo"     class="hover:text-taupe transition">El saló</a>
+        <a href="#contacte" class="hover:text-taupe transition">Contacte</a>
+      </nav>
 
-  <!-- FEATURES BAR -->
-  <section class="bg-brand-800 text-brand-100">
-    <div class="max-w-6xl mx-auto px-4 py-6 flex flex-wrap justify-center gap-x-12 gap-y-3 text-sm tracking-wide uppercase">
-      <span class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-brand-400"></span> Color i balayage</span>
-      <span class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-brand-400"></span> Babylights</span>
-      <span class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-brand-400"></span> Homes i dones</span>
-      <span class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-brand-400"></span> Tractaments capil·lars</span>
-    </div>
-  </section>
+      <a href="tel:+34972572601"
+         class="hidden md:inline-flex items-center gap-2 bg-ink text-linen px-4 py-2.5 mono-label hover:bg-taupe transition">
+        <span class="w-1.5 h-1.5 rounded-full bg-sand"></span>
+        972 572 601
+      </a>
 
-  <!-- COLOR HIGHLIGHT -->
-  <section class="py-20 bg-warm-50">
-    <div class="max-w-6xl mx-auto px-4 grid md:grid-cols-2 gap-12 items-center">
-      <div>
-        <p class="text-brand-500 font-semibold text-sm tracking-widest uppercase mb-3">La nostra especialitat</p>
-        <h2 class="font-display text-4xl md:text-5xl font-bold text-warm-900 mb-6">
-          Color<br />que transforma
-        </h2>
-        <p class="text-warm-800/70 text-lg leading-relaxed mb-4">
-          Especialistes en tècniques de color modernes: balayage, babylights i mèxes.
-          Cada servei és personalitzat per adaptar-se al teu to de pell i estil de vida.
-        </p>
-        <p class="text-warm-800/70 text-lg leading-relaxed mb-6">
-          Usem productes d'alta qualitat per garantir un color viu, durador
-          i respectuós amb el cabell.
-        </p>
-        <p class="text-brand-600 font-medium">
-          Consulteu disponibilitat per telèfon o Instagram
-        </p>
-      </div>
-      <div class="relative">
-        <img
-          src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=800&q=80"
-          alt="Tècnica de color balayage a Maria Gifra & Paula Perruquers"
-          class="aspect-[4/3] w-full rounded-2xl object-cover shadow-xl"
-          loading="lazy"
-        />
-        <div class="absolute -bottom-4 -left-4 bg-brand-700 text-white px-5 py-3 rounded-xl font-display text-lg italic shadow-lg">
-          Des de 1967
+      <button class="md:hidden mono-label border hairline px-3 py-2 text-ink">Menú</button>
+    </div>
+  </header>
+
+  <!-- ===== HERO ===== -->
+  <section class="relative bg-wash">
+    <div class="max-w-[1360px] mx-auto px-6 md:px-10 pt-14 md:pt-24 pb-16 md:pb-28 grid md:grid-cols-12 gap-8 md:gap-12 items-end">
+
+      <!-- Left: headline -->
+      <div class="md:col-span-7 rise">
+        <div class="mono-label text-taupe mb-8 flex items-center gap-3">
+          <span class="w-8 h-px bg-taupe"></span>
+          Porqueres · Girona · Des de 1967
         </div>
-      </div>
-    </div>
-  </section>
 
-  <!-- SERVEIS -->
-  <section id="serveis" class="py-20 bg-brand-800">
-    <div class="max-w-5xl mx-auto px-4">
-      <div class="text-center mb-16">
-        <div class="flex items-center justify-center gap-4 mb-4">
-          <span class="h-px w-12 bg-brand-400/40"></span>
-          <p class="text-brand-400 font-semibold text-sm tracking-widest uppercase">El que oferim</p>
-          <span class="h-px w-12 bg-brand-400/40"></span>
-        </div>
-        <h2 class="font-display text-4xl md:text-5xl font-bold text-white">Els nostres serveis</h2>
-        <p class="text-brand-200/50 mt-4 max-w-lg mx-auto">
-          Tractaments professionals adaptats a cada cabell i cada persona.
+        <h1 class="display text-ink leading-[1.02] text-[56px] sm:text-[76px] md:text-[104px] lg:text-[124px]">
+          L'art del <span class="italic text-rose">tall</span>
+          <br/>
+          i el <span class="italic text-terracotta">color</span>.
+        </h1>
+
+        <p class="mt-12 md:mt-16 max-w-[46ch] text-[17px] md:text-[19px] leading-[1.55] font-light" style="color:rgba(28,26,24,0.75)">
+          Perruqueria familiar a Porqueres des de <span class="highlight-underline">1967</span>. Tres generacions dedicades
+          al color, el tall i el benestar de cada persona que seu a la nostra cadira.
         </p>
-      </div>
 
-      <div class="grid md:grid-cols-2 gap-8">
-        {serveis.map((cat) => (
-          <a href={cat.href} class="group bg-brand-900/50 rounded-2xl p-8 border border-brand-700/30 hover:border-brand-500/50 hover:bg-brand-900/70 transition-all block">
-            <div class="flex items-center gap-3 mb-6">
-              <span class="h-px grow bg-brand-600/30"></span>
-              <h3 class="font-display text-xl font-bold text-brand-300 tracking-wide uppercase">{cat.categoria}</h3>
-              <span class="h-px grow bg-brand-600/30"></span>
-            </div>
-            <div class="space-y-4 mb-6">
-              {cat.items.map((item) => (
-                <div>
-                  <span class="font-medium text-brand-100">{item.nom}</span>
-                  {'desc' in item && item.desc && (
-                    <span class="block text-sm text-brand-200/40 mt-0.5 italic">{item.desc}</span>
-                  )}
-                </div>
-              ))}
-            </div>
-            <span class="text-brand-400 text-sm font-medium group-hover:text-brand-300 transition-colors">
-              Veure tècniques →
-            </span>
+        <!-- Colour swatches -->
+        <div class="mt-8 flex flex-wrap gap-2">
+          <span class="swatch"><span class="dot" style="background:#3A2418"></span><span class="lbl">Xocolata</span></span>
+          <span class="swatch"><span class="dot" style="background:#6B3A3A"></span><span class="lbl">Caoba</span></span>
+          <span class="swatch"><span class="dot" style="background:#B46A4E"></span><span class="lbl">Terracota</span></span>
+          <span class="swatch"><span class="dot" style="background:#D9A85C"></span><span class="lbl">Mel</span></span>
+          <span class="swatch"><span class="dot" style="background:#E8C9BA"></span><span class="lbl">Rubor</span></span>
+          <span class="swatch"><span class="dot" style="background:#EFE0C8"></span><span class="lbl">Sorra</span></span>
+        </div>
+
+        <div class="mt-10 flex flex-col sm:flex-row gap-3 sm:gap-4 sm:items-center">
+          <a href="tel:+34972572601"
+             class="inline-flex items-center justify-between gap-6 bg-ink text-linen px-6 py-4 hover:bg-taupe transition group">
+            <span class="mono-label">Demanar cita</span>
+            <span class="display text-[20px] italic">972 572 601</span>
+            <span class="inline-block w-6 h-px bg-linen group-hover:w-10 transition-all"></span>
           </a>
-        ))}
+          <a href="#serveis"
+             class="inline-flex items-center gap-3 px-6 py-4 border hairline hover:border-taupe hover:text-taupe transition mono-label text-ink">
+            Veure serveis
+            <span aria-hidden>→</span>
+          </a>
+        </div>
+
+        <!-- Micro stats -->
+        <div class="mt-16 md:mt-20 grid grid-cols-3 gap-6 md:gap-10 max-w-xl border-t hairline pt-8">
+          <div>
+            <div class="display text-[34px] md:text-[42px] leading-none text-terracotta">57</div>
+            <div class="mono-label text-muted mt-2">Anys<br/>d'ofici</div>
+          </div>
+          <div>
+            <div class="display text-[34px] md:text-[42px] leading-none text-honey">3</div>
+            <div class="mono-label text-muted mt-2">Generacions<br/>a casa</div>
+          </div>
+          <div>
+            <div class="display text-[34px] md:text-[42px] leading-none text-rose italic">∞</div>
+            <div class="mono-label text-muted mt-2">Matisos<br/>per cabell</div>
+          </div>
+        </div>
       </div>
 
-      <p class="text-center text-brand-200/30 text-sm mt-12">
-        Consulteu preus i disponibilitat directament a la perruqueria.
-      </p>
-    </div>
-  </section>
+      <!-- Right: portrait photo -->
+      <div class="md:col-span-5 rise-2 relative">
+        <!-- Colour strip side rail -->
+        <div class="absolute -left-3 top-0 w-2 h-2/3 hidden md:flex flex-col">
+          <div class="flex-1" style="background:#3A2418"></div>
+          <div class="flex-1" style="background:#6B3A3A"></div>
+          <div class="flex-1" style="background:#B46A4E"></div>
+          <div class="flex-1" style="background:#D9A85C"></div>
+          <div class="flex-1" style="background:#E8C9BA"></div>
+        </div>
 
-  <!-- NOSALTRES -->
-  <section id="nosaltres" class="py-20 bg-warm-50">
-    <div class="max-w-6xl mx-auto px-4 grid md:grid-cols-2 gap-12 items-center">
-      <div class="relative">
-        <img
-          src="https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?w=800&q=80"
-          alt="Interior de la perruqueria Maria Gifra & Paula a Porqueres"
-          class="aspect-[4/3] w-full rounded-2xl object-cover shadow-xl"
-          loading="lazy"
-        />
-      </div>
-      <div>
-        <p class="text-brand-500 font-semibold text-sm tracking-widest uppercase mb-3">Qui som</p>
-        <h2 class="font-display text-4xl font-bold text-warm-900 mb-6">
-          Una perruqueria de tota la vida
-        </h2>
-        <p class="text-warm-800/70 text-lg leading-relaxed mb-4">
-          Des de 1967, Maria Gifra & Paula Perruquers és una referència al Pla de l'Estany.
-          Més de 55 anys cuidant el cabell dels veïns de Porqueres i rodalies.
-        </p>
-        <p class="text-warm-800/70 text-lg leading-relaxed mb-6">
-          Combinem l'experiència de tota una vida amb les tendències i tècniques més actuals,
-          per oferir un servei proper, professional i de qualitat.
-        </p>
-        <div class="flex flex-wrap gap-3">
-          <span class="bg-brand-100 text-brand-700 px-4 py-2 rounded-lg text-sm font-medium">Des de 1967</span>
-          <span class="bg-brand-100 text-brand-700 px-4 py-2 rounded-lg text-sm font-medium">Homes i dones</span>
-          <span class="bg-brand-100 text-brand-700 px-4 py-2 rounded-lg text-sm font-medium">Tracte personal</span>
-          <span class="bg-brand-100 text-brand-700 px-4 py-2 rounded-lg text-sm font-medium">Productes qualitat</span>
+        <div class="aspect-[3/4] w-full overflow-hidden relative">
+          <img
+            src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=800&q=80"
+            alt="Resultat de balayage a Maria Gifra &amp; Paula Perruquers, Porqueres"
+            class="w-full h-full object-cover"
+            loading="eager"
+          />
+        </div>
+
+        <!-- Floating caption card -->
+        <div class="hidden md:block absolute -left-10 bottom-8 bg-linen border hairline px-5 py-4 shadow-[0_20px_40px_-25px_rgba(28,26,24,0.35)]">
+          <div class="mono-label text-terracotta flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-honey"></span>
+            Tècnica
+          </div>
+          <div class="display italic text-[22px] leading-tight mt-1">Balayage suau</div>
+          <div class="mono-label text-muted mt-1 flex items-center gap-2">
+            <span class="w-3 h-3 rounded-full" style="background:#D9A85C"></span>
+            <span class="w-3 h-3 rounded-full" style="background:#EFE0C8"></span>
+            № 04 · Mel i sorra
+          </div>
+        </div>
+
+        <!-- Corner tag -->
+        <div class="absolute top-4 right-4 bg-linen/90 border hairline-sand px-3 py-2 mono-label" style="color:rgba(28,26,24,0.7)">
+          Tardor · '26
         </div>
       </div>
     </div>
+
+    <div class="softline mx-6 md:mx-10"></div>
   </section>
 
-  <!-- HORARIS -->
-  <section id="horaris" class="py-20 bg-brand-800 text-brand-100">
-    <div class="max-w-4xl mx-auto px-4">
-      <div class="text-center mb-12">
-        <p class="text-brand-400 font-semibold text-sm tracking-widest uppercase mb-3">Quan obrim</p>
-        <h2 class="font-display text-4xl md:text-5xl font-bold text-white">Horaris</h2>
+  <!-- ===== SPECIALTY BAR ===== -->
+  <section aria-label="Especialitats" class="py-6 md:py-8 border-y hairline bg-cream">
+    <div class="max-w-[1360px] mx-auto px-6 md:px-10 grid grid-cols-2 md:grid-cols-4">
+      <div class="mono-label flex items-center gap-3 py-3 md:py-2 md:justify-center border-b md:border-b-0 md:border-r hairline" style="color:rgba(28,26,24,0.8)">
+        <span class="w-2 h-2 rounded-full bg-terracotta"></span>
+        Color i balayage
       </div>
-      <div class="max-w-md mx-auto">
-        {horaris.map((h, i) => (
-          <div
-            class:list={[
-              'flex justify-between py-4 border-b border-brand-700/50 text-lg',
-              i === todayIndex && 'text-brand-300 font-bold',
-              h.hores === 'Tancat' && 'text-brand-100/40',
-            ]}
-          >
-            <span>{h.dia}</span>
-            <span>{h.hores}</span>
-          </div>
-        ))}
+      <div class="mono-label flex items-center gap-3 py-3 md:py-2 md:justify-center border-b md:border-b-0 md:border-r hairline" style="color:rgba(28,26,24,0.8)">
+        <span class="w-2 h-2 rounded-full bg-honey"></span>
+        Babylights
       </div>
-      <p class="text-center text-brand-400/60 text-sm mt-8">
-        Horaris orientatius · Truqueu per confirmar disponibilitat
-      </p>
+      <div class="mono-label flex items-center gap-3 py-3 md:py-2 md:justify-center md:border-r hairline" style="color:rgba(28,26,24,0.8)">
+        <span class="w-2 h-2 rounded-full bg-sage"></span>
+        Homes i dones
+      </div>
+      <div class="mono-label flex items-center gap-3 py-3 md:py-2 md:justify-center" style="color:rgba(28,26,24,0.8)">
+        <span class="w-2 h-2 rounded-full bg-blush"></span>
+        Nupcial i ocasions
+      </div>
     </div>
   </section>
 
-  <!-- CONTACTE -->
-  <section id="contacte" class="py-20 bg-warm-50">
-    <div class="max-w-6xl mx-auto px-4">
-      <div class="text-center mb-12">
-        <p class="text-brand-500 font-semibold text-sm tracking-widest uppercase mb-3">On som</p>
-        <h2 class="font-display text-4xl md:text-5xl font-bold text-warm-900">Vine a veure'ns</h2>
-      </div>
+  <!-- ===== COLOUR HIGHLIGHT ===== -->
+  <section id="color" class="relative py-20 md:py-32 bg-cream-wash">
+    <div class="max-w-[1360px] mx-auto px-6 md:px-10 grid md:grid-cols-12 gap-10 md:gap-16 items-center">
 
-      <div class="grid md:grid-cols-2 gap-8">
-        <div class="rounded-2xl overflow-hidden shadow-lg aspect-[4/3]">
-          <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2950.2!2d2.7398!3d42.1018!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12bae4e4e4e4e4e4%3A0x0!2zNDLCsDA2JzA2LjUiTiAywrA0NCcyMy4zIkU!5e0!3m2!1sca!2ses!4v1!5m2!1sca!2ses"
-            width="100%"
-            height="100%"
-            style="border:0;"
-            allowfullscreen=""
+      <!-- Image -->
+      <div class="md:col-span-6 relative">
+        <div class="aspect-[4/5] w-full overflow-hidden">
+          <img
+            src="https://images.unsplash.com/photo-1562322140-8baeececf3df?w=800&q=80"
+            alt="Tècnica de balayage pintada a mà a Maria Gifra &amp; Paula Perruquers"
+            class="w-full h-full object-cover"
             loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade"
-            title="Ubicació Maria Gifra & Paula Perruquers, Porqueres"
-          ></iframe>
+          />
         </div>
 
-        <div class="flex flex-col justify-center space-y-8">
-          <div>
-            <h3 class="font-display text-xl font-bold text-warm-900 mb-2">Adreça</h3>
-            <p class="text-warm-800/70 text-lg">
-              Carrer de les Pedreres, 19<br />
-              17182 Porqueres, Girona
-            </p>
+        <!-- "Des de 1967" honey badge -->
+        <div class="absolute -right-4 md:-right-8 top-8 md:top-10">
+          <div class="w-32 h-32 md:w-40 md:h-40 rounded-full flex flex-col items-center justify-center text-center" style="background:#D9A85C;box-shadow:0 20px 40px -20px rgba(180,106,78,0.55)">
+            <div class="mono-label" style="color:rgba(28,26,24,0.7)">Des de</div>
+            <div class="display italic text-[44px] md:text-[56px] leading-none text-ink mt-1">1967</div>
+            <div class="mono-label" style="color:rgba(28,26,24,0.7)">· Porqueres ·</div>
           </div>
-          <div>
-            <h3 class="font-display text-xl font-bold text-warm-900 mb-2">Telèfon</h3>
-            <a href="tel:+34972572601" class="text-brand-600 text-xl font-semibold hover:text-brand-700 transition-colors">
-              972 572 601
-            </a>
-          </div>
-          <div>
-            <h3 class="font-display text-xl font-bold text-warm-900 mb-2">Segueix-nos</h3>
-            <a
-              href="https://www.instagram.com/mariagifra_perruquers/"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="bg-brand-100 text-brand-700 px-5 py-3 rounded-xl font-medium hover:bg-brand-200 transition-colors inline-block"
-            >
-              @mariagifra_perruquers
-            </a>
-          </div>
-          <a
-            href="tel:+34972572601"
-            class="inline-flex items-center justify-center bg-brand-700 text-white px-8 py-4 rounded-xl text-lg font-semibold hover:bg-brand-800 transition-colors w-fit"
-          >
-            Demanar cita — 972 572 601
-          </a>
         </div>
+
+        <div class="mt-4 flex justify-between items-center mono-label text-muted">
+          <span>Fig. 01 — Aplicació manual</span>
+          <span class="hidden sm:inline">Cabell natural · sense decoloració agressiva</span>
+        </div>
+      </div>
+
+      <!-- Text -->
+      <div class="md:col-span-6 md:pl-8">
+        <div class="mono-label text-taupe mb-6 flex items-center gap-3">
+          <span>01</span>
+          <span class="w-10 h-px bg-taupe/60"></span>
+          El color de la casa
+        </div>
+
+        <h2 class="display text-[48px] md:text-[72px] leading-[1.02]">
+          Color que <span class="italic text-terracotta">transforma</span>,
+          <br/>sense que es noti la mà.
+        </h2>
+
+        <!-- Formula row -->
+        <div class="mt-8 flex items-center gap-3 border-y hairline py-4">
+          <span class="mono-label text-muted">Fórmula</span>
+          <span class="flex -space-x-2">
+            <span class="w-7 h-7 rounded-full border-2 border-linen" style="background:#6B3A3A"></span>
+            <span class="w-7 h-7 rounded-full border-2 border-linen" style="background:#B46A4E"></span>
+            <span class="w-7 h-7 rounded-full border-2 border-linen" style="background:#D9A85C"></span>
+            <span class="w-7 h-7 rounded-full border-2 border-linen" style="background:#E8C9BA"></span>
+            <span class="w-7 h-7 rounded-full border-2 border-linen" style="background:#EFE0C8"></span>
+          </span>
+          <span class="ml-auto italic display text-[18px]">Terres d'Empordà</span>
+        </div>
+
+        <p class="mt-8 text-[17px] leading-[1.7] max-w-[52ch] font-light" style="color:rgba(28,26,24,0.75)">
+          Treballem cada color a mida, llegint la llum, la pell i el cabell
+          de cada persona. Balayage, babylights, ombrés suaus o tons
+          naturals: tècniques pintades a mà que creixen amb tu i que
+          respecten la fibra capil·lar.
+        </p>
+
+        <ul class="mt-10 space-y-4 max-w-lg">
+          <li class="flex items-start gap-4 border-t hairline pt-4">
+            <span class="mono-label text-taupe mt-1">01</span>
+            <div>
+              <div class="display italic text-[22px]">Diagnòstic i prova de color</div>
+              <div class="text-[15px] mt-1" style="color:rgba(28,26,24,0.65)">Sempre comencem amb una conversa i una lectura del cabell.</div>
+            </div>
+          </li>
+          <li class="flex items-start gap-4 border-t hairline pt-4">
+            <span class="mono-label text-taupe mt-1">02</span>
+            <div>
+              <div class="display italic text-[22px]">Pintat a mà, mecha a mecha</div>
+              <div class="text-[15px] mt-1" style="color:rgba(28,26,24,0.65)">Moviment natural, transicions sense contrastos durs.</div>
+            </div>
+          </li>
+          <li class="flex items-start gap-4 border-t border-b hairline py-4">
+            <span class="mono-label text-taupe mt-1">03</span>
+            <div>
+              <div class="display italic text-[22px]">Tractament i brillantor final</div>
+              <div class="text-[15px] mt-1" style="color:rgba(28,26,24,0.65)">Cura hidratant per fixar el to i segellar la cutícula.</div>
+            </div>
+          </li>
+        </ul>
+
+        <a href="#serveis" class="inline-flex items-center gap-3 mt-10 mono-label text-ink hover:text-taupe transition">
+          <span class="w-10 h-px bg-ink"></span>
+          Veure totes les tècniques de color
+          <span aria-hidden>→</span>
+        </a>
       </div>
     </div>
   </section>
 
-  <!-- FOOTER -->
-  <footer class="bg-brand-900 text-brand-200/50 py-8">
-    <div class="max-w-6xl mx-auto px-4 text-center text-sm">
-      <p class="font-display text-brand-300 text-lg mb-2 italic">Maria Gifra & Paula Perruquers</p>
-      <p>Carrer de les Pedreres, 19 · 17182 Porqueres · 972 572 601</p>
-      <p class="mt-4 text-brand-200/30">
-        &copy; {new Date().getFullYear()} Maria Gifra & Paula Perruquers. Tots els drets reservats.
+  <!-- ===== SERVICES GRID ===== -->
+  <section id="serveis" class="py-20 md:py-32 bg-cream">
+    <div class="max-w-[1360px] mx-auto px-6 md:px-10">
+
+      <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12 md:mb-20">
+        <div>
+          <div class="mono-label text-taupe mb-5 flex items-center gap-3">
+            <span>02</span>
+            <span class="w-10 h-px bg-taupe/60"></span>
+            Carta de serveis
+          </div>
+          <h2 class="display text-[48px] md:text-[72px] leading-[1.02] max-w-[16ch]">
+            Quatre famílies,
+            <span class="italic text-terracotta">una mateixa cura.</span>
+          </h2>
+        </div>
+        <p class="max-w-sm font-light leading-relaxed" style="color:rgba(28,26,24,0.7)">
+          Tots els serveis inclouen diagnòstic, rentat amb productes adaptats
+          i assessorament a casa. Preus orientatius — confirmem abans de començar.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 border-t border-l hairline">
+
+        <!-- Card 1: Tall i forma -->
+        <article class="svc group p-8 md:p-10 border-b border-r hairline relative min-h-[420px] flex flex-col">
+          <div class="absolute top-0 left-0 right-0 h-1 bg-sage"></div>
+          <div class="flex items-start justify-between">
+            <span class="svc-num mono-label text-muted transition-colors">№ 01</span>
+            <span class="mono-label text-muted">H · D</span>
+          </div>
+          <h3 class="display text-[38px] md:text-[44px] leading-[1.05] mt-10">
+            <span class="italic" style="color:color-mix(in srgb, #A8B39A 75%, #1C1A18 25%)">Tall i forma</span>
+          </h3>
+          <ul class="mt-6 space-y-2 text-[15px] font-light" style="color:rgba(28,26,24,0.75)">
+            <li class="flex justify-between border-b hairline pb-2"><span>Tall dona</span><span class="mono-label text-muted">28€</span></li>
+            <li class="flex justify-between border-b hairline pb-2"><span>Tall home</span><span class="mono-label text-muted">18€</span></li>
+            <li class="flex justify-between border-b hairline pb-2"><span>Flequillo / retoc</span><span class="mono-label text-muted">9€</span></li>
+            <li class="flex justify-between"><span>Pentinat + brushing</span><span class="mono-label text-muted">22€</span></li>
+          </ul>
+          <a href="tel:+34972572601" class="reveal mt-auto pt-8 mono-label text-taupe flex items-center gap-2">
+            Consultar disponibilitat <span aria-hidden>→</span>
+          </a>
+        </article>
+
+        <!-- Card 2: Color -->
+        <article class="svc group p-8 md:p-10 border-b border-r hairline relative min-h-[420px] flex flex-col">
+          <div class="absolute top-0 left-0 right-0 h-1 bg-terracotta"></div>
+          <div class="flex items-start justify-between">
+            <span class="svc-num mono-label text-muted transition-colors">№ 02</span>
+            <span class="mono-label text-muted">Signature</span>
+          </div>
+          <h3 class="display text-[38px] md:text-[44px] leading-[1.05] mt-10">
+            <span class="italic text-terracotta">Color</span>
+          </h3>
+          <ul class="mt-6 space-y-2 text-[15px] font-light" style="color:rgba(28,26,24,0.75)">
+            <li class="flex justify-between border-b hairline pb-2"><span>Balayage</span><span class="mono-label text-muted">des de 85€</span></li>
+            <li class="flex justify-between border-b hairline pb-2"><span>Babylights</span><span class="mono-label text-muted">des de 75€</span></li>
+            <li class="flex justify-between border-b hairline pb-2"><span>Color natural</span><span class="mono-label text-muted">42€</span></li>
+            <li class="flex justify-between"><span>Retoc arrels</span><span class="mono-label text-muted">35€</span></li>
+          </ul>
+          <a href="tel:+34972572601" class="reveal mt-auto pt-8 mono-label text-taupe flex items-center gap-2">
+            Consultar disponibilitat <span aria-hidden>→</span>
+          </a>
+        </article>
+
+        <!-- Card 3: Tractaments -->
+        <article class="svc group p-8 md:p-10 border-b border-r hairline relative min-h-[420px] flex flex-col">
+          <div class="absolute top-0 left-0 right-0 h-1 bg-honey"></div>
+          <div class="flex items-start justify-between">
+            <span class="svc-num mono-label text-muted transition-colors">№ 03</span>
+            <span class="mono-label text-muted">Cura</span>
+          </div>
+          <h3 class="display text-[38px] md:text-[44px] leading-[1.05] mt-10">
+            <span class="italic" style="color:color-mix(in srgb, #D9A85C 82%, #1C1A18 18%)">Tractaments</span>
+          </h3>
+          <ul class="mt-6 space-y-2 text-[15px] font-light" style="color:rgba(28,26,24,0.75)">
+            <li class="flex justify-between border-b hairline pb-2"><span>Hidratació profunda</span><span class="mono-label text-muted">18€</span></li>
+            <li class="flex justify-between border-b hairline pb-2"><span>Botox capil·lar</span><span class="mono-label text-muted">48€</span></li>
+            <li class="flex justify-between border-b hairline pb-2"><span>Ritual anticaiguda</span><span class="mono-label text-muted">32€</span></li>
+            <li class="flex justify-between"><span>Queratina</span><span class="mono-label text-muted">des de 85€</span></li>
+          </ul>
+          <a href="tel:+34972572601" class="reveal mt-auto pt-8 mono-label text-taupe flex items-center gap-2">
+            Consultar disponibilitat <span aria-hidden>→</span>
+          </a>
+        </article>
+
+        <!-- Card 4: Nupcial -->
+        <article id="nupcial" class="svc group p-8 md:p-10 border-b border-r hairline relative min-h-[420px] flex flex-col">
+          <div class="absolute top-0 left-0 right-0 h-1 bg-blush"></div>
+          <div class="flex items-start justify-between">
+            <span class="svc-num mono-label text-muted transition-colors">№ 04</span>
+            <span class="mono-label text-muted">Ocasions</span>
+          </div>
+          <h3 class="display text-[38px] md:text-[44px] leading-[1.05] mt-10">
+            <span class="italic text-rose">Nupcial</span>
+          </h3>
+          <ul class="mt-6 space-y-2 text-[15px] font-light" style="color:rgba(28,26,24,0.75)">
+            <li class="flex justify-between border-b hairline pb-2"><span>Prova pentinat</span><span class="mono-label text-muted">45€</span></li>
+            <li class="flex justify-between border-b hairline pb-2"><span>Pentinat núvia</span><span class="mono-label text-muted">95€</span></li>
+            <li class="flex justify-between border-b hairline pb-2"><span>Convidades</span><span class="mono-label text-muted">des de 38€</span></li>
+            <li class="flex justify-between"><span>Desplaçament</span><span class="mono-label text-muted">a consultar</span></li>
+          </ul>
+          <a href="tel:+34972572601" class="reveal mt-auto pt-8 mono-label text-taupe flex items-center gap-2">
+            Consultar disponibilitat <span aria-hidden>→</span>
+          </a>
+        </article>
+      </div>
+
+      <p class="mt-8 mono-label text-muted text-center">
+        * Preus indicatius segons llargada i densitat del cabell. Consulta sense compromís.
       </p>
+    </div>
+  </section>
+
+  <!-- ===== QUOTE / STORY ===== -->
+  <section id="salo" class="py-20 md:py-32 relative overflow-hidden" style="background:#F6E8DE">
+    <div class="max-w-[1100px] mx-auto px-6 md:px-10 text-center">
+      <div class="mono-label text-taupe mb-6 flex items-center justify-center gap-3">
+        <span class="w-10 h-px bg-taupe/60"></span>
+        Una història familiar
+        <span class="w-10 h-px bg-taupe/60"></span>
+      </div>
+      <blockquote class="display text-[32px] md:text-[48px] leading-[1.15] text-ink">
+        "Ens van ensenyar que <span class="italic text-terracotta">un bon tall</span>
+        s'escolta abans de tocar-lo. Seixanta anys després,
+        encara comencem <span class="italic text-terracotta">per la conversa</span>."
+      </blockquote>
+      <div class="mt-10 flex items-center justify-center gap-4 mono-label text-muted">
+        <span>Maria Gifra</span>
+        <span class="w-1 h-1 rounded-full bg-sand"></span>
+        <span>Paula Perruquers</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CONTACT / FOOTER ===== -->
+  <footer id="contacte" class="bg-cream border-t hairline relative">
+    <div class="tape h-1 w-full absolute top-0 left-0 right-0"></div>
+    <div class="max-w-[1360px] mx-auto px-6 md:px-10 py-16 md:py-20 grid md:grid-cols-12 gap-10">
+
+      <div class="md:col-span-5">
+        <div class="display text-[40px] md:text-[48px] lg:text-[56px] leading-[1.15]">
+          Vine a veure'ns
+          <br/><span class="italic text-terracotta">a Porqueres.</span>
+        </div>
+        <p class="mt-8 max-w-sm font-light leading-relaxed" style="color:rgba(28,26,24,0.7)">
+          Amb cita prèvia per dedicar-te el temps que et mereixes.
+          T'esperem amb un cafè abans de començar.
+        </p>
+        <a href="tel:+34972572601"
+           class="inline-flex flex-col items-start gap-0.5 mt-8 bg-terracotta text-linen px-6 py-4 hover:bg-ink transition">
+          <span class="mono-label" style="color:rgba(250,250,248,0.8)">Telèfon</span>
+          <span class="display italic text-[22px] leading-tight whitespace-nowrap">972 572 601</span>
+        </a>
+      </div>
+
+      <div class="md:col-span-3">
+        <div class="mono-label text-taupe mb-4">Saló</div>
+        <address class="not-italic font-light leading-relaxed" style="color:rgba(28,26,24,0.8)">
+          Carrer de les Pedreres, 19<br/>
+          17182 Porqueres<br/>
+          Girona · Catalunya
+        </address>
+        <a
+          href="https://maps.google.com/?q=Carrer+de+les+Pedreres+19+Porqueres"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="mono-label text-ink hover:text-taupe transition mt-4 inline-block"
+        >
+          Com arribar-hi →
+        </a>
+      </div>
+
+      <div class="md:col-span-4">
+        <div class="mono-label text-taupe mb-4">Horari</div>
+        <ul class="font-light space-y-2" style="color:rgba(28,26,24,0.8)">
+          {horaris.map((h) => (
+            <li class="flex justify-between border-b hairline pb-2">
+              <span>{h.label}</span>
+              <span class="mono-label text-muted">{h.hores}</span>
+            </li>
+          ))}
+        </ul>
+        <div class="mt-6 flex gap-6 mono-label">
+          <a href="https://www.instagram.com/mariagifra_perruquers/" target="_blank" rel="noopener noreferrer" class="hover:text-taupe transition text-ink">Instagram</a>
+          <a href="tel:+34972572601" class="hover:text-taupe transition text-ink">Telèfon</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="border-t hairline">
+      <div class="max-w-[1360px] mx-auto px-6 md:px-10 py-6 flex flex-col md:flex-row md:items-center md:justify-between gap-3 mono-label text-muted">
+        <span>© 1967 — {new Date().getFullYear()} · Maria Gifra &amp; Paula Perruquers</span>
+        <span class="italic display text-[15px] text-taupe normal-case tracking-normal">Fet amb cura a Porqueres</span>
+        <span>Avís legal · Privacitat</span>
+      </div>
     </div>
   </footer>
 
@@ -342,12 +473,11 @@ const todayIndex = dayMap[today] ?? 0
   <div class="md:hidden fixed bottom-6 left-1/2 -translate-x-1/2 z-50">
     <a
       href="tel:+34972572601"
-      class="bg-brand-700 text-white px-8 py-4 rounded-full text-lg font-bold shadow-2xl hover:bg-brand-800 transition-colors flex items-center gap-2"
+      class="bg-ink text-linen px-8 py-4 mono-label shadow-2xl hover:bg-taupe transition flex items-center gap-3"
     >
-      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-        <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
-      </svg>
-      Demanar cita
+      <span class="w-1.5 h-1.5 rounded-full bg-sand"></span>
+      972 572 601
     </a>
   </div>
+
 </Layout>
