@@ -60,131 +60,277 @@ const todayIndex = dayMap[today] ?? 0
   title="Can Garriga — Carn a la Brasa | Banyoles"
   description="Restaurant especialitzat en carn a la brasa a Banyoles. Esmorzars de forquilla, tapes, peix i marisc. Terrassa, llar de foc i aparcament gratuït."
 >
+
   <!-- NAV -->
-  <nav class="fixed top-0 w-full z-50 bg-warm-50/90 backdrop-blur-md border-b border-brand-100">
-    <div class="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
-      <a href="#" class="font-display text-xl font-bold text-brand-700">Can Garriga</a>
-      <div class="hidden md:flex items-center gap-8 text-sm font-medium text-warm-800">
-        <a href="#carta" class="hover:text-brand-600 transition-colors">Carta</a>
-        <a href="#nosaltres" class="hover:text-brand-600 transition-colors">Nosaltres</a>
-        <a href="#horaris" class="hover:text-brand-600 transition-colors">Horaris</a>
-        <a href="#contacte" class="hover:text-brand-600 transition-colors">Contacte</a>
+  <header class="relative z-30">
+    <div class="max-w-[1400px] mx-auto px-8 lg:px-14 py-6 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="w-9 h-9 rounded-full border border-cream/30 flex items-center justify-center font-display text-cream text-lg">G</div>
+        <div class="leading-tight">
+          <div class="font-display text-[22px] text-cream">Can Garriga</div>
+          <div class="font-mono text-[10px] tracking-micro text-muted uppercase">Banyoles · Est. 1952</div>
+        </div>
       </div>
-      <a
-        href="tel:+34972570948"
-        class="bg-brand-600 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-brand-700 transition-colors"
-      >
-        Reservar
-      </a>
+      <nav class="hidden md:flex items-center gap-10 text-[13px] text-cream/80">
+        <a href="#carta" class="hover:text-cream transition-colors">La carta</a>
+        <a href="#esmorzar" class="hover:text-cream transition-colors">Esmorzars</a>
+        <a href="#horaris" class="hover:text-cream transition-colors">Horaris</a>
+        <a href="#contacte" class="hover:text-cream transition-colors">Contacte</a>
+      </nav>
+      <div class="flex items-center gap-5">
+        <a href="tel:+34972570948" class="text-[13px] border border-cream/30 px-4 py-2 rounded-full hover:border-cream transition-colors">Reserva</a>
+      </div>
     </div>
-  </nav>
+    <div class="hairline max-w-[1400px] mx-auto"></div>
+  </header>
 
   <!-- HERO -->
-  <section class="relative min-h-[90vh] flex items-center justify-center pt-16 overflow-hidden">
-    <div
-      class="absolute inset-0 bg-cover bg-center"
-      style="background-image: url('https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=1600&q=80'); filter: brightness(0.3);"
-    >
+  <section class="relative overflow-hidden grain">
+    <!-- Side coordinate rails -->
+    <div class="hidden lg:flex absolute left-0 top-0 bottom-0 w-14 items-center justify-center z-10">
+      <span class="vertical font-mono text-[10px] tracking-micro uppercase text-muted">N 42.117° · E 2.765° — Estany de Banyoles</span>
     </div>
-    <div class="relative z-10 text-center px-4 max-w-3xl">
-      <p class="text-brand-300 font-medium tracking-widest uppercase text-sm mb-4">
-        Des de Banyoles
-      </p>
-      <h1 class="font-display text-5xl md:text-7xl font-bold text-white leading-tight mb-6">
-        Carn a la brasa<br />
-        <span class="text-brand-300 italic font-normal">com cal</span>
-      </h1>
-      <p class="text-brand-200/80 text-lg md:text-xl max-w-xl mx-auto mb-10 leading-relaxed">
-        Restaurant familiar a Banyoles, especialitzat en carns a la brasa amb llenya.
-        Esmorzars de forquilla, tapes i cuina tradicional catalana.
-      </p>
-      <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        <a
-          href="tel:+34972570948"
-          class="bg-brand-600 text-white px-8 py-4 rounded-xl text-lg font-semibold hover:bg-brand-500 transition-colors"
-        >
-          Reserva taula — 972 570 948
-        </a>
-        <a
-          href="#carta"
-          class="border-2 border-white/30 text-white px-8 py-4 rounded-xl text-lg font-semibold hover:bg-white/10 transition-colors"
-        >
-          Veure la carta
-        </a>
-      </div>
+    <div class="hidden lg:flex absolute right-0 top-0 bottom-0 w-14 items-center justify-center z-10">
+      <span class="vertical font-mono text-[10px] tracking-micro uppercase text-muted">Llenya d'alzina · Brasa viva · Tres generacions</span>
     </div>
-  </section>
 
-  <!-- FEATURES -->
-  <section class="bg-brand-800 text-brand-100">
-    <div class="max-w-6xl mx-auto px-4 py-6 flex flex-wrap justify-center gap-x-12 gap-y-3 text-sm tracking-wide uppercase">
-      <span class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-brand-400"></span> Brasa amb llenya</span>
-      <span class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-brand-400"></span> Terrassa exterior</span>
-      <span class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-brand-400"></span> Aparcament gratuït</span>
-      <span class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-brand-400"></span> Llar de foc</span>
-    </div>
-  </section>
+    <div class="max-w-[1400px] mx-auto px-8 lg:px-20 pt-10 lg:pt-14 pb-20 lg:pb-28">
+      <div class="grid grid-cols-12 gap-8 items-end">
 
-  <!-- ESMORZAR HIGHLIGHT -->
-  <section class="py-20 bg-warm-50">
-    <div class="max-w-6xl mx-auto px-4 grid md:grid-cols-2 gap-12 items-center">
-      <div>
-        <p class="text-brand-500 font-semibold text-sm tracking-widest uppercase mb-3">La nostra especialitat</p>
-        <h2 class="font-display text-4xl md:text-5xl font-bold text-warm-900 mb-6">
-          Esmorzar<br />de forquilla
-        </h2>
-        <p class="text-warm-800/70 text-lg leading-relaxed mb-6">
-          Reconegut com un dels millors esmorzars de forquilla del Pla de l'Estany.
-          Cada matí, des de les 8h, preparem esmorzars contundents per
-          començar el dia com toca.
-        </p>
-        <p class="text-brand-600 font-medium">
-          Cada dia a partir de les 8:00h
-        </p>
-      </div>
-      <div class="relative">
-        <img
-          src="https://images.unsplash.com/photo-1504754524776-8f4f37790ca0?w=800&q=80"
-          alt="Esmorzar de forquilla a Can Garriga"
-          class="aspect-[4/3] w-full rounded-2xl object-cover shadow-xl"
-          loading="lazy"
-        />
-        <div class="absolute -bottom-4 -left-4 bg-brand-600 text-white px-5 py-3 rounded-xl font-display text-lg italic shadow-lg">
-          Des de les 8h
+        <!-- LEFT: headline + copy -->
+        <div class="col-span-12 lg:col-span-7 relative z-20">
+          <div class="flex items-center gap-4 mb-10">
+            <span class="font-mono text-[11px] tracking-micro uppercase text-ember">— Capítol 01</span>
+            <span class="font-mono text-[11px] tracking-micro uppercase text-cream/60">La brasa</span>
+          </div>
+
+          <h1 class="font-display font-medium text-cream leading-[0.98] text-[64px] md:text-[88px] lg:text-[104px]">
+            Carn a <span class="italic font-light text-ember2">la&nbsp;brasa</span><br/>
+            com cal.
+          </h1>
+
+          <div class="mt-14 max-w-xl">
+            <p class="text-[17px] leading-[1.65] text-cream/75 font-light">
+              Des de fa tres generacions, encenem la llenya d'alzina abans que surti el sol.
+              Cuina catalana de pagès, esmorzars de forquilla i taula parada amb vistes
+              a l'estany de Banyoles.
+            </p>
+          </div>
+
+          <div class="mt-12 flex flex-wrap items-center gap-4">
+            <a
+              href="tel:+34972570948"
+              class="inline-flex items-center gap-3 px-7 py-4 rounded-full text-[14px] font-medium tracking-wide transition-colors bg-ember text-ink hover:bg-ember2"
+            >
+              Reserva taula
+              <span aria-hidden="true">→</span>
+            </a>
+            <a
+              href="#carta"
+              class="inline-flex items-center gap-3 px-7 py-4 rounded-full border border-cream/35 text-[14px] font-medium tracking-wide transition-colors hover:border-cream hover:bg-cream/6"
+            >
+              Veure la carta
+            </a>
+            <div class="hidden sm:flex items-center gap-3 pl-6 ml-2 border-l border-cream/15">
+              <span class="w-2 h-2 rounded-full bg-ember ember-dot"></span>
+              <span class="font-mono text-[11px] tracking-micro uppercase text-cream/70">Obert avui · 8h — 23h</span>
+            </div>
+          </div>
+
+          <!-- Stats strip -->
+          <div class="mt-20 grid grid-cols-3 gap-8 max-w-lg">
+            <div>
+              <div class="font-display text-[42px] leading-none text-cream">72</div>
+              <div class="font-mono text-[10px] tracking-micro uppercase text-muted mt-2">anys a taula</div>
+            </div>
+            <div>
+              <div class="font-display text-[42px] leading-none text-cream">400<span class="text-ember">°</span></div>
+              <div class="font-mono text-[10px] tracking-micro uppercase text-muted mt-2">brasa d'alzina</div>
+            </div>
+            <div>
+              <div class="font-display text-[42px] leading-none text-cream">08<span class="text-cream/40">:00</span></div>
+              <div class="font-mono text-[10px] tracking-micro uppercase text-muted mt-2">l'esmorzar comença</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- RIGHT: food image -->
+        <div class="col-span-12 lg:col-span-5 relative">
+          <div class="relative aspect-[4/5] rounded-[2px] overflow-hidden">
+            <img
+              src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=900&q=80"
+              alt="Carn a la brasa a Can Garriga"
+              class="absolute inset-0 w-full h-full object-cover brightness-75"
+            />
+            <!-- Top-left tag -->
+            <div class="absolute top-5 left-5 flex items-center gap-2 bg-ink/70 backdrop-blur-sm border border-cream/15 rounded-full px-3 py-1.5">
+              <span class="w-1.5 h-1.5 rounded-full bg-ember"></span>
+              <span class="font-mono text-[10px] tracking-micro uppercase text-cream/80">En directe de la brasa</span>
+            </div>
+            <!-- Bottom label -->
+            <div class="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-ink via-ink/70 to-transparent">
+              <div class="font-mono text-[10px] tracking-micro uppercase text-ember mb-1">— Especialitat</div>
+              <div class="font-display text-2xl text-cream leading-tight">Costella de vedella madurada 30&nbsp;dies</div>
+            </div>
+          </div>
+
+          <!-- Stamp -->
+          <div class="absolute -left-6 -top-6 hidden lg:flex w-28 h-28 rounded-full border border-ember/60 bg-ink items-center justify-center rotate-[-12deg]">
+            <div class="text-center">
+              <div class="font-display italic text-ember text-lg leading-none">des de</div>
+              <div class="font-display text-cream text-3xl leading-none mt-1">1952</div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
+  </section>
+
+  <!-- FEATURES BAR -->
+  <section class="relative border-y border-cream/10 bg-ink2">
+    <div class="max-w-[1400px] mx-auto px-8 lg:px-20">
+      <div class="grid grid-cols-2 md:grid-cols-4 divide-x divide-cream/10">
+        <div class="flex items-center gap-4 py-7 pr-6">
+          <span class="font-mono text-[11px] text-ember">01</span>
+          <div>
+            <div class="font-display text-[22px] text-cream leading-tight">Brasa amb llenya</div>
+            <div class="font-mono text-[10px] tracking-micro uppercase text-muted mt-0.5">Alzina · encesa diària</div>
+          </div>
+        </div>
+        <div class="flex items-center gap-4 py-7 px-6">
+          <span class="font-mono text-[11px] text-ember">02</span>
+          <div>
+            <div class="font-display text-[22px] text-cream leading-tight">Terrassa exterior</div>
+            <div class="font-mono text-[10px] tracking-micro uppercase text-muted mt-0.5">Vistes a l'estany</div>
+          </div>
+        </div>
+        <div class="flex items-center gap-4 py-7 px-6">
+          <span class="font-mono text-[11px] text-ember">03</span>
+          <div>
+            <div class="font-display text-[22px] text-cream leading-tight">Aparcament gratuït</div>
+            <div class="font-mono text-[10px] tracking-micro uppercase text-muted mt-0.5">A peu de casa</div>
+          </div>
+        </div>
+        <div class="flex items-center gap-4 py-7 px-6">
+          <span class="font-mono text-[11px] text-ember">04</span>
+          <div>
+            <div class="font-display text-[22px] text-cream leading-tight">Llar de foc</div>
+            <div class="font-mono text-[10px] tracking-micro uppercase text-muted mt-0.5">Per a dies freds</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ESMORZAR DE FORQUILLA -->
+  <section id="esmorzar" class="relative bg-bone text-ink">
+    <div class="max-w-[1400px] mx-auto px-8 lg:px-20 py-24 lg:py-32">
+      <div class="grid grid-cols-12 gap-10 lg:gap-16 items-center">
+
+        <!-- LEFT text -->
+        <div class="col-span-12 lg:col-span-6">
+          <div class="flex items-center gap-4 mb-8">
+            <span class="w-10 h-[1px] bg-terra"></span>
+            <span class="font-mono text-[11px] tracking-micro uppercase text-terra">La tradició</span>
+          </div>
+          <h2 class="font-display text-ink text-[56px] md:text-[72px] leading-[0.95] font-medium">
+            Esmorzar<br/>
+            <span class="italic font-light text-terra">de forquilla.</span>
+          </h2>
+          <p class="mt-8 text-[17px] leading-[1.7] text-ink/80 font-light max-w-xl">
+            Quan encara fa fred i la brasa acaba d'arrencar, obrim portes per qui sap que
+            el dia es comença amb forquilla a la mà. Cansalada, botifarra, fetge de
+            vedella, truites fetes al moment i pa amb tomàquet de la terra.
+          </p>
+
+          <div class="mt-10 border-t border-ink/15">
+            <div class="flex items-baseline justify-between py-4 border-b border-ink/10">
+              <span class="font-display text-[20px] text-ink">Cansalada i botifarra a la brasa</span>
+              <span class="font-mono text-[12px] text-ink/50">— pa amb tomàquet</span>
+            </div>
+            <div class="flex items-baseline justify-between py-4 border-b border-ink/10">
+              <span class="font-display text-[20px] text-ink">Fetge de vedella amb ceba</span>
+              <span class="font-mono text-[12px] text-ink/50">— clàssic de la casa</span>
+            </div>
+            <div class="flex items-baseline justify-between py-4 border-b border-ink/10">
+              <span class="font-display text-[20px] text-ink">Truita de patates i ceps</span>
+              <span class="font-mono text-[12px] text-ink/50">— segons temporada</span>
+            </div>
+          </div>
+
+          <div class="mt-10 flex flex-wrap items-center gap-6">
+            <a
+              href="tel:+34972570948"
+              class="inline-flex items-center gap-3 bg-ink text-cream px-7 py-4 rounded-full text-[14px] font-medium tracking-wide hover:bg-ink3 transition-colors"
+            >
+              Reservar esmorzar →
+            </a>
+            <span class="font-mono text-[11px] tracking-micro uppercase text-ink/60">De dimarts a diumenge</span>
+          </div>
+        </div>
+
+        <!-- RIGHT image -->
+        <div class="col-span-12 lg:col-span-6 relative">
+          <div class="relative aspect-[5/6] rounded-[2px] overflow-hidden">
+            <img
+              src="https://images.unsplash.com/photo-1504754524776-8f4f37790ca0?w=800&q=80"
+              alt="Esmorzar de forquilla a Can Garriga"
+              class="absolute inset-0 w-full h-full object-cover"
+            />
+            <div class="absolute left-5 bottom-5 font-mono text-[10px] tracking-micro uppercase text-white/60">
+              Nº 02 — Casa Garriga
+            </div>
+          </div>
+
+          <!-- Floating badge -->
+          <div class="absolute -top-8 -right-4 lg:-right-10 w-40 h-40 rounded-full bg-ember text-ink flex items-center justify-center rotate-[8deg] shadow-[0_20px_40px_-20px_rgba(26,18,8,0.4)]">
+            <div class="text-center">
+              <div class="font-mono text-[10px] tracking-micro uppercase opacity-80">obrim a les</div>
+              <div class="font-display text-[56px] leading-none font-medium mt-1">8h</div>
+              <div class="font-mono text-[10px] tracking-micro uppercase opacity-80 mt-1">cada matí</div>
+            </div>
+          </div>
+
+          <!-- Secondary card -->
+          <div class="hidden md:block absolute -left-6 bottom-10 bg-ink text-cream p-5 rounded-[2px] w-56 border border-ember/30">
+            <div class="font-mono text-[10px] tracking-micro uppercase text-ember mb-2">— Detall</div>
+            <div class="font-display text-[19px] leading-tight">Pa de pagès torrat a la mateixa brasa</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="hairline-ember max-w-[1400px] mx-auto"></div>
   </section>
 
   <!-- CARTA -->
-  <section id="carta" class="py-20 bg-brand-800">
-    <div class="max-w-5xl mx-auto px-4">
+  <section id="carta" class="py-24 bg-ink2">
+    <div class="max-w-[1400px] mx-auto px-8 lg:px-20">
       <div class="text-center mb-16">
         <div class="flex items-center justify-center gap-4 mb-4">
-          <span class="h-px w-12 bg-brand-400/40"></span>
-          <p class="text-brand-400 font-semibold text-sm tracking-widest uppercase">El que oferim</p>
-          <span class="h-px w-12 bg-brand-400/40"></span>
+          <span class="h-px w-12 bg-ember/40"></span>
+          <p class="font-mono text-[11px] tracking-micro uppercase text-ember">El que oferim</p>
+          <span class="h-px w-12 bg-ember/40"></span>
         </div>
-        <h2 class="font-display text-4xl md:text-5xl font-bold text-white">La nostra carta</h2>
-        <p class="text-brand-200/50 mt-4 max-w-lg mx-auto">
+        <h2 class="font-display text-[48px] md:text-[60px] font-medium text-cream">La nostra carta</h2>
+        <p class="text-cream/50 mt-4 max-w-lg mx-auto font-light">
           Cuina tradicional catalana amb producte de proximitat.
         </p>
       </div>
 
       <div class="grid md:grid-cols-2 gap-8">
         {menuCategories.map((cat) => (
-          <div class="bg-brand-900/50 rounded-2xl p-8 border border-brand-700/30">
+          <div class="bg-ink3/50 rounded-[2px] p-8 border border-cream/10">
             <div class="flex items-center gap-3 mb-6">
-              <span class="h-px grow bg-brand-600/30"></span>
-              <h3 class="font-display text-xl font-bold text-brand-300 tracking-wide uppercase">{cat.name}</h3>
-              <span class="h-px grow bg-brand-600/30"></span>
+              <span class="h-px grow bg-ember/20"></span>
+              <h3 class="font-display text-xl font-medium text-ember tracking-wide uppercase">{cat.name}</h3>
+              <span class="h-px grow bg-ember/20"></span>
             </div>
             <div class="space-y-4">
               {cat.items.map((item) => (
                 <div>
-                  <span class="font-medium text-brand-100">{item.name}</span>
+                  <span class="font-display text-[18px] text-cream">{item.name}</span>
                   {'desc' in item && item.desc && (
-                    <span class="block text-sm text-brand-200/40 mt-0.5 italic">{item.desc}</span>
+                    <span class="block text-sm text-cream/40 mt-0.5 italic font-light">{item.desc}</span>
                   )}
                 </div>
               ))}
@@ -193,84 +339,49 @@ const todayIndex = dayMap[today] ?? 0
         ))}
       </div>
 
-      <p class="text-center text-brand-200/30 text-sm mt-12">
-        Consulteu preus, plats del dia i suggeriments al restaurant.
+      <p class="text-center text-cream/30 text-sm mt-12 font-mono tracking-micro uppercase">
+        Consulteu preus, plats del dia i suggeriments al restaurant
       </p>
     </div>
   </section>
 
-  <!-- NOSALTRES -->
-  <section id="nosaltres" class="py-20 bg-warm-50">
-    <div class="max-w-6xl mx-auto px-4 grid md:grid-cols-2 gap-12 items-center">
-      <div class="relative">
-        <img
-          src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&q=80"
-          alt="Interior del restaurant Can Garriga"
-          class="aspect-[4/3] w-full rounded-2xl object-cover shadow-xl"
-          loading="lazy"
-        />
-      </div>
-      <div>
-        <p class="text-brand-500 font-semibold text-sm tracking-widest uppercase mb-3">Qui som</p>
-        <h2 class="font-display text-4xl font-bold text-warm-900 mb-6">
-          Un bar de tota la vida
-        </h2>
-        <p class="text-warm-800/70 text-lg leading-relaxed mb-4">
-          Can Garriga és un restaurant familiar situat a la carretera de Camós, a Banyoles.
-          Especialitzats en carn a la brasa cuinada amb llenya, oferim una experiència
-          gastronòmica autèntica en un ambient acollidor.
-        </p>
-        <p class="text-warm-800/70 text-lg leading-relaxed mb-6">
-          Amb terrassa exterior per als dies de sol, llar de foc per a l'hivern,
-          i aparcament gratuït. Un lloc on venir a menjar bé, sense complicacions.
-        </p>
-        <div class="flex flex-wrap gap-3">
-          <span class="bg-brand-100 text-brand-700 px-4 py-2 rounded-lg text-sm font-medium">Familiar</span>
-          <span class="bg-brand-100 text-brand-700 px-4 py-2 rounded-lg text-sm font-medium">Accessible</span>
-          <span class="bg-brand-100 text-brand-700 px-4 py-2 rounded-lg text-sm font-medium">Apte per nens</span>
-          <span class="bg-brand-100 text-brand-700 px-4 py-2 rounded-lg text-sm font-medium">Targetes i mòbil</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <!-- HORARIS -->
-  <section id="horaris" class="py-20 bg-brand-800 text-brand-100">
-    <div class="max-w-4xl mx-auto px-4">
+  <section id="horaris" class="py-24 bg-ink">
+    <div class="max-w-[600px] mx-auto px-8">
       <div class="text-center mb-12">
-        <p class="text-brand-400 font-semibold text-sm tracking-widest uppercase mb-3">Quan obrim</p>
-        <h2 class="font-display text-4xl md:text-5xl font-bold text-white">Horaris</h2>
+        <span class="font-mono text-[11px] tracking-micro uppercase text-ember block mb-3">Quan obrim</span>
+        <h2 class="font-display text-[48px] md:text-[60px] font-medium text-cream">Horaris</h2>
       </div>
-      <div class="max-w-md mx-auto">
+      <div class="border-t border-cream/10">
         {horaris.map((h, i) => (
           <div
             class:list={[
-              'flex justify-between py-4 border-b border-brand-700/50 text-lg',
-              i === todayIndex && 'text-brand-300 font-bold',
-              h.hores === 'Tancat' && 'text-brand-100/40',
+              'flex justify-between py-5 border-b border-cream/10 text-[17px]',
+              i === todayIndex && 'text-ember font-semibold',
+              h.hores === 'Tancat' && i !== todayIndex && 'text-cream/30',
             ]}
           >
-            <span>{h.dia}</span>
-            <span>{h.hores}</span>
+            <span class="font-display">{h.dia}</span>
+            <span class={h.hores === 'Tancat' ? 'font-mono text-[14px] tracking-micro uppercase' : 'font-display'}>{h.hores}</span>
           </div>
         ))}
       </div>
-      <p class="text-center text-brand-400/60 text-sm mt-8">
-        Cuina oberta fins 30 minuts abans del tancament
+      <p class="text-center text-cream/30 text-sm mt-8 font-mono tracking-micro uppercase">
+        Cuina oberta fins 30 min abans del tancament
       </p>
     </div>
   </section>
 
   <!-- CONTACTE -->
-  <section id="contacte" class="py-20 bg-warm-50">
-    <div class="max-w-6xl mx-auto px-4">
+  <section id="contacte" class="py-24 bg-bone text-ink">
+    <div class="max-w-[1400px] mx-auto px-8 lg:px-20">
       <div class="text-center mb-12">
-        <p class="text-brand-500 font-semibold text-sm tracking-widest uppercase mb-3">On som</p>
-        <h2 class="font-display text-4xl md:text-5xl font-bold text-warm-900">Vine a veure'ns</h2>
+        <span class="font-mono text-[11px] tracking-micro uppercase text-terra block mb-3">On som</span>
+        <h2 class="font-display text-[48px] md:text-[60px] font-medium text-ink">Vine a veure'ns</h2>
       </div>
 
       <div class="grid md:grid-cols-2 gap-8">
-        <div class="rounded-2xl overflow-hidden shadow-lg aspect-[4/3]">
+        <div class="rounded-[2px] overflow-hidden shadow-lg aspect-[4/3]">
           <iframe
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2948.5!2d2.7676!3d42.1064!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDLCsDA2JzIzLjAiTiAywrA0NicwMy40IkU!5e0!3m2!1sca!2ses!4v1!5m2!1sca!2ses"
             width="100%"
@@ -285,26 +396,26 @@ const todayIndex = dayMap[today] ?? 0
 
         <div class="flex flex-col justify-center space-y-8">
           <div>
-            <h3 class="font-display text-xl font-bold text-warm-900 mb-2">Adreça</h3>
-            <p class="text-warm-800/70 text-lg">
-              Carretera de Camós, 271<br />
+            <div class="font-mono text-[10px] tracking-micro uppercase text-terra mb-2">Adreça</div>
+            <p class="font-display text-[22px] text-ink leading-tight">
+              Carretera de Camós, 271<br/>
               17820 Banyoles, Girona
             </p>
           </div>
           <div>
-            <h3 class="font-display text-xl font-bold text-warm-900 mb-2">Telèfon</h3>
-            <a href="tel:+34972570948" class="text-brand-600 text-xl font-semibold hover:text-brand-700 transition-colors">
+            <div class="font-mono text-[10px] tracking-micro uppercase text-terra mb-2">Telèfon</div>
+            <a href="tel:+34972570948" class="font-display text-[28px] text-ink hover:text-terra transition-colors">
               972 570 948
             </a>
           </div>
           <div>
-            <h3 class="font-display text-xl font-bold text-warm-900 mb-2">Segueix-nos</h3>
+            <div class="font-mono text-[10px] tracking-micro uppercase text-terra mb-2">Segueix-nos</div>
             <div class="flex gap-4">
               <a
                 href="https://www.instagram.com/cangarrigabanyoles/"
                 target="_blank"
                 rel="noopener noreferrer"
-                class="bg-brand-100 text-brand-700 px-5 py-3 rounded-xl font-medium hover:bg-brand-200 transition-colors"
+                class="border border-ink/20 text-ink px-5 py-3 rounded-full text-sm font-medium hover:border-ink transition-colors"
               >
                 Instagram
               </a>
@@ -312,7 +423,7 @@ const todayIndex = dayMap[today] ?? 0
                 href="https://www.facebook.com/barcangarriga/"
                 target="_blank"
                 rel="noopener noreferrer"
-                class="bg-brand-100 text-brand-700 px-5 py-3 rounded-xl font-medium hover:bg-brand-200 transition-colors"
+                class="border border-ink/20 text-ink px-5 py-3 rounded-full text-sm font-medium hover:border-ink transition-colors"
               >
                 Facebook
               </a>
@@ -320,9 +431,9 @@ const todayIndex = dayMap[today] ?? 0
           </div>
           <a
             href="tel:+34972570948"
-            class="inline-flex items-center justify-center bg-brand-600 text-white px-8 py-4 rounded-xl text-lg font-semibold hover:bg-brand-500 transition-colors w-fit"
+            class="inline-flex items-center justify-center bg-ink text-cream px-8 py-4 rounded-full text-[14px] font-medium hover:bg-ink3 transition-colors w-fit"
           >
-            Reserva ara — 972 570 948
+            Reserva ara — 972 570 948 →
           </a>
         </div>
       </div>
@@ -330,13 +441,17 @@ const todayIndex = dayMap[today] ?? 0
   </section>
 
   <!-- FOOTER -->
-  <footer class="bg-brand-900 text-brand-200/50 py-8">
-    <div class="max-w-6xl mx-auto px-4 text-center text-sm">
-      <p class="font-display text-brand-300 text-lg mb-2">Can Garriga</p>
-      <p>Carretera de Camós, 271 · 17820 Banyoles · 972 570 948</p>
-      <p class="mt-4 text-brand-200/30">
-        &copy; {new Date().getFullYear()} Can Garriga. Tots els drets reservats.
-      </p>
+  <footer class="bg-ink py-10">
+    <div class="max-w-[1400px] mx-auto px-8 lg:px-20 flex flex-wrap items-center justify-between gap-4">
+      <div class="font-mono text-[11px] tracking-micro uppercase text-muted">
+        Can Garriga · Carretera de Camós, 271 · Banyoles · Girona
+      </div>
+      <div class="font-mono text-[11px] tracking-micro uppercase text-muted">
+        T. 972 570 948
+      </div>
+      <div class="font-mono text-[11px] tracking-micro uppercase text-muted">
+        &copy; {new Date().getFullYear()} Can Garriga
+      </div>
     </div>
   </footer>
 
@@ -344,12 +459,10 @@ const todayIndex = dayMap[today] ?? 0
   <div class="md:hidden fixed bottom-6 left-1/2 -translate-x-1/2 z-50">
     <a
       href="tel:+34972570948"
-      class="bg-brand-600 text-white px-8 py-4 rounded-full text-lg font-bold shadow-2xl hover:bg-brand-500 transition-colors flex items-center gap-2"
+      class="bg-ember text-ink px-8 py-4 rounded-full text-[15px] font-semibold shadow-2xl hover:bg-ember2 transition-colors flex items-center gap-2"
     >
-      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-        <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
-      </svg>
-      Reservar
+      Reservar taula →
     </a>
   </div>
+
 </Layout>

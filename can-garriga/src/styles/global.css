@@ -1,29 +1,77 @@
 @import "tailwindcss";
 
 @theme {
-  --color-brand-900: #1a0f0a;
-  --color-brand-800: #2d1810;
-  --color-brand-700: #4a2518;
-  --color-brand-600: #6b3420;
-  --color-brand-500: #8b4528;
-  --color-brand-400: #b8714e;
-  --color-brand-300: #d4a07a;
-  --color-brand-200: #e8c9a8;
-  --color-brand-100: #f5e6d3;
-  --color-brand-50: #faf3eb;
-  --color-warm-50: #fefcf9;
-  --color-warm-100: #fdf6ed;
-  --color-warm-200: #f9e8d0;
-  --color-warm-800: #3d2b1a;
-  --color-warm-900: #2a1d12;
-  --font-sans: 'DM Sans', system-ui, sans-serif;
-  --font-display: 'Playfair Display', Georgia, serif;
+  --color-ink:    #1a1208;
+  --color-ink2:   #241810;
+  --color-ink3:   #2e2015;
+  --color-ember:  #c2692a;
+  --color-ember2: #d98344;
+  --color-terra:  #a04a1f;
+  --color-cream:  #f5edd6;
+  --color-cream2: #e8dcb8;
+  --color-bone:   #faf6ef;
+  --color-muted:  #8a7960;
+
+  --font-display: "Cormorant Garamond", Georgia, serif;
+  --font-sans: Inter, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
 }
 
 html {
   scroll-behavior: smooth;
+  background: #1a1208;
 }
 
 body {
   -webkit-font-smoothing: antialiased;
 }
+
+.tracking-micro { letter-spacing: 0.22em; }
+
+/* Subtly-striped food image placeholders */
+.placeholder-food {
+  background-color: #2a1d12;
+  background-image:
+    radial-gradient(1200px 600px at 30% 20%, rgba(194,105,42,0.28), transparent 60%),
+    radial-gradient(900px 700px at 80% 90%, rgba(160,74,31,0.35), transparent 55%),
+    repeating-linear-gradient(135deg, rgba(245,237,214,0.035) 0 2px, transparent 2px 14px),
+    linear-gradient(180deg, #1a1208 0%, #2a1d12 55%, #1a1208 100%);
+}
+.placeholder-food-light {
+  background-color: #efe6d1;
+  background-image:
+    radial-gradient(800px 500px at 70% 30%, rgba(194,105,42,0.35), transparent 60%),
+    radial-gradient(600px 500px at 20% 80%, rgba(160,74,31,0.22), transparent 55%),
+    repeating-linear-gradient(135deg, rgba(26,18,8,0.05) 0 2px, transparent 2px 14px);
+}
+
+/* Warm grain overlay */
+.grain::after {
+  content: "";
+  position: absolute; inset: 0;
+  pointer-events: none;
+  background-image: radial-gradient(rgba(245,237,214,0.04) 1px, transparent 1px);
+  background-size: 3px 3px;
+  mix-blend-mode: overlay;
+  opacity: .4;
+}
+
+/* Ember glow dividers */
+.hairline {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(245,237,214,0.35), transparent);
+}
+.hairline-ember {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(194,105,42,0.8), transparent);
+}
+
+/* Vertical text rail */
+.vertical { writing-mode: vertical-rl; transform: rotate(180deg); }
+
+/* Ember pulse animation */
+@keyframes emberPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(194,105,42,0.6); }
+  50%       { box-shadow: 0 0 0 6px rgba(194,105,42,0); }
+}
+.ember-dot { animation: emberPulse 2.4s ease-in-out infinite; }
