@@ -1,0 +1,163 @@
+---
+import Layout from '../../layouts/Layout.astro'
+import Nav from '../../components/Nav.astro'
+
+const serveis = [
+  {
+    nom: 'Pentinat de núvia',
+    tecnica: 'El dia del teu casament mereix el millor. Treballem juntament amb tu des del primer moment: una prova de pentinat prèvia a la boda per assegurar-nos que el resultat és exactament el que somies. El dia de la boda, venim a preparar-te amb el temps i la calma que mereixeu. Usem productes de llarga durada, fixadors de qualitat i tècniques de recollida que aguanten tota la jornada.',
+    foto: 'https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=800&q=80',
+    alt: 'Pentinat de núvia elegant',
+    inclueix: ['Consulta i prova prèvia', 'Pentinat el dia de la boda', 'Productes de llarga durada', 'Desplaçament a domicili (consultar)'],
+  },
+  {
+    nom: 'Pentinat de festa',
+    tecnica: 'Per a comunions, bateigs, gales, sopars d\'empresa o qualsevol ocasió especial. Creem pentinats elegants adaptats al teu vestit i estil, des d\'ones glamuroses fins a semirecollits sofisticats. Et recomanem demanar cita amb antelació per a èpoques de comunions i graduacions.',
+    foto: 'https://images.unsplash.com/photo-1605497788044-5a32c7078486?w=800&q=80',
+    alt: 'Pentinat de festa elegant',
+    inclueix: ['Pentinats personalitzats', 'Assecada i modelatge', 'Trenes i ones', 'Semirrecollits i recollits parcials'],
+  },
+  {
+    nom: 'Recollits',
+    tecnica: 'L\'art del recollit és una especialitat que requereix tècnica i pràctica. Treballem des de recollits clàssics i elegants fins a estils més actuals, desestructurats o romàntics. Cada recollit es construeix capa a capa, fixant cada element perquè aguanti perfectament durant hores. Podem incorporar accessoris, flors o cintes si ens els portes.',
+    foto: 'https://images.unsplash.com/photo-1492106087820-71f1a00d2b11?w=800&q=80',
+    alt: 'Recollit elegant per a ocasions especials',
+    inclueix: ['Recollits clàssics i moderns', 'Recollits baixos i alts', 'Amb o sense postissos', 'Accessoris inclosos si els portes'],
+  },
+]
+---
+
+<Layout
+  title="Nupcial i Ocasions — Maria Gifra & Paula Perruquers"
+  description="Pentinats de núvia, festa i recollits a Porqueres. El teu dia especial mereix el millor pentinat. Reserva la teva cita a Maria Gifra & Paula."
+>
+  <Nav />
+
+  <!-- HERO -->
+  <section class="relative min-h-[55vh] flex items-center justify-center pt-16 overflow-hidden">
+    <div
+      class="absolute inset-0 bg-cover bg-center"
+      style="background-image: url('https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=1600&q=80'), linear-gradient(135deg, #1a1514 0%, #4a3a37 100%); filter: brightness(0.25);"
+    ></div>
+    <div class="relative z-10 text-center px-4 max-w-3xl">
+      <a href="/#serveis" class="text-brand-300 text-sm font-medium tracking-widest uppercase mb-4 inline-block hover:text-brand-200 transition-colors">
+        ← Tots els serveis
+      </a>
+      <h1 class="font-display text-5xl md:text-6xl font-bold text-white leading-tight mb-4 mt-2">
+        Nupcial<br />
+        <span class="text-brand-300 italic font-normal text-4xl md:text-5xl">i Ocasions Especials</span>
+      </h1>
+      <p class="text-brand-200/80 text-lg max-w-xl mx-auto">
+        Els moments que recordaràs tota la vida mereixen un pentinat a l'alçada.
+      </p>
+    </div>
+  </section>
+
+  <!-- INTRO -->
+  <section class="py-16 bg-warm-50">
+    <div class="max-w-3xl mx-auto px-4 text-center">
+      <p class="text-brand-500 font-semibold text-sm tracking-widest uppercase mb-4">Moments únics</p>
+      <h2 class="font-display text-3xl md:text-4xl font-bold text-warm-900 mb-6">
+        El pentinat perfecte per al teu gran dia
+      </h2>
+      <p class="text-warm-800/70 text-lg leading-relaxed mb-4">
+        Casaments, comunions, gales i celebracions mereixen un pentinat que estigui a l'alçada de l'ocasió.
+        Portem anys creant pentinats especials per a moments especials, sempre amb la mateixa cura
+        i atenció al detall.
+      </p>
+      <p class="text-warm-800/70 text-lg leading-relaxed">
+        Per a núvies, recomanem sempre una prova prèvia per assegurar-nos que el resultat és
+        exactament el que imaginaves.
+      </p>
+    </div>
+  </section>
+
+  <!-- SERVEIS -->
+  <section class="py-8 bg-warm-100">
+    <div class="max-w-6xl mx-auto px-4 space-y-8">
+      {serveis.map((s, i) => (
+        <div class:list={[
+          'bg-warm-50 rounded-2xl overflow-hidden shadow-sm border border-brand-100 grid md:grid-cols-2',
+          i % 2 === 1 && 'md:[&>div:first-child]:order-2'
+        ]}>
+          <div class="aspect-[4/3] md:aspect-auto overflow-hidden">
+            <img
+              src={s.foto}
+              alt={s.alt}
+              class="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+              loading="lazy"
+            />
+          </div>
+          <div class="p-8 md:p-12 flex flex-col justify-center">
+            <h3 class="font-display text-2xl md:text-3xl font-bold text-warm-900 mb-4">{s.nom}</h3>
+            <p class="text-warm-800/70 leading-relaxed text-lg mb-6">{s.tecnica}</p>
+            <div>
+              <p class="text-brand-600 font-semibold text-sm uppercase tracking-wide mb-3">Inclou:</p>
+              <ul class="space-y-1">
+                {s.inclueix.map(item => (
+                  <li class="flex items-center gap-2 text-warm-800/70">
+                    <span class="w-1.5 h-1.5 rounded-full bg-brand-400 shrink-0"></span>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- NOTA NÚVIA -->
+  <section class="py-16 bg-warm-50">
+    <div class="max-w-2xl mx-auto px-4 text-center">
+      <div class="bg-brand-50 border border-brand-200 rounded-2xl p-8">
+        <p class="font-display text-2xl font-bold text-warm-900 mb-3 italic">Per a núvies</p>
+        <p class="text-warm-800/70 leading-relaxed">
+          Reserva la prova de pentinat amb un mínim de <strong>4 setmanes d'antelació</strong> respecte
+          al dia de la boda. La prova té cost (es descompta del servei final) i és imprescindible
+          per garantir el resultat perfecte el gran dia.
+        </p>
+        <a href="tel:+34972572601" class="inline-block mt-6 text-brand-600 font-semibold hover:text-brand-700 transition-colors">
+          Parla amb nosaltres — 972 572 601
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-20 bg-brand-800 text-center">
+    <div class="max-w-xl mx-auto px-4">
+      <h2 class="font-display text-3xl font-bold text-white mb-4">Tens un esdeveniment especial?</h2>
+      <p class="text-brand-200/70 mb-8">Contacta'ns amb temps per poder preparar el teu pentinat perfecte.</p>
+      <a
+        href="tel:+34972572601"
+        class="inline-flex items-center justify-center bg-white text-brand-800 px-8 py-4 rounded-xl text-lg font-semibold hover:bg-brand-100 transition-colors"
+      >
+        Demanar cita — 972 572 601
+      </a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="bg-brand-900 text-brand-200/50 py-8">
+    <div class="max-w-6xl mx-auto px-4 text-center text-sm">
+      <p class="font-display text-brand-300 text-lg mb-2 italic">Maria Gifra & Paula Perruquers</p>
+      <p>Carrer de les Pedreres, 19 · 17182 Porqueres · 972 572 601</p>
+      <p class="mt-4 text-brand-200/30">&copy; {new Date().getFullYear()} Maria Gifra & Paula Perruquers.</p>
+    </div>
+  </footer>
+
+  <!-- MOBILE CTA -->
+  <div class="md:hidden fixed bottom-6 left-1/2 -translate-x-1/2 z-50">
+    <a
+      href="tel:+34972572601"
+      class="bg-brand-700 text-white px-8 py-4 rounded-full text-lg font-bold shadow-2xl hover:bg-brand-800 transition-colors flex items-center gap-2"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+        <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
+      </svg>
+      Demanar cita
+    </a>
+  </div>
+</Layout>

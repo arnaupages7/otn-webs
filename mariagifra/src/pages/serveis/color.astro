@@ -1,0 +1,142 @@
+---
+import Layout from '../../layouts/Layout.astro'
+import Nav from '../../components/Nav.astro'
+
+const serveis = [
+  {
+    nom: 'Tint complet',
+    tecnica: 'Apliquem color homogeni des de l\'arrel fins a les puntes per cobrir cabells blancs o canviar de to completament. Usem tints professionals d\'alta qualitat, rics en queratina i olis nutritius, que respecten l\'estructura capil·lar i ofereixen un color viu i durador fins a 6-8 setmanes.',
+    foto: 'https://images.unsplash.com/photo-1562322140-8baeececf3df?w=800&q=80',
+    alt: 'Tint complet de cabell',
+  },
+  {
+    nom: 'Mèxes',
+    tecnica: 'Tècnica clàssica de decoloració selectiva en mechons d\'amplada variable, creant contrastos lluminosos. Amb paper d\'alumini aillant cada mechó, controlem el procés per aconseguir exactament el nivell d\'aclariment desitjat. Resultat: contrast definit i molt lluminós.',
+    foto: 'https://images.unsplash.com/photo-1519823551278-64ac92734fb1?w=800&q=80',
+    alt: 'Mèxes de cabell amb paper d\'alumini',
+  },
+  {
+    nom: 'Balayage',
+    tecnica: 'Tècnica francesa de pintat a mà lliure que crea una transició natural de color des de les arrels més fosques fins a les puntes aclarides. Sense paper d\'alumini, el color es difumina de forma gradual imitant l\'efecte del sol. Resultat: cabell molt natural, lluminós i amb poc manteniment, ja que l\'arrel creix sense línies visibles.',
+    foto: 'https://images.unsplash.com/photo-1527799820374-87d23739f933?w=800&q=80',
+    alt: 'Balayage natural a mà lliure',
+  },
+  {
+    nom: 'Babylights',
+    tecnica: 'Versió ultra-fina del balayage: apliquem decoloració en mechons molt fins (de l\'amplada d\'un llapis) distribuïts per tot el cabell. El resultat és el més natural de tots els tècniques de color, imitant els reflexos que la llum del sol crea de forma natural en el cabell dels nens. Ideal per a qui vol llum sense que sembli artificiós.',
+    foto: 'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=800&q=80',
+    alt: 'Babylights, reflexos ultrafins naturals',
+  },
+  {
+    nom: 'Retoc de color',
+    tecnica: 'Manteniment del color existent: reaplicació de tint o decolorant a la zona de l\'arrel nova per unificar el resultat i mantenir la lluminositat. Recomanem fer-lo cada 4-6 setmanes per als tints cobertura i cada 8-12 setmanes per a tècniques de llum com balayage o babylights.',
+    foto: 'https://images.unsplash.com/photo-1560066984-138daaa7b9e6?w=800&q=80',
+    alt: 'Retoc de color a les arrels',
+  },
+]
+---
+
+<Layout
+  title="Color — Maria Gifra & Paula Perruquers"
+  description="Especialistes en color a Porqueres. Tint, mèxes, balayage i babylights. Tècniques de color professionals per a un resultat natural i durador."
+>
+  <Nav />
+
+  <!-- HERO -->
+  <section class="relative min-h-[50vh] flex items-center justify-center pt-16 overflow-hidden">
+    <div
+      class="absolute inset-0 bg-cover bg-center"
+      style="background-image: url('https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=1600&q=80'), linear-gradient(135deg, #2d1a1a 0%, #5a3030 100%); filter: brightness(0.28);"
+    ></div>
+    <div class="relative z-10 text-center px-4 max-w-3xl">
+      <a href="/#serveis" class="text-brand-300 text-sm font-medium tracking-widest uppercase mb-4 inline-block hover:text-brand-200 transition-colors">
+        ← Tots els serveis
+      </a>
+      <h1 class="font-display text-5xl md:text-6xl font-bold text-white leading-tight mb-4 mt-2">
+        Color
+      </h1>
+      <p class="text-brand-200/80 text-lg max-w-xl mx-auto">
+        Del tint clàssic al balayage més natural. Color que transforma, respecta i dura.
+      </p>
+    </div>
+  </section>
+
+  <!-- INTRO -->
+  <section class="py-16 bg-warm-50">
+    <div class="max-w-3xl mx-auto px-4 text-center">
+      <p class="text-brand-500 font-semibold text-sm tracking-widest uppercase mb-4">La nostra especialitat</p>
+      <h2 class="font-display text-3xl md:text-4xl font-bold text-warm-900 mb-6">
+        Color personalitzat per a cada cabell
+      </h2>
+      <p class="text-warm-800/70 text-lg leading-relaxed mb-4">
+        No hi ha dos cabells iguals, i tampoc no hi ha dos colors iguals. Analitzem el teu to de pell,
+        el teu color natural i el resultat que vols aconseguir per proposar-te la tècnica més adequada.
+      </p>
+      <p class="text-warm-800/70 text-lg leading-relaxed">
+        Usem productes professionals d'alta gamma respectuosos amb el cabell, que garanteixen
+        un color viu, brillant i durador.
+      </p>
+    </div>
+  </section>
+
+  <!-- SERVEIS — alternant esquerra/dreta -->
+  <section class="py-8 bg-warm-100">
+    <div class="max-w-6xl mx-auto px-4 space-y-6">
+      {serveis.map((s, i) => (
+        <div class:list={[
+          'bg-warm-50 rounded-2xl overflow-hidden shadow-sm border border-brand-100 grid md:grid-cols-2',
+          i % 2 === 1 && 'md:[&>div:first-child]:order-2'
+        ]}>
+          <div class="aspect-[4/3] md:aspect-auto overflow-hidden">
+            <img
+              src={s.foto}
+              alt={s.alt}
+              class="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+              loading="lazy"
+            />
+          </div>
+          <div class="p-8 md:p-12 flex flex-col justify-center">
+            <h3 class="font-display text-2xl md:text-3xl font-bold text-warm-900 mb-4">{s.nom}</h3>
+            <p class="text-warm-800/70 leading-relaxed text-lg">{s.tecnica}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-20 bg-brand-800 text-center">
+    <div class="max-w-xl mx-auto px-4">
+      <h2 class="font-display text-3xl font-bold text-white mb-4">Vols canviar el teu color?</h2>
+      <p class="text-brand-200/70 mb-8">T'assessorem gratuïtament sobre quina tècnica s'adapta millor a tu.</p>
+      <a
+        href="tel:+34972572601"
+        class="inline-flex items-center justify-center bg-white text-brand-800 px-8 py-4 rounded-xl text-lg font-semibold hover:bg-brand-100 transition-colors"
+      >
+        Demanar cita — 972 572 601
+      </a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="bg-brand-900 text-brand-200/50 py-8">
+    <div class="max-w-6xl mx-auto px-4 text-center text-sm">
+      <p class="font-display text-brand-300 text-lg mb-2 italic">Maria Gifra & Paula Perruquers</p>
+      <p>Carrer de les Pedreres, 19 · 17182 Porqueres · 972 572 601</p>
+      <p class="mt-4 text-brand-200/30">&copy; {new Date().getFullYear()} Maria Gifra & Paula Perruquers.</p>
+    </div>
+  </footer>
+
+  <!-- MOBILE CTA -->
+  <div class="md:hidden fixed bottom-6 left-1/2 -translate-x-1/2 z-50">
+    <a
+      href="tel:+34972572601"
+      class="bg-brand-700 text-white px-8 py-4 rounded-full text-lg font-bold shadow-2xl hover:bg-brand-800 transition-colors flex items-center gap-2"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+        <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
+      </svg>
+      Demanar cita
+    </a>
+  </div>
+</Layout>

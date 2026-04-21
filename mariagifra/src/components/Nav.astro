@@ -1,0 +1,25 @@
+---
+const links = [
+  { href: '/#serveis', label: 'Serveis' },
+  { href: '/#nosaltres', label: 'Nosaltres' },
+  { href: '/#horaris', label: 'Horaris' },
+  { href: '/#contacte', label: 'Contacte' },
+]
+---
+
+<nav class="fixed top-0 w-full z-50 bg-warm-50/90 backdrop-blur-md border-b border-brand-100">
+  <div class="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
+    <a href="/" class="font-display text-xl font-bold text-brand-700 italic">Maria Gifra & Paula</a>
+    <div class="hidden md:flex items-center gap-8 text-sm font-medium text-warm-800">
+      {links.map(l => (
+        <a href={l.href} class="hover:text-brand-600 transition-colors">{l.label}</a>
+      ))}
+    </div>
+    <a
+      href="tel:+34972572601"
+      class="bg-brand-700 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-brand-800 transition-colors"
+    >
+      Demanar cita
+    </a>
+  </div>
+</nav>

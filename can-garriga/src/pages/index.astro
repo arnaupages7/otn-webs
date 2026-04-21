@@ -1,0 +1,355 @@
+---
+import Layout from '../layouts/Layout.astro'
+
+const menuCategories = [
+  {
+    name: 'Brasa',
+    items: [
+      { name: 'Entrecot de vedella a la brasa' },
+      { name: 'Costelles de xai a la brasa' },
+      { name: 'Botifarra a la brasa' },
+      { name: 'Chuletón de vedella' },
+      { name: 'Pollastre a la brasa' },
+    ],
+  },
+  {
+    name: 'Entrants i Tapes',
+    items: [
+      { name: 'Croquetes variades', desc: 'Rostit, pollastre, pernil ibèric, bacallà, bolets' },
+      { name: 'Calamars a la romana' },
+      { name: 'Cargols a la llauna' },
+      { name: 'Patates braves' },
+      { name: 'Amanida de formatge de cabra' },
+      { name: 'Musclos al vapor' },
+      { name: 'Embotits i carn curada' },
+    ],
+  },
+  {
+    name: 'Peix i Marisc',
+    items: [
+      { name: 'Rap a la planxa' },
+      { name: 'Bacallà', desc: 'Preparat de diverses maneres' },
+      { name: 'Calamars de platja' },
+    ],
+  },
+  {
+    name: 'Postres',
+    items: [
+      { name: 'Crema catalana' },
+      { name: 'Pastís de formatge' },
+    ],
+  },
+]
+
+const horaris = [
+  { dia: 'Dilluns', hores: 'Tancat' },
+  { dia: 'Dimarts', hores: 'Tancat' },
+  { dia: 'Dimecres', hores: '8:00 – 20:00' },
+  { dia: 'Dijous', hores: '8:00 – 23:00' },
+  { dia: 'Divendres', hores: '8:00 – 23:30' },
+  { dia: 'Dissabte', hores: '8:00 – 23:30' },
+  { dia: 'Diumenge', hores: '8:00 – 17:00' },
+]
+
+const today = new Date().getDay()
+const dayMap: Record<number, number> = { 0: 6, 1: 0, 2: 1, 3: 2, 4: 3, 5: 4, 6: 5 }
+const todayIndex = dayMap[today] ?? 0
+---
+
+<Layout
+  title="Can Garriga — Carn a la Brasa | Banyoles"
+  description="Restaurant especialitzat en carn a la brasa a Banyoles. Esmorzars de forquilla, tapes, peix i marisc. Terrassa, llar de foc i aparcament gratuït."
+>
+  <!-- NAV -->
+  <nav class="fixed top-0 w-full z-50 bg-warm-50/90 backdrop-blur-md border-b border-brand-100">
+    <div class="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
+      <a href="#" class="font-display text-xl font-bold text-brand-700">Can Garriga</a>
+      <div class="hidden md:flex items-center gap-8 text-sm font-medium text-warm-800">
+        <a href="#carta" class="hover:text-brand-600 transition-colors">Carta</a>
+        <a href="#nosaltres" class="hover:text-brand-600 transition-colors">Nosaltres</a>
+        <a href="#horaris" class="hover:text-brand-600 transition-colors">Horaris</a>
+        <a href="#contacte" class="hover:text-brand-600 transition-colors">Contacte</a>
+      </div>
+      <a
+        href="tel:+34972570948"
+        class="bg-brand-600 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-brand-700 transition-colors"
+      >
+        Reservar
+      </a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="relative min-h-[90vh] flex items-center justify-center pt-16 overflow-hidden">
+    <div
+      class="absolute inset-0 bg-cover bg-center"
+      style="background-image: url('https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=1600&q=80'); filter: brightness(0.3);"
+    >
+    </div>
+    <div class="relative z-10 text-center px-4 max-w-3xl">
+      <p class="text-brand-300 font-medium tracking-widest uppercase text-sm mb-4">
+        Des de Banyoles
+      </p>
+      <h1 class="font-display text-5xl md:text-7xl font-bold text-white leading-tight mb-6">
+        Carn a la brasa<br />
+        <span class="text-brand-300 italic font-normal">com cal</span>
+      </h1>
+      <p class="text-brand-200/80 text-lg md:text-xl max-w-xl mx-auto mb-10 leading-relaxed">
+        Restaurant familiar a Banyoles, especialitzat en carns a la brasa amb llenya.
+        Esmorzars de forquilla, tapes i cuina tradicional catalana.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a
+          href="tel:+34972570948"
+          class="bg-brand-600 text-white px-8 py-4 rounded-xl text-lg font-semibold hover:bg-brand-500 transition-colors"
+        >
+          Reserva taula — 972 570 948
+        </a>
+        <a
+          href="#carta"
+          class="border-2 border-white/30 text-white px-8 py-4 rounded-xl text-lg font-semibold hover:bg-white/10 transition-colors"
+        >
+          Veure la carta
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section class="bg-brand-800 text-brand-100">
+    <div class="max-w-6xl mx-auto px-4 py-6 flex flex-wrap justify-center gap-x-12 gap-y-3 text-sm tracking-wide uppercase">
+      <span class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-brand-400"></span> Brasa amb llenya</span>
+      <span class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-brand-400"></span> Terrassa exterior</span>
+      <span class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-brand-400"></span> Aparcament gratuït</span>
+      <span class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-brand-400"></span> Llar de foc</span>
+    </div>
+  </section>
+
+  <!-- ESMORZAR HIGHLIGHT -->
+  <section class="py-20 bg-warm-50">
+    <div class="max-w-6xl mx-auto px-4 grid md:grid-cols-2 gap-12 items-center">
+      <div>
+        <p class="text-brand-500 font-semibold text-sm tracking-widest uppercase mb-3">La nostra especialitat</p>
+        <h2 class="font-display text-4xl md:text-5xl font-bold text-warm-900 mb-6">
+          Esmorzar<br />de forquilla
+        </h2>
+        <p class="text-warm-800/70 text-lg leading-relaxed mb-6">
+          Reconegut com un dels millors esmorzars de forquilla del Pla de l'Estany.
+          Cada matí, des de les 8h, preparem esmorzars contundents per
+          començar el dia com toca.
+        </p>
+        <p class="text-brand-600 font-medium">
+          Cada dia a partir de les 8:00h
+        </p>
+      </div>
+      <div class="relative">
+        <img
+          src="https://images.unsplash.com/photo-1504754524776-8f4f37790ca0?w=800&q=80"
+          alt="Esmorzar de forquilla a Can Garriga"
+          class="aspect-[4/3] w-full rounded-2xl object-cover shadow-xl"
+          loading="lazy"
+        />
+        <div class="absolute -bottom-4 -left-4 bg-brand-600 text-white px-5 py-3 rounded-xl font-display text-lg italic shadow-lg">
+          Des de les 8h
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CARTA -->
+  <section id="carta" class="py-20 bg-brand-800">
+    <div class="max-w-5xl mx-auto px-4">
+      <div class="text-center mb-16">
+        <div class="flex items-center justify-center gap-4 mb-4">
+          <span class="h-px w-12 bg-brand-400/40"></span>
+          <p class="text-brand-400 font-semibold text-sm tracking-widest uppercase">El que oferim</p>
+          <span class="h-px w-12 bg-brand-400/40"></span>
+        </div>
+        <h2 class="font-display text-4xl md:text-5xl font-bold text-white">La nostra carta</h2>
+        <p class="text-brand-200/50 mt-4 max-w-lg mx-auto">
+          Cuina tradicional catalana amb producte de proximitat.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-8">
+        {menuCategories.map((cat) => (
+          <div class="bg-brand-900/50 rounded-2xl p-8 border border-brand-700/30">
+            <div class="flex items-center gap-3 mb-6">
+              <span class="h-px grow bg-brand-600/30"></span>
+              <h3 class="font-display text-xl font-bold text-brand-300 tracking-wide uppercase">{cat.name}</h3>
+              <span class="h-px grow bg-brand-600/30"></span>
+            </div>
+            <div class="space-y-4">
+              {cat.items.map((item) => (
+                <div>
+                  <span class="font-medium text-brand-100">{item.name}</span>
+                  {'desc' in item && item.desc && (
+                    <span class="block text-sm text-brand-200/40 mt-0.5 italic">{item.desc}</span>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <p class="text-center text-brand-200/30 text-sm mt-12">
+        Consulteu preus, plats del dia i suggeriments al restaurant.
+      </p>
+    </div>
+  </section>
+
+  <!-- NOSALTRES -->
+  <section id="nosaltres" class="py-20 bg-warm-50">
+    <div class="max-w-6xl mx-auto px-4 grid md:grid-cols-2 gap-12 items-center">
+      <div class="relative">
+        <img
+          src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&q=80"
+          alt="Interior del restaurant Can Garriga"
+          class="aspect-[4/3] w-full rounded-2xl object-cover shadow-xl"
+          loading="lazy"
+        />
+      </div>
+      <div>
+        <p class="text-brand-500 font-semibold text-sm tracking-widest uppercase mb-3">Qui som</p>
+        <h2 class="font-display text-4xl font-bold text-warm-900 mb-6">
+          Un bar de tota la vida
+        </h2>
+        <p class="text-warm-800/70 text-lg leading-relaxed mb-4">
+          Can Garriga és un restaurant familiar situat a la carretera de Camós, a Banyoles.
+          Especialitzats en carn a la brasa cuinada amb llenya, oferim una experiència
+          gastronòmica autèntica en un ambient acollidor.
+        </p>
+        <p class="text-warm-800/70 text-lg leading-relaxed mb-6">
+          Amb terrassa exterior per als dies de sol, llar de foc per a l'hivern,
+          i aparcament gratuït. Un lloc on venir a menjar bé, sense complicacions.
+        </p>
+        <div class="flex flex-wrap gap-3">
+          <span class="bg-brand-100 text-brand-700 px-4 py-2 rounded-lg text-sm font-medium">Familiar</span>
+          <span class="bg-brand-100 text-brand-700 px-4 py-2 rounded-lg text-sm font-medium">Accessible</span>
+          <span class="bg-brand-100 text-brand-700 px-4 py-2 rounded-lg text-sm font-medium">Apte per nens</span>
+          <span class="bg-brand-100 text-brand-700 px-4 py-2 rounded-lg text-sm font-medium">Targetes i mòbil</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HORARIS -->
+  <section id="horaris" class="py-20 bg-brand-800 text-brand-100">
+    <div class="max-w-4xl mx-auto px-4">
+      <div class="text-center mb-12">
+        <p class="text-brand-400 font-semibold text-sm tracking-widest uppercase mb-3">Quan obrim</p>
+        <h2 class="font-display text-4xl md:text-5xl font-bold text-white">Horaris</h2>
+      </div>
+      <div class="max-w-md mx-auto">
+        {horaris.map((h, i) => (
+          <div
+            class:list={[
+              'flex justify-between py-4 border-b border-brand-700/50 text-lg',
+              i === todayIndex && 'text-brand-300 font-bold',
+              h.hores === 'Tancat' && 'text-brand-100/40',
+            ]}
+          >
+            <span>{h.dia}</span>
+            <span>{h.hores}</span>
+          </div>
+        ))}
+      </div>
+      <p class="text-center text-brand-400/60 text-sm mt-8">
+        Cuina oberta fins 30 minuts abans del tancament
+      </p>
+    </div>
+  </section>
+
+  <!-- CONTACTE -->
+  <section id="contacte" class="py-20 bg-warm-50">
+    <div class="max-w-6xl mx-auto px-4">
+      <div class="text-center mb-12">
+        <p class="text-brand-500 font-semibold text-sm tracking-widest uppercase mb-3">On som</p>
+        <h2 class="font-display text-4xl md:text-5xl font-bold text-warm-900">Vine a veure'ns</h2>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-8">
+        <div class="rounded-2xl overflow-hidden shadow-lg aspect-[4/3]">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2948.5!2d2.7676!3d42.1064!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDLCsDA2JzIzLjAiTiAywrA0NicwMy40IkU!5e0!3m2!1sca!2ses!4v1!5m2!1sca!2ses"
+            width="100%"
+            height="100%"
+            style="border:0;"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="Ubicació Can Garriga"
+          ></iframe>
+        </div>
+
+        <div class="flex flex-col justify-center space-y-8">
+          <div>
+            <h3 class="font-display text-xl font-bold text-warm-900 mb-2">Adreça</h3>
+            <p class="text-warm-800/70 text-lg">
+              Carretera de Camós, 271<br />
+              17820 Banyoles, Girona
+            </p>
+          </div>
+          <div>
+            <h3 class="font-display text-xl font-bold text-warm-900 mb-2">Telèfon</h3>
+            <a href="tel:+34972570948" class="text-brand-600 text-xl font-semibold hover:text-brand-700 transition-colors">
+              972 570 948
+            </a>
+          </div>
+          <div>
+            <h3 class="font-display text-xl font-bold text-warm-900 mb-2">Segueix-nos</h3>
+            <div class="flex gap-4">
+              <a
+                href="https://www.instagram.com/cangarrigabanyoles/"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="bg-brand-100 text-brand-700 px-5 py-3 rounded-xl font-medium hover:bg-brand-200 transition-colors"
+              >
+                Instagram
+              </a>
+              <a
+                href="https://www.facebook.com/barcangarriga/"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="bg-brand-100 text-brand-700 px-5 py-3 rounded-xl font-medium hover:bg-brand-200 transition-colors"
+              >
+                Facebook
+              </a>
+            </div>
+          </div>
+          <a
+            href="tel:+34972570948"
+            class="inline-flex items-center justify-center bg-brand-600 text-white px-8 py-4 rounded-xl text-lg font-semibold hover:bg-brand-500 transition-colors w-fit"
+          >
+            Reserva ara — 972 570 948
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="bg-brand-900 text-brand-200/50 py-8">
+    <div class="max-w-6xl mx-auto px-4 text-center text-sm">
+      <p class="font-display text-brand-300 text-lg mb-2">Can Garriga</p>
+      <p>Carretera de Camós, 271 · 17820 Banyoles · 972 570 948</p>
+      <p class="mt-4 text-brand-200/30">
+        &copy; {new Date().getFullYear()} Can Garriga. Tots els drets reservats.
+      </p>
+    </div>
+  </footer>
+
+  <!-- MOBILE FLOATING CTA -->
+  <div class="md:hidden fixed bottom-6 left-1/2 -translate-x-1/2 z-50">
+    <a
+      href="tel:+34972570948"
+      class="bg-brand-600 text-white px-8 py-4 rounded-full text-lg font-bold shadow-2xl hover:bg-brand-500 transition-colors flex items-center gap-2"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+        <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
+      </svg>
+      Reservar
+    </a>
+  </div>
+</Layout>
