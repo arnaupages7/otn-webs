@@ -1,0 +1,22 @@
+@import "tailwindcss";
+
+/* Brand tokens OTN — sobreescriure per client si cal */
+@theme {
+  --color-ink: #111111;
+  --color-cream: #f5f1e8;
+  --color-accent: #c84630;
+
+  --font-sans: 'Inter', system-ui, sans-serif;
+  --font-display: 'Cormorant Garamond', Georgia, serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+/* Base */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

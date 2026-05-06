@@ -1,0 +1,73 @@
+name: Deploy clients to Cloudflare Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      client:
+        description: "Client slug to deploy (e.g., mariagifra). Empty = detect changes."
+        required: false
+        type: string
+
+jobs:
+  detect-changes:
+    runs-on: ubuntu-latest
+    outputs:
+      clients: ${{ steps.set-matrix.outputs.clients }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - id: set-matrix
+        run: |
+          set -e
+          if [ -n "${{ inputs.client }}" ]; then
+            echo "clients=[\"${{ inputs.client }}\"]" >> $GITHUB_OUTPUT
+            exit 0
+          fi
+          # Detect which client subfolders changed in last commit
+          changed=$(git diff --name-only HEAD~1 HEAD 2>/dev/null \
+            | grep -E '^[^_/.][^/]+/' \
+            | cut -d/ -f1 \
+            | sort -u \
+            | grep -v '^_TEMPLATE$' || true)
+          if [ -z "$changed" ]; then
+            echo "clients=[]" >> $GITHUB_OUTPUT
+          else
+            json=$(echo "$changed" | jq -R -s -c 'split("\n") | map(select(length > 0))')
+            echo "clients=$json" >> $GITHUB_OUTPUT
+          fi
+
+  deploy:
+    needs: detect-changes
+    if: needs.detect-changes.outputs.clients != '[]'
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        client: ${{ fromJSON(needs.detect-changes.outputs.clients) }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: ${{ matrix.client }}/package-lock.json
+
+      - name: Install dependencies
+        working-directory: ${{ matrix.client }}
+        run: npm ci
+
+      - name: Build
+        working-directory: ${{ matrix.client }}
+        run: npm run build
+
+      - name: Deploy to Cloudflare Pages
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy ${{ matrix.client }}/dist --project-name=${{ matrix.client }} --branch=main
