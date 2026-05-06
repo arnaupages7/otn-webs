@@ -70,4 +70,4 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy ${{ matrix.client }}/dist --project-name=${{ matrix.client }} --branch=main
+          command: pages deploy ${{ matrix.client }}/dist --project-name=${{ matrix.client }} --branch=main --commit-dirty=true
