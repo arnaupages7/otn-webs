@@ -15,10 +15,16 @@ Repo que conté totes les webs informatives/funcionals OTN, una subcarpeta per c
 otn-webs/
 ├── README.md              ← aquest fitxer
 ├── _TEMPLATE/             ← starter per nou client (copiar i renombrar)
-├── can-garriga/           ← cangarriga.pages.dev
-├── mariagifra/            ← mariagifre-perruquera.pages.dev
-└── <nou-client>/          ← un per client
+├── cangarriga/            ← cangarriga.pages.dev
+├── mariagifre-perruquera/ ← mariagifre-perruquera.pages.dev
+└── <slug-client>/         ← un per client
 ```
+
+### ⚠️ Regla d'or: `subcarpeta = project name = URL`
+
+El nom de la subcarpeta **ha de ser exactament igual** al nom del Cloudflare Pages project, perquè el workflow auto-deploy passa `--project-name=<subcarpeta>` a wrangler. Si no coincideix → `Project not found` i deploy falla.
+
+Tria un slug curt i parlable (sense espais ni accents) que representi el client. Exemples vàlids: `bar-pep`, `forn-rius`, `mariagifre-perruquera`, `cangarriga`.
 
 ---
 
@@ -27,12 +33,12 @@ otn-webs/
 ### 1. Crear subcarpeta des del template
 ```bash
 cd serveis/otn-webs
-cp -r _TEMPLATE <nou-client>
-cd <nou-client>
+cp -r _TEMPLATE <slug-client>
+cd <slug-client>
 npm install
 ```
 
-> Substituir `<nou-client>` per slug curt sense espais (e.g., `bar-pep`, `forn-rius`).
+> Substituir `<slug-client>` per slug curt sense espais ni accents (e.g., `bar-pep`, `forn-rius`). Aquest slug serà el nom del project a Cloudflare i la URL `*.pages.dev`.
 
 ### 2. Personalitzar contingut
 - Editar `src/pages/index.astro` (hero, seccions)
@@ -54,26 +60,35 @@ git commit -m "feat(<nou-client>): web inicial"
 git push origin main
 ```
 
-### 5. Crear Cloudflare Pages project (1 cop per client)
+### 5. Crear Cloudflare Pages project (1 cop per client) — via wrangler
 
-**Login:** dash.cloudflare.com amb compte OTN (`otnglobalconnect@gmail.com`)
+```bash
+wrangler pages project create <slug-client> --production-branch=main
+```
 
-1. Workers & Pages → **Create application** → **Pages** → **Connect to Git**
-2. Autoritzar GitHub org `old-to-new` (només la primera vegada)
-3. Seleccionar repo: `old-to-new/otn-webs`
-4. **Set up builds and deployments:**
-   - Project name: `<nou-client>` (serà el subdomini `<nou-client>.pages.dev`)
-   - Production branch: `main`
-   - Framework preset: **Astro**
-   - Build command: `npm run build`
-   - Build output directory: `dist`
-   - **Root directory (advanced):** `<nou-client>` ⚠️ molt important
-5. Save and Deploy → ~2 min build
-6. Verificar URL `<nou-client>.pages.dev`
+> ⚠️ El `<slug-client>` ha de ser **exactament igual** al nom de la subcarpeta. El workflow auto-deploy ho dona per fet.
 
-### 6. (Opcional) Custom domain
+Si vols fer-ho via UI (menys recomanat — més clicks):
+- dash.cloudflare.com (compte OTN) → Workers & Pages → Create application → Pages → Direct upload
+- Project name: `<slug-client>`
+- Crear sense fer cap upload (el primer deploy el farà el workflow)
+
+### 6. Auto-deploy actiu
+
+A partir d'ara, qualsevol push a `main` que toqui `<slug-client>/**` dispara un deploy automàtic via GitHub Actions (`.github/workflows/deploy.yml`). No cal fer res manual.
+
+Verificar deploy:
+```bash
+gh run list --repo old-to-new/otn-webs --workflow="Deploy clients to Cloudflare Pages" --limit 3
+wrangler pages deployment list --project-name=<slug-client>
+```
+
+### 7. (Opcional) Custom domain
+
+Quan el client tingui domini propi:
 - Workers & Pages → projecte → **Custom domains** → Add → introduir domini
-- Configurar DNS al registrador (CNAME apuntant a `<nou-client>.pages.dev`)
+- Configurar DNS al registrador (CNAME apuntant a `<slug-client>.pages.dev`)
+- O via wrangler: `wrangler pages domain add <slug-client> <domini.com>`
 
 ---
 
