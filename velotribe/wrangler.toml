@@ -11,11 +11,11 @@ pages_build_output_dir = "./dist"
 [[d1_databases]]
 binding = "DB"
 database_name = "velotribe"
-database_id = "REPLACE_WITH_D1_ID"
+database_id = "648cd85a-291a-4d37-bf59-103f2b3c49dd"
 
 [[kv_namespaces]]
 binding = "COUNTER"
-id = "REPLACE_WITH_KV_ID"
+id = "a1aba4e8658c4679b86bbb060abd7d7c"
 
 [vars]
 RESEND_FROM = "VeloTribe <hello@velotribe.com>"
