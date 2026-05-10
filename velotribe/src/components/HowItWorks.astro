@@ -22,8 +22,8 @@ const steps = [
 
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-0 mt-12 rounded-xl overflow-hidden border border-neutral-200 reveal">
       {steps.map((s, i) => (
-        <div class:list={['p-7 lg:p-8 relative bg-white', i < 3 ? 'lg:border-r border-neutral-200' : '', i < 2 ? 'sm:border-b lg:border-b-0 border-neutral-200' : '']}>
-          <div class="font-display font-black text-5xl leading-none mb-3 opacity-40" style="color:#A7B75D">0{i + 1}</div>
+        <div class:list={['p-7 lg:p-8 relative bg-white transition hover:bg-cream/40 group', i < 3 ? 'lg:border-r border-neutral-200' : '', i < 2 ? 'sm:border-b lg:border-b-0 border-neutral-200' : '']}>
+          <div class="font-display font-black text-5xl leading-none mb-3 opacity-40 transition group-hover:opacity-100 group-hover:scale-110 origin-left" style="color:#A7B75D">0{i + 1}</div>
           <h4 class="font-bold text-sm mb-2 leading-tight" style="color:#41372B">{s.t}</h4>
           <p class="text-xs leading-relaxed" style="color:#9a8c7a">{s.d}</p>
         </div>
