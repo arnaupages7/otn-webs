@@ -70,4 +70,7 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy ${{ matrix.client }}/dist --project-name=${{ matrix.client }} --branch=main --commit-dirty=true
+          # Run from the client subfolder so wrangler auto-detects ./functions/ if present.
+          # Webs estàtiques sense backend (sense functions/) segueixen funcionant igual.
+          workingDirectory: ${{ matrix.client }}
+          command: pages deploy dist --project-name=${{ matrix.client }} --branch=main --commit-dirty=true
