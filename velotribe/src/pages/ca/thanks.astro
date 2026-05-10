@@ -18,8 +18,8 @@ const t = useTranslations(lang)
     <p class="text-lg" style="color:#41372B">{t('thanks.position')}</p>
     <div class="flex flex-wrap gap-3 mt-8 justify-center">
       <p class="w-full text-xs uppercase tracking-[2px] font-semibold mb-1" style="color:#9a8c7a">{t('thanks.share.label')}</p>
-      <a class="px-5 py-3 rounded-md font-bold text-sm transition hover:opacity-90" style="background:#A7B75D;color:#2C2419" href="https://wa.me/?text=Acabo%20d%27unir-me%20a%20VeloTribe%20%E2%80%94%20ciclisme%20a%20Girona.%20https%3A%2F%2Fvelotribe.com" target="_blank" rel="noopener">{t('thanks.share.wa')}</a>
-      <a class="px-5 py-3 rounded-md font-bold text-sm transition" style="background:transparent;color:#41372B;border:1px solid #41372B" href="https://twitter.com/intent/tweet?text=Acabo%20d%27unir-me%20a%20%40velotribe&url=https%3A%2F%2Fvelotribe.com" target="_blank" rel="noopener">{t('thanks.share.x')}</a>
+      <a id="share-wa" class="px-5 py-3 rounded-md font-bold text-sm transition hover:opacity-90" style="background:#A7B75D;color:#2C2419" href="#" target="_blank" rel="noopener" data-share-text="Acabo d'unir-me a VeloTribe — ciclisme a Girona.">{t('thanks.share.wa')}</a>
+      <a id="share-x" class="px-5 py-3 rounded-md font-bold text-sm transition" style="background:transparent;color:#41372B;border:1px solid #41372B" href="#" target="_blank" rel="noopener" data-share-text="Acabo d'unir-me a @velotribe — ciclisme a Girona.">{t('thanks.share.x')}</a>
     </div>
   </main>
   <Step2Form lang={lang} />
@@ -29,4 +29,9 @@ const t = useTranslations(lang)
   const params = new URLSearchParams(window.location.search)
   const n = params.get('n')
   if (n) { const el = document.getElementById('position'); if (el) el.textContent = `#${n}` }
+  const origin = window.location.origin
+  const wa = document.getElementById('share-wa') as HTMLAnchorElement | null
+  const x = document.getElementById('share-x') as HTMLAnchorElement | null
+  if (wa) wa.href = `https://wa.me/?text=${encodeURIComponent((wa.dataset.shareText || '') + ' ' + origin)}`
+  if (x) x.href = `https://twitter.com/intent/tweet?text=${encodeURIComponent(x.dataset.shareText || '')}&url=${encodeURIComponent(origin)}`
 </script>
