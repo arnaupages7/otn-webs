@@ -1,0 +1,24 @@
+# Cloudflare Pages — VeloTribe
+# Bindings per al projecte. Crear D1 i KV abans del primer deploy:
+#   wrangler d1 create velotribe --location=weur
+#   wrangler kv namespace create COUNTER --remote
+# Després omplir els IDs aquí sota.
+
+name = "velotribe"
+compatibility_date = "2026-04-01"
+pages_build_output_dir = "./dist"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "velotribe"
+database_id = "REPLACE_WITH_D1_ID"
+
+[[kv_namespaces]]
+binding = "COUNTER"
+id = "REPLACE_WITH_KV_ID"
+
+[vars]
+RESEND_FROM = "VeloTribe <hello@velotribe.com>"
+
+# Secrets (configurar amb wrangler pages secret put):
+#   RESEND_API_KEY   — clau de Resend per emails de benvinguda

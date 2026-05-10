@@ -1,0 +1,163 @@
+---
+import { useTranslations, type Lang } from '../i18n/utils'
+
+interface Props { lang: Lang }
+const { lang } = Astro.props
+const t = useTranslations(lang)
+
+const dreams = [
+  { v: 'cols', l: t('step2.dream.cols') },
+  { v: 'gravel', l: t('step2.dream.gravel') },
+  { v: 'coast', l: t('step2.dream.coast') },
+  { v: 'food', l: t('step2.dream.food') },
+  { v: 'group', l: t('step2.dream.group') },
+  { v: 'pro', l: t('step2.dream.pro') },
+  { v: 'culture', l: t('step2.dream.culture') },
+]
+
+const experiences = [
+  { v: 'first', l: t('step2.experience.first') },
+  { v: 'few', l: t('step2.experience.few') },
+  { v: 'regular', l: t('step2.experience.regular') },
+  { v: 'local', l: t('step2.experience.local') },
+]
+
+const durations = [
+  { v: 'weekend', l: t('step2.duration.weekend') },
+  { v: 'week', l: t('step2.duration.week') },
+  { v: 'fortnight', l: t('step2.duration.fortnight') },
+  { v: 'long', l: t('step2.duration.long') },
+  { v: 'local', l: t('step2.duration.local') },
+]
+---
+
+<section id="step2" class="px-[5vw] py-16" style="background:#F8EEDA">
+  <div class="max-w-2xl mx-auto">
+    <h2 class="font-display font-black uppercase text-3xl mb-2" style="color:#41372B">{t('step2.title')}</h2>
+    <p class="text-sm mb-8" style="color:#9a8c7a">{t('step2.sub')}</p>
+
+    <form id="step2-form" class="rounded-xl p-7 md:p-8 flex flex-col gap-5" style="background:#41372B" novalidate>
+      <!-- Country -->
+      <label class="block">
+        <span class="text-xs font-semibold uppercase tracking-wider mb-2 block" style="color:#F8EEDA">{t('step2.country')}</span>
+        <input name="country" type="text" placeholder="United Kingdom"
+          class="w-full px-4 py-3 rounded-lg border outline-none transition focus:border-[#A7B75D]"
+          style="background:#ffffff10;border-color:#ffffff20;color:#F8EEDA" />
+      </label>
+
+      <!-- Experience -->
+      <fieldset class="block">
+        <legend class="text-xs font-semibold uppercase tracking-wider mb-2 block" style="color:#F8EEDA">{t('step2.experience')}</legend>
+        <div class="grid grid-cols-2 gap-2">
+          {experiences.map((e) => (
+            <label class="flex items-center gap-2 px-3 py-2 rounded-lg border cursor-pointer text-sm transition hover:border-[#A7B75D]" style="background:#ffffff08;border-color:#ffffff15;color:#F8EEDA">
+              <input type="radio" name="experience" value={e.v} class="accent-[#A7B75D]" />
+              <span>{e.l}</span>
+            </label>
+          ))}
+        </div>
+      </fieldset>
+
+      <!-- Dream Trip (multi-select) -->
+      <fieldset class="block">
+        <legend class="text-xs font-semibold uppercase tracking-wider mb-2 block" style="color:#F8EEDA">{t('step2.dream')}</legend>
+        <div class="flex flex-wrap gap-2">
+          {dreams.map((d) => (
+            <label class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border cursor-pointer text-sm transition has-[input:checked]:bg-[#A7B75D] has-[input:checked]:text-[#2C2419] has-[input:checked]:border-[#A7B75D]" style="background:#ffffff08;border-color:#ffffff20;color:#F8EEDA">
+              <input type="checkbox" name="dream" value={d.v} class="sr-only" />
+              <span>{d.l}</span>
+            </label>
+          ))}
+        </div>
+      </fieldset>
+
+      <!-- Duration -->
+      <fieldset class="block">
+        <legend class="text-xs font-semibold uppercase tracking-wider mb-2 block" style="color:#F8EEDA">{t('step2.duration')}</legend>
+        <div class="flex flex-wrap gap-2">
+          {durations.map((d) => (
+            <label class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border cursor-pointer text-sm transition has-[input:checked]:bg-[#A7B75D] has-[input:checked]:text-[#2C2419] has-[input:checked]:border-[#A7B75D]" style="background:#ffffff08;border-color:#ffffff20;color:#F8EEDA">
+              <input type="radio" name="duration" value={d.v} class="sr-only" />
+              <span>{d.l}</span>
+            </label>
+          ))}
+        </div>
+      </fieldset>
+
+      <!-- Open text -->
+      <label class="block">
+        <span class="text-xs font-semibold uppercase tracking-wider mb-2 block" style="color:#F8EEDA">{t('step2.text')}</span>
+        <textarea name="dream_text" rows="3" maxlength="500"
+          class="w-full px-4 py-3 rounded-lg border outline-none transition focus:border-[#A7B75D] resize-none"
+          style="background:#ffffff10;border-color:#ffffff20;color:#F8EEDA"></textarea>
+      </label>
+
+      <div class="flex gap-3 mt-2">
+        <button type="submit" class="flex-1 py-3.5 rounded-lg font-bold text-sm transition" style="background:#A7B75D;color:#2C2419">
+          {t('step2.submit')}
+        </button>
+        <button type="button" id="skip-btn" class="px-5 py-3.5 rounded-lg font-semibold text-sm transition" style="background:transparent;color:#F8EEDA99;border:1px solid #ffffff20">
+          {t('step2.skip')}
+        </button>
+      </div>
+
+      <p class="text-xs text-center hidden" data-step2-error style="color:#e57373"></p>
+      <p class="text-xs text-center hidden" data-step2-success style="color:#A7B75D"></p>
+    </form>
+  </div>
+</section>
+
+<script>
+  const form = document.getElementById('step2-form') as HTMLFormElement | null
+  if (form) {
+    const params = new URLSearchParams(window.location.search)
+    const email = params.get('e') || ''
+    const audience = params.get('a') || 'cyclist'
+    const errorEl = form.querySelector<HTMLElement>('[data-step2-error]')!
+    const successEl = form.querySelector<HTMLElement>('[data-step2-success]')!
+    const skipBtn = document.getElementById('skip-btn') as HTMLButtonElement
+    skipBtn?.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+      form.style.display = 'none'
+    })
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault()
+      errorEl.classList.add('hidden')
+
+      const fd = new FormData(form)
+      const dreams: string[] = []
+      fd.getAll('dream').forEach((v) => dreams.push(String(v)))
+
+      const payload = {
+        email,
+        audience,
+        country: fd.get('country') || '',
+        experience: fd.get('experience') || '',
+        dream: dreams,
+        duration: fd.get('duration') || '',
+        dream_text: fd.get('dream_text') || '',
+      }
+
+      try {
+        const res = await fetch('/api/waitlist-step2', {
+          method: 'POST',
+          headers: { 'content-type': 'application/json' },
+          body: JSON.stringify(payload),
+        })
+        const data = await res.json() as { ok: boolean; error?: string }
+        if (!res.ok || !data.ok) {
+          errorEl.textContent = data.error || 'error'
+          errorEl.classList.remove('hidden')
+          return
+        }
+        successEl.textContent = '✓ Saved'
+        successEl.classList.remove('hidden')
+        ;(form.querySelector('button[type="submit"]') as HTMLButtonElement).disabled = true
+      } catch {
+        errorEl.textContent = 'Network error.'
+        errorEl.classList.remove('hidden')
+      }
+    })
+  }
+</script>

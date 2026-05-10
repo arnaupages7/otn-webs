@@ -1,0 +1,59 @@
+---
+import LegalLayout from '../components/LegalLayout.astro'
+---
+
+<LegalLayout
+  lang="en"
+  title="Privacy Policy"
+  description="How VeloTribe handles your personal data."
+  version="1.0.0-draft"
+  updated="2026-05-10"
+>
+  <div class="draft-notice">
+    <strong>Draft notice.</strong> This page is in pre-launch validation phase. Final wording will be reviewed before public launch with full legal entity details.
+  </div>
+
+  <h2>1. Data Controller</h2>
+  <p>
+    <strong>VeloTribe</strong> (currently operated by its founders as natural persons; a legal entity will be incorporated before commercial launch).
+  </p>
+  <p>Contact: <a href="mailto:privacy@velotribe.com">privacy@velotribe.com</a></p>
+
+  <h2>2. Data Processor</h2>
+  <p>
+    OTN (Old To New) acts as technical data processor on behalf of VeloTribe under documented instructions, providing hosting and infrastructure for the waitlist platform.
+  </p>
+
+  <h2>3. Purposes &amp; legal basis</h2>
+  <p>We process your data with the following purposes:</p>
+  <ul>
+    <li><strong>Waitlist management</strong> — basis: your consent (Art. 6.1.a GDPR)</li>
+    <li><strong>Launch communication</strong> — informing you when VeloTribe goes live (consent)</li>
+    <li><strong>Product validation</strong> — aggregating optional Step 2 data to decide what to build (consent)</li>
+  </ul>
+
+  <h2>4. Data we collect</h2>
+  <p><strong>Step 1 (mandatory):</strong> email, cycling discipline (cyclists) or business name + type + location (hosts), IP address (hashed), user agent, locale, consent timestamp.</p>
+  <p><strong>Step 2 (optional):</strong> country of residence, experience with Girona, dream trip categories, trip duration, free-text feedback.</p>
+  <p>We do not collect special-category data (Art. 9 GDPR). No automated decisions are taken based on your data.</p>
+
+  <h2>5. Recipients</h2>
+  <ul>
+    <li><strong>Cloudflare Inc.</strong> — hosting, D1 database, web analytics. Data stored in Western Europe region. EU SCCs and DPA apply.</li>
+    <li><strong>Resend Inc.</strong> — transactional email delivery (welcome, updates). DPA in place.</li>
+  </ul>
+  <p>We do not sell or share your data with any other third party.</p>
+
+  <h2>6. Retention</h2>
+  <p>We keep your data until product launch plus 12 months. If you withdraw consent, we delete your record within 30 days (except minimal audit logs kept for 6 years per Spanish civil law).</p>
+
+  <h2>7. Your rights</h2>
+  <p>You have the right to access, rectify, delete, restrict, port and object to the processing of your data, and to withdraw consent at any time. Exercise these rights at <a href="mailto:privacy@velotribe.com">privacy@velotribe.com</a>. We respond within 30 days.</p>
+  <p>You can also lodge a complaint with the Spanish Data Protection Authority (AEPD, www.aepd.es).</p>
+
+  <h2>8. Security</h2>
+  <p>Data is transmitted via HTTPS and stored in EU region (Cloudflare WEUR). IP addresses are hashed before storage.</p>
+
+  <h2>9. Updates to this policy</h2>
+  <p>This is version <strong>1.0.0-draft</strong> dated 2026-05-10. Material changes will be notified by email.</p>
+</LegalLayout>

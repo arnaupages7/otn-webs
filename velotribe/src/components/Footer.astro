@@ -1,0 +1,23 @@
+---
+import { useTranslations, pathFor, type Lang } from '../i18n/utils'
+
+interface Props { lang: Lang }
+const { lang } = Astro.props
+const t = useTranslations(lang)
+---
+
+<footer class="px-[5vw] py-10 flex flex-wrap items-center justify-between gap-5 border-t border-white/5" style="background:#2C2419;color:#706050">
+  <div class="flex items-center gap-2.5">
+    <img src="/logo/velotribe.svg" alt="VeloTribe" class="h-6 w-auto" onerror="this.style.display='none'" />
+    <span class="font-display font-black tracking-[3px] text-sm" style="color:#F8EEDA">VELOTRIBE</span>
+  </div>
+
+  <span class="italic text-xs">{t('footer.tagline')}</span>
+
+  <div class="flex flex-wrap gap-5 text-xs">
+    <a href={pathFor(lang, '/privacy')} class="transition hover:text-[#A7B75D]">{t('footer.privacy')}</a>
+    <a href={pathFor(lang, '/legal-notice')} class="transition hover:text-[#A7B75D]">{t('footer.legal')}</a>
+    <a href={pathFor(lang, '/cookies')} class="transition hover:text-[#A7B75D]">{t('footer.cookies')}</a>
+    <a href="mailto:hello@velotribe.com" class="transition hover:text-[#A7B75D]">{t('footer.contact')}</a>
+  </div>
+</footer>

@@ -1,0 +1,44 @@
+---
+import { useTranslations, type Lang } from '../i18n/utils'
+
+interface Props { lang: Lang }
+const { lang } = Astro.props
+const t = useTranslations(lang)
+
+const cards = [
+  {
+    t: t('problem.p1.t'), d: t('problem.p1.d'), tag: t('cyclist.badge'),
+    icon: `<circle cx='12' cy='10' r='3'/><path d='M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z'/>`,
+  },
+  {
+    t: t('problem.p2.t'), d: t('problem.p2.d'), tag: t('host.badge'),
+    icon: `<path d='M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z'/><polyline points='9 22 9 12 15 12 15 22'/>`,
+  },
+  {
+    t: t('problem.p3.t'), d: t('problem.p3.d'), tag: t('host.badge'),
+    icon: `<path d='M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z'/>`,
+  },
+]
+---
+
+<section id="problem" class="px-[5vw] py-20" style="background:#2C2419">
+  <div class="max-w-5xl mx-auto">
+    <div class="reveal">
+      <p class="text-[11px] font-bold tracking-[3px] uppercase mb-2.5" style="color:#A7B75D">{t('problem.eyebrow')}</p>
+      <h2 class="font-display font-black uppercase leading-[0.95]" style="color:#F8EEDA;font-size:clamp(32px, 6vw, 58px)" set:html={t('problem.title')}></h2>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-4 mt-12 reveal">
+      {cards.map((c) => (
+        <div class="rounded-xl p-7 border" style="background:#ffffff08;border-color:#ffffff14">
+          <div class="w-10 h-10 rounded-lg flex items-center justify-center mb-4 border" style="background:#A7B75D33;border-color:#A7B75D55">
+            <svg viewBox="0 0 24 24" class="w-5 h-5" fill="none" stroke="#A7B75D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" set:html={c.icon}></svg>
+          </div>
+          <span class="inline-block text-[10px] font-bold uppercase tracking-[1.5px] px-2 py-0.5 rounded mb-2" style="background:#A7B75D;color:#2C2419">{c.tag}</span>
+          <h3 class="font-bold text-sm mb-2" style="color:#F8EEDA">{c.t}</h3>
+          <p class="text-sm leading-relaxed" style="color:#a09078">{c.d}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

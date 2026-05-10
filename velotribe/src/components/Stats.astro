@@ -1,0 +1,23 @@
+---
+import { useTranslations, type Lang } from '../i18n/utils'
+
+interface Props { lang: Lang }
+const { lang } = Astro.props
+const t = useTranslations(lang)
+
+const stats = [
+  { n: t('stats.s1.n'), l: t('stats.s1.l') },
+  { n: t('stats.s2.n'), l: t('stats.s2.l') },
+  { n: t('stats.s3.n'), l: t('stats.s3.l') },
+  { n: t('stats.s4.n'), l: t('stats.s4.l') },
+]
+---
+
+<div class="px-[5vw] py-6 flex flex-col md:flex-row gap-0 overflow-x-auto" style="background:#494B30">
+  {stats.map((s, i) => (
+    <div class:list={['flex-1 min-w-[140px] text-center px-4 py-2', i < stats.length - 1 ? 'md:border-r md:border-white/15 border-b md:border-b-0 border-white/15' : '']}>
+      <div class="font-display font-black text-3xl md:text-2xl lg:text-3xl" style="color:#F8EEDA">{s.n}</div>
+      <div class="text-[11px] uppercase tracking-[1.5px] mt-1 font-semibold" style="color:#ffffff80">{s.l}</div>
+    </div>
+  ))}
+</div>

@@ -1,0 +1,60 @@
+---
+import { useTranslations, type Lang } from '../i18n/utils'
+
+interface Props { lang: Lang }
+const { lang } = Astro.props
+const t = useTranslations(lang)
+---
+
+<section id="paths" class="px-[5vw] py-20" style="background:#F8EEDA">
+  <div class="text-center mb-14 reveal">
+    <p class="text-[11px] font-bold tracking-[3px] uppercase mb-2.5" style="color:#A7B75D">{t('paths.eyebrow')}</p>
+    <h2 class="font-display font-black uppercase leading-[0.95]" style="color:#41372B;font-size:clamp(32px, 6vw, 58px)" set:html={t('paths.title')}></h2>
+  </div>
+
+  <div class="grid md:grid-cols-2 gap-0.5 max-w-5xl mx-auto reveal">
+    <!-- CYCLIST -->
+    <div class="p-9 md:p-11 transition hover:-translate-y-1" style="background:#41372B">
+      <span class="inline-block px-3 py-1 rounded text-[10px] font-bold tracking-[2px] uppercase mb-5" style="background:#A7B75D;color:#2C2419">{t('cyclist.badge')}</span>
+      <h3 class="font-display font-black uppercase leading-[0.95] mb-4" style="color:#F8EEDA;font-size:clamp(28px, 4vw, 42px)">{t('cyclist.title')}</h3>
+      <p class="text-sm leading-relaxed mb-7 max-w-md" style="color:#ffffff70">{t('cyclist.desc')}</p>
+      <ul class="list-none mb-7 space-y-0">
+        <li class="text-sm py-1.5 pl-5 relative border-b border-white/10" style="color:#ffffff60">
+          <span class="absolute left-0 text-white/30">—</span>{t('cyclist.pain1')}
+        </li>
+        <li class="text-sm py-1.5 pl-5 relative border-b border-white/10" style="color:#ffffff60">
+          <span class="absolute left-0 text-white/30">—</span>{t('cyclist.pain2')}
+        </li>
+        <li class="text-sm py-1.5 pl-5 relative border-b border-white/10" style="color:#ffffff60">
+          <span class="absolute left-0 text-white/30">—</span>{t('cyclist.pain3')}
+        </li>
+      </ul>
+      <a href="#waitlist" class="inline-flex items-center gap-2 px-6 py-3 rounded-md font-bold text-sm transition hover:opacity-90" style="background:#A7B75D;color:#2C2419">
+        <span>{t('cyclist.cta')}</span>
+        <span aria-hidden="true">→</span>
+      </a>
+    </div>
+
+    <!-- HOST -->
+    <div class="p-9 md:p-11 transition hover:-translate-y-1" style="background:#494B30">
+      <span class="inline-block px-3 py-1 rounded text-[10px] font-bold tracking-[2px] uppercase mb-5" style="background:#F8EEDA;color:#41372B">{t('host.badge')}</span>
+      <h3 class="font-display font-black uppercase leading-[0.95] mb-4" style="color:#F8EEDA;font-size:clamp(28px, 4vw, 42px)">{t('host.title')}</h3>
+      <p class="text-sm leading-relaxed mb-7 max-w-md" style="color:#ffffff70">{t('host.desc')}</p>
+      <ul class="list-none mb-7">
+        <li class="text-sm py-1.5 pl-5 relative border-b border-white/10" style="color:#ffffff60">
+          <span class="absolute left-0 text-white/30">—</span>{t('host.pain1')}
+        </li>
+        <li class="text-sm py-1.5 pl-5 relative border-b border-white/10" style="color:#ffffff60">
+          <span class="absolute left-0 text-white/30">—</span>{t('host.pain2')}
+        </li>
+        <li class="text-sm py-1.5 pl-5 relative border-b border-white/10" style="color:#ffffff60">
+          <span class="absolute left-0 text-white/30">—</span>{t('host.pain3')}
+        </li>
+      </ul>
+      <a href="#waitlist" class="inline-flex items-center gap-2 px-6 py-3 rounded-md font-bold text-sm transition hover:opacity-90" style="background:#F8EEDA;color:#41372B">
+        <span>{t('host.cta')}</span>
+        <span aria-hidden="true">→</span>
+      </a>
+    </div>
+  </div>
+</section>

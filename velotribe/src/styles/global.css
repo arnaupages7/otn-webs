@@ -1,0 +1,52 @@
+@import "tailwindcss";
+
+/* VeloTribe — Branding Proposta I (Nona Studio) */
+@theme {
+  /* Paleta */
+  --color-cream: #F8EEDA;
+  --color-olive: #A7B75D;
+  --color-dark-olive: #494B30;
+  --color-brown: #41372B;
+  --color-dk: #2C2419;
+
+  /* Tipografia */
+  /* Display: Gill Sans Display (Adobe Fonts, llicència) — fallback Oswald (Google Fonts gratis) */
+  --font-display: 'Oswald', 'Gill Sans Display', system-ui, sans-serif;
+  /* Body: Didact Gothic (Google Fonts gratis) */
+  --font-body: 'Didact Gothic', system-ui, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: var(--color-cream);
+  color: var(--color-brown);
+  font-family: var(--font-body);
+}
+
+/* Reveal on scroll — progressive enhancement: només s'oculta si JS s'ha carregat */
+.js-ready .reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity .6s ease, transform .6s ease;
+}
+.js-ready .reveal.visible {
+  opacity: 1;
+  transform: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .js-ready .reveal { opacity: 1; transform: none; transition: none; }
+}
+
+/* Pulse animation for hero tag dot */
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: .4; }
+}
+.animate-pulse-slow {
+  animation: pulse 2s infinite;
+}

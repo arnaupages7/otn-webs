@@ -1,0 +1,32 @@
+---
+import Layout from '../../layouts/Layout.astro'
+import Nav from '../../components/Nav.astro'
+import Footer from '../../components/Footer.astro'
+import Step2Form from '../../components/Step2Form.astro'
+import { useTranslations } from '../../i18n/utils'
+
+const lang = 'es' as const
+const t = useTranslations(lang)
+---
+
+<Layout lang={lang} title="Bienvenido a VeloTribe" description="Bienvenido a la comunidad ciclista VeloTribe.">
+  <Nav lang={lang} />
+  <main class="min-h-[60vh] flex flex-col items-center justify-center text-center px-6 pt-32 pb-16">
+    <p class="text-xs font-bold tracking-[3px] uppercase mb-4" style="color:#A7B75D">{t('thanks.eyebrow')}</p>
+    <h1 class="font-display font-black uppercase leading-[0.9]" style="font-size:clamp(48px, 10vw, 96px); color:#41372B">{t('thanks.title')}</h1>
+    <span class="font-display font-black leading-none my-2" style="font-size:clamp(80px, 18vw, 180px); color:#A7B75D" id="position">#?</span>
+    <p class="text-lg" style="color:#41372B">{t('thanks.position')}</p>
+    <div class="flex flex-wrap gap-3 mt-8 justify-center">
+      <p class="w-full text-xs uppercase tracking-[2px] font-semibold mb-1" style="color:#9a8c7a">{t('thanks.share.label')}</p>
+      <a class="px-5 py-3 rounded-md font-bold text-sm transition hover:opacity-90" style="background:#A7B75D;color:#2C2419" href="https://wa.me/?text=Acabo%20de%20unirme%20a%20VeloTribe%20%E2%80%94%20ciclismo%20en%20Girona.%20https%3A%2F%2Fvelotribe.com" target="_blank" rel="noopener">{t('thanks.share.wa')}</a>
+      <a class="px-5 py-3 rounded-md font-bold text-sm transition" style="background:transparent;color:#41372B;border:1px solid #41372B" href="https://twitter.com/intent/tweet?text=Acabo%20de%20unirme%20a%20%40velotribe&url=https%3A%2F%2Fvelotribe.com" target="_blank" rel="noopener">{t('thanks.share.x')}</a>
+    </div>
+  </main>
+  <Step2Form lang={lang} />
+  <Footer lang={lang} />
+</Layout>
+<script>
+  const params = new URLSearchParams(window.location.search)
+  const n = params.get('n')
+  if (n) { const el = document.getElementById('position'); if (el) el.textContent = `#${n}` }
+</script>

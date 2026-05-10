@@ -1,0 +1,30 @@
+---
+import Layout from '../layouts/Layout.astro'
+import Nav from '../components/Nav.astro'
+import Hero from '../components/Hero.astro'
+import Stats from '../components/Stats.astro'
+import TwoPaths from '../components/TwoPaths.astro'
+import HowItWorks from '../components/HowItWorks.astro'
+import Problem from '../components/Problem.astro'
+import Waitlist from '../components/Waitlist.astro'
+import Providers from '../components/Providers.astro'
+import Footer from '../components/Footer.astro'
+
+const lang = 'en' as const
+---
+
+<Layout
+  lang={lang}
+  title="VeloTribe — Cycling in Girona, made for the tribe"
+  description="The platform built for cyclists who ride Girona — and the locals who host them. Join the waitlist for early access."
+>
+  <Nav lang={lang} />
+  <Hero lang={lang} />
+  <Stats lang={lang} />
+  <TwoPaths lang={lang} />
+  <HowItWorks lang={lang} />
+  <Problem lang={lang} />
+  <Waitlist lang={lang} />
+  <Providers lang={lang} />
+  <Footer lang={lang} />
+</Layout>

@@ -1,0 +1,46 @@
+---
+import LegalLayout from '../../components/LegalLayout.astro'
+---
+
+<LegalLayout lang="es" title="Política de Privacidad" description="Cómo VeloTribe trata tus datos personales." version="1.0.0-draft" updated="2026-05-10">
+  <div class="draft-notice">
+    <strong>Borrador.</strong> Este documento está en fase de validación pre-lanzamiento. La versión final con la entidad jurídica constituida se publicará antes del lanzamiento comercial.
+  </div>
+
+  <h2>1. Responsable del Tratamiento</h2>
+  <p><strong>VeloTribe</strong> (operado por sus fundadores como personas físicas durante la validación; se constituirá una entidad jurídica antes del lanzamiento comercial).</p>
+  <p>Contacto: <a href="mailto:privacy@velotribe.com">privacy@velotribe.com</a></p>
+
+  <h2>2. Encargado del Tratamiento</h2>
+  <p>OTN (Old To New) actúa como encargado técnico por cuenta de VeloTribe bajo instrucciones documentadas, proporcionando hosting e infraestructura para la plataforma de waitlist.</p>
+
+  <h2>3. Finalidades y base jurídica</h2>
+  <ul>
+    <li><strong>Gestión de la lista de espera</strong> — base: consentimiento (Art. 6.1.a RGPD)</li>
+    <li><strong>Comunicación de lanzamiento</strong> — base: consentimiento</li>
+    <li><strong>Validación del producto</strong> — agregar datos opcionales del Step 2 para decidir qué construir</li>
+  </ul>
+
+  <h2>4. Datos recopilados</h2>
+  <p><strong>Step 1 (obligatorio):</strong> email, modalidad ciclismo (ciclistas) o nombre de negocio + tipo + localización (anfitriones), IP (hash), user agent, locale, marca temporal del consentimiento.</p>
+  <p><strong>Step 2 (opcional):</strong> país de residencia, experiencia con Girona, intereses, duración del viaje, texto libre.</p>
+
+  <h2>5. Destinatarios</h2>
+  <ul>
+    <li><strong>Cloudflare Inc.</strong> — hosting, base de datos D1, analytics. Almacenamiento en región Western Europe. SCC UE y DPA aplicables.</li>
+    <li><strong>Resend Inc.</strong> — envío de email transaccional. DPA firmado.</li>
+  </ul>
+
+  <h2>6. Conservación</h2>
+  <p>Los datos se conservan hasta el lanzamiento del producto + 12 meses. Si retiras el consentimiento, eliminamos en 30 días (excepto logs mínimos de auditoría durante 6 años).</p>
+
+  <h2>7. Derechos</h2>
+  <p>Tienes derecho a acceder, rectificar, suprimir, oponerte, solicitar portabilidad y retirar el consentimiento. Ejércelos en <a href="mailto:privacy@velotribe.com">privacy@velotribe.com</a>. Respondemos en 30 días.</p>
+  <p>También puedes reclamar ante la AEPD (www.aepd.es).</p>
+
+  <h2>8. Seguridad</h2>
+  <p>Los datos viajan siempre por HTTPS y se almacenan en la región UE. Las IPs se hashean antes de guardarse.</p>
+
+  <h2>9. Versiones</h2>
+  <p>Versión <strong>1.0.0-draft</strong> · 2026-05-10. Notificaremos cambios materiales por email.</p>
+</LegalLayout>

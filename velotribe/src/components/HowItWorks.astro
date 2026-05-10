@@ -1,0 +1,33 @@
+---
+import { useTranslations, type Lang } from '../i18n/utils'
+
+interface Props { lang: Lang }
+const { lang } = Astro.props
+const t = useTranslations(lang)
+
+const steps = [
+  { t: t('how.s1.t'), d: t('how.s1.d') },
+  { t: t('how.s2.t'), d: t('how.s2.d') },
+  { t: t('how.s3.t'), d: t('how.s3.d') },
+  { t: t('how.s4.t'), d: t('how.s4.d') },
+]
+---
+
+<section id="how" class="px-[5vw] py-20 bg-white">
+  <div class="max-w-5xl mx-auto">
+    <div class="reveal">
+      <p class="text-[11px] font-bold tracking-[3px] uppercase mb-2.5" style="color:#A7B75D">{t('how.eyebrow')}</p>
+      <h2 class="font-display font-black uppercase leading-[0.95]" style="color:#41372B;font-size:clamp(32px, 6vw, 58px)" set:html={t('how.title')}></h2>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-0 mt-12 rounded-xl overflow-hidden border border-neutral-200 reveal">
+      {steps.map((s, i) => (
+        <div class:list={['p-7 lg:p-8 relative bg-white', i < 3 ? 'lg:border-r border-neutral-200' : '', i < 2 ? 'sm:border-b lg:border-b-0 border-neutral-200' : '']}>
+          <div class="font-display font-black text-5xl leading-none mb-3 opacity-40" style="color:#A7B75D">0{i + 1}</div>
+          <h4 class="font-bold text-sm mb-2 leading-tight" style="color:#41372B">{s.t}</h4>
+          <p class="text-xs leading-relaxed" style="color:#9a8c7a">{s.d}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

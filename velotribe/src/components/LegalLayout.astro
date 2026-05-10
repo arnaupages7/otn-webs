@@ -1,0 +1,64 @@
+---
+import Layout from '../layouts/Layout.astro'
+import Nav from './Nav.astro'
+import Footer from './Footer.astro'
+import { type Lang } from '../i18n/utils'
+
+interface Props {
+  lang: Lang
+  title: string
+  description: string
+  version: string
+  updated: string
+}
+
+const { lang, title, description, version, updated } = Astro.props
+---
+
+<Layout lang={lang} title={`${title} — VeloTribe`} description={description}>
+  <Nav lang={lang} />
+  <article class="max-w-3xl mx-auto px-6 pt-32 pb-16">
+    <h1 class="font-display font-black uppercase text-4xl md:text-5xl mb-3" style="color:#41372B">{title}</h1>
+    <p class="text-xs uppercase tracking-[2px] mb-10" style="color:#9a8c7a">v{version} · {updated}</p>
+    <div class="legal-content">
+      <slot />
+    </div>
+  </article>
+  <Footer lang={lang} />
+</Layout>
+
+<style>
+  .legal-content {
+    color: #41372B;
+    line-height: 1.7;
+    font-size: 0.95rem;
+  }
+  .legal-content :global(h2) {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    margin-top: 2.5rem;
+    margin-bottom: 0.75rem;
+    color: #41372B;
+  }
+  .legal-content :global(h3) {
+    font-weight: 700;
+    font-size: 1.05rem;
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: #41372B;
+  }
+  .legal-content :global(p) { margin-bottom: 1rem; }
+  .legal-content :global(ul) { margin-bottom: 1rem; padding-left: 1.5rem; list-style: disc; }
+  .legal-content :global(li) { margin-bottom: 0.4rem; }
+  .legal-content :global(a) { color: #A7B75D; text-decoration: underline; }
+  .legal-content :global(.draft-notice) {
+    background: #fff4d6;
+    border-left: 3px solid #d4a437;
+    padding: 1rem 1.25rem;
+    margin-bottom: 2rem;
+    font-size: 0.85rem;
+    color: #6b5a1f;
+  }
+</style>
