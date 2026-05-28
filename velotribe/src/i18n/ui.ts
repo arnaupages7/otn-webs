@@ -29,10 +29,10 @@ export const ui = {
 
     'host.badge': 'Hosts',
     'host.title': 'Reach the cyclists who deserve you',
-    'host.desc': 'A cyclist spends 3x more than the average tourist and comes back year after year. But they will not find you on Booking.',
-    'host.pain1': 'Invisible on generic platforms',
-    'host.pain2': '20% commission to Booking with no community return',
-    'host.pain3': "Clients who aren't your target audience",
+    'host.desc': 'A cyclist spends 3x more than the average tourist and comes back year after year. But they will never find you on a generic platform.',
+    'host.pain1': 'Invisible on platforms not built for cyclists',
+    'host.pain2': 'High commissions, zero community connection',
+    'host.pain3': "Enquiries from guests who aren't your target audience",
     'host.cta': 'Become a founding host',
 
     'how.eyebrow': 'How it works',
@@ -43,9 +43,9 @@ export const ui = {
     'how.s4.t': 'Belong to the tribe', 'how.s4.d': 'Share routes, rate experiences and connect with cyclists like you.',
 
     'problem.eyebrow': 'The problem',
-    'problem.title': 'Cyclists deserve better than <em>Booking</em>',
-    'problem.p1.t': 'Impossible search', 'problem.p1.d': 'You need a bike garage, tools, and a proper breakfast at 6am. Booking does not understand that.',
-    'problem.p2.t': 'Total invisibility', 'problem.p2.d': "You have everything a cyclist needs but you're invisible among millions of generic hotels.",
+    'problem.title': 'Cyclists deserve a platform <em>built for them</em>',
+    'problem.p1.t': 'Impossible search', 'problem.p1.d': 'You need a bike garage, tools, and a proper breakfast at 6am. Generic platforms simply do not understand that.',
+    'problem.p2.t': 'Total invisibility', 'problem.p2.d': "You have everything a cyclist needs but you're invisible among millions of generic listings.",
     'problem.p3.t': 'Word of mouth only', 'problem.p3.d': 'Your knowledge of the terrain is worth gold but only those who already know you can find you.',
 
     'wl.eyebrow': 'Join now',
@@ -144,10 +144,10 @@ export const ui = {
 
     'host.badge': 'Anfitriones',
     'host.title': 'Llega al ciclista que te merece',
-    'host.desc': 'Un ciclista gasta 3x más que un turista medio y vuelve año tras año. Pero no te encontrará en Booking.',
-    'host.pain1': 'Invisible en plataformas genéricas',
-    'host.pain2': '20% comisión a Booking sin retorno en comunidad',
-    'host.pain3': 'Clientes que no son tu público objetivo',
+    'host.desc': 'Un ciclista gasta 3x más que un turista medio y vuelve año tras año. Pero no te encontrará en una plataforma genérica.',
+    'host.pain1': 'Invisible en plataformas no pensadas para ciclistas',
+    'host.pain2': 'Altas comisiones, cero conexión con la comunidad',
+    'host.pain3': 'Consultas de clientes que no son tu público objetivo',
     'host.cta': 'Ser anfitrión fundador',
 
     'how.eyebrow': 'Cómo funciona',
@@ -158,9 +158,9 @@ export const ui = {
     'how.s4.t': 'Pertenece a la tribu', 'how.s4.d': 'Comparte rutas, valora experiencias y conecta con ciclistas como tú.',
 
     'problem.eyebrow': 'El problema',
-    'problem.title': 'El ciclista merece más que <em>Booking</em>',
-    'problem.p1.t': 'Búsqueda imposible', 'problem.p1.d': 'Buscas garaje para la bici, herramientas y desayuno a las 6h. Booking no entiende eso.',
-    'problem.p2.t': 'Invisibilidad total', 'problem.p2.d': 'Tienes todo lo que el ciclista necesita pero eres invisible entre millones de hoteles.',
+    'problem.title': 'El ciclista merece una plataforma <em>hecha para él</em>',
+    'problem.p1.t': 'Búsqueda imposible', 'problem.p1.d': 'Buscas garaje para la bici, herramientas y desayuno a las 6h. Las plataformas genéricas no entienden eso.',
+    'problem.p2.t': 'Invisibilidad total', 'problem.p2.d': 'Tienes todo lo que el ciclista necesita pero eres invisible entre millones de alojamientos genéricos.',
     'problem.p3.t': 'Solo boca-oreja', 'problem.p3.d': 'Tu conocimiento del terreno vale oro pero solo te encuentran quienes ya te conocen.',
 
     'wl.eyebrow': 'Únete ahora',
@@ -259,10 +259,10 @@ export const ui = {
 
     'host.badge': 'Amfitrions',
     'host.title': 'Arriba al ciclista que et mereix',
-    'host.desc': 'Un ciclista gasta 3x més que un turista mig i torna any rere any. Però no et trobarà a Booking.',
-    'host.pain1': 'Invisible a plataformes genèriques',
-    'host.pain2': '20% comissió a Booking sense retorn en comunitat',
-    'host.pain3': 'Clients que no són el teu públic objectiu',
+    'host.desc': 'Un ciclista gasta 3x més que un turista mig i torna any rere any. Però no et trobarà en una plataforma genèrica.',
+    'host.pain1': 'Invisible a plataformes no pensades per a ciclistes',
+    'host.pain2': 'Altes comissions, zero connexió amb la comunitat',
+    'host.pain3': 'Consultes de clients que no són el teu públic objectiu',
     'host.cta': 'Ser amfitrió fundador',
 
     'how.eyebrow': 'Com funciona',
@@ -273,9 +273,9 @@ export const ui = {
     'how.s4.t': 'Forma part de la tribu', 'how.s4.d': 'Comparteix rutes, valora experiències i connecta amb ciclistes com tu.',
 
     'problem.eyebrow': 'El problema',
-    'problem.title': 'El ciclista mereix més que <em>Booking</em>',
-    'problem.p1.t': 'Cerca impossible', 'problem.p1.d': 'Busques garatge per la bici, eines i esmorzar a les 6h. Booking no ho entén.',
-    'problem.p2.t': 'Invisibilitat total', 'problem.p2.d': 'Tens tot el que el ciclista necessita però ets invisible entre milions d\'hotels.',
+    'problem.title': 'El ciclista mereix una plataforma <em>feta per a ell</em>',
+    'problem.p1.t': 'Cerca impossible', 'problem.p1.d': 'Busques garatge per la bici, eines i esmorzar a les 6h. Les plataformes genèriques no ho entenen.',
+    'problem.p2.t': 'Invisibilitat total', 'problem.p2.d': 'Tens tot el que el ciclista necessita però ets invisible entre milions d\'allotjaments genèrics.',
     'problem.p3.t': 'Només boca-orella', 'problem.p3.d': 'El teu coneixement del terreny val or però només et troben els que ja et coneixen.',
 
     'wl.eyebrow': 'Apunta\'t ara',

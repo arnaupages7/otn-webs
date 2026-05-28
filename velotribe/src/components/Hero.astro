@@ -11,6 +11,27 @@ const t = useTranslations(lang)
   <div class="absolute inset-0 pointer-events-none" style="background:radial-gradient(ellipse 70% 50% at 20% 60%, #494B3025 0%, transparent 60%), radial-gradient(ellipse 50% 40% at 80% 20%, #A7B75D12 0%, transparent 60%)"></div>
   <div class="absolute inset-0 pointer-events-none opacity-[0.04]" style="background-image:url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22200%22 height=%22200%22><filter id=%22n%22><feTurbulence baseFrequency=%220.9%22 numOctaves=%222%22 stitchTiles=%22stitch%22/></filter><rect width=%22200%22 height=%22200%22 filter=%22url(%23n)%22 opacity=%221%22/></svg>')"></div>
 
+  <!-- Decoració d'ones: identitat visual inspirada en la targeta de marca -->
+  <div class="absolute inset-0 pointer-events-none overflow-hidden" style="opacity:0.10">
+    <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+      <defs>
+        <pattern id="vt-waves" x="0" y="0" width="160" height="22" patternUnits="userSpaceOnUse">
+          <path d="M0,11 Q40,2 80,11 T160,11" stroke="#A7B75D" stroke-width="1" fill="none" stroke-linecap="round"/>
+        </pattern>
+        <linearGradient id="vt-waves-fade" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="black" stop-opacity="0"/>
+          <stop offset="18%" stop-color="black" stop-opacity="1"/>
+          <stop offset="82%" stop-color="black" stop-opacity="1"/>
+          <stop offset="100%" stop-color="black" stop-opacity="0"/>
+        </linearGradient>
+        <mask id="vt-waves-mask">
+          <rect width="100%" height="100%" fill="url(#vt-waves-fade)"/>
+        </mask>
+      </defs>
+      <rect width="100%" height="100%" fill="url(#vt-waves)" mask="url(#vt-waves-mask)"/>
+    </svg>
+  </div>
+
   <div class="hero-tag-anim relative inline-flex items-center gap-2 bg-white/5 border border-white/10 px-4 py-1.5 rounded-full text-xs uppercase tracking-[2px] font-semibold mb-8 text-white/60 backdrop-blur-sm">
     <span class="w-1.5 h-1.5 rounded-full animate-pulse-slow" style="background:#A7B75D"></span>
     <span>{t('hero.tag')}</span>

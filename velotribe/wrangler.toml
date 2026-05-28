@@ -18,7 +18,7 @@ binding = "COUNTER"
 id = "a1aba4e8658c4679b86bbb060abd7d7c"
 
 [vars]
-RESEND_FROM = "VeloTribe <hello@velotribe.com>"
+RESEND_FROM = "VeloTribe <info@velotribe.cc>"
 
 # Secrets (configurar amb wrangler pages secret put):
 #   RESEND_API_KEY   — clau de Resend per emails de benvinguda

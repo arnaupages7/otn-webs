@@ -22,7 +22,7 @@ export const onRequestPost: PagesFunction<Env> = async ({ request, env }) => {
   }
 
   const email = typeof body.email === 'string' ? body.email.trim().toLowerCase() : ''
-  if (!email) {
+  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
     return Response.json({ ok: false, error: 'invalid_email' }, { status: 400 })
   }
 
@@ -56,17 +56,29 @@ export const onRequestPost: PagesFunction<Env> = async ({ request, env }) => {
       .bind(country, experience, dreamJson, duration, dreamText, ts, ts, email)
       .run()
 
-    if (result.meta.changes === 0) {
+    const changes = result?.meta?.changes ?? 0
+    if (changes === 0) {
+      // L'email no es troba a la taula: pot ser que l'step1 no s'hagi completat o
+      // que el paràmetre ?e= de la URL no s'hagi passat correctament.
+      console.warn('step2_no_row_updated', { email, table })
       return Response.json({ ok: false, error: 'not_found' }, { status: 404 })
     }
   } catch (err) {
-    console.error('step2_update_failed', err)
+    console.error('step2_update_failed', { err: String(err), email, table })
     return Response.json({ ok: false, error: 'server_error' }, { status: 500 })
   }
 
   return Response.json({ ok: true })
 }
 
-export const onRequest: PagesFunction = async () => {
+export const onRequestGet: PagesFunction = async () => {
+  return Response.json({ ok: false, error: 'method_not_allowed' }, { status: 405 })
+}
+
+export const onRequestPut: PagesFunction = async () => {
+  return Response.json({ ok: false, error: 'method_not_allowed' }, { status: 405 })
+}
+
+export const onRequestDelete: PagesFunction = async () => {
   return Response.json({ ok: false, error: 'method_not_allowed' }, { status: 405 })
 }

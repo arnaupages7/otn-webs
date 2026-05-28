@@ -130,10 +130,16 @@ const durations = [
   const form = document.getElementById('step2-form') as HTMLFormElement | null
   if (form) {
     const params = new URLSearchParams(window.location.search)
-    const email = params.get('e') || ''
+    // L'email ve del paràmetre ?e= que passa el formulari de l'step1 a la URL
+    const email = decodeURIComponent(params.get('e') || '')
     const audience = params.get('a') || 'cyclist'
     const errorEl = form.querySelector<HTMLElement>('[data-step2-error]')!
     const successEl = form.querySelector<HTMLElement>('[data-step2-success]')!
+
+    // Si no tenim email (accés directe a /thanks sense passar pel formulari), amaguem el formulari
+    if (!email) {
+      form.closest('section')?.remove()
+    }
     const skipBtn = document.getElementById('skip-btn') as HTMLButtonElement
     skipBtn?.addEventListener('click', () => {
       window.scrollTo({ top: 0, behavior: 'smooth' })
