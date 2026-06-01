@@ -32,6 +32,7 @@ export interface Provider {
   }
   image?: string              // ruta relativa a /public o URL externa
   website?: string
+  slug?: string               // si existeix, la targeta enllaça a /hosts/{slug}
   badge?: 'founding-host' | 'verified'
   active: boolean             // false = coming soon
 }
@@ -66,7 +67,8 @@ export const providers: Provider[] = [
     name: 'Casa Gessamí',
     location: "Camós · Pla de l'Estany, Girona",
     type: 'accommodation',
-    tags: ['outdoor-shower', 'garden', 'route-tips'],
+    tags: ['bike-storage', 'bike-wash', 'garden', 'route-tips'],
+    slug: 'casa-gessami',
     description: {
       en: 'Renovated holiday home in Camós, 7 min from Lake Banyoles. Rural setting with covered terrace, barbecue and countryside views. Perfect base for cycling the Pla de l\'Estany and the roads to Girona, 25 min away.',
       es: 'Casa de vacaciones renovada en Camós, a 7 min del lago de Banyoles. Entorno rural con terraza cubierta, barbacoa y vistas al campo. Base ideal para pedalear por el Pla de l\'Estany y las carreteras de Girona, a 25 min.',

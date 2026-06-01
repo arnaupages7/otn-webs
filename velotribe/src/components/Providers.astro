@@ -1,5 +1,5 @@
 ---
-import { type Lang } from '../i18n/utils'
+import { type Lang, pathFor } from '../i18n/utils'
 import { providers, tagLabels, badgeLabels, type Provider } from '../data/providers'
 
 interface Props { lang: Lang }
@@ -13,6 +13,7 @@ const labels = {
     soon_name: 'Joining soon',
     soon_desc: 'More founding hosts are confirming. Stay tuned.',
     visit: 'Visit website',
+    viewHost: 'View host',
     type: {
       accommodation: 'Accommodation',
       guide: 'Guide',
@@ -28,6 +29,7 @@ const labels = {
     soon_name: 'Próximamente',
     soon_desc: 'Más anfitriones fundadores están confirmando. Muy pronto.',
     visit: 'Ver web',
+    viewHost: 'Ver anfitrión',
     type: {
       accommodation: 'Alojamiento',
       guide: 'Guía',
@@ -43,6 +45,7 @@ const labels = {
     soon_name: 'Properament',
     soon_desc: 'Més amfitrions fundadors estan confirmant. Molt aviat.',
     visit: 'Veure web',
+    viewHost: 'Veure amfitrió',
     type: {
       accommodation: 'Allotjament',
       guide: 'Guia',
@@ -144,7 +147,16 @@ const soonSlots = providers.filter(p => !p.active)
             )}
 
             <!-- CTA -->
-            {p.website && (
+            {p.slug ? (
+              <a
+                href={pathFor(lang, `/hosts/${p.slug}`)}
+                class="inline-flex items-center gap-2 text-sm font-bold transition hover:gap-3"
+                style="color:#A7B75D"
+              >
+                {t.viewHost}
+                <span aria-hidden="true">→</span>
+              </a>
+            ) : p.website && (
               <a
                 href={p.website}
                 target="_blank"

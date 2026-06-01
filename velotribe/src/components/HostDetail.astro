@@ -1,0 +1,218 @@
+---
+// Component reutilitzable per pàgines de perfil d'amfitrió
+// Cada host tindrà la seva pàgina a /hosts/{slug} (EN), /es/hosts/{slug}, /ca/hosts/{slug}
+
+import { type Lang, pathFor } from '../i18n/utils'
+import Layout from '../layouts/Layout.astro'
+import Nav from './Nav.astro'
+import Footer from './Footer.astro'
+import { badgeLabels, tagLabels, type ProviderTag } from '../data/providers'
+
+export interface AmenityItem {
+  available: boolean
+  labelKey?: ProviderTag          // si és un tag estàndard
+  label?: { en: string; es: string; ca: string }  // o label personalitzat
+  note?: { en: string; es: string; ca: string }   // nota opcional
+}
+
+export interface HostDetailProps {
+  lang: Lang
+  slug: string
+  name: string
+  location: string
+  badge?: 'founding-host' | 'verified'
+  type: string                    // label ja traduït
+  image?: string
+  website?: string
+  title: { en: string; es: string; ca: string }
+  subtitle: { en: string; es: string; ca: string }
+  description: { en: string; es: string; ca: string }
+  spaceDetails: { en: string; es: string; ca: string }
+  areaSection: { en: string; es: string; ca: string }
+  amenities: AmenityItem[]
+  seoTitle?: { en: string; es: string; ca: string }
+  seoDesc?: { en: string; es: string; ca: string }
+}
+
+interface Props extends HostDetailProps {}
+
+const {
+  lang, slug, name, location, badge, image, website,
+  title, subtitle, description, spaceDetails, areaSection,
+  amenities, seoTitle, seoDesc,
+} = Astro.props
+
+const ui = {
+  en: {
+    back: '← All hosts',
+    founding: 'Founding Host',
+    forCyclists: 'For your bike',
+    forCyclistsSub: 'What\'s ready when you arrive.',
+    available: 'Available',
+    notAvailable: 'Not available',
+    theSpace: 'The space',
+    theArea: 'The area',
+    book: 'Book via More Holiday',
+    bookSub: 'External booking — via the host\'s platform',
+    ctaWaitlist: 'Join VeloTribe to get early access',
+  },
+  es: {
+    back: '← Todos los anfitriones',
+    founding: 'Anfitrión Fundador',
+    forCyclists: 'Para tu bici',
+    forCyclistsSub: 'Lo que te espera cuando llegas.',
+    available: 'Disponible',
+    notAvailable: 'No disponible',
+    theSpace: 'El espacio',
+    theArea: 'La zona',
+    book: 'Reservar vía More Holiday',
+    bookSub: 'Reserva externa — a través de la plataforma del anfitrión',
+    ctaWaitlist: 'Únete a VeloTribe para acceso anticipado',
+  },
+  ca: {
+    back: '← Tots els amfitrions',
+    founding: 'Amfitrió Fundador',
+    forCyclists: 'Per a la teva bici',
+    forCyclistsSub: 'El que t\'espera quan arribes.',
+    available: 'Disponible',
+    notAvailable: 'No disponible',
+    theSpace: 'L\'espai',
+    theArea: 'La zona',
+    book: 'Reservar via More Holiday',
+    bookSub: 'Reserva externa — a través de la plataforma de l\'amfitrió',
+    ctaWaitlist: 'Uneix-te a VeloTribe per accés anticipat',
+  },
+}
+
+const t = ui[lang]
+
+// Helpers
+function label(obj: { en: string; es: string; ca: string }) {
+  return obj[lang]
+}
+
+const pageTitle = seoTitle ? label(seoTitle) : `${name} — VeloTribe Host`
+const pageDesc  = seoDesc  ? label(seoDesc)  : label(subtitle)
+---
+
+<Layout lang={lang} title={pageTitle} description={pageDesc}>
+  <Nav lang={lang} />
+
+  <main>
+    <!-- ── Hero ── -->
+    <section class="relative min-h-[55vh] flex flex-col justify-end" style="background:#2C2419">
+      {image && (
+        <div class="absolute inset-0 overflow-hidden">
+          <img src={image} alt={name} class="w-full h-full object-cover opacity-40" />
+          <div class="absolute inset-0" style="background:linear-gradient(to top, #2C2419 30%, transparent 80%)"></div>
+        </div>
+      )}
+
+      <div class="relative px-[5vw] pb-12 pt-28 max-w-4xl">
+        <!-- Breadcrumb -->
+        <a href={pathFor(lang, '/#providers')}
+           class="inline-flex items-center gap-1.5 text-xs uppercase tracking-[2px] font-semibold mb-6 transition hover:text-[#A7B75D]"
+           style="color:#ffffff50">
+          {t.back}
+        </a>
+
+        <!-- Badge + tipus -->
+        {badge && (
+          <span class="inline-block px-3 py-1 rounded text-[10px] font-bold uppercase tracking-[2px] mb-4"
+            style="background:#A7B75D;color:#2C2419">
+            {badgeLabels[badge][lang]}
+          </span>
+        )}
+
+        <!-- Nom -->
+        <h1 class="font-display font-black uppercase leading-[0.9] mb-3"
+            style="font-size:clamp(40px,8vw,80px);color:#F8EEDA">
+          {name}
+        </h1>
+
+        <!-- Subtítol + ubicació -->
+        <p class="text-lg mb-2 font-light" style="color:#a09078">{label(subtitle)}</p>
+        <p class="text-sm flex items-center gap-1.5" style="color:#ffffff50">
+          <svg class="w-3.5 h-3.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/>
+          </svg>
+          {location}
+        </p>
+      </div>
+    </section>
+
+    <!-- ── Per a la teva bici ── -->
+    <section class="px-[5vw] py-16" style="background:#41372B">
+      <div class="max-w-4xl mx-auto">
+        <p class="text-[11px] font-bold tracking-[3px] uppercase mb-1.5" style="color:#A7B75D">{t.forCyclists}</p>
+        <p class="text-sm mb-10" style="color:#ffffff60">{t.forCyclistsSub}</p>
+
+        <div class="grid sm:grid-cols-2 gap-3">
+          {amenities.map((a) => {
+            const lbl = a.labelKey ? tagLabels[a.labelKey][lang] : (a.label ? label(a.label) : '')
+            const note = a.note ? label(a.note) : null
+            return (
+              <div class={`flex items-start gap-3.5 p-4 rounded-xl border ${a.available ? '' : 'opacity-40'}`}
+                   style={`background:${a.available ? '#ffffff08' : 'transparent'};border-color:${a.available ? '#A7B75D44' : '#ffffff15'}`}>
+                <span class="mt-0.5 w-5 h-5 rounded-full flex items-center justify-center shrink-0 text-xs font-bold"
+                      style={`background:${a.available ? '#A7B75D22' : '#ffffff10'};color:${a.available ? '#A7B75D' : '#ffffff40'}`}>
+                  {a.available ? '✓' : '—'}
+                </span>
+                <div>
+                  <p class="text-sm font-semibold" style={`color:${a.available ? '#F8EEDA' : '#ffffff40'}`}>{lbl}</p>
+                  {note && <p class="text-xs mt-0.5" style="color:#ffffff50">{note}</p>}
+                </div>
+              </div>
+            )
+          })}
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Descripció ── -->
+    <section class="px-[5vw] py-16" style="background:#F8EEDA">
+      <div class="max-w-4xl mx-auto grid md:grid-cols-2 gap-12">
+
+        <!-- L'espai -->
+        <div>
+          <p class="text-[11px] font-bold tracking-[3px] uppercase mb-4" style="color:#A7B75D">{t.theSpace}</p>
+          <p class="text-base leading-relaxed mb-4" style="color:#41372B">{label(description)}</p>
+          <p class="text-sm leading-relaxed" style="color:#9a8c7a">{label(spaceDetails)}</p>
+        </div>
+
+        <!-- La zona -->
+        <div>
+          <p class="text-[11px] font-bold tracking-[3px] uppercase mb-4" style="color:#A7B75D">{t.theArea}</p>
+          <p class="text-base leading-relaxed" style="color:#41372B">{label(areaSection)}</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Book CTA ── -->
+    {website && (
+      <section class="px-[5vw] py-16 text-center" style="background:#2C2419">
+        <div class="max-w-md mx-auto">
+          <p class="text-[11px] font-bold tracking-[3px] uppercase mb-6" style="color:#A7B75D">Book</p>
+          <a href={website} target="_blank" rel="noopener noreferrer"
+             class="inline-flex items-center gap-2 px-8 py-4 rounded-lg font-bold text-sm transition hover:scale-105 hover:shadow-lg active:scale-100"
+             style="background:#A7B75D;color:#2C2419">
+            {t.book}
+            <span aria-hidden="true">↗</span>
+          </a>
+          <p class="text-xs mt-4" style="color:#ffffff30">{t.bookSub}</p>
+
+          <!-- Subnota VeloTribe -->
+          <div class="mt-10 pt-8 border-t" style="border-color:#ffffff10">
+            <p class="text-xs mb-3" style="color:#ffffff40">{t.ctaWaitlist}</p>
+            <a href={pathFor(lang, '/#waitlist')}
+               class="text-sm font-bold transition hover:opacity-80" style="color:#A7B75D">
+              velotribe.cc →
+            </a>
+          </div>
+        </div>
+      </section>
+    )}
+  </main>
+
+  <Footer lang={lang} />
+</Layout>
