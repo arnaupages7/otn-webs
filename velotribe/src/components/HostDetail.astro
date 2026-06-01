@@ -52,9 +52,27 @@ const ui = {
     notAvailable: 'Not available',
     theSpace: 'The space',
     theArea: 'The area',
-    book: 'Book via More Holiday',
-    bookSub: 'External booking — via the host\'s platform',
     ctaWaitlist: 'Join VeloTribe to get early access',
+    // booking form
+    bookEyebrow: 'Book',
+    bookTitle: 'Request a stay',
+    bookSub: 'We\'ll get back to you within 24 hours to confirm availability.',
+    checkIn: 'Check-in',
+    checkOut: 'Check-out',
+    guests: 'Guests',
+    guestSelect: 'Select',
+    name: 'Your name',
+    email: 'Email',
+    phone: 'Phone (optional)',
+    notes: 'Notes or special requests (optional)',
+    submit: 'Send request',
+    sending: 'Sending…',
+    successTitle: 'Request sent!',
+    successSub: 'We\'ll be in touch within 24 hours.',
+    errorRequired: 'Please fill in all required fields.',
+    errorGeneric: 'Something went wrong. Try again or email us at info@velotribe.cc.',
+    orDirect: 'Or check availability directly:',
+    directLink: 'More Holiday ↗',
   },
   es: {
     back: '← Todos los anfitriones',
@@ -65,9 +83,26 @@ const ui = {
     notAvailable: 'No disponible',
     theSpace: 'El espacio',
     theArea: 'La zona',
-    book: 'Reservar vía More Holiday',
-    bookSub: 'Reserva externa — a través de la plataforma del anfitrión',
     ctaWaitlist: 'Únete a VeloTribe para acceso anticipado',
+    bookEyebrow: 'Reserva',
+    bookTitle: 'Solicita tu estancia',
+    bookSub: 'Te respondemos en menos de 24 horas para confirmar disponibilidad.',
+    checkIn: 'Entrada',
+    checkOut: 'Salida',
+    guests: 'Huéspedes',
+    guestSelect: 'Selecciona',
+    name: 'Tu nombre',
+    email: 'Email',
+    phone: 'Teléfono (opcional)',
+    notes: 'Notas o peticiones especiales (opcional)',
+    submit: 'Enviar solicitud',
+    sending: 'Enviando…',
+    successTitle: '¡Solicitud enviada!',
+    successSub: 'Nos pondremos en contacto en menos de 24 horas.',
+    errorRequired: 'Por favor rellena todos los campos obligatorios.',
+    errorGeneric: 'Algo ha salido mal. Inténtalo de nuevo o escríbenos a info@velotribe.cc.',
+    orDirect: 'O comprueba disponibilidad directamente:',
+    directLink: 'More Holiday ↗',
   },
   ca: {
     back: '← Tots els amfitrions',
@@ -78,9 +113,26 @@ const ui = {
     notAvailable: 'No disponible',
     theSpace: 'L\'espai',
     theArea: 'La zona',
-    book: 'Reservar via More Holiday',
-    bookSub: 'Reserva externa — a través de la plataforma de l\'amfitrió',
     ctaWaitlist: 'Uneix-te a VeloTribe per accés anticipat',
+    bookEyebrow: 'Reserva',
+    bookTitle: 'Sol·licita la teva estada',
+    bookSub: 'Et responem en menys de 24 hores per confirmar disponibilitat.',
+    checkIn: 'Entrada',
+    checkOut: 'Sortida',
+    guests: 'Hostes',
+    guestSelect: 'Selecciona',
+    name: 'El teu nom',
+    email: 'Email',
+    phone: 'Telèfon (opcional)',
+    notes: 'Notes o peticions especials (opcional)',
+    submit: 'Enviar sol·licitud',
+    sending: 'Enviant…',
+    successTitle: 'Sol·licitud enviada!',
+    successSub: 'Ens posarem en contacte en menys de 24 hores.',
+    errorRequired: 'Si us plau, omple tots els camps obligatoris.',
+    errorGeneric: 'Alguna cosa ha fallat. Torna-ho a intentar o escriu-nos a info@velotribe.cc.',
+    orDirect: 'O comprova disponibilitat directament:',
+    directLink: 'More Holiday ↗',
   },
 }
 
@@ -188,31 +240,213 @@ const pageDesc  = seoDesc  ? label(seoDesc)  : label(subtitle)
       </div>
     </section>
 
-    <!-- ── Book CTA ── -->
-    {website && (
-      <section class="px-[5vw] py-16 text-center" style="background:#2C2419">
-        <div class="max-w-md mx-auto">
-          <p class="text-[11px] font-bold tracking-[3px] uppercase mb-6" style="color:#A7B75D">Book</p>
-          <a href={website} target="_blank" rel="noopener noreferrer"
-             class="inline-flex items-center gap-2 px-8 py-4 rounded-lg font-bold text-sm transition hover:scale-105 hover:shadow-lg active:scale-100"
-             style="background:#A7B75D;color:#2C2419">
-            {t.book}
-            <span aria-hidden="true">↗</span>
-          </a>
-          <p class="text-xs mt-4" style="color:#ffffff30">{t.bookSub}</p>
+    <!-- ── Booking Form ── -->
+    <section id="booking-section" class="px-[5vw] py-16" style="background:#2C2419"
+      data-host-name={name}
+      data-host-url={website ?? ''}>
+      <div class="max-w-lg mx-auto">
+        <p class="text-[11px] font-bold tracking-[3px] uppercase mb-2" style="color:#A7B75D">{t.bookEyebrow}</p>
+        <h2 class="font-display font-black uppercase mb-2 leading-tight" style="font-size:clamp(24px,4vw,40px);color:#F8EEDA">{t.bookTitle}</h2>
+        <p class="text-sm mb-8" style="color:#ffffff50">{t.bookSub}</p>
 
-          <!-- Subnota VeloTribe -->
-          <div class="mt-10 pt-8 border-t" style="border-color:#ffffff10">
-            <p class="text-xs mb-3" style="color:#ffffff40">{t.ctaWaitlist}</p>
-            <a href={pathFor(lang, '/#waitlist')}
-               class="text-sm font-bold transition hover:opacity-80" style="color:#A7B75D">
-              velotribe.cc →
-            </a>
+        <!-- Form -->
+        <form id="booking-form" novalidate
+          data-submit={t.submit}
+          data-sending={t.sending}
+          data-success-title={t.successTitle}
+          data-success-sub={t.successSub}
+          data-error-required={t.errorRequired}
+          data-error-generic={t.errorGeneric}>
+
+          <!-- Dates -->
+          <div class="grid sm:grid-cols-2 gap-4 mb-4">
+            <div>
+              <label class="block text-[10px] font-bold uppercase tracking-[2px] mb-1.5" style="color:#A7B75D">{t.checkIn} <span style="color:#ff8080">*</span></label>
+              <input type="date" name="checkIn" required
+                class="w-full px-4 py-3 rounded-lg text-sm outline-none focus:ring-2"
+                style="background:#3d3020;border:1px solid #ffffff18;color:#F8EEDA;focus-ring-color:#A7B75D" />
+            </div>
+            <div>
+              <label class="block text-[10px] font-bold uppercase tracking-[2px] mb-1.5" style="color:#A7B75D">{t.checkOut} <span style="color:#ff8080">*</span></label>
+              <input type="date" name="checkOut" required
+                class="w-full px-4 py-3 rounded-lg text-sm outline-none"
+                style="background:#3d3020;border:1px solid #ffffff18;color:#F8EEDA" />
+            </div>
           </div>
+
+          <!-- Guests -->
+          <div class="mb-4">
+            <label class="block text-[10px] font-bold uppercase tracking-[2px] mb-1.5" style="color:#A7B75D">{t.guests} <span style="color:#ff8080">*</span></label>
+            <select name="guests" required
+              class="w-full px-4 py-3 rounded-lg text-sm outline-none appearance-none"
+              style="background:#3d3020;border:1px solid #ffffff18;color:#F8EEDA">
+              <option value="" disabled selected style="color:#ffffff40">{t.guestSelect}</option>
+              {[1,2,3,4,5,6,7,8].map(n => <option value={String(n)} style="background:#3d3020">{n}</option>)}
+            </select>
+          </div>
+
+          <!-- Name + Email -->
+          <div class="grid sm:grid-cols-2 gap-4 mb-4">
+            <div>
+              <label class="block text-[10px] font-bold uppercase tracking-[2px] mb-1.5" style="color:#A7B75D">{t.name} <span style="color:#ff8080">*</span></label>
+              <input type="text" name="name" required autocomplete="name"
+                class="w-full px-4 py-3 rounded-lg text-sm outline-none"
+                style="background:#3d3020;border:1px solid #ffffff18;color:#F8EEDA" />
+            </div>
+            <div>
+              <label class="block text-[10px] font-bold uppercase tracking-[2px] mb-1.5" style="color:#A7B75D">{t.email} <span style="color:#ff8080">*</span></label>
+              <input type="email" name="email" required autocomplete="email"
+                class="w-full px-4 py-3 rounded-lg text-sm outline-none"
+                style="background:#3d3020;border:1px solid #ffffff18;color:#F8EEDA" />
+            </div>
+          </div>
+
+          <!-- Phone -->
+          <div class="mb-4">
+            <label class="block text-[10px] font-bold uppercase tracking-[2px] mb-1.5" style="color:#A7B75D">{t.phone}</label>
+            <input type="tel" name="phone" autocomplete="tel"
+              class="w-full px-4 py-3 rounded-lg text-sm outline-none"
+              style="background:#3d3020;border:1px solid #ffffff18;color:#F8EEDA" />
+          </div>
+
+          <!-- Notes -->
+          <div class="mb-6">
+            <label class="block text-[10px] font-bold uppercase tracking-[2px] mb-1.5" style="color:#A7B75D">{t.notes}</label>
+            <textarea name="message" rows={3}
+              class="w-full px-4 py-3 rounded-lg text-sm outline-none resize-none"
+              style="background:#3d3020;border:1px solid #ffffff18;color:#F8EEDA"></textarea>
+          </div>
+
+          <!-- Submit -->
+          <button id="booking-submit" type="submit"
+            class="w-full py-4 rounded-lg font-bold text-sm transition hover:scale-[1.015] hover:shadow-lg active:scale-100 disabled:opacity-60 disabled:cursor-not-allowed"
+            style="background:#A7B75D;color:#2C2419">
+            {t.submit}
+          </button>
+
+          <!-- Error -->
+          <p id="booking-error" class="hidden text-xs mt-3 text-center" style="color:#ff8888"></p>
+        </form>
+
+        <!-- Success state -->
+        <div id="booking-success" class="hidden text-center py-10">
+          <div class="w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4"
+               style="background:#A7B75D22;border:1px solid #A7B75D44">
+            <svg class="w-5 h-5" viewBox="0 0 20 20" fill="none" stroke="#A7B75D" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="4 10 8 14 16 6"/>
+            </svg>
+          </div>
+          <p id="booking-success-title" class="font-bold text-lg mb-1" style="color:#F8EEDA">{t.successTitle}</p>
+          <p id="booking-success-sub" class="text-sm" style="color:#ffffff50">{t.successSub}</p>
         </div>
-      </section>
-    )}
+
+        <!-- Secondary: More Holiday direct link -->
+        {website && (
+          <div class="mt-10 pt-8 border-t" style="border-color:#ffffff10">
+            <p class="text-xs mb-3 text-center" style="color:#ffffff30">{t.orDirect}</p>
+            <div class="text-center">
+              <a href={website} target="_blank" rel="noopener noreferrer"
+                 class="text-sm font-bold transition hover:opacity-80"
+                 style="color:#ffffff40">
+                {t.directLink}
+              </a>
+            </div>
+          </div>
+        )}
+
+        <!-- VeloTribe waitlist note -->
+        <div class="mt-8 text-center">
+          <p class="text-xs mb-2" style="color:#ffffff20">{t.ctaWaitlist}</p>
+          <a href={pathFor(lang, '/#waitlist')}
+             class="text-xs font-bold transition hover:opacity-80" style="color:#ffffff30">
+            velotribe.cc →
+          </a>
+        </div>
+      </div>
+    </section>
   </main>
 
   <Footer lang={lang} />
 </Layout>
+
+<script>
+  const section = document.getElementById('booking-section') as HTMLElement | null
+  const form    = document.getElementById('booking-form')    as HTMLFormElement | null
+  const btn     = document.getElementById('booking-submit')  as HTMLButtonElement | null
+  const errorEl = document.getElementById('booking-error')
+  const successEl = document.getElementById('booking-success')
+
+  const hostName = section?.dataset.hostName ?? ''
+  const hostUrl  = section?.dataset.hostUrl  ?? ''
+
+  // Set today as min date for check-in
+  const today = new Date().toISOString().split('T')[0]
+  const checkInEl  = form?.querySelector<HTMLInputElement>('[name="checkIn"]')
+  const checkOutEl = form?.querySelector<HTMLInputElement>('[name="checkOut"]')
+  if (checkInEl)  checkInEl.min  = today
+  if (checkOutEl) checkOutEl.min = today
+
+  // Move check-out min when check-in changes
+  checkInEl?.addEventListener('change', () => {
+    if (checkOutEl && checkInEl.value) {
+      checkOutEl.min = checkInEl.value
+      if (checkOutEl.value && checkOutEl.value <= checkInEl.value) {
+        checkOutEl.value = ''
+      }
+    }
+  })
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault()
+    if (!form || !btn) return
+
+    const data       = new FormData(form)
+    const checkIn    = (data.get('checkIn')  as string) ?? ''
+    const checkOut   = (data.get('checkOut') as string) ?? ''
+    const guests     = (data.get('guests')   as string) ?? ''
+    const name       = (data.get('name')     as string) ?? ''
+    const email      = (data.get('email')    as string) ?? ''
+    const phone      = (data.get('phone')    as string) ?? ''
+    const message    = (data.get('message')  as string) ?? ''
+
+    const errorRequired = form.dataset.errorRequired ?? ''
+    const errorGeneric  = form.dataset.errorGeneric  ?? ''
+    const labelSending  = form.dataset.sending       ?? '…'
+    const labelSubmit   = form.dataset.submit        ?? 'Send'
+
+    function showError(msg: string) {
+      if (!errorEl) return
+      errorEl.textContent = msg
+      errorEl.classList.remove('hidden')
+    }
+
+    if (!checkIn || !checkOut || !guests || !name || !email) {
+      showError(errorRequired)
+      return
+    }
+
+    btn.disabled = true
+    btn.textContent = labelSending
+    errorEl?.classList.add('hidden')
+
+    try {
+      const res = await fetch('/api/booking-request', {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({ checkIn, checkOut, guests, name, email, phone, message, hostName, hostUrl }),
+      })
+      const json = await res.json() as { ok: boolean; error?: string }
+
+      if (json.ok) {
+        form.classList.add('hidden')
+        successEl?.classList.remove('hidden')
+      } else {
+        throw new Error(json.error ?? 'unknown')
+      }
+    } catch {
+      btn.disabled = false
+      btn.textContent = labelSubmit
+      showError(errorGeneric)
+    }
+  })
+</script>
