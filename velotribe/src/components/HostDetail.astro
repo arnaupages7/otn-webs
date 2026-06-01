@@ -30,6 +30,10 @@ export interface HostDetailProps {
   spaceDetails: { en: string; es: string; ca: string }
   areaSection: { en: string; es: string; ca: string }
   amenities: AmenityItem[]
+  // Overrides opcionals per a tipus de proveïdor que no siguin allotjaments
+  amenitiesTitle?: { en: string; es: string; ca: string }
+  amenitiesSub?: { en: string; es: string; ca: string }
+  bookFormTitle?: { en: string; es: string; ca: string }
   seoTitle?: { en: string; es: string; ca: string }
   seoDesc?: { en: string; es: string; ca: string }
 }
@@ -39,7 +43,8 @@ interface Props extends HostDetailProps {}
 const {
   lang, slug, name, location, badge, image, website,
   title, subtitle, description, spaceDetails, areaSection,
-  amenities, seoTitle, seoDesc,
+  amenities, amenitiesTitle, amenitiesSub, bookFormTitle,
+  seoTitle, seoDesc,
 } = Astro.props
 
 const ui = {
@@ -196,8 +201,8 @@ const pageDesc  = seoDesc  ? label(seoDesc)  : label(subtitle)
     <!-- ── Per a la teva bici ── -->
     <section class="px-[5vw] py-16" style="background:#41372B">
       <div class="max-w-4xl mx-auto">
-        <p class="text-[11px] font-bold tracking-[3px] uppercase mb-1.5" style="color:#A7B75D">{t.forCyclists}</p>
-        <p class="text-sm mb-10" style="color:#ffffff60">{t.forCyclistsSub}</p>
+        <p class="text-[11px] font-bold tracking-[3px] uppercase mb-1.5" style="color:#A7B75D">{amenitiesTitle ? label(amenitiesTitle) : t.forCyclists}</p>
+        <p class="text-sm mb-10" style="color:#ffffff60">{amenitiesSub ? label(amenitiesSub) : t.forCyclistsSub}</p>
 
         <div class="grid sm:grid-cols-2 gap-3">
           {amenities.map((a) => {
@@ -246,7 +251,7 @@ const pageDesc  = seoDesc  ? label(seoDesc)  : label(subtitle)
       data-host-url={website ?? ''}>
       <div class="max-w-lg mx-auto">
         <p class="text-[11px] font-bold tracking-[3px] uppercase mb-2" style="color:#A7B75D">{t.bookEyebrow}</p>
-        <h2 class="font-display font-black uppercase mb-2 leading-tight" style="font-size:clamp(24px,4vw,40px);color:#F8EEDA">{t.bookTitle}</h2>
+        <h2 class="font-display font-black uppercase mb-2 leading-tight" style="font-size:clamp(24px,4vw,40px);color:#F8EEDA">{bookFormTitle ? label(bookFormTitle) : t.bookTitle}</h2>
         <p class="text-sm mb-8" style="color:#ffffff50">{t.bookSub}</p>
 
         <!-- Form -->

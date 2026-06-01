@@ -80,7 +80,23 @@ export const providers: Provider[] = [
     active: true,
   },
 
-  // ── Placeholders "joining soon" ───────────────────────────────────────────
+  {
+    id: 'alain-fernandez',
+    name: 'Alain Fernandez',
+    location: 'Girona & Mallorca',
+    type: 'guide',
+    tags: ['group-rides', 'route-tips'],
+    slug: 'alain-fernandez',
+    description: {
+      en: 'Local cycling guide with over a decade of experience on the roads of Girona and the mountains of Mallorca. Small groups, custom routes, all levels welcome.',
+      es: 'Guía ciclista local con más de una década de experiencia en las carreteras de Girona y las montañas de Mallorca. Grupos pequeños, rutas personalizadas, todos los niveles.',
+      ca: 'Guia ciclista local amb més d\'una dècada d\'experiència a les carreteres de Girona i les muntanyes de Mallorca. Grups petits, rutes personalitzades, tots els nivells.',
+    },
+    image: '/providers/alain-fernandez.jpg',
+    badge: 'founding-host',
+    active: true,
+  },
+
+  // ── Placeholder "joining soon" ────────────────────────────────────────────
   { id: 'soon-1', name: '', location: '', type: 'accommodation', tags: [], description: { en: '', es: '', ca: '' }, active: false },
-  { id: 'soon-2', name: '', location: '', type: 'guide',         tags: [], description: { en: '', es: '', ca: '' }, active: false },
 ]
