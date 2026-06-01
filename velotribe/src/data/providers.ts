@@ -72,7 +72,7 @@ export const providers: Provider[] = [
       es: 'Casa de vacaciones renovada en Camós, a 7 min del lago de Banyoles. Entorno rural con terraza cubierta, barbacoa y vistas al campo. Base ideal para pedalear por el Pla de l\'Estany y las carreteras de Girona, a 25 min.',
       ca: 'Casa de vacances renovada a Camós, a 7 min del llac de Banyoles. Entorn rural amb terrassa coberta, barbacoa i vistes al camp. Base ideal per pedalar pel Pla de l\'Estany i les carreteres de Girona, a 25 min.',
     },
-    image: '', // TODO: afegir imatge a public/providers/casa-gessami.jpg
+    image: '/providers/casa-gessami.jpg',
     website: 'https://moreholiday.es/properties/casa-gessami-allotjament-acollidor-al-pla-de-lestany/',
     badge: 'founding-host',
     active: true,
