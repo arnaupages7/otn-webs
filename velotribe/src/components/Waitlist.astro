@@ -85,6 +85,10 @@ const t = useTranslations(lang)
             class="w-full px-4 py-3 rounded-lg border outline-none transition focus:border-[#A7B75D]"
             style="background:#ffffff10;border-color:#ffffff20;color:#F8EEDA" />
 
+          <textarea name="host_value" rows="3" placeholder={t('form.host_value')}
+            class="w-full px-4 py-3 rounded-lg border outline-none transition focus:border-[#A7B75D] resize-none text-sm"
+            style="background:#ffffff10;border-color:#ffffff20;color:#F8EEDA"></textarea>
+
           <label class="flex items-start gap-2 text-xs mt-2 cursor-pointer" style="color:#ffffff99">
             <input type="checkbox" name="consent" required class="mt-0.5" />
             <span set:html={t('consent.host')}></span>

@@ -1,0 +1,35 @@
+---
+import { useTranslations, type Lang } from '../i18n/utils'
+
+interface Props { lang: Lang }
+const { lang } = Astro.props
+const t = useTranslations(lang)
+
+const criteria = [
+  { icon: '🏠', text: t('standard.c1') },
+  { icon: '🔧', text: t('standard.c2') },
+  { icon: '☀️', text: t('standard.c3') },
+  { icon: '🚵', text: t('standard.c4') },
+  { icon: '✓', text: t('standard.c5') },
+  { icon: '🔒', text: t('standard.c6') },
+]
+---
+
+<section id="standard" class="px-[5vw] py-20" style="background:#2C2419">
+  <div class="max-w-5xl mx-auto">
+    <div class="text-center mb-14 reveal">
+      <p class="text-[11px] font-bold tracking-[3px] uppercase mb-2.5" style="color:#A7B75D">{t('standard.eyebrow')}</p>
+      <h2 class="font-display font-black uppercase leading-[0.95] mb-5" style="color:#F8EEDA;font-size:clamp(32px, 6vw, 58px)" set:html={t('standard.title')}></h2>
+      <p class="text-base max-w-xl mx-auto leading-relaxed" style="color:#a09078">{t('standard.sub')}</p>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px reveal" style="background:#ffffff15;border-radius:12px;overflow:hidden">
+      {criteria.map((c) => (
+        <div class="flex items-start gap-4 p-7 group transition hover:bg-white/5" style="background:#2C2419">
+          <span class="text-2xl mt-0.5 flex-shrink-0">{c.icon}</span>
+          <span class="text-sm leading-relaxed font-medium" style="color:#F8EEDA">{c.text}</span>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

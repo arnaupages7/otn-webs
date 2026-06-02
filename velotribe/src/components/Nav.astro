@@ -4,6 +4,8 @@ import { useTranslations, pathFor, type Lang } from '../i18n/utils'
 interface Props { lang: Lang }
 const { lang } = Astro.props
 const t = useTranslations(lang)
+const ctaCyclist = t('nav.cta')
+const ctaHost = t('nav.cta.host')
 
 const path = Astro.url.pathname.replace(/^\/(es|ca)/, '') || '/'
 ---
@@ -20,8 +22,29 @@ const path = Astro.url.pathname.replace(/^\/(es|ca)/, '') || '/'
       <a href={`/es${path}`} class:list={['px-2.5 py-1 rounded border transition', lang === 'es' ? 'border-[#A7B75D] text-[#A7B75D]' : 'border-white/20 text-white/60 hover:text-white']}>ES</a>
       <a href={`/ca${path}`} class:list={['px-2.5 py-1 rounded border transition', lang === 'ca' ? 'border-[#A7B75D] text-[#A7B75D]' : 'border-white/20 text-white/60 hover:text-white']}>CA</a>
     </div>
-    <a href="#waitlist" class="px-4 py-2 rounded-md font-bold text-xs uppercase tracking-wider transition hover:opacity-90" style="background:#A7B75D;color:#2C2419">
-      {t('nav.cta')}
+    <a id="nav-cta" href="#waitlist" class="px-4 py-2 rounded-md font-bold text-xs uppercase tracking-wider transition hover:opacity-90" style="background:#A7B75D;color:#2C2419"
+      data-cyclist={ctaCyclist} data-host={ctaHost}>
+      {ctaCyclist}
     </a>
   </div>
 </nav>
+
+<script>
+  const cta = document.getElementById('nav-cta') as HTMLAnchorElement | null
+  if (cta) {
+    const hostSection = document.getElementById('paths')
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const hostEl = entry.target.querySelector('[data-audience="host"]') ?? entry.target.querySelector('.host-card')
+          cta.textContent = cta.dataset.host ?? cta.textContent
+        } else {
+          cta.textContent = cta.dataset.cyclist ?? cta.textContent
+        }
+      })
+    }, { threshold: 0.3 })
+
+    const hostCard = document.querySelector('[data-audience="host"]')?.closest('section') ?? document.getElementById('paths')
+    if (hostCard) observer.observe(hostCard)
+  }
+</script>
