@@ -8,7 +8,7 @@ export const ui = {
     'hero.title.1': 'Connect.',
     'hero.title.2': 'Ride.',
     'hero.title.3': 'Belong.',
-    'hero.sub': 'You\'ve spent years travelling by bike with Booking.<br><strong>You know how it ends.</strong>',
+    'hero.sub': 'You\'ve called three hotels asking about safe bike storage.<br><strong>You know how it ends.</strong>',
     'hero.scroll': 'Discover more',
 
     'stats.s1.n': '30+', 'stats.s1.l': 'World Tour teams based here',
@@ -141,7 +141,7 @@ export const ui = {
     'hero.title.1': 'Connect.',
     'hero.title.2': 'Ride.',
     'hero.title.3': 'Belong.',
-    'hero.sub': 'Llevas años viajando en bici con Booking.<br><strong>Ya sabes cómo acaba.</strong>',
+    'hero.sub': 'Has llamado a tres hoteles preguntando por garaje para la bici.<br><strong>Ya sabes cómo acaba.</strong>',
     'hero.scroll': 'Descubre más',
 
     'stats.s1.n': '30+', 'stats.s1.l': 'Equipos World Tour aquí',
@@ -274,7 +274,7 @@ export const ui = {
     'hero.title.1': 'Connect.',
     'hero.title.2': 'Ride.',
     'hero.title.3': 'Belong.',
-    'hero.sub': 'Portes anys viatjant en bici amb Booking.<br><strong>Ja saps com acaba.</strong>',
+    'hero.sub': 'Has trucat a tres hotels per preguntar si tenien garatge segur per la bici.<br><strong>Ja saps com acaba.</strong>',
     'hero.scroll': 'Descobreix més',
 
     'stats.s1.n': '30+', 'stats.s1.l': 'Equips World Tour aquí',

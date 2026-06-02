@@ -5,20 +5,30 @@ interface Props { lang: Lang }
 const { lang } = Astro.props
 const t = useTranslations(lang)
 
-const waitlistLabel = lang === 'es' ? 'ciclistas en lista de espera' : lang === 'ca' ? 'ciclistes a la llista d\'espera' : 'cyclists on the waitlist'
+const waitlistLabel = lang === 'es' ? 'ciclistas en lista de espera' : lang === 'ca' ? "ciclistes a la llista d'espera" : 'cyclists on the waitlist'
 const stats = [
   { n: t('stats.s1.n'), l: t('stats.s1.l') },
   { n: t('stats.s2.n'), l: t('stats.s2.l') },
   { n: t('stats.s3.n'), l: t('stats.s3.l') },
-  { n: '847', l: waitlistLabel, highlight: true },
+  { n: '—', l: waitlistLabel, highlight: true, id: 'stat-waitlist' },
 ]
 ---
 
 <div class="px-[5vw] py-6 flex flex-col md:flex-row gap-0 overflow-x-auto" style="background:#494B30">
   {stats.map((s, i) => (
     <div class:list={['stat-item flex-1 min-w-[140px] text-center px-4 py-3', i < stats.length - 1 ? 'md:border-r md:border-white/15 border-b md:border-b-0 border-white/15' : '']}>
-      <div class:list={['font-display font-black text-3xl md:text-2xl lg:text-3xl tracking-tight', (s as any).highlight ? '' : '']} style={(s as any).highlight ? 'color:#A7B75D' : 'color:#F8EEDA'}>{s.n}</div>
+      <div id={(s as any).id} class="font-display font-black text-3xl md:text-2xl lg:text-3xl tracking-tight" style={(s as any).highlight ? 'color:#A7B75D' : 'color:#F8EEDA'}>{s.n}</div>
       <div class="text-[11px] uppercase tracking-[1.5px] mt-1.5 font-semibold" style="color:#ffffff80">{s.l}</div>
     </div>
   ))}
 </div>
+
+<script>
+  fetch('/api/waitlist-count')
+    .then(r => r.json())
+    .then((data: { total: number }) => {
+      const el = document.getElementById('stat-waitlist')
+      if (el && data.total > 0) el.textContent = String(data.total)
+    })
+    .catch(() => {})
+</script>
