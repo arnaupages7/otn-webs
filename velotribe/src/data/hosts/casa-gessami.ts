@@ -8,6 +8,7 @@ export const casaGessamiBase = {
   name: 'Casa Gessamí',
   location: "Camós · Pla de l'Estany, Girona",
   badge: 'founding-host' as const,
+  seal: true,
   image: '/providers/casa-gessami.jpg',
   website: 'https://moreholiday.es/properties/casa-gessami-allotjament-acollidor-al-pla-de-lestany/',
 

@@ -8,6 +8,7 @@ export const alainFernandezBase = {
   name: 'Alain Fernandez',
   location: 'Girona & Mallorca',
   badge: 'founding-host' as const,
+  seal: true,
   image: '/providers/alain-fernandez.jpg',
   // No external website — bookings handled via VeloTribe form
 

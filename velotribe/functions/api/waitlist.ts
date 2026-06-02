@@ -22,22 +22,86 @@ async function sendWelcome(opts: {
   to: string
   audience: 'cyclist' | 'host'
   locale: string
-  position: number
   apiKey: string
   from: string
 }): Promise<void> {
-  const { to, audience, locale, position, apiKey, from } = opts
-  const subject =
-    locale === 'es' ? `Bienvenido a la tribu — eres el #${position}` :
-    locale === 'ca' ? `Benvingut a la tribu — ets el #${position}` :
-    `Welcome to the tribe — you're #${position}`
+  const { to, audience, locale, apiKey, from } = opts
 
-  const html =
-    locale === 'es'
-      ? `<p>Eres el <strong>#${position}</strong> de la tribu VeloTribe. Te avisamos antes que a nadie del lanzamiento.</p><p>— el equipo VeloTribe</p>`
-      : locale === 'ca'
-      ? `<p>Ets el <strong>#${position}</strong> de la tribu VeloTribe. T'avisem abans que a ningú del llançament.</p><p>— l'equip VeloTribe</p>`
-      : `<p>You're <strong>#${position}</strong> in the VeloTribe tribe. We'll let you know before anyone else when we launch.</p><p>— the VeloTribe team</p>`
+  const subject =
+    locale === 'es' ? 'Bienvenido a la tribu — VeloTribe' :
+    locale === 'ca' ? 'Benvingut a la tribu — VeloTribe' :
+    'Welcome to the tribe — VeloTribe'
+
+  const headline =
+    locale === 'es' ? '¡Ya formas parte de la tribu!' :
+    locale === 'ca' ? 'Ja formes part de la tribu!' :
+    "You're in the tribe!"
+
+  const body1 =
+    locale === 'es' ? 'Gracias por unirte a la lista de espera de VeloTribe. Serás el primero en saber cuándo lanzamos la plataforma.' :
+    locale === 'ca' ? "Gràcies per unir-te a la llista d'espera de VeloTribe. Seràs el primer a saber quan llencem la plataforma." :
+    "Thanks for joining the VeloTribe waitlist. You'll be the first to know when we launch the platform."
+
+  const body2 =
+    locale === 'es' ? 'Mientras tanto, descubre los primeros anfitriones que ya forman parte de la comunidad.' :
+    locale === 'ca' ? 'Mentrestant, descobreix els primers amfitrions que ja formen part de la comunitat.' :
+    'In the meantime, discover the first hosts who have already joined the community.'
+
+  const cta =
+    locale === 'es' ? 'Descubrir anfitriones →' :
+    locale === 'ca' ? 'Descobrir amfitrions →' :
+    'Discover hosts →'
+
+  const footer =
+    locale === 'es' ? 'El equipo VeloTribe · velotribe.cc' :
+    locale === 'ca' ? "L'equip VeloTribe · velotribe.cc" :
+    'The VeloTribe team · velotribe.cc'
+
+  const html = `<!DOCTYPE html>
+<html lang="${locale}">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head>
+<body style="margin:0;padding:0;background:#f0e8d8;font-family:system-ui,-apple-system,Helvetica,sans-serif">
+  <table width="100%" cellpadding="0" cellspacing="0" style="background:#f0e8d8;padding:40px 16px">
+    <tr><td>
+      <table width="100%" cellpadding="0" cellspacing="0" style="max-width:560px;margin:0 auto;border-radius:16px;overflow:hidden">
+
+        <!-- Header -->
+        <tr>
+          <td style="background:#2C2419;padding:40px 40px 32px;text-align:center">
+            <p style="margin:0 0 10px;color:#A7B75D;font-size:10px;font-weight:700;letter-spacing:4px;text-transform:uppercase">Connect · Ride · Belong</p>
+            <p style="margin:0;color:#F8EEDA;font-size:32px;font-weight:900;text-transform:uppercase;letter-spacing:2px">VELOTRIBE</p>
+          </td>
+        </tr>
+
+        <!-- Body -->
+        <tr>
+          <td style="background:#F8EEDA;padding:40px">
+            <p style="margin:0 0 12px;color:#2C2419;font-size:22px;font-weight:800">${headline}</p>
+            <p style="margin:0 0 16px;color:#6b5d50;font-size:15px;line-height:1.65">${body1}</p>
+            <p style="margin:0 0 32px;color:#6b5d50;font-size:15px;line-height:1.65">${body2}</p>
+            <table cellpadding="0" cellspacing="0">
+              <tr>
+                <td style="background:#A7B75D;border-radius:8px">
+                  <a href="https://velotribe.cc/#providers"
+                     style="display:inline-block;padding:13px 26px;color:#2C2419;font-weight:700;font-size:13px;text-decoration:none;text-transform:uppercase;letter-spacing:1.5px">${cta}</a>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        <!-- Footer -->
+        <tr>
+          <td style="background:#41372B;padding:20px 40px;text-align:center">
+            <p style="margin:0;color:#ffffff60;font-size:12px">${footer}</p>
+          </td>
+        </tr>
+
+      </table>
+    </td></tr>
+  </table>
+</body>
+</html>`
 
   await fetch('https://api.resend.com/emails', {
     method: 'POST',
@@ -148,7 +212,6 @@ export const onRequestPost: PagesFunction<Env> = async ({ request, env, waitUnti
         to: email,
         audience: audience as 'cyclist' | 'host',
         locale,
-        position: next,
         apiKey: env.RESEND_API_KEY,
         from: env.RESEND_FROM,
       }).catch((e) => console.error('welcome_email_failed', e)),

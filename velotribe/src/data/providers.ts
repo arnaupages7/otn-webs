@@ -2,7 +2,7 @@
 // Per afegir un nou proveïdor: copia un bloc existent i omple els camps.
 // active: false → mostra com "joining soon" (targeta borrosa)
 
-export type ProviderType = 'accommodation' | 'guide' | 'tour' | 'cafe' | 'shop'
+export type ProviderType = 'accommodation' | 'guide' | 'tour' | 'cafe' | 'shop' | 'training'
 
 export type ProviderTag =
   | 'bike-storage'
@@ -18,6 +18,10 @@ export type ProviderTag =
   | 'transfer'
   | 'pool'
   | 'garden'
+  | 'functional-training'
+  | 'small-groups'
+  | 'readaptation'
+  | 'performance'
 
 export interface Provider {
   id: string
@@ -34,6 +38,7 @@ export interface Provider {
   website?: string
   slug?: string               // si existeix, la targeta enllaça a /hosts/{slug}
   badge?: 'founding-host' | 'verified'
+  seal?: boolean              // Sello VeloTribe — revisat personalment per VeloTribe
   active: boolean             // false = coming soon
 }
 
@@ -50,8 +55,12 @@ export const tagLabels: Record<ProviderTag, { en: string; es: string; ca: string
   'group-rides':     { en: 'Group rides',       es: 'Salidas en grupo',  ca: 'Sortides en grup'  },
   'route-tips':      { en: 'Local route tips',  es: 'Rutas locales',     ca: 'Rutes locals'      },
   'transfer':        { en: 'Transfer service',  es: 'Transfer',          ca: 'Transfer'          },
-  'pool':            { en: 'Pool',              es: 'Piscina',           ca: 'Piscina'           },
-  'garden':          { en: 'Garden',            es: 'Jardín',            ca: 'Jardí'             },
+  'pool':                { en: 'Pool',                  es: 'Piscina',              ca: 'Piscina'                },
+  'garden':              { en: 'Garden',                es: 'Jardín',               ca: 'Jardí'                  },
+  'functional-training': { en: 'Functional training',   es: 'Entrenamiento funcional', ca: 'Entrenament funcional' },
+  'small-groups':        { en: 'Small groups',          es: 'Grupos reducidos',      ca: 'Grups reduïts'          },
+  'readaptation':        { en: 'Readaptation',          es: 'Readaptación',          ca: 'Readaptació'            },
+  'performance':         { en: 'Performance training',  es: 'Entren. de rendiment',  ca: 'Entren. de rendiment'  },
 }
 
 // ─── BADGE LABELS ────────────────────────────────────────────────────────────
@@ -77,6 +86,7 @@ export const providers: Provider[] = [
     image: '/providers/casa-gessami.jpg',
     website: 'https://moreholiday.es/properties/casa-gessami-allotjament-acollidor-al-pla-de-lestany/',
     badge: 'founding-host',
+    seal: true,
     active: true,
   },
 
@@ -94,6 +104,26 @@ export const providers: Provider[] = [
     },
     image: '/providers/alain-fernandez.jpg',
     badge: 'founding-host',
+    seal: true,
+    active: true,
+  },
+
+  {
+    id: 'espai-8',
+    name: 'Espai 8',
+    location: 'Banyoles, Pla de l\'Estany',
+    type: 'training',
+    tags: ['functional-training', 'small-groups', 'readaptation', 'performance'],
+    slug: 'espai-8',
+    description: {
+      en: 'Boutique training centre in Banyoles for cyclists who want to level up. Small groups, functional training, readaptation and sports performance — the place where semi-pros train.',
+      es: 'Centro de entrenamiento boutique en Banyoles para ciclistas que quieren subir de nivel. Grupos reducidos, entrenamiento funcional, readaptación y rendimiento deportivo — donde entrenan los semiprofesionales.',
+      ca: 'Centre d\'entrenament boutique a Banyoles per a ciclistes que volen pujar de nivell. Grups reduïts, entrenament funcional, readaptació i rendiment esportiu — on entrenen els semiprofessionals.',
+    },
+    image: '/providers/espai-8.jpg',
+    website: 'https://www.espai8.net/',
+    badge: 'founding-host',
+    seal: true,
     active: true,
   },
 

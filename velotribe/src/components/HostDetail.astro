@@ -36,6 +36,7 @@ export interface HostDetailProps {
   bookFormTitle?: { en: string; es: string; ca: string }
   seoTitle?: { en: string; es: string; ca: string }
   seoDesc?: { en: string; es: string; ca: string }
+  seal?: boolean               // Sello VeloTribe — revisat personalment per VeloTribe
 }
 
 interface Props extends HostDetailProps {}
@@ -44,7 +45,7 @@ const {
   lang, slug, name, location, badge, image, website,
   title, subtitle, description, spaceDetails, areaSection,
   amenities, amenitiesTitle, amenitiesSub, bookFormTitle,
-  seoTitle, seoDesc,
+  seoTitle, seoDesc, seal,
 } = Astro.props
 
 const ui = {
@@ -78,6 +79,8 @@ const ui = {
     errorGeneric: 'Something went wrong. Try again or email us at info@velotribe.cc.',
     orDirect: 'Or check availability directly:',
     directLink: 'More Holiday ↗',
+    sealTitle: 'VeloTribe Seal',
+    sealDesc: 'This provider has been personally visited and verified by the VeloTribe team. We only certify those who truly understand cyclists.',
   },
   es: {
     back: '← Todos los anfitriones',
@@ -108,6 +111,8 @@ const ui = {
     errorGeneric: 'Algo ha salido mal. Inténtalo de nuevo o escríbenos a info@velotribe.cc.',
     orDirect: 'O comprueba disponibilidad directamente:',
     directLink: 'More Holiday ↗',
+    sealTitle: 'Sello VeloTribe',
+    sealDesc: 'Este proveedor ha sido visitado y verificado personalmente por el equipo de VeloTribe. Solo certificamos a quienes de verdad entienden a los ciclistas.',
   },
   ca: {
     back: '← Tots els amfitrions',
@@ -138,6 +143,8 @@ const ui = {
     errorGeneric: 'Alguna cosa ha fallat. Torna-ho a intentar o escriu-nos a info@velotribe.cc.',
     orDirect: 'O comprova disponibilitat directament:',
     directLink: 'More Holiday ↗',
+    sealTitle: 'Segell VeloTribe',
+    sealDesc: 'Aquest proveïdor ha estat visitat i verificat personalment per l\'equip de VeloTribe. Només certifiquem els qui de veritat entenen els ciclistes.',
   },
 }
 
@@ -244,6 +251,27 @@ const pageDesc  = seoDesc  ? label(seoDesc)  : label(subtitle)
         </div>
       </div>
     </section>
+
+    <!-- ── Sello VeloTribe ── -->
+    {seal && (
+      <section class="px-[5vw] py-10" style="background:#F8EEDA">
+        <div class="max-w-4xl mx-auto">
+          <div class="flex items-center gap-5 p-6 rounded-2xl" style="background:#2C2419">
+            <!-- Icona segell -->
+            <div class="shrink-0 w-14 h-14 rounded-full flex items-center justify-center" style="background:#A7B75D22;border:2px solid #A7B75D55">
+              <svg class="w-7 h-7" viewBox="0 0 24 24" fill="none">
+                <path d="M12 2l2.4 4.8 5.6.8-4 3.9 1 5.5L12 14.5l-5 2.5 1-5.5-4-3.9 5.6-.8z" fill="#A7B75D"/>
+              </svg>
+            </div>
+            <!-- Text -->
+            <div>
+              <p class="text-[11px] font-bold tracking-[3px] uppercase mb-1" style="color:#A7B75D">{t.sealTitle}</p>
+              <p class="text-sm leading-relaxed" style="color:#ffffff70">{t.sealDesc}</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    )}
 
     <!-- ── Booking Form ── -->
     <section id="booking-section" class="px-[5vw] py-16" style="background:#2C2419"
