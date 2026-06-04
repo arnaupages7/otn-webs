@@ -241,30 +241,3 @@ const soonSlots = providers.filter(p => !p.active && !p.hidden)
   </div>
 </section>
 
-<script>
-  document.querySelectorAll<HTMLElement>('.provider-slider').forEach((slider) => {
-    const images: string[] = JSON.parse(slider.dataset.images ?? '[]')
-    if (images.length <= 1) return
-
-    const img = slider.querySelector<HTMLImageElement>('.slider-img')!
-    const dots = slider.querySelectorAll<HTMLElement>('.slider-dots span')
-    let current = 0
-
-    function goTo(idx: number) {
-      img.style.opacity = '0'
-      setTimeout(() => {
-        img.src = images[idx]
-        img.style.opacity = '1'
-      }, 350)
-      dots.forEach((d, i) => {
-        d.style.background = i === idx ? 'white' : 'rgba(255,255,255,0.4)'
-        d.style.transform = i === idx ? 'scale(1.2)' : 'scale(1)'
-      })
-    }
-
-    setInterval(() => {
-      current = (current + 1) % images.length
-      goTo(current)
-    }, 3000)
-  })
-</script>
