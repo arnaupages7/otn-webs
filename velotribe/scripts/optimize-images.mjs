@@ -38,8 +38,8 @@ async function optimizeFile(filePath) {
   const img = sharp(filePath)
   const meta = await img.metadata()
 
-  // Saltar si ja és prou petita (< 300KB i dimensions ok)
-  if (before < 300_000 && meta.width <= MAX_WIDTH && meta.height <= MAX_HEIGHT) {
+  // Saltar si les dimensions ja són correctes i el pes és raonable per web (< 700KB)
+  if (meta.width <= MAX_WIDTH && meta.height <= MAX_HEIGHT && before < 700_000) {
     return { path: filePath, skipped: true, before }
   }
 
