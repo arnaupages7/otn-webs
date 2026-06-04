@@ -10,7 +10,9 @@ import { fileURLToPath } from 'url'
 import { dirname } from 'path'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
-const HOSTS_DIR = join(__dirname, '..', 'public', 'hosts')
+const PUBLIC_DIR = join(__dirname, '..', 'public')
+const HOSTS_DIR = join(PUBLIC_DIR, 'hosts')
+const PROVIDERS_DIR = join(PUBLIC_DIR, 'providers')
 
 const MAX_WIDTH = 1920
 const MAX_HEIGHT = 1920
@@ -68,7 +70,11 @@ async function optimizeFile(filePath) {
 
 async function main() {
   const filterHost = process.argv[2] // optional: only process one host
-  let files = await getFiles(HOSTS_DIR)
+
+  // Recollir fitxers de /hosts/ i /providers/
+  const hostsFiles = await getFiles(HOSTS_DIR).catch(() => [])
+  const providersFiles = await getFiles(PROVIDERS_DIR).catch(() => [])
+  let files = [...hostsFiles, ...providersFiles]
 
   if (filterHost) {
     files = files.filter(f => f.includes(filterHost))
