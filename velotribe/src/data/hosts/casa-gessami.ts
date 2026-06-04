@@ -9,8 +9,8 @@ export const casaGessamiBase = {
   location: "Camós · Pla de l'Estany, Girona",
   badge: 'founding-host' as const,
   seal: true,
-  image: '/providers/casa-gessami.jpg',
-  images: ['/providers/casa-gessami.jpg'],
+  image: '/hosts/casa-gessami/1.jpg',
+  images: Array.from({ length: 20 }, (_, i) => `/hosts/casa-gessami/${i + 1}.jpg`),
   website: undefined,
 
   title: {
