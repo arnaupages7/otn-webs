@@ -172,13 +172,13 @@ const pageDesc  = seoDesc  ? label(seoDesc)  : label(subtitle)
         <img
           src={src}
           alt={`${name} — foto ${i + 1}`}
-          class:list={['gallery-slide absolute inset-0 w-full h-full object-cover transition-opacity duration-1000', i === 0 ? 'opacity-50' : 'opacity-0']}
+          class:list={['gallery-slide absolute inset-0 w-full h-full object-cover transition-opacity duration-1000', i === 0 ? 'opacity-80' : 'opacity-0']}
           loading={i < 3 ? 'eager' : 'lazy'}
         />
       ))}
 
       <!-- Gradient fosc inferior perquè el text sigui llegible -->
-      <div class="absolute inset-0 pointer-events-none" style="background:linear-gradient(to top, #2C2419 25%, rgba(44,36,25,0.4) 60%, rgba(44,36,25,0.15) 100%)"></div>
+      <div class="absolute inset-0 pointer-events-none" style="background:linear-gradient(to top, #2C2419 20%, rgba(44,36,25,0.2) 50%, rgba(44,36,25,0.05) 100%)"></div>
 
       <!-- Controls del slideshow (només si hi ha múltiples fotos) -->
       {images && images.length > 1 && (
@@ -195,7 +195,7 @@ const pageDesc  = seoDesc  ? label(seoDesc)  : label(subtitle)
       )}
 
       <!-- Contingut del hero (per sobre de les fotos) -->
-      <div class="relative z-10 px-[5vw] pb-12 pt-28 max-w-4xl">
+      <div class="relative z-10 px-[5vw] pb-10 pt-[55vh] max-w-4xl">
         <!-- Breadcrumb -->
         <a href={pathFor(lang, '/#providers')}
            class="inline-flex items-center gap-1.5 text-xs uppercase tracking-[2px] font-semibold mb-6 transition hover:text-[#A7B75D]"
