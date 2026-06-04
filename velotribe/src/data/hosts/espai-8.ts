@@ -11,7 +11,7 @@ export const espai8Base = {
   seal: true,
   image: '/hosts/espai-8/1.jpg',
   images: Array.from({ length: 6 }, (_, i) => `/hosts/espai-8/${i + 1}.jpg`),
-  galleryPosition: 'center top',
+  galleryPositions: ['center', 'center', 'center', 'center', 'center', 'center top'],
   website: 'https://www.espai8.net/',
 
   title: {

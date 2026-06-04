@@ -38,7 +38,8 @@ export interface HostDetailProps {
   seoTitle?: { en: string; es: string; ca: string }
   seoDesc?: { en: string; es: string; ca: string }
   seal?: boolean               // Sello VeloTribe — revisat personalment per VeloTribe
-  galleryPosition?: string     // CSS object-position per a les fotos de la galeria (default: 'center')
+  galleryPosition?: string     // CSS object-position global per a totes les fotos (default: 'center')
+  galleryPositions?: string[]  // object-position per-imatge (sobreescriu galleryPosition si present)
 }
 
 interface Props extends HostDetailProps {}
@@ -47,7 +48,7 @@ const {
   lang, slug, name, location, badge, image, images, website,
   title, subtitle, description, spaceDetails, areaSection,
   amenities, amenitiesTitle, amenitiesSub, bookFormTitle,
-  seoTitle, seoDesc, seal, galleryPosition,
+  seoTitle, seoDesc, seal, galleryPosition, galleryPositions,
 } = Astro.props
 
 const ui = {
@@ -174,7 +175,7 @@ const pageDesc  = seoDesc  ? label(seoDesc)  : label(subtitle)
           src={src}
           alt={`${name} — foto ${i + 1}`}
           class:list={['gallery-slide absolute inset-0 w-full h-full object-cover transition-opacity duration-1000', i === 0 ? 'opacity-80' : 'opacity-0']}
-          style={galleryPosition ? `object-position:${galleryPosition}` : undefined}
+          style={(() => { const pos = galleryPositions?.[i] ?? galleryPosition; return pos ? `object-position:${pos}` : undefined })()}
           loading={i < 3 ? 'eager' : 'lazy'}
         />
       ))}
