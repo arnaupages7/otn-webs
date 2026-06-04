@@ -164,24 +164,46 @@ const pageDesc  = seoDesc  ? label(seoDesc)  : label(subtitle)
   <Nav lang={lang} />
 
   <main>
-    <!-- ── Hero ── -->
-    <section class="relative min-h-[55vh] flex flex-col justify-end" style="background:#2C2419">
-      {image && (
-        <div class="absolute inset-0 overflow-hidden">
-          <img src={image} alt={name} class="w-full h-full object-cover opacity-40" />
-          <div class="absolute inset-0" style="background:linear-gradient(to top, #2C2419 30%, transparent 80%)"></div>
-        </div>
+    <!-- ── Hero amb slideshow de fons ── -->
+    <section class="host-gallery relative min-h-[70vh] flex flex-col justify-end overflow-hidden" style="background:#2C2419">
+
+      <!-- Capa de fotos (slideshow) -->
+      {(images && images.length > 0 ? images : image ? [image] : []).map((src, i) => (
+        <img
+          src={src}
+          alt={`${name} — foto ${i + 1}`}
+          class:list={['gallery-slide absolute inset-0 w-full h-full object-cover transition-opacity duration-1000', i === 0 ? 'opacity-50' : 'opacity-0']}
+          loading={i < 3 ? 'eager' : 'lazy'}
+        />
+      ))}
+
+      <!-- Gradient fosc inferior perquè el text sigui llegible -->
+      <div class="absolute inset-0 pointer-events-none" style="background:linear-gradient(to top, #2C2419 25%, rgba(44,36,25,0.4) 60%, rgba(44,36,25,0.15) 100%)"></div>
+
+      <!-- Controls del slideshow (només si hi ha múltiples fotos) -->
+      {images && images.length > 1 && (
+        <>
+          <button class="gallery-prev absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full flex items-center justify-center transition hover:scale-110 z-10" style="background:#00000055;color:#F8EEDA;backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,0.15)">
+            <svg class="w-4 h-4" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="10 3 5 8 10 13"/></svg>
+          </button>
+          <button class="gallery-next absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full flex items-center justify-center transition hover:scale-110 z-10" style="background:#00000055;color:#F8EEDA;backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,0.15)">
+            <svg class="w-4 h-4" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 3 11 8 6 13"/></svg>
+          </button>
+          <!-- Comptador de fotos -->
+          <span class="gallery-counter absolute top-24 right-5 text-xs font-semibold px-2.5 py-1 rounded-full z-10" style="background:#00000055;color:#ffffff80;backdrop-filter:blur(4px)">1 / {images.length}</span>
+        </>
       )}
 
-      <div class="relative px-[5vw] pb-12 pt-28 max-w-4xl">
+      <!-- Contingut del hero (per sobre de les fotos) -->
+      <div class="relative z-10 px-[5vw] pb-12 pt-28 max-w-4xl">
         <!-- Breadcrumb -->
         <a href={pathFor(lang, '/#providers')}
            class="inline-flex items-center gap-1.5 text-xs uppercase tracking-[2px] font-semibold mb-6 transition hover:text-[#A7B75D]"
-           style="color:#ffffff50">
+           style="color:#ffffff60">
           {t.back}
         </a>
 
-        <!-- Badge + tipus -->
+        <!-- Badge -->
         {badge && (
           <span class="inline-block px-3 py-1 rounded text-[10px] font-bold uppercase tracking-[2px] mb-4"
             style="background:#A7B75D;color:#2C2419">
@@ -191,59 +213,35 @@ const pageDesc  = seoDesc  ? label(seoDesc)  : label(subtitle)
 
         <!-- Nom -->
         <h1 class="font-display font-black uppercase leading-[0.9] mb-3"
-            style="font-size:clamp(40px,8vw,80px);color:#F8EEDA">
+            style="font-size:clamp(40px,8vw,80px);color:#F8EEDA;text-shadow:0 2px 20px rgba(0,0,0,0.5)">
           {name}
         </h1>
 
         <!-- Subtítol + ubicació -->
-        <p class="text-lg mb-2 font-light" style="color:#a09078">{label(subtitle)}</p>
-        <p class="text-sm flex items-center gap-1.5" style="color:#ffffff50">
+        <p class="text-lg mb-2 font-light" style="color:#d4c4a8">{label(subtitle)}</p>
+        <p class="text-sm flex items-center gap-1.5" style="color:#ffffff60">
           <svg class="w-3.5 h-3.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
             <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/>
           </svg>
           {location}
         </p>
-      </div>
-    </section>
-
-    <!-- ── Galeria de fotos ── -->
-    {images && images.length > 1 && (
-      <section class="relative overflow-hidden" style="background:#1a1510">
-        <!-- Slideshow principal -->
-        <div class="host-gallery relative" style="height:clamp(260px,45vw,520px)">
-          {images.map((src, i) => (
-            <img
-              src={src}
-              alt={`${name} — foto ${i + 1}`}
-              class:list={['gallery-slide absolute inset-0 w-full h-full object-cover transition-opacity duration-700', i === 0 ? 'opacity-100' : 'opacity-0']}
-              loading={i < 3 ? 'eager' : 'lazy'}
-            />
-          ))}
-          <!-- Controls -->
-          <button class="gallery-prev absolute left-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full flex items-center justify-center transition hover:scale-110" style="background:#00000066;color:#F8EEDA;backdrop-filter:blur(4px)">
-            <svg class="w-4 h-4" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="10 3 5 8 10 13"/></svg>
-          </button>
-          <button class="gallery-next absolute right-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full flex items-center justify-center transition hover:scale-110" style="background:#00000066;color:#F8EEDA;backdrop-filter:blur(4px)">
-            <svg class="w-4 h-4" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 3 11 8 6 13"/></svg>
-          </button>
-          <!-- Comptador -->
-          <span class="gallery-counter absolute bottom-3 right-4 text-xs font-semibold px-2.5 py-1 rounded-full" style="background:#00000066;color:#ffffff99;backdrop-filter:blur(4px)">1 / {images.length}</span>
-        </div>
 
         <!-- Miniaturas -->
-        <div class="flex gap-1.5 overflow-x-auto px-4 py-3 scrollbar-hide" style="scrollbar-width:none">
-          {images.map((src, i) => (
-            <button
-              class:list={['gallery-thumb flex-shrink-0 rounded overflow-hidden transition border-2', i === 0 ? 'border-[#A7B75D]' : 'border-transparent opacity-50 hover:opacity-80']}
-              data-idx={i}
-              style="width:64px;height:48px"
-            >
-              <img src={src} alt="" class="w-full h-full object-cover pointer-events-none" loading="lazy" />
-            </button>
-          ))}
-        </div>
-      </section>
-    )}
+        {images && images.length > 1 && (
+          <div class="flex gap-2 overflow-x-auto mt-6 pb-1" style="scrollbar-width:none">
+            {images.map((src, i) => (
+              <button
+                class:list={['gallery-thumb flex-shrink-0 rounded-lg overflow-hidden transition-all border-2', i === 0 ? 'border-[#A7B75D] opacity-100' : 'border-transparent opacity-40 hover:opacity-70']}
+                data-idx={i}
+                style="width:72px;height:52px"
+              >
+                <img src={src} alt="" class="w-full h-full object-cover pointer-events-none" loading="lazy" />
+              </button>
+            ))}
+          </div>
+        )}
+      </div>
+    </section>
 
     <!-- ── Per a la teva bici ── -->
     <section class="px-[5vw] py-16" style="background:#41372B">
