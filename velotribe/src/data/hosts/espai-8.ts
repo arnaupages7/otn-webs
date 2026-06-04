@@ -9,7 +9,8 @@ export const espai8Base = {
   location: 'Banyoles, Pla de l\'Estany',
   badge: 'founding-host' as const,
   seal: true,
-  image: '/providers/espai-8.jpg',
+  image: '/hosts/espai-8/1.jpg',
+  images: Array.from({ length: 6 }, (_, i) => `/hosts/espai-8/${i + 1}.jpg`),
   website: 'https://www.espai8.net/',
 
   title: {

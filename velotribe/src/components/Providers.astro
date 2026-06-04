@@ -109,9 +109,9 @@ const soonSlots = providers.filter(p => !p.active && !p.hidden)
                 </span>
               )}
               <!-- Indicadors de punts (només si hi ha múltiples fotos) -->
-              {p.images && p.images.length > 1 && (
+              {(p.cardImages ?? p.images) && ((p.cardImages ?? p.images)!.length > 1) && (
                 <div class="slider-dots absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1.5">
-                  {p.images.map((_, i) => (
+                  {(p.cardImages ?? p.images)!.map((_, i) => (
                     <span class:list={['w-1.5 h-1.5 rounded-full transition-all', i === 0 ? 'bg-white scale-110' : 'bg-white/40']}></span>
                   ))}
                 </div>
