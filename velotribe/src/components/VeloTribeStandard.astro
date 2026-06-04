@@ -6,12 +6,12 @@ const { lang } = Astro.props
 const t = useTranslations(lang)
 
 const criteria = [
-  { icon: '🏠', text: t('standard.c1') },
+  { icon: '🚲', text: t('standard.c1') },
   { icon: '🔧', text: t('standard.c2') },
-  { icon: '☀️', text: t('standard.c3') },
-  { icon: '🚵', text: t('standard.c4') },
-  { icon: '✓', text: t('standard.c5') },
-  { icon: '🔒', text: t('standard.c6') },
+  { icon: '🛠️', text: t('standard.c3') },
+  { icon: '📍', text: t('standard.c4') },
+  { icon: '✕', text: t('standard.c5') },
+  { icon: '🔐', text: t('standard.c6') },
 ]
 ---
 
@@ -26,7 +26,12 @@ const criteria = [
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px reveal" style="background:#ffffff15;border-radius:12px;overflow:hidden">
       {criteria.map((c) => (
         <div class="flex items-start gap-4 p-7 group transition hover:bg-white/5" style="background:#2C2419">
-          <span class="text-2xl mt-0.5 flex-shrink-0">{c.icon}</span>
+          <span class:list={[
+            'text-xl mt-0.5 flex-shrink-0 w-8 h-8 rounded-lg flex items-center justify-center font-bold',
+            c.icon === '✕'
+              ? 'bg-red-900/40 text-red-400 text-sm'
+              : 'bg-white/5 text-lg'
+          ]}>{c.icon}</span>
           <span class="text-sm leading-relaxed font-medium" style="color:#F8EEDA">{c.text}</span>
         </div>
       ))}

@@ -7,6 +7,28 @@ const t = useTranslations(lang)
 ---
 
 <section id="hero" class="min-h-screen flex flex-col items-center justify-center text-center px-[5vw] pt-20 pb-16 relative overflow-hidden" style="background:#2C2419;color:#F8EEDA">
+
+  <!-- Background photo slideshow -->
+  <div id="hero-bg" class="absolute inset-0 pointer-events-none">
+    {[
+      '/hero-1.jpg',
+      '/hero-2.jpg',
+      '/hero-3.jpg',
+    ].map((src, i) => (
+      <img
+        src={src}
+        alt=""
+        class="hero-bg-img absolute inset-0 w-full h-full object-cover transition-opacity duration-1000"
+        style={`opacity:${i === 0 ? 0.08 : 0};`}
+        loading={i === 0 ? 'eager' : 'lazy'}
+        aria-hidden="true"
+      />
+    ))}
+  </div>
+
+  <!-- Dark overlay to keep text legible -->
+  <div class="absolute inset-0 pointer-events-none" style="background:linear-gradient(to bottom, #2C2419cc 0%, #2C241988 50%, #2C2419cc 100%)"></div>
+
   <!-- Background grain + radial glows -->
   <div class="absolute inset-0 pointer-events-none" style="background:radial-gradient(ellipse 70% 50% at 20% 60%, #494B3025 0%, transparent 60%), radial-gradient(ellipse 50% 40% at 80% 20%, #A7B75D12 0%, transparent 60%)"></div>
   <div class="absolute inset-0 pointer-events-none opacity-[0.04]" style="background-image:url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22200%22 height=%22200%22><filter id=%22n%22><feTurbulence baseFrequency=%220.9%22 numOctaves=%222%22 stitchTiles=%22stitch%22/></filter><rect width=%22200%22 height=%22200%22 filter=%22url(%23n)%22 opacity=%221%22/></svg>')"></div>
@@ -50,3 +72,15 @@ const t = useTranslations(lang)
     <span class="block w-3 h-3 border-r-2 border-b-2 animate-scroll-arrow" style="border-color:#706050"></span>
   </a>
 </section>
+
+<script>
+  const imgs = document.querySelectorAll<HTMLImageElement>('#hero-bg .hero-bg-img')
+  if (imgs.length > 1) {
+    let current = 0
+    setInterval(() => {
+      imgs[current].style.opacity = '0'
+      current = (current + 1) % imgs.length
+      imgs[current].style.opacity = '0.08'
+    }, 5000)
+  }
+</script>

@@ -4,6 +4,7 @@ export function getLangFromUrl(url: URL): Lang {
   const [, segment] = url.pathname.split('/')
   if (segment === 'es') return 'es'
   if (segment === 'ca') return 'ca'
+  if (segment === 'fr') return 'fr'
   return 'en'
 }
 

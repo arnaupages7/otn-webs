@@ -57,12 +57,30 @@ const labels = {
       tour: 'Tour operator',
       cafe: 'Cafè',
       shop: 'Botiga de bici',
-      training: 'Centre d\'entrenament',
+      training: "Centre d'entrenament",
+    },
+  },
+  fr: {
+    eyebrow: 'Hôtes fondateurs',
+    title: 'Les premiers de la tribu',
+    sub: 'Hôtes sélectionnés à la main, déjà engagés dans la communauté VeloTribe.',
+    soon_name: 'Bientôt disponible',
+    soon_desc: "D'autres hôtes fondateurs confirment. Restez connectés.",
+    visit: 'Voir le site',
+    viewHost: "Voir l'hôte",
+    seal: 'Sceau VeloTribe',
+    type: {
+      accommodation: 'Hébergement',
+      guide: 'Guide',
+      tour: 'Tour opérateur',
+      cafe: 'Café',
+      shop: 'Boutique vélo',
+      training: "Centre d'entraînement",
     },
   },
 }
 
-const t = labels[lang]
+const t = labels[lang] ?? labels['en']
 const activeProviders = providers.filter(p => p.active && !p.hidden)
 const soonSlots = providers.filter(p => !p.active && !p.hidden)
 ---
@@ -96,7 +114,7 @@ const soonSlots = providers.filter(p => !p.active && !p.hidden)
               {p.badge && (
                 <span class="absolute top-3 left-3 px-2.5 py-1 rounded text-[10px] font-bold uppercase tracking-[1.5px]"
                   style="background:#A7B75D;color:#2C2419">
-                  {badgeLabels[p.badge][lang]}
+                  {badgeLabels[p.badge][lang as 'en'|'es'|'ca'|'fr'] ?? badgeLabels[p.badge].en}
                 </span>
               )}
               {p.seal && (
@@ -127,7 +145,7 @@ const soonSlots = providers.filter(p => !p.active && !p.hidden)
               {p.badge && (
                 <span class="absolute top-3 left-3 px-2.5 py-1 rounded text-[10px] font-bold uppercase tracking-[1.5px]"
                   style="background:#A7B75D;color:#2C2419">
-                  {badgeLabels[p.badge][lang]}
+                  {badgeLabels[p.badge][lang as 'en'|'es'|'ca'|'fr'] ?? badgeLabels[p.badge].en}
                 </span>
               )}
               {p.seal && (
@@ -161,9 +179,9 @@ const soonSlots = providers.filter(p => !p.active && !p.hidden)
             </p>
 
             <!-- Descripció -->
-            {p.description[lang] && (
+            {(p.description[lang as 'en'|'es'|'ca'] ?? p.description.en) && (
               <p class="text-sm leading-relaxed mb-5 flex-1" style="color:#ffffff80">
-                {p.description[lang]}
+                {p.description[lang as 'en'|'es'|'ca'] ?? p.description.en}
               </p>
             )}
 
@@ -172,7 +190,7 @@ const soonSlots = providers.filter(p => !p.active && !p.hidden)
               <div class="flex flex-wrap gap-1.5 mb-5">
                 {p.tags.map(tag => (
                   <span class="text-[10px] px-2 py-0.5 rounded-full border font-medium" style="border-color:#A7B75D44;color:#A7B75D;background:#A7B75D11">
-                    {tagLabels[tag][lang]}
+                    {tagLabels[tag][lang as 'en'|'es'|'ca'|'fr'] ?? tagLabels[tag].en}
                   </span>
                 ))}
               </div>
