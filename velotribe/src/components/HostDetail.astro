@@ -459,8 +459,13 @@ const pageDesc  = seoDesc  ? label(seoDesc)  : label(subtitle)
       thumbs[current]?.classList.add('border-[#A7B75D]')
       thumbs[current]?.classList.remove('opacity-50', 'border-transparent')
       if (counter) counter.textContent = `${current + 1} / ${slides.length}`
-      // scroll thumbnail into view
-      thumbs[current]?.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' })
+      // scroll thumbnail dins el contenidor sense moure la pàgina
+      const thumb = thumbs[current]
+      const container = thumb?.parentElement
+      if (thumb && container) {
+        const thumbCenter = thumb.offsetLeft + thumb.offsetWidth / 2
+        container.scrollLeft = thumbCenter - container.clientWidth / 2
+      }
     }
 
     function startAuto() {

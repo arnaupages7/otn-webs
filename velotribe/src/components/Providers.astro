@@ -86,7 +86,7 @@ const soonSlots = providers.filter(p => !p.active && !p.hidden)
 
           <!-- Imatge / Slideshow -->
           {p.image ? (
-            <div class="relative h-48 overflow-hidden provider-slider" data-images={JSON.stringify(p.images && p.images.length > 1 ? p.images : [p.image])}>
+            <div class="relative h-48 overflow-hidden provider-slider" data-images={JSON.stringify(p.cardImages ?? (p.images && p.images.length > 1 ? p.images : [p.image]))}>
               <img
                 src={p.image}
                 alt={p.name}

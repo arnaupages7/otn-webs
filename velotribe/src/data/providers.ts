@@ -35,7 +35,8 @@ export interface Provider {
     ca: string
   }
   image?: string              // ruta relativa a /public o URL externa (portada)
-  images?: string[]           // galeria per al slideshow (opcional)
+  images?: string[]           // galeria completa (pàgina de detall)
+  cardImages?: string[]       // fotos seleccionades per al slideshow de la targeta
   website?: string
   hidden?: boolean            // true = no es mostra a la landing
   slug?: string               // si existeix, la targeta enllaça a /hosts/{slug}
@@ -87,6 +88,7 @@ export const providers: Provider[] = [
     },
     image: '/hosts/casa-gessami/1.jpg',
     images: Array.from({ length: 20 }, (_, i) => `/hosts/casa-gessami/${i + 1}.jpg`),
+    cardImages: [1, 2, 4, 7, 14].map(n => `/hosts/casa-gessami/${n}.jpg`),
     website: undefined,
     badge: 'founding-host',
     seal: true,
@@ -145,6 +147,7 @@ export const providers: Provider[] = [
     },
     image: '/hosts/casa-romani/1.jpg',
     images: Array.from({ length: 30 }, (_, i) => `/hosts/casa-romani/${i + 1}.jpg`),
+    cardImages: [1, 3, 20, 22, 25].map(n => `/hosts/casa-romani/${n}.jpg`),
     website: undefined,
     badge: 'founding-host',
     seal: true,
