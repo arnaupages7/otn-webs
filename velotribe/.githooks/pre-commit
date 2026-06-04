@@ -1,0 +1,25 @@
+#!/usr/bin/env sh
+# Pre-commit hook: optimitza automàticament les fotos de /public/hosts/
+# S'executa abans de cada commit. Si hi ha fotos noves/grans les comprimeix
+# i les re-afegeix a l'stage automàticament.
+
+# Detectar si hi ha fitxers d'imatge nous/modificats dins de public/hosts/
+CHANGED_IMAGES=$(git diff --cached --name-only | grep -E '^velotribe/public/hosts/.+\.(jpg|jpeg|png)$')
+
+if [ -z "$CHANGED_IMAGES" ]; then
+  exit 0  # Cap foto nova, res a fer
+fi
+
+echo "🖼  Fotos detectades — optimitzant abans del commit..."
+
+# Executar el script d'optimització des de la carpeta velotribe
+cd velotribe 2>/dev/null || true
+node scripts/optimize-images.mjs
+
+# Re-afegir les fotos optimitzades a l'stage
+cd ..
+echo "$CHANGED_IMAGES" | while read FILE; do
+  git add "$FILE"
+done
+
+echo "✅ Fotos optimitzades i afegides a l'stage."
