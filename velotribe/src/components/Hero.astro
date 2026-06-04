@@ -19,7 +19,7 @@ const t = useTranslations(lang)
         src={src}
         alt=""
         class="hero-bg-img absolute inset-0 w-full h-full object-cover transition-opacity duration-1000"
-        style={`opacity:${i === 0 ? 0.08 : 0};`}
+        style={`opacity:${i === 0 ? 0.22 : 0};`}
         loading={i === 0 ? 'eager' : 'lazy'}
         aria-hidden="true"
       />
@@ -27,7 +27,7 @@ const t = useTranslations(lang)
   </div>
 
   <!-- Dark overlay to keep text legible -->
-  <div class="absolute inset-0 pointer-events-none" style="background:linear-gradient(to bottom, #2C2419cc 0%, #2C241988 50%, #2C2419cc 100%)"></div>
+  <div class="absolute inset-0 pointer-events-none" style="background:linear-gradient(to bottom, #2C241999 0%, #2C241966 50%, #2C241999 100%)"></div>
 
   <!-- Background grain + radial glows -->
   <div class="absolute inset-0 pointer-events-none" style="background:radial-gradient(ellipse 70% 50% at 20% 60%, #494B3025 0%, transparent 60%), radial-gradient(ellipse 50% 40% at 80% 20%, #A7B75D12 0%, transparent 60%)"></div>
@@ -80,7 +80,7 @@ const t = useTranslations(lang)
     setInterval(() => {
       imgs[current].style.opacity = '0'
       current = (current + 1) % imgs.length
-      imgs[current].style.opacity = '0.08'
+      imgs[current].style.opacity = '0.22'
     }, 5000)
   }
 </script>
