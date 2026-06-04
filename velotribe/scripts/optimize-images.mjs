@@ -71,10 +71,13 @@ async function optimizeFile(filePath) {
 async function main() {
   const filterHost = process.argv[2] // optional: only process one host
 
-  // Recollir fitxers de /hosts/ i /providers/
+  // Recollir fitxers de /hosts/, /providers/ i arrel de /public/ (hero images, etc.)
   const hostsFiles = await getFiles(HOSTS_DIR).catch(() => [])
   const providersFiles = await getFiles(PROVIDERS_DIR).catch(() => [])
-  let files = [...hostsFiles, ...providersFiles]
+  const rootFiles = (await readdir(PUBLIC_DIR, { withFileTypes: true }))
+    .filter(e => e.isFile() && EXTS.has(extname(e.name).toLowerCase()))
+    .map(e => join(PUBLIC_DIR, e.name))
+  let files = [...hostsFiles, ...providersFiles, ...rootFiles]
 
   if (filterHost) {
     files = files.filter(f => f.includes(filterHost))
