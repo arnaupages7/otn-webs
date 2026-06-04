@@ -113,7 +113,6 @@ export const providers: Provider[] = [
 
   {
     id: 'espai-8',
-    hidden: true,
     name: 'Espai 8',
     location: 'Banyoles, Pla de l\'Estany',
     type: 'training',
@@ -124,7 +123,8 @@ export const providers: Provider[] = [
       es: 'Centro de entrenamiento boutique en Banyoles para ciclistas que quieren subir de nivel. Grupos reducidos, entrenamiento funcional, readaptación y rendimiento deportivo — donde entrenan los semiprofesionales.',
       ca: 'Centre d\'entrenament boutique a Banyoles per a ciclistes que volen pujar de nivell. Grups reduïts, entrenament funcional, readaptació i rendiment esportiu — on entrenen els semiprofessionals.',
     },
-    image: '/providers/espai-8.jpg',
+    image: '/hosts/espai-8/1.jpg',
+    images: Array.from({ length: 6 }, (_, i) => `/hosts/espai-8/${i + 1}.jpg`),
     website: 'https://www.espai8.net/',
     badge: 'founding-host',
     seal: true,
