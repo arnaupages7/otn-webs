@@ -127,6 +127,25 @@ export const providers: Provider[] = [
     active: true,
   },
 
+  {
+    id: 'casa-romani',
+    name: 'Casa Romaní',
+    location: "Camós · Pla de l'Estany, Girona",
+    type: 'accommodation',
+    tags: ['bike-storage', 'bike-wash', 'garden', 'route-tips'],
+    slug: 'casa-romani',
+    description: {
+      en: "Renovated holiday home in Camós, 7 min from Lake Banyoles. Covered terrace, barbecue and Pyrenees views. Ideal base for cycling Pla de l'Estany and Girona, 25 km away. Up to 8 guests.",
+      es: "Casa de vacaciones renovada en Camós, a 7 min del lago de Banyoles. Terraza cubierta, barbacoa y vistas a los Pirineos. Base ideal para pedalear por el Pla de l'Estany y Girona, a 25 km. Hasta 8 huéspedes.",
+      ca: "Casa de vacances renovada a Camós, a 7 min del llac de Banyoles. Terrassa coberta, barbacoa i vistes als Pirineus. Base ideal per pedalar pel Pla de l'Estany i Girona, a 25 km. Fins a 8 hostes.",
+    },
+    image: '/hosts/casa-romani/1.jpg',
+    website: 'https://moreholiday.es',
+    badge: 'founding-host',
+    seal: true,
+    active: true,
+  },
+
   // ── Placeholder "joining soon" ────────────────────────────────────────────
   { id: 'soon-1', name: '', location: '', type: 'accommodation', tags: [], description: { en: '', es: '', ca: '' }, active: false },
 ]
