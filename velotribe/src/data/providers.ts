@@ -37,6 +37,7 @@ export interface Provider {
   image?: string              // ruta relativa a /public o URL externa (portada)
   images?: string[]           // galeria per al slideshow (opcional)
   website?: string
+  hidden?: boolean            // true = no es mostra a la landing
   slug?: string               // si existeix, la targeta enllaça a /hosts/{slug}
   badge?: 'founding-host' | 'verified'
   seal?: boolean              // Sello VeloTribe — revisat personalment per VeloTribe
@@ -112,6 +113,7 @@ export const providers: Provider[] = [
 
   {
     id: 'espai-8',
+    hidden: true,
     name: 'Espai 8',
     location: 'Banyoles, Pla de l\'Estany',
     type: 'training',

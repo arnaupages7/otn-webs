@@ -63,8 +63,8 @@ const labels = {
 }
 
 const t = labels[lang]
-const activeProviders = providers.filter(p => p.active)
-const soonSlots = providers.filter(p => !p.active)
+const activeProviders = providers.filter(p => p.active && !p.hidden)
+const soonSlots = providers.filter(p => !p.active && !p.hidden)
 ---
 
 <section id="providers" class="px-[5vw] py-20" style="background:#F8EEDA">
@@ -78,7 +78,7 @@ const soonSlots = providers.filter(p => !p.active)
     </div>
 
     <!-- Graella de targetes -->
-    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 reveal">
+    <div class="grid sm:grid-cols-2 gap-5 reveal max-w-3xl mx-auto">
 
       <!-- Targetes actives -->
       {activeProviders.map((p: Provider) => (
