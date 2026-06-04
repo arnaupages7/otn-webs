@@ -4,7 +4,7 @@ import '../styles/global.css'
 interface Props {
   title: string
   description: string
-  lang?: 'en' | 'es' | 'ca'
+  lang?: 'en' | 'es' | 'ca' | 'fr'
   ogImage?: string
 }
 
@@ -16,6 +16,7 @@ const ogImageAbs = new URL(ogImage, siteOrigin).toString()
 const hrefEn = new URL('/', siteOrigin).toString()
 const hrefEs = new URL('/es/', siteOrigin).toString()
 const hrefCa = new URL('/ca/', siteOrigin).toString()
+const hrefFr = new URL('/fr/', siteOrigin).toString()
 ---
 
 <!doctype html>
@@ -44,6 +45,7 @@ const hrefCa = new URL('/ca/', siteOrigin).toString()
     <link rel="alternate" hreflang="en" href={hrefEn} />
     <link rel="alternate" hreflang="es" href={hrefEs} />
     <link rel="alternate" hreflang="ca" href={hrefCa} />
+    <link rel="alternate" hreflang="fr" href={hrefFr} />
     <link rel="alternate" hreflang="x-default" href={hrefEn} />
 
     <!-- Favicon -->
@@ -77,6 +79,28 @@ const hrefCa = new URL('/ca/', siteOrigin).toString()
       url: siteOrigin.toString().replace(/\/$/, ''),
       inLanguage: ['en', 'es', 'ca']
     })} />
+
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-XXXXXXXXXX');
+    </script>
+
+    <!-- Meta Pixel -->
+    <script>
+      !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+      n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+      document,'script','https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init', 'XXXXXXXXXXXXXXXXX');
+      fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+      src="https://www.facebook.com/tr?id=XXXXXXXXXXXXXXXXX&ev=PageView&noscript=1"/></noscript>
 
     <!-- Cloudflare Web Analytics (privacy-first, no cookies) -->
     <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "9d88c2c0ec414e999bfc5ddb446532a1"}'></script>

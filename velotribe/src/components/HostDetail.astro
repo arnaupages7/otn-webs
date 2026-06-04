@@ -11,8 +11,8 @@ import { badgeLabels, tagLabels, type ProviderTag } from '../data/providers'
 export interface AmenityItem {
   available: boolean
   labelKey?: ProviderTag          // si és un tag estàndard
-  label?: { en: string; es: string; ca: string }  // o label personalitzat
-  note?: { en: string; es: string; ca: string }   // nota opcional
+  label?: { en: string; es: string; ca: string; fr?: string }  // o label personalitzat
+  note?: { en: string; es: string; ca: string; fr?: string }   // nota opcional
 }
 
 export interface HostDetailProps {
@@ -25,21 +25,21 @@ export interface HostDetailProps {
   image?: string
   images?: string[]           // galeria completa per al slideshow
   website?: string
-  title: { en: string; es: string; ca: string }
-  subtitle: { en: string; es: string; ca: string }
-  description: { en: string; es: string; ca: string }
-  spaceDetails: { en: string; es: string; ca: string }
-  areaSection: { en: string; es: string; ca: string }
+  title: { en: string; es: string; ca: string; fr?: string }
+  subtitle: { en: string; es: string; ca: string; fr?: string }
+  description: { en: string; es: string; ca: string; fr?: string }
+  spaceDetails: { en: string; es: string; ca: string; fr?: string }
+  areaSection: { en: string; es: string; ca: string; fr?: string }
   amenities: AmenityItem[]
   // Overrides opcionals per a tipus de proveïdor que no siguin allotjaments
-  amenitiesTitle?: { en: string; es: string; ca: string }
-  amenitiesSub?: { en: string; es: string; ca: string }
-  bookFormTitle?: { en: string; es: string; ca: string }
-  seoTitle?: { en: string; es: string; ca: string }
-  seoDesc?: { en: string; es: string; ca: string }
+  amenitiesTitle?: { en: string; es: string; ca: string; fr?: string }
+  amenitiesSub?: { en: string; es: string; ca: string; fr?: string }
+  bookFormTitle?: { en: string; es: string; ca: string; fr?: string }
+  seoTitle?: { en: string; es: string; ca: string; fr?: string }
+  seoDesc?: { en: string; es: string; ca: string; fr?: string }
   seal?: boolean               // Sello VeloTribe — revisat personalment per VeloTribe
-  galleryPosition?: string     // CSS object-position global per a totes les fotos (default: 'center')
-  galleryPositions?: string[]  // object-position per-imatge (sobreescriu galleryPosition si present)
+  galleryPosition?: string     // CSS object-position per a totes les fotos (default: 'center')
+  galleryPositions?: string[]  // object-position per imatge individual (sobreescriu galleryPosition)
 }
 
 interface Props extends HostDetailProps {}
@@ -149,13 +149,45 @@ const ui = {
     sealTitle: 'Segell VeloTribe',
     sealDesc: 'Aquest proveïdor ha estat visitat i verificat personalment per l\'equip de VeloTribe. Només certifiquem els qui de veritat entenen els ciclistes.',
   },
+  fr: {
+    back: '← Tous les hôtes',
+    founding: 'Hôte Fondateur',
+    forCyclists: 'Pour ton vélo',
+    forCyclistsSub: 'Ce qui t\'attend à ton arrivée.',
+    available: 'Disponible',
+    notAvailable: 'Non disponible',
+    theSpace: 'L\'espace',
+    theArea: 'La région',
+    ctaWaitlist: 'Rejoins VeloTribe pour un accès anticipé',
+    bookEyebrow: 'Réserver',
+    bookTitle: 'Demander un séjour',
+    bookSub: 'Nous te répondrons dans les 24 heures pour confirmer la disponibilité.',
+    checkIn: 'Arrivée',
+    checkOut: 'Départ',
+    guests: 'Voyageurs',
+    guestSelect: 'Sélectionner',
+    name: 'Ton nom',
+    email: 'Email',
+    phone: 'Téléphone (optionnel)',
+    notes: 'Notes ou demandes spéciales (optionnel)',
+    submit: 'Envoyer la demande',
+    sending: 'Envoi…',
+    successTitle: 'Demande envoyée !',
+    successSub: 'Nous te contacterons dans les 24 heures.',
+    errorRequired: 'Merci de remplir tous les champs obligatoires.',
+    errorGeneric: 'Quelque chose s\'est mal passé. Réessaie ou écris-nous à info@velotribe.cc.',
+    orDirect: 'Ou vérifie la disponibilité directement :',
+    directLink: 'Vérifier la disponibilité ↗',
+    sealTitle: 'Sceau VeloTribe',
+    sealDesc: 'Ce prestataire a été personnellement visité et vérifié par l\'équipe VeloTribe. Nous ne certifions que ceux qui comprennent vraiment les cyclistes.',
+  },
 }
 
-const t = ui[lang]
+const t = ui[lang] ?? ui['en']
 
 // Helpers
-function label(obj: { en: string; es: string; ca: string }) {
-  return obj[lang]
+function label(obj: { en: string; es: string; ca: string; fr?: string }) {
+  return obj[lang as keyof typeof obj] ?? obj.en
 }
 
 const pageTitle = seoTitle ? label(seoTitle) : `${name} — VeloTribe Host`
@@ -175,7 +207,7 @@ const pageDesc  = seoDesc  ? label(seoDesc)  : label(subtitle)
           src={src}
           alt={`${name} — foto ${i + 1}`}
           class:list={['gallery-slide absolute inset-0 w-full h-full object-cover transition-opacity duration-1000', i === 0 ? 'opacity-80' : 'opacity-0']}
-          style={(() => { const pos = galleryPositions?.[i] ?? galleryPosition; return pos ? `object-position:${pos}` : undefined })()}
+          style={(galleryPositions?.[i] ?? galleryPosition) ? `object-position:${galleryPositions?.[i] ?? galleryPosition}` : undefined}
           loading={i < 3 ? 'eager' : 'lazy'}
         />
       ))}
@@ -210,7 +242,7 @@ const pageDesc  = seoDesc  ? label(seoDesc)  : label(subtitle)
         {badge && (
           <span class="inline-block px-3 py-1 rounded text-[10px] font-bold uppercase tracking-[2px] mb-4"
             style="background:#A7B75D;color:#2C2419">
-            {badgeLabels[badge][lang]}
+            {badgeLabels[badge][lang as 'en'|'es'|'ca'|'fr'] ?? badgeLabels[badge].en}
           </span>
         )}
 
@@ -254,7 +286,7 @@ const pageDesc  = seoDesc  ? label(seoDesc)  : label(subtitle)
 
         <div class="grid sm:grid-cols-2 gap-3">
           {amenities.map((a) => {
-            const lbl = a.labelKey ? tagLabels[a.labelKey][lang] : (a.label ? label(a.label) : '')
+            const lbl = a.labelKey ? (tagLabels[a.labelKey][lang as 'en'|'es'|'ca'|'fr'] ?? tagLabels[a.labelKey].en) : (a.label ? label(a.label) : '')
             const note = a.note ? label(a.note) : null
             return (
               <div class={`flex items-start gap-3.5 p-4 rounded-xl border ${a.available ? '' : 'opacity-40'}`}
