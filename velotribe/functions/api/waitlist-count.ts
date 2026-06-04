@@ -1,11 +1,17 @@
-// GET /api/waitlist-count — returns the current total waitlist count from KV
+// GET /api/waitlist-count — returns the real total count from D1 (cyclists + hosts)
 
 interface Env {
-  COUNTER: KVNamespace
+  DB: D1Database
 }
 
 export const onRequestGet: PagesFunction<Env> = async ({ env }) => {
-  const total = parseInt((await env.COUNTER.get('total')) ?? '0', 10)
+  const result = await env.DB.prepare(
+    `SELECT
+      (SELECT COUNT(*) FROM waitlist_cyclist) +
+      (SELECT COUNT(*) FROM waitlist_host) AS total`
+  ).first<{ total: number }>()
+
+  const total = result?.total ?? 0
   return Response.json({ total }, {
     headers: { 'Cache-Control': 'public, max-age=60' },
   })
