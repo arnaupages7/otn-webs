@@ -10,6 +10,7 @@ export const casaGessamiBase = {
   badge: 'founding-host' as const,
   seal: true,
   image: '/providers/casa-gessami.jpg',
+  images: ['/providers/casa-gessami.jpg'],
   website: 'https://moreholiday.es/properties/casa-gessami-allotjament-acollidor-al-pla-de-lestany/',
 
   title: {
@@ -64,9 +65,9 @@ export const casaGessamiBase = {
     {
       available: true,
       label: {
-        en: 'Tyre inflator',
-        es: 'Inflador de ruedas',
-        ca: 'Inflador de rodes',
+        en: 'Bike pump',
+        es: 'Bomba de bici',
+        ca: 'Bomba de bici',
       },
       note: {
         en: 'Available on request',

@@ -34,7 +34,8 @@ export interface Provider {
     es: string
     ca: string
   }
-  image?: string              // ruta relativa a /public o URL externa
+  image?: string              // ruta relativa a /public o URL externa (portada)
+  images?: string[]           // galeria per al slideshow (opcional)
   website?: string
   slug?: string               // si existeix, la targeta enllaça a /hosts/{slug}
   badge?: 'founding-host' | 'verified'
@@ -84,6 +85,7 @@ export const providers: Provider[] = [
       ca: 'Casa de vacances renovada a Camós, a 7 min del llac de Banyoles. Entorn rural amb terrassa coberta, barbacoa i vistes al camp. Base ideal per pedalar pel Pla de l\'Estany i les carreteres de Girona, a 25 min.',
     },
     image: '/providers/casa-gessami.jpg',
+    images: ['/providers/casa-gessami.jpg'],
     website: 'https://moreholiday.es/properties/casa-gessami-allotjament-acollidor-al-pla-de-lestany/',
     badge: 'founding-host',
     seal: true,
@@ -140,6 +142,7 @@ export const providers: Provider[] = [
       ca: "Casa de vacances renovada a Camós, a 7 min del llac de Banyoles. Terrassa coberta, barbacoa i vistes als Pirineus. Base ideal per pedalar pel Pla de l'Estany i Girona, a 25 km. Fins a 8 hostes.",
     },
     image: '/hosts/casa-romani/1.jpg',
+    images: Array.from({ length: 30 }, (_, i) => `/hosts/casa-romani/${i + 1}.jpg`),
     website: 'https://moreholiday.es',
     badge: 'founding-host',
     seal: true,

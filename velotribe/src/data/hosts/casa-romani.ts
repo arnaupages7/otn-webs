@@ -10,6 +10,7 @@ export const casaRomaniBase = {
   badge: 'founding-host' as const,
   seal: true,
   image: '/hosts/casa-romani/1.jpg',
+  images: Array.from({ length: 30 }, (_, i) => `/hosts/casa-romani/${i + 1}.jpg`),
   website: 'https://moreholiday.es',
 
   title: {
@@ -64,9 +65,9 @@ export const casaRomaniBase = {
     {
       available: true,
       label: {
-        en: 'Tyre inflator',
-        es: 'Inflador de ruedas',
-        ca: 'Inflador de rodes',
+        en: 'Bike pump',
+        es: 'Bomba de bici',
+        ca: 'Bomba de bici',
       },
       note: {
         en: 'Available on request',

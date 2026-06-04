@@ -84,13 +84,13 @@ const soonSlots = providers.filter(p => !p.active)
       {activeProviders.map((p: Provider) => (
         <div class="lift rounded-2xl overflow-hidden flex flex-col" style="background:#41372B">
 
-          <!-- Imatge -->
+          <!-- Imatge / Slideshow -->
           {p.image ? (
-            <div class="relative h-48 overflow-hidden">
+            <div class="relative h-48 overflow-hidden provider-slider" data-images={JSON.stringify(p.images && p.images.length > 1 ? p.images : [p.image])}>
               <img
                 src={p.image}
                 alt={p.name}
-                class="w-full h-full object-cover"
+                class="slider-img w-full h-full object-cover transition-opacity duration-700"
                 loading="lazy"
               />
               {p.badge && (
@@ -107,6 +107,14 @@ const soonSlots = providers.filter(p => !p.active)
                   </svg>
                   {t.seal}
                 </span>
+              )}
+              <!-- Indicadors de punts (només si hi ha múltiples fotos) -->
+              {p.images && p.images.length > 1 && (
+                <div class="slider-dots absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1.5">
+                  {p.images.map((_, i) => (
+                    <span class:list={['w-1.5 h-1.5 rounded-full transition-all', i === 0 ? 'bg-white scale-110' : 'bg-white/40']}></span>
+                  ))}
+                </div>
               )}
             </div>
           ) : (
@@ -214,3 +222,31 @@ const soonSlots = providers.filter(p => !p.active)
     </div>
   </div>
 </section>
+
+<script>
+  document.querySelectorAll<HTMLElement>('.provider-slider').forEach((slider) => {
+    const images: string[] = JSON.parse(slider.dataset.images ?? '[]')
+    if (images.length <= 1) return
+
+    const img = slider.querySelector<HTMLImageElement>('.slider-img')!
+    const dots = slider.querySelectorAll<HTMLElement>('.slider-dots span')
+    let current = 0
+
+    function goTo(idx: number) {
+      img.style.opacity = '0'
+      setTimeout(() => {
+        img.src = images[idx]
+        img.style.opacity = '1'
+      }, 350)
+      dots.forEach((d, i) => {
+        d.style.background = i === idx ? 'white' : 'rgba(255,255,255,0.4)'
+        d.style.transform = i === idx ? 'scale(1.2)' : 'scale(1)'
+      })
+    }
+
+    setInterval(() => {
+      current = (current + 1) % images.length
+      goTo(current)
+    }, 3000)
+  })
+</script>

@@ -23,6 +23,7 @@ export interface HostDetailProps {
   badge?: 'founding-host' | 'verified'
   type: string                    // label ja traduït
   image?: string
+  images?: string[]           // galeria completa per al slideshow
   website?: string
   title: { en: string; es: string; ca: string }
   subtitle: { en: string; es: string; ca: string }
@@ -42,7 +43,7 @@ export interface HostDetailProps {
 interface Props extends HostDetailProps {}
 
 const {
-  lang, slug, name, location, badge, image, website,
+  lang, slug, name, location, badge, image, images, website,
   title, subtitle, description, spaceDetails, areaSection,
   amenities, amenitiesTitle, amenitiesSub, bookFormTitle,
   seoTitle, seoDesc, seal,
@@ -204,6 +205,45 @@ const pageDesc  = seoDesc  ? label(seoDesc)  : label(subtitle)
         </p>
       </div>
     </section>
+
+    <!-- ── Galeria de fotos ── -->
+    {images && images.length > 1 && (
+      <section class="relative overflow-hidden" style="background:#1a1510">
+        <!-- Slideshow principal -->
+        <div class="host-gallery relative" style="height:clamp(260px,45vw,520px)">
+          {images.map((src, i) => (
+            <img
+              src={src}
+              alt={`${name} — foto ${i + 1}`}
+              class:list={['gallery-slide absolute inset-0 w-full h-full object-cover transition-opacity duration-700', i === 0 ? 'opacity-100' : 'opacity-0']}
+              loading={i < 3 ? 'eager' : 'lazy'}
+            />
+          ))}
+          <!-- Controls -->
+          <button class="gallery-prev absolute left-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full flex items-center justify-center transition hover:scale-110" style="background:#00000066;color:#F8EEDA;backdrop-filter:blur(4px)">
+            <svg class="w-4 h-4" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="10 3 5 8 10 13"/></svg>
+          </button>
+          <button class="gallery-next absolute right-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full flex items-center justify-center transition hover:scale-110" style="background:#00000066;color:#F8EEDA;backdrop-filter:blur(4px)">
+            <svg class="w-4 h-4" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 3 11 8 6 13"/></svg>
+          </button>
+          <!-- Comptador -->
+          <span class="gallery-counter absolute bottom-3 right-4 text-xs font-semibold px-2.5 py-1 rounded-full" style="background:#00000066;color:#ffffff99;backdrop-filter:blur(4px)">1 / {images.length}</span>
+        </div>
+
+        <!-- Miniaturas -->
+        <div class="flex gap-1.5 overflow-x-auto px-4 py-3 scrollbar-hide" style="scrollbar-width:none">
+          {images.map((src, i) => (
+            <button
+              class:list={['gallery-thumb flex-shrink-0 rounded overflow-hidden transition border-2', i === 0 ? 'border-[#A7B75D]' : 'border-transparent opacity-50 hover:opacity-80']}
+              data-idx={i}
+              style="width:64px;height:48px"
+            >
+              <img src={src} alt="" class="w-full h-full object-cover pointer-events-none" loading="lazy" />
+            </button>
+          ))}
+        </div>
+      </section>
+    )}
 
     <!-- ── Per a la teva bici ── -->
     <section class="px-[5vw] py-16" style="background:#41372B">
@@ -403,6 +443,40 @@ const pageDesc  = seoDesc  ? label(seoDesc)  : label(subtitle)
 </Layout>
 
 <script>
+  // ── Galeria ──
+  const gallery = document.querySelector<HTMLElement>('.host-gallery')
+  if (gallery) {
+    const slides = gallery.querySelectorAll<HTMLImageElement>('.gallery-slide')
+    const thumbs = document.querySelectorAll<HTMLButtonElement>('.gallery-thumb')
+    const counter = gallery.querySelector<HTMLElement>('.gallery-counter')
+    let current = 0
+    let autoTimer: ReturnType<typeof setInterval>
+
+    function goTo(idx: number) {
+      slides[current].classList.replace('opacity-100', 'opacity-0')
+      thumbs[current]?.classList.remove('border-[#A7B75D]')
+      thumbs[current]?.classList.add('opacity-50', 'border-transparent')
+      current = (idx + slides.length) % slides.length
+      slides[current].classList.replace('opacity-0', 'opacity-100')
+      thumbs[current]?.classList.add('border-[#A7B75D]')
+      thumbs[current]?.classList.remove('opacity-50', 'border-transparent')
+      if (counter) counter.textContent = `${current + 1} / ${slides.length}`
+      // scroll thumbnail into view
+      thumbs[current]?.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' })
+    }
+
+    function startAuto() {
+      clearInterval(autoTimer)
+      autoTimer = setInterval(() => goTo(current + 1), 4000)
+    }
+
+    gallery.querySelector('.gallery-prev')?.addEventListener('click', () => { goTo(current - 1); startAuto() })
+    gallery.querySelector('.gallery-next')?.addEventListener('click', () => { goTo(current + 1); startAuto() })
+    thumbs.forEach((btn) => btn.addEventListener('click', () => { goTo(Number(btn.dataset.idx)); startAuto() }))
+    startAuto()
+  }
+
+  // ── Booking form ──
   const section = document.getElementById('booking-section') as HTMLElement | null
   const form    = document.getElementById('booking-form')    as HTMLFormElement | null
   const btn     = document.getElementById('booking-submit')  as HTMLButtonElement | null
