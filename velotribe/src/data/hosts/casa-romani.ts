@@ -11,7 +11,7 @@ export const casaRomaniBase = {
   seal: true,
   image: '/hosts/casa-romani/1.jpg',
   images: Array.from({ length: 30 }, (_, i) => `/hosts/casa-romani/${i + 1}.jpg`),
-  website: 'https://moreholiday.es',
+  website: undefined,
 
   title: {
     en: "Holiday Home for Cyclists in Pla de l'Estany",
@@ -32,9 +32,9 @@ export const casaRomaniBase = {
   },
 
   spaceDetails: {
-    en: "The house accommodates up to 8 guests and is available for short and longer stays. Fully equipped kitchen — no breakfast provided, but you have everything you need to cook. Private parking on site. Booking managed externally through More Holiday.",
-    es: "La casa tiene capacidad para 8 huéspedes y está disponible para estancias cortas y largas. Cocina totalmente equipada — sin desayuno incluido, pero con todo lo necesario para cocinar. Aparcamiento privado en la finca. Reservas gestionadas externamente a través de More Holiday.",
-    ca: "La casa té capacitat per a 8 hostes i està disponible per a estades curtes i llargues. Cuina totalment equipada — sense esmorzar inclòs, però amb tot el necessari per cuinar. Aparcament privat a la finca. Reserves gestionades externament a través de More Holiday.",
+    en: "The house accommodates up to 8 guests and is available for short and longer stays. Fully equipped kitchen — no breakfast provided, but you have everything you need to cook. Private parking on site. Booking managed externally.",
+    es: "La casa tiene capacidad para 8 huéspedes y está disponible para estancias cortas y largas. Cocina totalmente equipada — sin desayuno incluido, pero con todo lo necesario para cocinar. Aparcamiento privado en la finca. Reservas gestionadas externamente.",
+    ca: "La casa té capacitat per a 8 hostes i està disponible per a estades curtes i llargues. Cuina totalment equipada — sense esmorzar inclòs, però amb tot el necessari per cuinar. Aparcament privat a la finca. Reserves gestionades externament.",
   },
 
   areaSection: {

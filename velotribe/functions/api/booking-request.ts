@@ -89,7 +89,7 @@ export const onRequestPost: PagesFunction<Env> = async ({ request, env }) => {
       </table>
       ${hostUrl ? `<p style="margin-top:24px">
         <a href="${hostUrl}" style="display:inline-block;background:#A7B75D;color:#2C2419;padding:11px 22px;text-decoration:none;font-weight:700;font-size:13px;border-radius:6px">
-          Check availability on More Holiday →
+          Check availability →
         </a>
       </p>` : ''}
       <p style="margin-top:20px;color:#999;font-size:12px;border-top:1px solid #ede8e0;padding-top:16px">
