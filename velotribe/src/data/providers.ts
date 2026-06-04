@@ -33,6 +33,7 @@ export interface Provider {
     en: string
     es: string
     ca: string
+    fr?: string
   }
   image?: string              // ruta relativa a /public o URL externa (portada)
   images?: string[]           // galeria completa (pàgina de detall)
@@ -46,30 +47,30 @@ export interface Provider {
 }
 
 // ─── TAG LABELS (multilingüe) ───────────────────────────────────────────────
-export const tagLabels: Record<ProviderTag, { en: string; es: string; ca: string }> = {
-  'bike-storage':    { en: 'Bike storage',     es: 'Guardabici',        ca: 'Guarda-bici'       },
-  'secure-storage':  { en: 'Secure storage',   es: 'Almacén seguro',    ca: 'Emmagatzematge segur' },
-  'breakfast':       { en: 'Cyclist breakfast', es: 'Desayuno ciclista', ca: 'Esmorzar ciclista' },
-  'tools':           { en: 'Workshop & tools',  es: 'Taller y herram.',  ca: 'Taller i eines'    },
-  'laundry':         { en: 'Laundry',           es: 'Lavandería',        ca: 'Bugaderia'         },
-  'outdoor-shower':  { en: 'Outdoor shower',    es: 'Ducha exterior',    ca: 'Dutxa exterior'    },
-  'bike-wash':       { en: 'Bike wash',         es: 'Limpieza bici',     ca: 'Neteja bici'       },
-  'bike-rental':     { en: 'Bike rental',       es: 'Alquiler bici',     ca: 'Lloguer bici'      },
-  'group-rides':     { en: 'Group rides',       es: 'Salidas en grupo',  ca: 'Sortides en grup'  },
-  'route-tips':      { en: 'Local route tips',  es: 'Rutas locales',     ca: 'Rutes locals'      },
-  'transfer':        { en: 'Transfer service',  es: 'Transfer',          ca: 'Transfer'          },
-  'pool':                { en: 'Pool',                  es: 'Piscina',              ca: 'Piscina'                },
-  'garden':              { en: 'Garden',                es: 'Jardín',               ca: 'Jardí'                  },
-  'functional-training': { en: 'Functional training',   es: 'Entrenamiento funcional', ca: 'Entrenament funcional' },
-  'small-groups':        { en: 'Small groups',          es: 'Grupos reducidos',      ca: 'Grups reduïts'          },
-  'readaptation':        { en: 'Readaptation',          es: 'Readaptación',          ca: 'Readaptació'            },
-  'performance':         { en: 'Performance training',  es: 'Entren. de rendiment',  ca: 'Entren. de rendiment'  },
+export const tagLabels: Record<ProviderTag, { en: string; es: string; ca: string; fr: string }> = {
+  'bike-storage':    { en: 'Bike storage',     es: 'Guardabici',        ca: 'Guarda-bici',          fr: 'Stockage vélo'        },
+  'secure-storage':  { en: 'Secure storage',   es: 'Almacén seguro',    ca: 'Emmagatzematge segur', fr: 'Stockage sécurisé'    },
+  'breakfast':       { en: 'Cyclist breakfast', es: 'Desayuno ciclista', ca: 'Esmorzar ciclista',    fr: 'Petit-déj. cycliste'  },
+  'tools':           { en: 'Workshop & tools',  es: 'Taller y herram.',  ca: 'Taller i eines',       fr: 'Atelier & outils'     },
+  'laundry':         { en: 'Laundry',           es: 'Lavandería',        ca: 'Bugaderia',            fr: 'Laverie'              },
+  'outdoor-shower':  { en: 'Outdoor shower',    es: 'Ducha exterior',    ca: 'Dutxa exterior',       fr: 'Douche extérieure'    },
+  'bike-wash':       { en: 'Bike wash',         es: 'Limpieza bici',     ca: 'Neteja bici',          fr: 'Lavage vélo'          },
+  'bike-rental':     { en: 'Bike rental',       es: 'Alquiler bici',     ca: 'Lloguer bici',         fr: 'Location vélo'        },
+  'group-rides':     { en: 'Group rides',       es: 'Salidas en grupo',  ca: 'Sortides en grup',     fr: 'Sorties en groupe'    },
+  'route-tips':      { en: 'Local route tips',  es: 'Rutas locales',     ca: 'Rutes locals',         fr: 'Conseils locaux'      },
+  'transfer':        { en: 'Transfer service',  es: 'Transfer',          ca: 'Transfer',             fr: 'Transfert'            },
+  'pool':                { en: 'Pool',                  es: 'Piscina',                 ca: 'Piscina',               fr: 'Piscine'                  },
+  'garden':              { en: 'Garden',                es: 'Jardín',                  ca: 'Jardí',                 fr: 'Jardin'                   },
+  'functional-training': { en: 'Functional training',   es: 'Entrenamiento funcional', ca: 'Entrenament funcional', fr: 'Entraînement fonctionnel' },
+  'small-groups':        { en: 'Small groups',          es: 'Grupos reducidos',        ca: 'Grups reduïts',         fr: 'Petits groupes'           },
+  'readaptation':        { en: 'Readaptation',          es: 'Readaptación',            ca: 'Readaptació',           fr: 'Réadaptation'             },
+  'performance':         { en: 'Performance training',  es: 'Entren. de rendiment',    ca: 'Entren. de rendiment',  fr: 'Entraîn. performance'     },
 }
 
 // ─── BADGE LABELS ────────────────────────────────────────────────────────────
 export const badgeLabels = {
-  'founding-host': { en: 'Founding Host', es: 'Anfitrión Fundador', ca: 'Amfitrió Fundador' },
-  'verified':      { en: 'Verified',      es: 'Verificado',         ca: 'Verificat'          },
+  'founding-host': { en: 'Founding Host', es: 'Anfitrión Fundador', ca: 'Amfitrió Fundador', fr: 'Hôte Fondateur' },
+  'verified':      { en: 'Verified',      es: 'Verificado',         ca: 'Verificat',          fr: 'Vérifié'        },
 }
 
 // ─── LLISTA DE PROVEÏDORS ────────────────────────────────────────────────────

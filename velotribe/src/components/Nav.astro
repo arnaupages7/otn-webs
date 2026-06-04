@@ -7,21 +7,71 @@ const t = useTranslations(lang)
 const ctaCyclist = t('nav.cta')
 const ctaHost = t('nav.cta.host')
 
-const path = Astro.url.pathname.replace(/^\/(es|ca)/, '') || '/'
+const path = Astro.url.pathname.replace(/^\/(es|ca|fr)/, '') || '/'
+
+const senyeraSvg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 14" class="w-5 h-3.5 rounded-sm overflow-hidden flex-shrink-0"><rect width="20" height="14" fill="#FCDD09"/><rect y="1.556" width="20" height="1.556" fill="#DA121A"/><rect y="4.667" width="20" height="1.556" fill="#DA121A"/><rect y="7.778" width="20" height="1.556" fill="#DA121A"/><rect y="10.889" width="20" height="1.556" fill="#DA121A"/></svg>`
+
+const langs = [
+  { code: 'en', label: 'EN', flag: '🇬🇧', svg: null,       href: path },
+  { code: 'es', label: 'ES', flag: '🇪🇸', svg: null,       href: `/es${path}` },
+  { code: 'ca', label: 'CA', flag: null,   svg: senyeraSvg, href: `/ca${path}` },
+  { code: 'fr', label: 'FR', flag: '🇫🇷', svg: null,       href: `/fr${path}` },
+]
+const currentLang = langs.find(l => l.code === lang)!
 ---
 
 <nav class="fixed top-0 inset-x-0 z-50 px-[4vw] flex items-center justify-between border-b border-white/10" style="background:#2C2419;color:#F8EEDA;height:60px">
   <a href={pathFor(lang, '/')} class="flex items-center gap-2 shrink-0">
     <img src="/logo.png" alt="VeloTribe" class="h-8 w-auto" />
-    <span class="font-display font-black tracking-[3px] text-sm">VELOTRIBE</span>
+    <span class="font-display font-black tracking-[3px] text-sm hidden sm:inline">VELOTRIBE</span>
   </a>
 
   <div class="flex items-center gap-2 md:gap-4 shrink-0">
-    <div class="flex items-center gap-0.5 md:gap-1 text-[10px] md:text-xs font-semibold">
-      <a href={path} class:list={['px-1.5 py-0.5 md:px-2.5 md:py-1 rounded border transition', lang === 'en' ? 'border-[#A7B75D] text-[#A7B75D]' : 'border-white/20 text-white/60 hover:text-white']}>EN</a>
-      <a href={`/es${path}`} class:list={['px-1.5 py-0.5 md:px-2.5 md:py-1 rounded border transition', lang === 'es' ? 'border-[#A7B75D] text-[#A7B75D]' : 'border-white/20 text-white/60 hover:text-white']}>ES</a>
-      <a href={`/ca${path}`} class:list={['px-1.5 py-0.5 md:px-2.5 md:py-1 rounded border transition', lang === 'ca' ? 'border-[#A7B75D] text-[#A7B75D]' : 'border-white/20 text-white/60 hover:text-white']}>CA</a>
+    <!-- Language selector custom dropdown -->
+    <div class="relative" id="lang-dropdown">
+      <button
+        id="lang-btn"
+        class="flex items-center gap-1.5 px-2.5 py-1.5 rounded border text-[11px] font-bold uppercase tracking-[1.5px] transition cursor-pointer"
+        style="background:#2C2419;border-color:#A7B75D55;color:#A7B75D"
+        aria-haspopup="listbox"
+        aria-expanded="false"
+      >
+        {currentLang.svg
+          ? <span id="lang-flag" class="flex items-center" set:html={currentLang.svg}></span>
+          : <span id="lang-flag" class="text-base leading-none">{currentLang.flag}</span>
+        }
+        <span id="lang-code">{currentLang.label}</span>
+        <svg class="w-2.5 h-2.5 opacity-60" viewBox="0 0 10 10" fill="none" stroke="#A7B75D" stroke-width="2" stroke-linecap="round">
+          <path d="M2 3.5l3 3 3-3"/>
+        </svg>
+      </button>
+
+      <ul
+        id="lang-menu"
+        role="listbox"
+        class="hidden absolute right-0 mt-1.5 rounded-lg border overflow-hidden z-50 min-w-[110px]"
+        style="background:#2C2419;border-color:#ffffff18;box-shadow:0 8px 24px #00000050"
+      >
+        {langs.map(l => (
+          <li role="option" aria-selected={l.code === lang}>
+            <a
+              href={l.href}
+              class:list={[
+                'flex items-center gap-2.5 px-3 py-2 text-[11px] font-bold uppercase tracking-[1px] transition hover:bg-white/10',
+                l.code === lang ? 'text-[#A7B75D]' : 'text-white/60 hover:text-white'
+              ]}
+            >
+              {l.svg
+                ? <span class="flex items-center" set:html={l.svg}></span>
+                : <span class="text-base leading-none">{l.flag}</span>
+              }
+              <span>{l.label}</span>
+            </a>
+          </li>
+        ))}
+      </ul>
     </div>
+
     <a id="nav-cta" href="#waitlist" class="px-2.5 py-1.5 md:px-4 md:py-2 rounded-md font-bold text-[10px] md:text-xs uppercase tracking-wider transition hover:opacity-90 whitespace-nowrap" style="background:#A7B75D;color:#2C2419"
       data-cyclist={ctaCyclist} data-host={ctaHost}>
       {ctaCyclist}
@@ -30,6 +80,24 @@ const path = Astro.url.pathname.replace(/^\/(es|ca)/, '') || '/'
 </nav>
 
 <script>
+  // Language dropdown
+  const langBtn = document.getElementById('lang-btn')
+  const langMenu = document.getElementById('lang-menu')
+
+  langBtn?.addEventListener('click', (e) => {
+    e.stopPropagation()
+    const isOpen = !langMenu!.classList.contains('hidden')
+    langMenu!.classList.toggle('hidden', isOpen)
+    langBtn.setAttribute('aria-expanded', String(!isOpen))
+  })
+
+  document.addEventListener('click', () => {
+    langMenu?.classList.add('hidden')
+    langBtn?.setAttribute('aria-expanded', 'false')
+  })
+
+  langMenu?.addEventListener('click', (e) => e.stopPropagation())
+
   const cta = document.getElementById('nav-cta') as HTMLAnchorElement | null
   if (cta) {
     const hostSection = document.getElementById('paths')
