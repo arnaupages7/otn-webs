@@ -80,7 +80,31 @@ const labels = {
   },
 }
 
+const join = {
+  en: {
+    title: 'Want to join us?',
+    sub: 'Be the first selected host to enter the community.',
+    cta: 'Apply as a host',
+  },
+  es: {
+    title: '¿Quieres unirte?',
+    sub: 'Sé el primer anfitrión seleccionado en entrar a la comunidad.',
+    cta: 'Aplicar como anfitrión',
+  },
+  ca: {
+    title: 'Vols unir-te?',
+    sub: "Sigues el primer amfitrió seleccionat en entrar a la comunitat.",
+    cta: "Aplica com a amfitrió",
+  },
+  fr: {
+    title: 'Vous souhaitez nous rejoindre ?',
+    sub: 'Soyez le premier hôte sélectionné à rejoindre la communauté.',
+    cta: 'Postuler comme hôte',
+  },
+}
+
 const t = labels[lang] ?? labels['en']
+const j = join[lang] ?? join['en']
 const activeProviders = providers.filter(p => p.active && !p.hidden)
 const soonSlots = providers.filter(p => !p.active && !p.hidden)
 ---
@@ -239,17 +263,27 @@ const soonSlots = providers.filter(p => !p.active && !p.hidden)
         </div>
       ))}
 
-      <!-- Targetes "joining soon" -->
+      <!-- Targetes "join us" -->
       {soonSlots.map(() => (
-        <div class="rounded-2xl overflow-hidden flex flex-col opacity-40" style="background:#41372B;border:1px dashed #ffffff20">
+        <div class="rounded-2xl overflow-hidden flex flex-col" style="background:#41372B;border:1px dashed #A7B75D55">
           <div class="h-48 flex items-center justify-center" style="background:#2C2419">
-            <svg class="w-8 h-8 opacity-30" viewBox="0 0 24 24" fill="none" stroke="#F8EEDA" stroke-width="1.5" stroke-linecap="round">
+            <svg class="w-10 h-10" viewBox="0 0 24 24" fill="none" stroke="#A7B75D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.6">
               <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/>
             </svg>
           </div>
-          <div class="p-6">
-            <p class="font-display font-black text-xl uppercase mb-2" style="color:#F8EEDA">{t.soon_name}</p>
-            <p class="text-sm" style="color:#ffffff50">{t.soon_desc}</p>
+          <div class="p-6 flex flex-col flex-1 justify-between">
+            <div>
+              <p class="font-display font-black text-xl uppercase mb-2 leading-tight" style="color:#F8EEDA">{j.title}</p>
+              <p class="text-sm leading-relaxed mb-5" style="color:#ffffff70">{j.sub}</p>
+            </div>
+            <a
+              href={`${pathFor(lang, '/')}#waitlist`}
+              class="inline-flex items-center gap-2 text-sm font-bold px-4 py-2 rounded-lg transition hover:gap-3"
+              style="background:#A7B75D;color:#2C2419;width:fit-content"
+            >
+              {j.cta}
+              <span aria-hidden="true">→</span>
+            </a>
           </div>
         </div>
       ))}
