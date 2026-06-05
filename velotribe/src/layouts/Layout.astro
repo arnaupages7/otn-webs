@@ -80,33 +80,111 @@ const hrefFr = new URL('/fr/', siteOrigin).toString()
       inLanguage: ['en', 'es', 'ca']
     })} />
 
-    <!-- Google Analytics 4 -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-XXXXXXXXXX');
-    </script>
-
-    <!-- Meta Pixel -->
-    <script>
-      !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-      n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
-      n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
-      t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
-      document,'script','https://connect.facebook.net/en_US/fbevents.js');
-      fbq('init', 'XXXXXXXXXXXXXXXXX');
-      fbq('track', 'PageView');
-    </script>
-    <noscript><img height="1" width="1" style="display:none"
-      src="https://www.facebook.com/tr?id=XXXXXXXXXXXXXXXXX&ev=PageView&noscript=1"/></noscript>
-
     <!-- Cloudflare Web Analytics (privacy-first, no cookies) -->
     <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "9d88c2c0ec414e999bfc5ddb446532a1"}'></script>
   </head>
   <body class="min-h-screen bg-cream text-brown font-body antialiased">
     <slot />
+
+    <!-- Cookie consent banner -->
+    <div id="cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:100;background:#2C2419;color:#F8EEDA;padding:1rem 1.5rem;box-shadow:0 -2px 16px rgba(0,0,0,0.3);">
+      <div style="max-width:900px;margin:0 auto;display:flex;flex-wrap:wrap;align-items:center;gap:1rem;justify-content:space-between;">
+        <p id="cookie-text" style="margin:0;font-size:0.85rem;line-height:1.5;flex:1;min-width:200px;"></p>
+        <div style="display:flex;gap:0.625rem;flex-shrink:0;">
+          <button id="cookie-reject"
+            style="padding:0.5rem 1.1rem;border-radius:4px;border:1px solid #706050;background:transparent;color:#F8EEDA;font-size:0.8rem;cursor:pointer;transition:background 0.2s;"
+            onmouseover="this.style.background='rgba(255,255,255,0.08)'"
+            onmouseout="this.style.background='transparent'">
+          </button>
+          <button id="cookie-accept"
+            style="padding:0.5rem 1.1rem;border-radius:4px;border:none;background:#A7B75D;color:#2C2419;font-size:0.8rem;font-weight:700;cursor:pointer;transition:background 0.2s;"
+            onmouseover="this.style.background='#c5d46e'"
+            onmouseout="this.style.background='#A7B75D'">
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script define:vars={{ lang }}>
+      (function () {
+        var msgs = {
+          en: {
+            text: 'We use cookies to analyse visits and improve your experience. <a href="/cookies" style="color:#A7B75D;text-decoration:underline;">Cookie policy</a>.',
+            accept: 'Accept',
+            reject: 'Reject',
+          },
+          es: {
+            text: 'Usamos cookies para analizar visitas y mejorar tu experiencia. <a href="/es/cookies" style="color:#A7B75D;text-decoration:underline;">Política de cookies</a>.',
+            accept: 'Aceptar',
+            reject: 'Rechazar',
+          },
+          ca: {
+            text: 'Usem cookies per analitzar visites i millorar la teva experiència. <a href="/ca/cookies" style="color:#A7B75D;text-decoration:underline;">Política de galetes</a>.',
+            accept: 'Acceptar',
+            reject: 'Rebutjar',
+          },
+          fr: {
+            text: 'Nous utilisons des cookies pour analyser les visites et améliorer votre expérience. <a href="/fr/cookies" style="color:#A7B75D;text-decoration:underline;">Politique de cookies</a>.',
+            accept: 'Accepter',
+            reject: 'Refuser',
+          },
+        }
+
+        var l = msgs[lang] || msgs.en
+        var banner = document.getElementById('cookie-banner')
+        var textEl = document.getElementById('cookie-text')
+        var acceptBtn = document.getElementById('cookie-accept')
+        var rejectBtn = document.getElementById('cookie-reject')
+
+        textEl.innerHTML = l.text
+        acceptBtn.textContent = l.accept
+        rejectBtn.textContent = l.reject
+
+        var consent = localStorage.getItem('vt-cookie-consent')
+
+        function loadAnalytics() {
+          // Google Analytics 4
+          var s = document.createElement('script')
+          s.async = true
+          s.src = 'https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX'
+          document.head.appendChild(s)
+          window.dataLayer = window.dataLayer || []
+          function gtag() { window.dataLayer.push(arguments) }
+          window.gtag = gtag
+          gtag('js', new Date())
+          gtag('config', 'G-XXXXXXXXXX')
+
+          // Meta Pixel
+          ;(function (f, b, e, v, n, t, s) {
+            if (f.fbq) return
+            n = f.fbq = function () { n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments) }
+            if (!f._fbq) f._fbq = n
+            n.push = n; n.loaded = true; n.version = '2.0'; n.queue = []
+            t = b.createElement(e); t.async = true; t.src = v
+            s = b.getElementsByTagName(e)[0]; s.parentNode.insertBefore(t, s)
+          })(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js')
+          window.fbq('init', 'XXXXXXXXXXXXXXXXX')
+          window.fbq('track', 'PageView')
+        }
+
+        if (consent === 'accepted') {
+          loadAnalytics()
+        } else if (consent === null) {
+          banner.style.display = 'block'
+        }
+
+        acceptBtn.addEventListener('click', function () {
+          localStorage.setItem('vt-cookie-consent', 'accepted')
+          banner.style.display = 'none'
+          loadAnalytics()
+        })
+
+        rejectBtn.addEventListener('click', function () {
+          localStorage.setItem('vt-cookie-consent', 'rejected')
+          banner.style.display = 'none'
+        })
+      })()
+    </script>
 
     <!-- Social floating buttons -->
     <div style="position:fixed;bottom:1.25rem;right:1.25rem;z-index:50;display:flex;flex-direction:column;gap:0.625rem;align-items:center;">
