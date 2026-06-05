@@ -111,14 +111,23 @@ const soonSlots = providers.filter(p => !p.active && !p.hidden)
                 class="slider-img w-full h-full object-cover transition-opacity duration-700"
                 loading="lazy"
               />
+              {/* Overlay clicable cap a la pàgina del host */}
+              {p.slug && (
+                <a
+                  href={pathFor(lang, `/hosts/${p.slug}`)}
+                  class="absolute inset-0 z-10"
+                  aria-label={p.name}
+                  style="cursor:pointer"
+                />
+              )}
               {p.badge && (
-                <span class="absolute top-3 left-3 px-2.5 py-1 rounded text-[10px] font-bold uppercase tracking-[1.5px]"
+                <span class="absolute top-3 left-3 z-20 px-2.5 py-1 rounded text-[10px] font-bold uppercase tracking-[1.5px]"
                   style="background:#A7B75D;color:#2C2419">
                   {badgeLabels[p.badge][lang as 'en'|'es'|'ca'|'fr'] ?? badgeLabels[p.badge].en}
                 </span>
               )}
               {p.seal && (
-                <span class="absolute top-3 right-3 flex items-center gap-1 px-2 py-1 rounded text-[10px] font-bold uppercase tracking-[1px]"
+                <span class="absolute top-3 right-3 z-20 flex items-center gap-1 px-2 py-1 rounded text-[10px] font-bold uppercase tracking-[1px]"
                   style="background:#2C2419cc;color:#A7B75D;border:1px solid #A7B75D55;backdrop-filter:blur(4px)">
                   <svg class="w-3 h-3 shrink-0" viewBox="0 0 16 16" fill="none">
                     <path d="M8 1l1.8 3.6L14 5.6l-3 2.9.7 4.1L8 10.5l-3.7 1.9.7-4.1-3-2.9 4.2-.6z" fill="#A7B75D"/>
@@ -128,7 +137,7 @@ const soonSlots = providers.filter(p => !p.active && !p.hidden)
               )}
               <!-- Indicadors de punts (només si hi ha múltiples fotos) -->
               {(p.cardImages ?? p.images) && ((p.cardImages ?? p.images)!.length > 1) && (
-                <div class="slider-dots absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1.5">
+                <div class="slider-dots absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1.5 z-20">
                   {(p.cardImages ?? p.images)!.map((_, i) => (
                     <span class:list={['w-1.5 h-1.5 rounded-full transition-all', i === 0 ? 'bg-white scale-110' : 'bg-white/40']}></span>
                   ))}
@@ -142,14 +151,22 @@ const soonSlots = providers.filter(p => !p.active && !p.hidden)
                 <rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/>
                 <polyline points="21 15 16 10 5 21"/>
               </svg>
+              {p.slug && (
+                <a
+                  href={pathFor(lang, `/hosts/${p.slug}`)}
+                  class="absolute inset-0 z-10"
+                  aria-label={p.name}
+                  style="cursor:pointer"
+                />
+              )}
               {p.badge && (
-                <span class="absolute top-3 left-3 px-2.5 py-1 rounded text-[10px] font-bold uppercase tracking-[1.5px]"
+                <span class="absolute top-3 left-3 z-20 px-2.5 py-1 rounded text-[10px] font-bold uppercase tracking-[1.5px]"
                   style="background:#A7B75D;color:#2C2419">
                   {badgeLabels[p.badge][lang as 'en'|'es'|'ca'|'fr'] ?? badgeLabels[p.badge].en}
                 </span>
               )}
               {p.seal && (
-                <span class="absolute top-3 right-3 flex items-center gap-1 px-2 py-1 rounded text-[10px] font-bold uppercase tracking-[1px]"
+                <span class="absolute top-3 right-3 z-20 flex items-center gap-1 px-2 py-1 rounded text-[10px] font-bold uppercase tracking-[1px]"
                   style="background:#2C2419cc;color:#A7B75D;border:1px solid #A7B75D55">
                   <svg class="w-3 h-3 shrink-0" viewBox="0 0 16 16" fill="none">
                     <path d="M8 1l1.8 3.6L14 5.6l-3 2.9.7 4.1L8 10.5l-3.7 1.9.7-4.1-3-2.9 4.2-.6z" fill="#A7B75D"/>
