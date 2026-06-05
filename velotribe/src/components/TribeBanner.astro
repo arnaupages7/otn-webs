@@ -1,0 +1,95 @@
+---
+import { type Lang } from '../i18n/utils'
+
+interface Props { lang: Lang }
+const { lang } = Astro.props
+
+const labels = {
+  en: {
+    pre: 'You are not just a guest.',
+    title: 'You are a',
+    tribe: 'VeloTriber.',
+    items: [
+      'Local hosts who ride the same roads as you',
+      'Routes curated by people who live here',
+      'A community that grows every week',
+    ],
+    cta: 'Join the tribe',
+  },
+  es: {
+    pre: 'No eres solo un turista.',
+    title: 'Eres un',
+    tribe: 'VeloTriber.',
+    items: [
+      'Anfitriones locales que pedalean las mismas carreteras',
+      'Rutas curadas por personas que viven aquí',
+      'Una comunidad que crece cada semana',
+    ],
+    cta: 'Únete a la tribu',
+  },
+  ca: {
+    pre: 'No ets un turista més.',
+    title: 'Ets un',
+    tribe: 'VeloTriber.',
+    items: [
+      'Amfitrions locals que pedalen les mateixes carreteres',
+      'Rutes curades per gent que viu aquí',
+      'Una comunitat que creix cada setmana',
+    ],
+    cta: 'Uneix-te a la tribu',
+  },
+  fr: {
+    pre: "Vous n'êtes pas juste un touriste.",
+    title: 'Vous êtes un',
+    tribe: 'VeloTriber.',
+    items: [
+      'Des hôtes locaux qui roulent sur les mêmes routes',
+      'Des parcours sélectionnés par des gens qui vivent ici',
+      'Une communauté qui grandit chaque semaine',
+    ],
+    cta: 'Rejoindre la tribu',
+  },
+}
+
+const t = labels[lang] ?? labels.en
+const waitlistHref = lang === 'en' ? '/#waitlist' : `/${lang}/#waitlist`
+---
+
+<section class="px-[5vw] py-20 reveal" style="background:#2C2419;border-top:1px solid #ffffff08;border-bottom:1px solid #ffffff08">
+  <div class="max-w-4xl mx-auto flex flex-col md:flex-row items-center gap-12">
+
+    <!-- Esquerra: identitat -->
+    <div class="flex-1 text-center md:text-left">
+      <p class="text-sm mb-3 italic" style="color:#ffffff60">{t.pre}</p>
+      <p class="font-display font-black uppercase leading-[0.9]" style="font-size:clamp(40px,8vw,80px);color:#F8EEDA">
+        {t.title}<br/>
+        <span style="color:#A7B75D">{t.tribe}</span>
+      </p>
+    </div>
+
+    <!-- Dreta: llista + CTA -->
+    <div class="flex-1 flex flex-col gap-6">
+      <ul class="flex flex-col gap-3">
+        {t.items.map(item => (
+          <li class="flex items-start gap-3 text-sm" style="color:#ffffff90">
+            <span style="color:#A7B75D;margin-top:2px;flex-shrink:0">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                <path d="M8 1l1.8 3.6L14 5.6l-3 2.9.7 4.1L8 10.5l-3.7 1.9.7-4.1-3-2.9 4.2-.6z" fill="#A7B75D"/>
+              </svg>
+            </span>
+            {item}
+          </li>
+        ))}
+      </ul>
+      <a
+        href={waitlistHref}
+        class="inline-flex items-center gap-2 font-bold text-sm px-5 py-3 rounded-lg transition hover:gap-3"
+        style="background:#A7B75D;color:#2C2419;width:fit-content"
+      >
+        {t.cta}
+        <span aria-hidden="true">→</span>
+      </a>
+    </div>
+
+  </div>
+</section>
