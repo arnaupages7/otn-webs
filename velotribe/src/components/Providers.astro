@@ -266,11 +266,11 @@ const soonSlots = providers.filter(p => !p.active && !p.hidden)
       <!-- Targetes "join us" -->
       {soonSlots.map(() => (
         <div class="rounded-2xl overflow-hidden flex flex-col" style="background:#41372B;border:1px dashed #A7B75D55">
-          <div class="h-48 flex items-center justify-center" style="background:#2C2419">
+          <a href={`${pathFor(lang, '/')}#waitlist`} class="h-48 flex items-center justify-center transition-opacity hover:opacity-80" style="background:#2C2419;display:flex">
             <svg class="w-10 h-10" viewBox="0 0 24 24" fill="none" stroke="#A7B75D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.6">
               <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/>
             </svg>
-          </div>
+          </a>
           <div class="p-6 flex flex-col flex-1 justify-between">
             <div>
               <p class="font-display font-black text-xl uppercase mb-2 leading-tight" style="color:#F8EEDA">{j.title}</p>
