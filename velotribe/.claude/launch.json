@@ -6,7 +6,7 @@
       "runtimeExecutable": "npm",
       "runtimeArgs": ["run", "dev"],
       "port": 4321,
-      "cwd": "/Users/joan/Projectes Joan Automate/serveis/otn-webs/velotribe"
+      "cwd": "C:\\Users\\arnaupages\\OneDrive\\OneDrive - TAVIL\\Escritorio\\ARNAU\\otn-webs\\velotribe"
     }
   ]
 }
