@@ -116,6 +116,57 @@ async function sendWelcome(opts: {
   })
 }
 
+async function sendNotification(opts: {
+  to: string
+  from: string
+  apiKey: string
+  email: string
+  audience: 'cyclist' | 'host'
+  locale: string
+  position: number
+  extra?: Record<string, string>
+}): Promise<void> {
+  const { to, from, apiKey, email, audience, locale, position, extra = {} } = opts
+
+  const audienceLabel = audience === 'cyclist' ? '🚴 Ciclista' : '🏠 Amfitrió'
+  const extraRows = Object.entries(extra)
+    .map(([k, v]) => `<tr><td style="padding:4px 8px;color:#6b5d50;font-size:13px">${k}</td><td style="padding:4px 8px;font-size:13px;color:#2C2419"><strong>${v}</strong></td></tr>`)
+    .join('')
+
+  const html = `<!DOCTYPE html>
+<html><head><meta charset="utf-8"></head>
+<body style="font-family:system-ui,sans-serif;background:#f0e8d8;padding:32px 16px;margin:0">
+  <table width="100%" cellpadding="0" cellspacing="0" style="max-width:520px;margin:0 auto;background:#F8EEDA;border-radius:12px;overflow:hidden">
+    <tr><td style="background:#2C2419;padding:24px 32px">
+      <p style="margin:0;color:#F8EEDA;font-size:18px;font-weight:900;text-transform:uppercase;letter-spacing:2px">VELOTRIBE</p>
+      <p style="margin:4px 0 0;color:#A7B75D;font-size:12px">Nova inscripció a la waitlist</p>
+    </td></tr>
+    <tr><td style="padding:28px 32px">
+      <p style="margin:0 0 16px;font-size:22px;font-weight:800;color:#2C2419">${audienceLabel} · #${position}</p>
+      <table cellpadding="0" cellspacing="0" style="width:100%;border-collapse:collapse">
+        <tr><td style="padding:4px 8px;color:#6b5d50;font-size:13px">Email</td><td style="padding:4px 8px;font-size:13px;color:#2C2419"><strong>${email}</strong></td></tr>
+        <tr><td style="padding:4px 8px;color:#6b5d50;font-size:13px">Idioma</td><td style="padding:4px 8px;font-size:13px;color:#2C2419"><strong>${locale.toUpperCase()}</strong></td></tr>
+        ${extraRows}
+      </table>
+    </td></tr>
+    <tr><td style="background:#41372B;padding:14px 32px;text-align:center">
+      <p style="margin:0;color:#ffffff60;font-size:11px">VeloTribe · notificació automàtica</p>
+    </td></tr>
+  </table>
+</body></html>`
+
+  await fetch('https://api.resend.com/emails', {
+    method: 'POST',
+    headers: { authorization: `Bearer ${apiKey}`, 'content-type': 'application/json' },
+    body: JSON.stringify({
+      from,
+      to,
+      subject: `[VeloTribe] Nova inscripció: ${audienceLabel} #${position} — ${email}`,
+      html,
+    }),
+  })
+}
+
 export const onRequestPost: PagesFunction<Env> = async ({ request, env, waitUntil }) => {
   const ip = request.headers.get('cf-connecting-ip') ?? 'unknown'
   const cfCountry = request.headers.get('cf-ipcountry') ?? null
@@ -205,8 +256,19 @@ export const onRequestPost: PagesFunction<Env> = async ({ request, env, waitUnti
   const next = current + 1
   await env.COUNTER.put('total', String(next))
 
-  // Welcome email (best-effort, no bloca la resposta)
+  // Extra fields for the internal notification
+  const notifExtra: Record<string, string> = {}
+  if (audience === 'cyclist') {
+    notifExtra['Tipus ciclisme'] = String(body.cycling_type ?? '')
+  } else {
+    notifExtra['Negoci'] = String(body.business_name ?? '')
+    notifExtra['Tipus'] = String(body.business_type ?? '')
+    notifExtra['Ubicació'] = String(body.location ?? '')
+  }
+  if (utm_source) notifExtra['UTM source'] = utm_source
+
   if (env.RESEND_API_KEY && env.RESEND_FROM) {
+    // Welcome email al nou subscriptor
     waitUntil(
       sendWelcome({
         to: email,
@@ -215,6 +277,20 @@ export const onRequestPost: PagesFunction<Env> = async ({ request, env, waitUnti
         apiKey: env.RESEND_API_KEY,
         from: env.RESEND_FROM,
       }).catch((e) => console.error('welcome_email_failed', e)),
+    )
+
+    // Notificació interna a info@velotribe.cc
+    waitUntil(
+      sendNotification({
+        to: 'info@velotribe.cc',
+        from: env.RESEND_FROM,
+        apiKey: env.RESEND_API_KEY,
+        email,
+        audience: audience as 'cyclist' | 'host',
+        locale,
+        position: next,
+        extra: notifExtra,
+      }).catch((e) => console.error('notification_email_failed', e)),
     )
   }
 
