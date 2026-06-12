@@ -127,20 +127,24 @@ const ridesData = rides.map(ride => ({
 
             <!-- Places + CTA -->
             <div class="flex flex-col items-start sm:items-end gap-2 shrink-0">
-              {ride.isFull ? (
+              {ride.comingSoon ? (
+                <span class="text-xs font-bold px-3 py-1 rounded-full" style="background:#A7B75D22;color:#A7B75D;border:1px solid #A7B75D44">
+                  Coming soon
+                </span>
+              ) : ride.isFull ? (
                 <span class="text-xs font-bold px-3 py-1 rounded-full" style="background:#d4606022;color:#d46060;border:1px solid #d4606044">
                   {t.full}
                 </span>
               ) : (
-                <span class="text-xs font-bold px-3 py-1 rounded-full"
-                  style={ride.isUrgent ? 'background:#d4a84322;color:#d4a843;border:1px solid #d4a84344' : 'background:#A7B75D22;color:#A7B75D;border:1px solid #A7B75D44'}>
-                  {ride.isUrgent && '⚡ '}{ride.spotsLeft} {ride.spotsLabel}
-                </span>
-              )}
-              {!ride.isFull && (
-                <a href={waitlistHref} class="inline-flex items-center gap-1.5 text-xs font-bold px-4 py-2 rounded-lg transition hover:gap-2.5" style="background:#A7B75D;color:#2C2419">
-                  {t.join} →
-                </a>
+                <>
+                  <span class="text-xs font-bold px-3 py-1 rounded-full"
+                    style={ride.isUrgent ? 'background:#d4a84322;color:#d4a843;border:1px solid #d4a84344' : 'background:#A7B75D22;color:#A7B75D;border:1px solid #A7B75D44'}>
+                    {ride.isUrgent && '⚡ '}{ride.spotsLeft} {ride.spotsLabel}
+                  </span>
+                  <a href={waitlistHref} class="inline-flex items-center gap-1.5 text-xs font-bold px-4 py-2 rounded-lg transition hover:gap-2.5" style="background:#A7B75D;color:#2C2419">
+                    {t.join} →
+                  </a>
+                </>
               )}
             </div>
           </div>

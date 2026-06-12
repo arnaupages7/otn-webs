@@ -15,6 +15,7 @@ export interface Ride {
   spotsTotal: number
   spotsLeft: number
   meetPoint: string      // lloc de trobada
+  comingSoon?: boolean
 }
 
 export const rides: Ride[] = [
@@ -33,7 +34,8 @@ export const rides: Ride[] = [
     elevation: 1400,
     difficulty: 'hard',
     spotsTotal: 12,
-    spotsLeft: 4,
+    spotsLeft: 0,
+    comingSoon: true,
     meetPoint: 'Plaça del Vi, Girona',
   },
   {
@@ -51,7 +53,8 @@ export const rides: Ride[] = [
     elevation: 650,
     difficulty: 'medium',
     spotsTotal: 10,
-    spotsLeft: 6,
+    spotsLeft: 0,
+    comingSoon: true,
     meetPoint: 'Espai 8, Banyoles',
   },
   {
@@ -69,7 +72,8 @@ export const rides: Ride[] = [
     elevation: 1200,
     difficulty: 'hard',
     spotsTotal: 10,
-    spotsLeft: 2,
+    spotsLeft: 0,
+    comingSoon: true,
     meetPoint: 'Plaça del Vi, Girona',
   },
 ]
