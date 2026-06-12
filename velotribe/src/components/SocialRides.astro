@@ -98,56 +98,85 @@ const ridesData = rides.map(ride => ({
     <!-- Rides -->
     <div class="flex flex-col gap-4 reveal">
       {ridesData.map(ride => (
-        <div class="rounded-2xl overflow-hidden flex flex-col sm:flex-row" style="background:#41372B">
+        <div class="rounded-2xl overflow-hidden flex flex-col sm:flex-row relative" style="background:#41372B">
 
-          <!-- Data / hora -->
-          <div class="flex flex-col items-center justify-center px-6 py-5 sm:py-0 shrink-0 sm:w-28" style="background:#2C2419">
-            <span class="font-display font-black text-2xl uppercase leading-none" style="color:#F8EEDA">{ride.day}</span>
-            <span class="text-xs uppercase tracking-wider mt-0.5" style="color:#A7B75D">{ride.month}</span>
-            <span class="text-xs mt-2" style="color:#ffffff50">{ride.time}h</span>
-          </div>
-
-          <!-- Info -->
-          <div class="flex flex-col sm:flex-row flex-1 items-start sm:items-center gap-4 px-6 py-5">
-            <div class="flex-1">
-              <div class="flex flex-wrap items-center gap-2 mb-1">
-                <h3 class="font-display font-black text-lg uppercase" style="color:#F8EEDA">{ride.titleLoc}</h3>
-                <span class="text-[10px] font-bold uppercase px-2 py-0.5 rounded-full"
-                  style={`background:${ride.diffColor}22;color:${ride.diffColor};border:1px solid ${ride.diffColor}44`}>
-                  {ride.diffLabel}
-                </span>
+          {ride.comingSoon ? (
+            <>
+              <!-- Contingut borrós -->
+              <div class="flex flex-col sm:flex-row w-full" style="filter:blur(5px);user-select:none;pointer-events:none">
+                <div class="flex flex-col items-center justify-center px-6 py-5 sm:py-0 shrink-0 sm:w-28" style="background:#2C2419">
+                  <span class="font-display font-black text-2xl uppercase leading-none" style="color:#F8EEDA">??</span>
+                  <span class="text-xs uppercase tracking-wider mt-0.5" style="color:#A7B75D">???</span>
+                  <span class="text-xs mt-2" style="color:#ffffff50">??:??h</span>
+                </div>
+                <div class="flex flex-col sm:flex-row flex-1 items-start sm:items-center gap-4 px-6 py-5">
+                  <div class="flex-1">
+                    <div class="flex flex-wrap items-center gap-2 mb-1">
+                      <h3 class="font-display font-black text-lg uppercase" style="color:#F8EEDA">Girona Mystery Ride</h3>
+                      <span class="text-[10px] font-bold uppercase px-2 py-0.5 rounded-full" style="background:#A7B75D22;color:#A7B75D;border:1px solid #A7B75D44">Hard</span>
+                    </div>
+                    <p class="text-xs mb-2" style="color:#ffffff55">Girona · ??? · Girona</p>
+                    <div class="flex flex-wrap gap-3 text-xs" style="color:#ffffff70">
+                      <span>📍 Girona</span>
+                      <span>⬤ ??? km</span>
+                      <span>▲ ??? m↑</span>
+                    </div>
+                  </div>
+                  <div class="flex flex-col items-end gap-2 shrink-0">
+                    <span class="text-xs font-bold px-3 py-1 rounded-full" style="background:#A7B75D22;color:#A7B75D;border:1px solid #A7B75D44">12 spots</span>
+                    <span class="inline-flex items-center text-xs font-bold px-4 py-2 rounded-lg" style="background:#A7B75D;color:#2C2419">Reserve →</span>
+                  </div>
+                </div>
               </div>
-              <p class="text-xs mb-2" style="color:#ffffff55">{ride.route}</p>
-              <div class="flex flex-wrap gap-3 text-xs" style="color:#ffffff70">
-                <span>📍 {ride.meetPoint}</span>
-                <span>⬤ {ride.distance}{t.km}</span>
-                <span>▲ {ride.elevation}{t.m}</span>
+              <!-- Overlay Coming Soon -->
+              <div class="absolute inset-0 flex flex-col items-center justify-center gap-2" style="background:#2C241988">
+                <span class="font-display font-black text-2xl uppercase tracking-widest" style="color:#F8EEDA">Coming Soon</span>
+                <a href={waitlistHref} class="text-xs font-bold px-4 py-2 rounded-lg transition hover:opacity-90" style="background:#A7B75D;color:#2C2419">
+                  Join the waitlist →
+                </a>
               </div>
-            </div>
-
-            <!-- Places + CTA -->
-            <div class="flex flex-col items-start sm:items-end gap-2 shrink-0">
-              {ride.comingSoon ? (
-                <span class="text-xs font-bold px-3 py-1 rounded-full" style="background:#A7B75D22;color:#A7B75D;border:1px solid #A7B75D44">
-                  Coming soon
-                </span>
-              ) : ride.isFull ? (
-                <span class="text-xs font-bold px-3 py-1 rounded-full" style="background:#d4606022;color:#d46060;border:1px solid #d4606044">
-                  {t.full}
-                </span>
-              ) : (
-                <>
-                  <span class="text-xs font-bold px-3 py-1 rounded-full"
-                    style={ride.isUrgent ? 'background:#d4a84322;color:#d4a843;border:1px solid #d4a84344' : 'background:#A7B75D22;color:#A7B75D;border:1px solid #A7B75D44'}>
-                    {ride.isUrgent && '⚡ '}{ride.spotsLeft} {ride.spotsLabel}
-                  </span>
-                  <a href={waitlistHref} class="inline-flex items-center gap-1.5 text-xs font-bold px-4 py-2 rounded-lg transition hover:gap-2.5" style="background:#A7B75D;color:#2C2419">
-                    {t.join} →
-                  </a>
-                </>
-              )}
-            </div>
-          </div>
+            </>
+          ) : (
+            <>
+              <div class="flex flex-col items-center justify-center px-6 py-5 sm:py-0 shrink-0 sm:w-28" style="background:#2C2419">
+                <span class="font-display font-black text-2xl uppercase leading-none" style="color:#F8EEDA">{ride.day}</span>
+                <span class="text-xs uppercase tracking-wider mt-0.5" style="color:#A7B75D">{ride.month}</span>
+                <span class="text-xs mt-2" style="color:#ffffff50">{ride.time}h</span>
+              </div>
+              <div class="flex flex-col sm:flex-row flex-1 items-start sm:items-center gap-4 px-6 py-5">
+                <div class="flex-1">
+                  <div class="flex flex-wrap items-center gap-2 mb-1">
+                    <h3 class="font-display font-black text-lg uppercase" style="color:#F8EEDA">{ride.titleLoc}</h3>
+                    <span class="text-[10px] font-bold uppercase px-2 py-0.5 rounded-full"
+                      style={`background:${ride.diffColor}22;color:${ride.diffColor};border:1px solid ${ride.diffColor}44`}>
+                      {ride.diffLabel}
+                    </span>
+                  </div>
+                  <p class="text-xs mb-2" style="color:#ffffff55">{ride.route}</p>
+                  <div class="flex flex-wrap gap-3 text-xs" style="color:#ffffff70">
+                    <span>📍 {ride.meetPoint}</span>
+                    <span>⬤ {ride.distance}{t.km}</span>
+                    <span>▲ {ride.elevation}{t.m}</span>
+                  </div>
+                </div>
+                <div class="flex flex-col items-start sm:items-end gap-2 shrink-0">
+                  {ride.isFull ? (
+                    <span class="text-xs font-bold px-3 py-1 rounded-full" style="background:#d4606022;color:#d46060;border:1px solid #d4606044">{t.full}</span>
+                  ) : (
+                    <>
+                      <span class="text-xs font-bold px-3 py-1 rounded-full"
+                        style={ride.isUrgent ? 'background:#d4a84322;color:#d4a843;border:1px solid #d4a84344' : 'background:#A7B75D22;color:#A7B75D;border:1px solid #A7B75D44'}>
+                        {ride.isUrgent && '⚡ '}{ride.spotsLeft} {ride.spotsLabel}
+                      </span>
+                      <a href={waitlistHref} class="inline-flex items-center gap-1.5 text-xs font-bold px-4 py-2 rounded-lg transition hover:gap-2.5" style="background:#A7B75D;color:#2C2419">
+                        {t.join} →
+                      </a>
+                    </>
+                  )}
+                </div>
+              </div>
+            </>
+          )}
 
         </div>
       ))}
