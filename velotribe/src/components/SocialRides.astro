@@ -128,11 +128,20 @@ const ridesData = rides.map(ride => ({
                 </div>
               </div>
               <!-- Overlay Coming Soon -->
-              <div class="absolute inset-0 flex flex-col items-center justify-center gap-2" style="background:#2C241988">
-                <span class="font-display font-black text-2xl uppercase tracking-widest" style="color:#F8EEDA">Coming Soon</span>
-                <a href={waitlistHref} class="text-xs font-bold px-4 py-2 rounded-lg transition hover:opacity-90" style="background:#A7B75D;color:#2C2419">
-                  Join the waitlist →
-                </a>
+              <div class="absolute inset-0 flex items-center justify-between px-6" style="background:#2C2419cc">
+                <!-- Data visible -->
+                <div class="flex flex-col items-center shrink-0 w-20">
+                  <span class="font-display font-black text-4xl leading-none" style="color:#F8EEDA">{ride.day}</span>
+                  <span class="text-sm uppercase tracking-widest mt-1 font-bold" style="color:#A7B75D">{ride.month}</span>
+                </div>
+                <!-- Coming soon + CTA -->
+                <div class="flex flex-col items-center gap-3 flex-1">
+                  <span class="font-display font-black text-2xl uppercase tracking-widest" style="color:#F8EEDA">Coming Soon</span>
+                  <a href={waitlistHref} class="text-xs font-bold px-4 py-2 rounded-lg transition hover:opacity-90" style="background:#A7B75D;color:#2C2419">
+                    Join the waitlist →
+                  </a>
+                </div>
+                <div class="w-20 shrink-0"></div>
               </div>
             </>
           ) : (
