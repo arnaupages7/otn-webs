@@ -1,0 +1,565 @@
+---
+import { pathFor, type Lang } from '../i18n/utils'
+import Layout from '../layouts/Layout.astro'
+import Nav from './Nav.astro'
+import Footer from './Footer.astro'
+
+interface Props { lang: Lang }
+const { lang } = Astro.props
+
+const ui = {
+  en: {
+    seoTitle: 'VeloTribe Weekend — Girona, September 2026',
+    seoDesc: 'An all-inclusive cycling weekend in the Province of Girona. Accommodation, guided rides and airport transfer included. Small groups only.',
+    back: '← Back',
+
+    heroBadge: 'All-inclusive',
+    heroTitle1: 'VeloTribe',
+    heroTitle2: 'Weekend',
+    heroDate: 'Sep 5–7, 2026',
+    heroLocation: 'Province of Girona',
+    heroTagline: 'Two days in the saddle. Five days worth of memories.',
+
+    includedEyebrow: 'What\'s included',
+    includedTitle: 'Everything taken care of',
+    includedSub: 'Show up with your bike. We handle everything else.',
+    inc: [
+      { title: 'Accommodation', desc: 'Two nights in a handpicked cycling-friendly property. Private rooms, storage for your bikes, a proper kitchen.' },
+      { title: 'Guided rides', desc: 'Two days of guided routes on the roads of Girona. Adapted to your level. Led by local experts who know every climb.' },
+      { title: 'Airport transfer', desc: 'Pick up and drop off from Girona or Barcelona airport. You and your bike — no logistics stress.' },
+      { title: 'Small groups', desc: 'Maximum 10 riders per group. Real conversations, real community.' },
+    ],
+
+    programEyebrow: 'The programme',
+    programTitle: 'Three days, one tribe',
+    days: [
+      { label: 'Friday', title: 'Arrival', desc: 'Transfer from the airport. Check-in, settle in, first dinner together. The tribe gathers.' },
+      { label: 'Saturday', title: 'The big ride', desc: 'Guided route on the most iconic roads around Girona. Lunch on the road. Late afternoon recovery.' },
+      { label: 'Sunday', title: 'Morning ride + farewell', desc: 'A second guided ride in the morning. Group lunch. Afternoon transfer back to the airport.' },
+    ],
+
+    gironaEyebrow: 'The destination',
+    gironaTitle: 'Girona. The cycling capital.',
+    gironaText1: 'A city where pro cyclists live, train and unwind. The roads here are legendary — La Molina, Rocacorba, the Costa Brava coast. The kind of terrain that makes you forget time.',
+    gironaText2: 'The Province of Girona combines mountain passes, coastal roads and medieval villages. It\'s not just where cyclists come to ride. It\'s where they come back.',
+
+    contactEyebrow: 'Request a quote',
+    contactTitle: 'Ride with us',
+    contactSub: 'Tell us who you are and how many. We\'ll send you all the details and pricing.',
+    labelName: 'Your name',
+    labelEmail: 'Email',
+    labelParticipants: 'Participants',
+    selectParticipants: 'Select',
+    labelNotes: 'Questions or notes (optional)',
+    submit: 'Send request',
+    sending: 'Sending…',
+    successTitle: 'Request received!',
+    successSub: 'We\'ll get back to you with pricing and availability within 48 hours.',
+    errorRequired: 'Please fill in your name, email and number of participants.',
+    errorGeneric: 'Something went wrong. Try again or email info@velotribe.cc.',
+    spotsNotice: 'Limited spots. Small groups only.',
+    legalNote: 'By submitting you agree to be contacted about VeloTribe Weekend.',
+  },
+  es: {
+    seoTitle: 'VeloTribe Weekend — Girona, Septiembre 2026',
+    seoDesc: 'Un fin de semana ciclista todo incluido en la Provincia de Girona. Alojamiento, salidas guiadas y transfer al aeropuerto incluidos. Solo grupos reducidos.',
+    back: '← Volver',
+
+    heroBadge: 'Todo incluido',
+    heroTitle1: 'VeloTribe',
+    heroTitle2: 'Weekend',
+    heroDate: '5–7 sep. 2026',
+    heroLocation: 'Provincia de Girona',
+    heroTagline: 'Dos días sobre la bici. Recuerdos para cinco.',
+
+    includedEyebrow: 'Qué incluye',
+    includedTitle: 'Todo organizado',
+    includedSub: 'Llega con tu bici. Del resto nos encargamos nosotros.',
+    inc: [
+      { title: 'Alojamiento', desc: 'Dos noches en un alojamiento seleccionado para ciclistas. Habitaciones privadas, almacenaje para bicis, cocina completa.' },
+      { title: 'Salidas guiadas', desc: 'Dos días de rutas guiadas por las carreteras de Girona. Adaptadas a tu nivel. Con guías locales que conocen cada puerto.' },
+      { title: 'Transfer aeropuerto', desc: 'Recogida y vuelta desde el aeropuerto de Girona o Barcelona. Tú y tu bici — sin estrés logístico.' },
+      { title: 'Grupos reducidos', desc: 'Máximo 10 ciclistas por grupo. Conversaciones reales, comunidad real.' },
+    ],
+
+    programEyebrow: 'El programa',
+    programTitle: 'Tres días, una tribu',
+    days: [
+      { label: 'Viernes', title: 'Llegada', desc: 'Transfer desde el aeropuerto. Check-in, instalarse y primera cena en grupo. La tribu se reúne.' },
+      { label: 'Sábado', title: 'La gran ruta', desc: 'Ruta guiada por las carreteras más icónicas de Girona. Comida en ruta. Tarde de recuperación.' },
+      { label: 'Domingo', title: 'Ruta matinal + despedida', desc: 'Segunda ruta guiada por la mañana. Comida en grupo. Transfer de vuelta al aeropuerto por la tarde.' },
+    ],
+
+    gironaEyebrow: 'El destino',
+    gironaTitle: 'Girona. La capital del ciclismo.',
+    gironaText1: 'Una ciudad donde los pros viven, entrenan y descansan. Las carreteras son legendarias — La Molina, Rocacorba, la Costa Brava. El tipo de terreno que hace olvidar el tiempo.',
+    gironaText2: 'La Provincia de Girona combina puertos de montaña, carreteras costeras y pueblos medievales. No es solo donde los ciclistas vienen a pedalear. Es donde vuelven.',
+
+    contactEyebrow: 'Pedir presupuesto',
+    contactTitle: 'Pedalea con la tribu',
+    contactSub: 'Cuéntanos quién eres y cuántos sois. Te enviamos todos los detalles y el precio.',
+    labelName: 'Tu nombre',
+    labelEmail: 'Email',
+    labelParticipants: 'Participantes',
+    selectParticipants: 'Selecciona',
+    labelNotes: 'Preguntas o notas (opcional)',
+    submit: 'Enviar solicitud',
+    sending: 'Enviando…',
+    successTitle: '¡Solicitud recibida!',
+    successSub: 'Te respondemos con el precio y disponibilidad en menos de 48 horas.',
+    errorRequired: 'Por favor rellena nombre, email y número de participantes.',
+    errorGeneric: 'Algo ha salido mal. Inténtalo o escríbenos a info@velotribe.cc.',
+    spotsNotice: 'Plazas limitadas. Solo grupos reducidos.',
+    legalNote: 'Al enviar aceptas ser contactado sobre VeloTribe Weekend.',
+  },
+  ca: {
+    seoTitle: 'VeloTribe Weekend — Girona, Setembre 2026',
+    seoDesc: "Un cap de setmana ciclista tot inclòs a la Província de Girona. Allotjament, sortides guiades i transfer a l'aeroport inclosos. Grups reduïts.",
+    back: '← Tornar',
+
+    heroBadge: 'Tot inclòs',
+    heroTitle1: 'VeloTribe',
+    heroTitle2: 'Weekend',
+    heroDate: '5–7 set. 2026',
+    heroLocation: 'Província de Girona',
+    heroTagline: 'Dos dies a la sella. Records per a cinc.',
+
+    includedEyebrow: 'Què inclou',
+    includedTitle: 'Tot organitzat',
+    includedSub: 'Arriba amb la teva bici. De la resta ens encarreguem nosaltres.',
+    inc: [
+      { title: 'Allotjament', desc: "Dues nits en un allotjament seleccionat per a ciclistes. Habitacions privades, magatzem per a bicis, cuina completa." },
+      { title: 'Sortides guiades', desc: 'Dos dies de rutes guiades per les carreteres de Girona. Adaptades al teu nivell. Amb guies locals que coneixen cada coll.' },
+      { title: 'Transfer aeroport', desc: "Recollida i tornada des de l'aeroport de Girona o Barcelona. Tu i la teva bici — sense estrès logístic." },
+      { title: 'Grups reduïts', desc: 'Màxim 10 ciclistes per grup. Converses reals, comunitat real.' },
+    ],
+
+    programEyebrow: 'El programa',
+    programTitle: 'Tres dies, una tribu',
+    days: [
+      { label: 'Divendres', title: 'Arribada', desc: 'Transfer des de l\'aeroport. Check-in, instal·lar-se i primer sopar en grup. La tribu es reuneix.' },
+      { label: 'Dissabte', title: 'La gran ruta', desc: 'Ruta guiada per les carreteres més icòniques de Girona. Dinar en ruta. Tarda de recuperació.' },
+      { label: 'Diumenge', title: 'Ruta matinal + comiat', desc: 'Segona ruta guiada al matí. Dinar en grup. Transfer de tornada a l\'aeroport a la tarda.' },
+    ],
+
+    gironaEyebrow: 'La destinació',
+    gironaTitle: 'Girona. La capital del ciclisme.',
+    gironaText1: 'Una ciutat on els pros viuen, entrenen i descansen. Les carreteres són llegendàries — La Molina, Rocacorba, la Costa Brava. El tipus de terreny que fa oblidar el temps.',
+    gironaText2: 'La Província de Girona combina ports de muntanya, carreteres costeres i pobles medievals. No és només on els ciclistes venen a pedalar. És on tornen.',
+
+    contactEyebrow: 'Demana pressupost',
+    contactTitle: 'Pedala amb la tribu',
+    contactSub: 'Explica\'ns qui ets i quants sou. T\'enviem tots els detalls i el preu.',
+    labelName: 'El teu nom',
+    labelEmail: 'Email',
+    labelParticipants: 'Participants',
+    selectParticipants: 'Selecciona',
+    labelNotes: 'Preguntes o notes (opcional)',
+    submit: 'Enviar sol·licitud',
+    sending: 'Enviant…',
+    successTitle: 'Sol·licitud rebuda!',
+    successSub: 'Et responem amb el preu i disponibilitat en menys de 48 hores.',
+    errorRequired: 'Si us plau, omple nom, email i nombre de participants.',
+    errorGeneric: 'Alguna cosa ha fallat. Torna-ho a intentar o escriu-nos a info@velotribe.cc.',
+    spotsNotice: 'Places limitades. Grups reduïts.',
+    legalNote: "En enviar acceptes ser contactat sobre VeloTribe Weekend.",
+  },
+  fr: {
+    seoTitle: 'VeloTribe Weekend — Gérone, Septembre 2026',
+    seoDesc: 'Un week-end cycliste tout compris dans la Province de Gérone. Hébergement, sorties guidées et transfert aéroport inclus. Petits groupes uniquement.',
+    back: '← Retour',
+
+    heroBadge: 'Tout compris',
+    heroTitle1: 'VeloTribe',
+    heroTitle2: 'Weekend',
+    heroDate: '5–7 sept. 2026',
+    heroLocation: 'Province de Gérone',
+    heroTagline: 'Deux jours en selle. Des souvenirs pour cinq.',
+
+    includedEyebrow: 'Ce qui est inclus',
+    includedTitle: 'Tout est organisé',
+    includedSub: 'Arrivez avec votre vélo. On s\'occupe du reste.',
+    inc: [
+      { title: 'Hébergement', desc: 'Deux nuits dans un hébergement sélectionné pour cyclistes. Chambres privées, stockage vélos, cuisine complète.' },
+      { title: 'Sorties guidées', desc: 'Deux jours de sorties guidées sur les routes de Gérone. Adaptées à votre niveau. Avec des guides locaux qui connaissent chaque col.' },
+      { title: 'Transfert aéroport', desc: 'Prise en charge et retour depuis l\'aéroport de Gérone ou Barcelone. Vous et votre vélo — sans stress logistique.' },
+      { title: 'Petits groupes', desc: 'Maximum 10 cyclistes par groupe. Des échanges vrais, une vraie communauté.' },
+    ],
+
+    programEyebrow: 'Le programme',
+    programTitle: 'Trois jours, une tribu',
+    days: [
+      { label: 'Vendredi', title: 'Arrivée', desc: 'Transfert depuis l\'aéroport. Check-in, installation et premier dîner en groupe. La tribu se réunit.' },
+      { label: 'Samedi', title: 'La grande sortie', desc: 'Sortie guidée sur les routes les plus emblématiques de Gérone. Déjeuner en route. Après-midi récupération.' },
+      { label: 'Dimanche', title: 'Sortie matinale + départ', desc: 'Deuxième sortie guidée le matin. Déjeuner en groupe. Transfert retour vers l\'aéroport l\'après-midi.' },
+    ],
+
+    gironaEyebrow: 'La destination',
+    gironaTitle: 'Gérone. La capitale du cyclisme.',
+    gironaText1: 'Une ville où les pros vivent, s\'entraînent et se ressourcent. Les routes sont légendaires — La Molina, Rocacorba, la Costa Brava. Le genre de terrain qui fait oublier le temps.',
+    gironaText2: 'La Province de Gérone combine cols de montagne, routes côtières et villages médiévaux. Ce n\'est pas juste là où les cyclistes viennent rouler. C\'est là où ils reviennent.',
+
+    contactEyebrow: 'Demander un devis',
+    contactTitle: 'Roulez avec la tribu',
+    contactSub: 'Dites-nous qui vous êtes et combien vous êtes. Nous vous envoyons tous les détails et le tarif.',
+    labelName: 'Votre nom',
+    labelEmail: 'Email',
+    labelParticipants: 'Participants',
+    selectParticipants: 'Sélectionner',
+    labelNotes: 'Questions ou notes (optionnel)',
+    submit: 'Envoyer la demande',
+    sending: 'Envoi…',
+    successTitle: 'Demande reçue !',
+    successSub: 'Nous vous répondrons avec le tarif et les disponibilités sous 48 heures.',
+    errorRequired: 'Merci de renseigner votre nom, email et nombre de participants.',
+    errorGeneric: 'Quelque chose s\'est mal passé. Réessayez ou écrivez à info@velotribe.cc.',
+    spotsNotice: 'Places limitées. Petits groupes uniquement.',
+    legalNote: 'En envoyant vous acceptez d\'être contacté(e) au sujet du VeloTribe Weekend.',
+  },
+}
+
+const c = ui[lang] ?? ui.en
+const homeHref = pathFor(lang, '/')
+---
+
+<Layout lang={lang} title={c.seoTitle} description={c.seoDesc}>
+  <Nav lang={lang} />
+
+  <main>
+
+    <!-- ── HERO ── -->
+    <section class="relative min-h-[80vh] flex flex-col justify-end overflow-hidden" style="background:#2C2419">
+
+      <!-- Background image + overlays -->
+      <img
+        src="/hero-2.jpg"
+        alt="Cycling in Girona"
+        class="absolute inset-0 w-full h-full object-cover"
+        style="opacity:0.25;object-position:center 40%"
+        loading="eager"
+      />
+      <div class="absolute inset-0 pointer-events-none" style="background:linear-gradient(to top, #2C2419 30%, rgba(44,36,25,0.3) 70%, rgba(44,36,25,0.5) 100%)"></div>
+
+      <!-- Wave pattern overlay -->
+      <div class="absolute inset-0 pointer-events-none" style="opacity:0.06">
+        <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+          <defs>
+            <pattern id="hero-waves" x="0" y="0" width="160" height="22" patternUnits="userSpaceOnUse">
+              <path d="M0,11 Q40,2 80,11 T160,11" stroke="#A7B75D" stroke-width="1" fill="none" stroke-linecap="round"/>
+            </pattern>
+          </defs>
+          <rect width="100%" height="100%" fill="url(#hero-waves)"/>
+        </svg>
+      </div>
+
+      <!-- Radial glow -->
+      <div class="absolute inset-0 pointer-events-none" style="background:radial-gradient(ellipse 60% 50% at 30% 60%, #A7B75D0f 0%, transparent 65%)"></div>
+
+      <!-- Content -->
+      <div class="relative z-10 px-[5vw] pb-16 pt-28 max-w-5xl">
+
+        <!-- Breadcrumb -->
+        <a href={homeHref}
+           class="inline-flex items-center gap-1.5 text-xs uppercase tracking-[2px] font-semibold mb-8 transition hover:text-[#A7B75D]"
+           style="color:#ffffff50">
+          {c.back}
+        </a>
+
+        <!-- Badge -->
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full mb-6" style="background:#A7B75D20;border:1px solid #A7B75D55">
+          <svg class="w-3 h-3" viewBox="0 0 16 16" fill="none">
+            <path d="M8 1l1.8 3.6L14 5.6l-3 2.9.7 4.1L8 10.5l-3.7 1.9.7-4.1-3-2.9 4.2-.6z" fill="#A7B75D"/>
+          </svg>
+          <span class="text-[10px] font-bold uppercase tracking-[3px]" style="color:#A7B75D">{c.heroBadge}</span>
+        </div>
+
+        <!-- Title -->
+        <h1 class="font-display font-black uppercase leading-[0.88] mb-6" style="font-size:clamp(60px,12vw,120px);color:#F8EEDA;text-shadow:0 4px 30px rgba(0,0,0,0.6)">
+          {c.heroTitle1}<br>
+          <em class="not-italic" style="color:#A7B75D">{c.heroTitle2}</em>
+        </h1>
+
+        <!-- Date + location row -->
+        <div class="flex flex-wrap items-center gap-4 mb-4">
+          <span class="flex items-center gap-2 text-sm font-semibold uppercase tracking-[2px]" style="color:#ffffff70">
+            <svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+              <rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
+            </svg>
+            {c.heroDate}
+          </span>
+          <span style="color:#ffffff25">·</span>
+          <span class="flex items-center gap-2 text-sm font-semibold uppercase tracking-[2px]" style="color:#ffffff70">
+            <svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/>
+            </svg>
+            {c.heroLocation}
+          </span>
+        </div>
+
+        <!-- Tagline -->
+        <p class="text-xl md:text-2xl font-light" style="color:#d4c4a8">{c.heroTagline}</p>
+
+        <!-- Scroll CTA -->
+        <a href="#contact" class="inline-flex items-center gap-2 mt-8 px-6 py-3.5 rounded-lg font-bold text-sm uppercase tracking-[1.5px] transition hover:scale-[1.03] hover:shadow-lg"
+           style="background:#A7B75D;color:#2C2419">
+          {c.contactEyebrow}
+          <svg class="w-4 h-4" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 3 11 8 6 13"/></svg>
+        </a>
+      </div>
+    </section>
+
+
+    <!-- ── WHAT'S INCLUDED ── -->
+    <section class="px-[5vw] py-20" style="background:#F8EEDA">
+      <div class="max-w-5xl mx-auto">
+        <div class="text-center mb-14 reveal">
+          <p class="text-[11px] font-bold tracking-[3px] uppercase mb-2.5" style="color:#A7B75D">{c.includedEyebrow}</p>
+          <h2 class="font-display font-black uppercase leading-[0.95] mb-4" style="font-size:clamp(32px,6vw,56px);color:#41372B">{c.includedTitle}</h2>
+          <p class="text-base max-w-md mx-auto" style="color:#9a8c7a">{c.includedSub}</p>
+        </div>
+
+        <div class="grid sm:grid-cols-2 gap-5 reveal">
+          {[
+            { icon: 'M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z M9 22V12h6v10', ...c.inc[0] },
+            { icon: 'M17 8A5 5 0 006.3 9.9a3 3 0 10-2.3 5.6H17a4 4 0 000-8z M12 12v4 M10 14h4', ...c.inc[1] },
+            { icon: 'M12 2a10 10 0 100 20A10 10 0 0012 2zm0 0v10l4.5 4.5', ...c.inc[2] },
+            { icon: 'M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2 M9 7a4 4 0 100 8 4 4 0 000-8z M23 21v-2a4 4 0 00-3-3.87 M16 3.13a4 4 0 010 7.75', ...c.inc[3] },
+          ].map((item, i) => (
+            <div class="flex gap-5 p-7 rounded-2xl" style="background:#41372B">
+              <div class="shrink-0 w-12 h-12 rounded-xl flex items-center justify-center mt-0.5" style="background:#A7B75D18">
+                <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="#A7B75D" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d={item.icon}/>
+                </svg>
+              </div>
+              <div>
+                <h3 class="font-display font-black uppercase text-lg mb-2" style="color:#F8EEDA">{item.title}</h3>
+                <p class="text-sm leading-relaxed" style="color:#ffffff60">{item.desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ── PROGRAMME ── -->
+    <section class="px-[5vw] py-20" style="background:#2C2419">
+      <div class="max-w-5xl mx-auto">
+
+        <div class="text-center mb-14 reveal">
+          <p class="text-[11px] font-bold tracking-[3px] uppercase mb-2.5" style="color:#A7B75D">{c.programEyebrow}</p>
+          <h2 class="font-display font-black uppercase leading-[0.95]" style="font-size:clamp(32px,6vw,56px);color:#F8EEDA">{c.programTitle}</h2>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-6 reveal">
+          {c.days.map((day, i) => (
+            <div class="relative p-8 rounded-2xl overflow-hidden" style="background:#41372B;border:1px solid #A7B75D22">
+              <!-- Day number background -->
+              <div class="absolute top-4 right-5 font-display font-black text-7xl leading-none pointer-events-none select-none" style="color:#ffffff05">
+                {String(i + 1).padStart(2, '0')}
+              </div>
+              <p class="text-[10px] font-bold uppercase tracking-[3px] mb-3" style="color:#A7B75D">{day.label}</p>
+              <h3 class="font-display font-black uppercase text-2xl mb-3 leading-tight" style="color:#F8EEDA">{day.title}</h3>
+              <p class="text-sm leading-relaxed" style="color:#ffffff55">{day.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ── GIRONA ── -->
+    <section class="px-[5vw] py-20" style="background:#41372B">
+      <div class="max-w-5xl mx-auto reveal">
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+
+          <!-- Text -->
+          <div>
+            <p class="text-[11px] font-bold tracking-[3px] uppercase mb-3" style="color:#A7B75D">{c.gironaEyebrow}</p>
+            <h2 class="font-display font-black uppercase leading-[0.95] mb-6" style="font-size:clamp(28px,5vw,48px);color:#F8EEDA">{c.gironaTitle}</h2>
+            <p class="text-base leading-relaxed mb-4" style="color:#ffffff70">{c.gironaText1}</p>
+            <p class="text-sm leading-relaxed" style="color:#ffffff45">{c.gironaText2}</p>
+          </div>
+
+          <!-- Feature stats -->
+          <div class="grid grid-cols-2 gap-4">
+            {[
+              { value: '2', unit: lang === 'es' ? 'días' : lang === 'ca' ? 'dies' : lang === 'fr' ? 'jours' : 'days', label: lang === 'es' ? 'de pedaleo' : lang === 'ca' ? 'de pedaleig' : lang === 'fr' ? 'de vélo' : 'on the bike' },
+              { value: '10', unit: 'max', label: lang === 'es' ? 'ciclistas por grupo' : lang === 'ca' ? 'ciclistes per grup' : lang === 'fr' ? 'cyclistes par groupe' : 'riders per group' },
+              { value: '100%', unit: '', label: lang === 'es' ? 'todo incluido' : lang === 'ca' ? 'tot inclòs' : lang === 'fr' ? 'tout compris' : 'all-inclusive' },
+              { value: '1', unit: 'sep.', label: lang === 'es' ? 'primer fin de semana' : lang === 'ca' ? 'primer cap de setmana' : lang === 'fr' ? 'premier week-end' : 'first weekend' },
+            ].map(stat => (
+              <div class="p-5 rounded-xl text-center" style="background:#2C241950;border:1px solid #A7B75D22">
+                <p class="font-display font-black text-3xl" style="color:#A7B75D">{stat.value}<span class="text-lg ml-1" style="color:#A7B75D88">{stat.unit}</span></p>
+                <p class="text-xs mt-1 leading-snug" style="color:#ffffff50">{stat.label}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ── CONTACT FORM ── -->
+    <section id="contact" class="px-[5vw] py-20" style="background:#2C2419">
+      <div class="max-w-lg mx-auto reveal">
+
+        <p class="text-[11px] font-bold tracking-[3px] uppercase mb-2" style="color:#A7B75D">{c.contactEyebrow}</p>
+        <h2 class="font-display font-black uppercase mb-2 leading-tight" style="font-size:clamp(28px,5vw,48px);color:#F8EEDA">{c.contactTitle}</h2>
+        <p class="text-sm mb-8" style="color:#ffffff50">{c.contactSub}</p>
+
+        <!-- Spots notice -->
+        <div class="flex items-center gap-2 px-4 py-3 rounded-xl mb-8" style="background:#A7B75D12;border:1px solid #A7B75D33">
+          <svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="#A7B75D" stroke-width="2" stroke-linecap="round">
+            <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
+          </svg>
+          <p class="text-xs" style="color:#A7B75D">{c.spotsNotice}</p>
+        </div>
+
+        <!-- Form -->
+        <form id="weekend-form" novalidate
+          data-submit={c.submit}
+          data-sending={c.sending}
+          data-success-title={c.successTitle}
+          data-success-sub={c.successSub}
+          data-error-required={c.errorRequired}
+          data-error-generic={c.errorGeneric}
+          data-locale={lang}>
+
+          <!-- Name -->
+          <div class="mb-4">
+            <label class="block text-[10px] font-bold uppercase tracking-[2px] mb-1.5" style="color:#A7B75D">
+              {c.labelName} <span style="color:#ff8080">*</span>
+            </label>
+            <input type="text" name="name" required autocomplete="name"
+              class="w-full px-4 py-3 rounded-lg text-sm outline-none focus:ring-2"
+              style="background:#3d3020;border:1px solid #ffffff18;color:#F8EEDA" />
+          </div>
+
+          <!-- Email -->
+          <div class="mb-4">
+            <label class="block text-[10px] font-bold uppercase tracking-[2px] mb-1.5" style="color:#A7B75D">
+              {c.labelEmail} <span style="color:#ff8080">*</span>
+            </label>
+            <input type="email" name="email" required autocomplete="email"
+              class="w-full px-4 py-3 rounded-lg text-sm outline-none"
+              style="background:#3d3020;border:1px solid #ffffff18;color:#F8EEDA" />
+          </div>
+
+          <!-- Participants -->
+          <div class="mb-4">
+            <label class="block text-[10px] font-bold uppercase tracking-[2px] mb-1.5" style="color:#A7B75D">
+              {c.labelParticipants} <span style="color:#ff8080">*</span>
+            </label>
+            <select name="participants" required
+              class="w-full px-4 py-3 rounded-lg text-sm outline-none appearance-none"
+              style="background:#3d3020;border:1px solid #ffffff18;color:#F8EEDA">
+              <option value="" disabled selected style="color:#ffffff40">{c.selectParticipants}</option>
+              {[1,2,3,4,5,6,7,8,9,10].map(n => (
+                <option value={String(n)} style="background:#3d3020">{n}</option>
+              ))}
+            </select>
+          </div>
+
+          <!-- Notes -->
+          <div class="mb-6">
+            <label class="block text-[10px] font-bold uppercase tracking-[2px] mb-1.5" style="color:#A7B75D">
+              {c.labelNotes}
+            </label>
+            <textarea name="notes" rows={3}
+              class="w-full px-4 py-3 rounded-lg text-sm outline-none resize-none"
+              style="background:#3d3020;border:1px solid #ffffff18;color:#F8EEDA"></textarea>
+          </div>
+
+          <!-- Submit -->
+          <button id="weekend-submit" type="submit"
+            class="w-full py-4 rounded-lg font-bold text-sm transition hover:scale-[1.015] hover:shadow-lg active:scale-100 disabled:opacity-60 disabled:cursor-not-allowed"
+            style="background:#A7B75D;color:#2C2419">
+            {c.submit}
+          </button>
+
+          <!-- Error -->
+          <p id="weekend-error" class="hidden text-xs mt-3 text-center" style="color:#ff8888"></p>
+
+          <!-- Legal note -->
+          <p class="text-[11px] text-center mt-4" style="color:#ffffff25">{c.legalNote}</p>
+        </form>
+
+        <!-- Success state -->
+        <div id="weekend-success" class="hidden text-center py-12">
+          <div class="w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-5"
+               style="background:#A7B75D22;border:1px solid #A7B75D55">
+            <svg class="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="#A7B75D" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="4 12 9 17 20 6"/>
+            </svg>
+          </div>
+          <p id="weekend-success-title" class="font-display font-black uppercase text-2xl mb-2" style="color:#F8EEDA">{c.successTitle}</p>
+          <p id="weekend-success-sub" class="text-sm" style="color:#ffffff50">{c.successSub}</p>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <Footer lang={lang} />
+</Layout>
+
+<script>
+  const form    = document.getElementById('weekend-form')    as HTMLFormElement | null
+  const btn     = document.getElementById('weekend-submit')  as HTMLButtonElement | null
+  const errorEl = document.getElementById('weekend-error')
+  const successEl = document.getElementById('weekend-success')
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault()
+    if (!form || !btn) return
+
+    const data = new FormData(form)
+    const name         = (data.get('name')         as string ?? '').trim()
+    const email        = (data.get('email')        as string ?? '').trim()
+    const participants = (data.get('participants') as string ?? '').trim()
+    const notes        = (data.get('notes')        as string ?? '').trim()
+    const locale       = (form.dataset.locale ?? 'en')
+
+    const errorRequired = form.dataset.errorRequired ?? ''
+    const errorGeneric  = form.dataset.errorGeneric  ?? ''
+    const labelSending  = form.dataset.sending       ?? '…'
+    const labelSubmit   = form.dataset.submit        ?? 'Send'
+
+    function showError(msg: string) {
+      if (!errorEl) return
+      errorEl.textContent = msg
+      errorEl.classList.remove('hidden')
+    }
+
+    if (!name || !email || !participants) {
+      showError(errorRequired)
+      return
+    }
+
+    btn.disabled = true
+    btn.textContent = labelSending
+    errorEl?.classList.add('hidden')
+
+    try {
+      const res = await fetch('/api/weekend-inquiry', {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({ name, email, participants, notes, locale }),
+      })
+      const json = await res.json() as { ok: boolean; error?: string }
+
+      if (json.ok) {
+        form.classList.add('hidden')
+        successEl?.classList.remove('hidden')
+      } else {
+        throw new Error(json.error ?? 'unknown')
+      }
+    } catch {
+      btn.disabled = false
+      btn.textContent = labelSubmit
+      showError(errorGeneric)
+    }
+  })
+</script>

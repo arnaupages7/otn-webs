@@ -1,0 +1,214 @@
+---
+import { pathFor, type Lang } from '../i18n/utils'
+
+interface Props { lang: Lang }
+const { lang } = Astro.props
+
+const t = {
+  en: {
+    eyebrow: 'Upcoming event',
+    title1: 'VeloTribe',
+    title2: 'Weekend',
+    date: 'Sep 5–7, 2026',
+    location: 'Province of Girona',
+    tagline: 'Three days. Handpicked routes. One tribe.',
+    pill1: 'Accommodation',
+    pill2: 'Guided rides',
+    pill3: 'Airport transfer',
+    cta: 'Request your quote',
+    info: 'All details',
+  },
+  es: {
+    eyebrow: 'Próximo evento',
+    title1: 'VeloTribe',
+    title2: 'Weekend',
+    date: '5–7 sep. 2026',
+    location: 'Provincia de Girona',
+    tagline: 'Tres días. Rutas únicas. Una tribu.',
+    pill1: 'Alojamiento',
+    pill2: 'Salidas guiadas',
+    pill3: 'Transfer aeropuerto',
+    cta: 'Pedir presupuesto',
+    info: 'Más información',
+  },
+  ca: {
+    eyebrow: 'Proper esdeveniment',
+    title1: 'VeloTribe',
+    title2: 'Weekend',
+    date: '5–7 set. 2026',
+    location: 'Província de Girona',
+    tagline: 'Tres dies. Rutes triades. Una tribu.',
+    pill1: 'Allotjament',
+    pill2: 'Sortides guiades',
+    pill3: 'Transfer aeroport',
+    cta: 'Demana el teu pressupost',
+    info: 'Tota la informació',
+  },
+  fr: {
+    eyebrow: 'Prochain événement',
+    title1: 'VeloTribe',
+    title2: 'Weekend',
+    date: '5–7 sept. 2026',
+    location: 'Province de Gérone',
+    tagline: 'Trois jours. Des routes d\'exception. Une tribu.',
+    pill1: 'Hébergement',
+    pill2: 'Sorties guidées',
+    pill3: 'Transfert aéroport',
+    cta: 'Demander un devis',
+    info: 'Toutes les infos',
+  },
+}
+
+const c = t[lang] ?? t.en
+const weekendPath = pathFor(lang, '/weekend')
+---
+
+<section id="weekend-banner" class="relative overflow-hidden" style="background:#2C2419">
+
+  <!-- Wave pattern (same as hero) -->
+  <div class="absolute inset-0 pointer-events-none" style="opacity:0.07">
+    <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+      <defs>
+        <pattern id="wb-waves" x="0" y="0" width="160" height="22" patternUnits="userSpaceOnUse">
+          <path d="M0,11 Q40,2 80,11 T160,11" stroke="#A7B75D" stroke-width="1" fill="none" stroke-linecap="round"/>
+        </pattern>
+      </defs>
+      <rect width="100%" height="100%" fill="url(#wb-waves)"/>
+    </svg>
+  </div>
+
+  <!-- Radial glow -->
+  <div class="absolute inset-0 pointer-events-none" style="background:radial-gradient(ellipse 60% 80% at 80% 50%, #A7B75D0f 0%, transparent 70%), radial-gradient(ellipse 40% 60% at 10% 50%, #41372B80 0%, transparent 60%)"></div>
+
+  <!-- Divider top -->
+  <div class="w-full h-px" style="background:linear-gradient(to right, transparent, #A7B75D44, transparent)"></div>
+
+  <div class="px-[5vw] py-16 md:py-20 max-w-6xl mx-auto reveal">
+    <div class="flex flex-col lg:flex-row items-center lg:items-start gap-10 lg:gap-20">
+
+      <!-- Left: text -->
+      <div class="flex-1 text-center lg:text-left">
+
+        <!-- Eyebrow pill -->
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full mb-6" style="background:#A7B75D18;border:1px solid #A7B75D44">
+          <span class="w-1.5 h-1.5 rounded-full animate-pulse" style="background:#A7B75D"></span>
+          <span class="text-[10px] font-bold uppercase tracking-[3px]" style="color:#A7B75D">{c.eyebrow}</span>
+        </div>
+
+        <!-- Title -->
+        <h2 class="font-display font-black uppercase leading-[0.88] mb-5" style="font-size:clamp(52px,10vw,100px);color:#F8EEDA">
+          {c.title1}<br>
+          <em class="not-italic" style="color:#A7B75D">{c.title2}</em>
+        </h2>
+
+        <!-- Date + location -->
+        <p class="text-sm font-semibold uppercase tracking-[3px] mb-3 flex items-center gap-2 justify-center lg:justify-start" style="color:#ffffff50">
+          <svg class="w-3.5 h-3.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
+          </svg>
+          {c.date} · {c.location}
+        </p>
+
+        <!-- Tagline -->
+        <p class="text-lg md:text-xl font-light leading-relaxed mb-8" style="color:#d4c4a8">{c.tagline}</p>
+
+        <!-- Included pills -->
+        <div class="flex flex-wrap gap-2.5 mb-10 justify-center lg:justify-start">
+          {[
+            { label: c.pill1, icon: 'M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z M9 22V12h6v10' },
+            { label: c.pill2, icon: 'M12 2a10 10 0 100 20A10 10 0 0012 2zm0 0v10l4.5 4.5' },
+            { label: c.pill3, icon: 'M20.59 13.41l-7.17 7.17a2 2 0 01-2.83 0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z M7 7h.01' },
+          ].map(({ label, icon }) => (
+            <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold" style="background:#41372B;color:#F8EEDA;border:1px solid #A7B75D33">
+              <svg class="w-3 h-3 shrink-0" viewBox="0 0 24 24" fill="none" stroke="#A7B75D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d={icon}/>
+              </svg>
+              {label}
+            </span>
+          ))}
+        </div>
+
+        <!-- CTAs -->
+        <div class="flex flex-wrap gap-3 justify-center lg:justify-start">
+          <a href={`${weekendPath}#contact`}
+             class="inline-flex items-center gap-2 px-6 py-3.5 rounded-lg font-bold text-sm uppercase tracking-[1.5px] transition hover:scale-[1.03] hover:shadow-lg active:scale-100"
+             style="background:#A7B75D;color:#2C2419">
+            {c.cta}
+            <svg class="w-4 h-4" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6 3 11 8 6 13"/></svg>
+          </a>
+          <a href={weekendPath}
+             class="inline-flex items-center gap-2 px-6 py-3.5 rounded-lg font-bold text-sm uppercase tracking-[1.5px] transition hover:opacity-80"
+             style="color:#F8EEDA;border:1px solid #ffffff25">
+            {c.info}
+          </a>
+        </div>
+      </div>
+
+      <!-- Right: 3 feature cards (desktop) -->
+      <div class="hidden lg:flex flex-col gap-4 w-72 shrink-0">
+
+        {[
+          {
+            icon: 'M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z M9 22V12h6v10',
+            title: c.pill1,
+            desc: {
+              en: 'Handpicked accommodation with cyclist-ready facilities.',
+              es: 'Alojamiento seleccionado con todo lo que un ciclista necesita.',
+              ca: "Allotjament seleccionat amb tot el que un ciclista necessita.",
+              fr: 'Hébergement sélectionné avec tout ce qu\'il faut pour un cycliste.',
+            },
+          },
+          {
+            icon: 'M3 17l4-8 4 4 4-6 4 10',
+            title: c.pill2,
+            desc: {
+              en: 'Expert local guides on the best Girona roads and climbs.',
+              es: 'Guías locales expertos por las mejores rutas de Girona.',
+              ca: 'Guies locals experts per les millors rutes de Girona.',
+              fr: 'Des guides locaux experts sur les meilleures routes de Gérone.',
+            },
+          },
+          {
+            icon: 'M12 2a10 10 0 100 20A10 10 0 0012 2zm0 0v10l4.5 4.5',
+            title: c.pill3,
+            desc: {
+              en: 'We pick you up and drop you off. Bike and luggage included.',
+              es: 'Te recogemos y te llevamos. Bici y equipaje incluidos.',
+              ca: 'Et recollim i et portem. Bici i equipatge inclosos.',
+              fr: 'On vient vous chercher et vous ramener. Vélo et bagages inclus.',
+            },
+          },
+        ].map((card, i) => (
+          <div class="flex items-start gap-4 p-5 rounded-2xl" style={`background:${i % 2 === 1 ? '#41372B' : '#3a2f22'};border:1px solid #A7B75D22`}>
+            <div class="shrink-0 w-10 h-10 rounded-xl flex items-center justify-center mt-0.5" style="background:#A7B75D18">
+              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="#A7B75D" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d={card.icon}/>
+              </svg>
+            </div>
+            <div>
+              <p class="font-bold text-sm mb-1" style="color:#F8EEDA">{card.title}</p>
+              <p class="text-xs leading-relaxed" style="color:#ffffff55">{card.desc[lang as 'en'|'es'|'ca'|'fr'] ?? card.desc.en}</p>
+            </div>
+          </div>
+        ))}
+
+        <!-- "Spots limited" notice -->
+        <div class="flex items-center gap-2 px-4 py-3 rounded-xl" style="background:#A7B75D12;border:1px solid #A7B75D33">
+          <svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="#A7B75D" stroke-width="2" stroke-linecap="round">
+            <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
+          </svg>
+          <p class="text-xs" style="color:#A7B75D">
+            {lang === 'es' ? 'Plazas limitadas · Grupos reducidos' :
+             lang === 'ca' ? 'Places limitades · Grups reduïts' :
+             lang === 'fr' ? 'Places limitées · Petits groupes' :
+             'Limited spots · Small groups only'}
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Divider bottom -->
+  <div class="w-full h-px" style="background:linear-gradient(to right, transparent, #A7B75D44, transparent)"></div>
+</section>

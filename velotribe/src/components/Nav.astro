@@ -27,6 +27,14 @@ const currentLang = langs.find(l => l.code === lang)!
   </a>
 
   <div class="flex items-center gap-2 md:gap-4 shrink-0">
+    <!-- Weekend link -->
+    <a href={pathFor(lang, '/weekend')}
+       class="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md text-[10px] font-bold uppercase tracking-[1.5px] transition hover:opacity-90 whitespace-nowrap"
+       style="background:#A7B75D18;color:#A7B75D;border:1px solid #A7B75D44">
+      <span class="w-1.5 h-1.5 rounded-full animate-pulse" style="background:#A7B75D"></span>
+      Weekend
+    </a>
+
     <!-- Language selector custom dropdown -->
     <div class="relative" id="lang-dropdown">
       <button
