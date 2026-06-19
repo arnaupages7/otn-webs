@@ -446,19 +446,6 @@ const pageDesc  = seoDesc  ? label(seoDesc)  : label(subtitle)
           <p id="booking-success-sub" class="text-sm" style="color:#ffffff50">{t.successSub}</p>
         </div>
 
-        <!-- Secondary: direct availability link -->
-        {website && (
-          <div class="mt-10 pt-8 border-t" style="border-color:#ffffff10">
-            <p class="text-xs mb-3 text-center" style="color:#ffffff30">{t.orDirect}</p>
-            <div class="text-center">
-              <a href={website} target="_blank" rel="noopener noreferrer"
-                 class="text-sm font-bold transition hover:opacity-80"
-                 style="color:#ffffff40">
-                {t.directLink}
-              </a>
-            </div>
-          </div>
-        )}
 
         <!-- VeloTribe waitlist note -->
         <div class="mt-8 text-center">
