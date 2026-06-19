@@ -167,6 +167,7 @@ export const providers: Provider[] = [
       ca: 'Casa familiar reformada al centre de Banyoles, a 1 min del llac. Esmorzar ciclista generós amb productes locals, piscina d\'aigua salada i jardí. Base ideal per pedalar pel Pla de l\'Estany i les carreteres de Girona, a 25 min. 5/5 a Google.',
       fr: 'Maison familiale rénovée au cœur de Banyoles, à 1 min du lac. Copieux petit-déjeuner cycliste avec produits locaux, piscine d\'eau salée et jardin. Base idéale pour rouler dans le Pla de l\'Estany et rejoindre Gérone en 25 min. 5/5 sur Google.',
     },
+    slug: 'maui-casa',
     image: '/hosts/maui-casa/1.jpg',
     images: Array.from({ length: 6 }, (_, i) => `/hosts/maui-casa/${i + 1}.jpg`),
     cardImages: [1, 2, 3].map(n => `/hosts/maui-casa/${n}.jpg`),
