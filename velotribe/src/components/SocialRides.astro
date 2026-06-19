@@ -105,9 +105,8 @@ const ridesData = rides.map(ride => ({
               <!-- Contingut borrós -->
               <div class="flex flex-col sm:flex-row w-full" style="filter:blur(5px);user-select:none;pointer-events:none">
                 <div class="flex flex-col items-center justify-center px-6 py-5 sm:py-0 shrink-0 sm:w-28" style="background:#2C2419">
-                  <span class="font-display font-black text-2xl uppercase leading-none" style="color:#F8EEDA">??</span>
-                  <span class="text-xs uppercase tracking-wider mt-0.5" style="color:#A7B75D">???</span>
-                  <span class="text-xs mt-2" style="color:#ffffff50">??:??h</span>
+                  <span class="font-display font-black text-2xl uppercase leading-none" style="color:#F8EEDA">{ride.day}</span>
+                  <span class="text-xs uppercase tracking-wider mt-0.5" style="color:#A7B75D">{ride.month}</span>
                 </div>
                 <div class="flex flex-col sm:flex-row flex-1 items-start sm:items-center gap-4 px-6 py-5">
                   <div class="flex-1">
