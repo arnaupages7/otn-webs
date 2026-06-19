@@ -155,6 +155,27 @@ export const providers: Provider[] = [
     active: true,
   },
 
+  {
+    id: 'maui-casa',
+    name: 'Casa Maui',
+    location: 'Banyoles, Pla de l\'Estany',
+    type: 'accommodation',
+    tags: ['breakfast', 'pool', 'garden', 'route-tips'],
+    description: {
+      en: 'Renovated family house in the heart of Banyoles, 1 min from the lake. Generous cyclist breakfast with local produce, saltwater pool and garden. Ideal base to ride the Pla de l\'Estany and the roads to Girona, 25 min away. 5/5 on Google.',
+      es: 'Casa familiar reformada en el centro de Banyoles, a 1 min del lago. Desayuno ciclista generoso con productos locales, piscina de agua salada y jardín. Base ideal para pedalear por el Pla de l\'Estany y las carreteras de Girona, a 25 min. 5/5 en Google.',
+      ca: 'Casa familiar reformada al centre de Banyoles, a 1 min del llac. Esmorzar ciclista generós amb productes locals, piscina d\'aigua salada i jardí. Base ideal per pedalar pel Pla de l\'Estany i les carreteres de Girona, a 25 min. 5/5 a Google.',
+      fr: 'Maison familiale rénovée au cœur de Banyoles, à 1 min du lac. Copieux petit-déjeuner cycliste avec produits locaux, piscine d\'eau salée et jardin. Base idéale pour rouler dans le Pla de l\'Estany et rejoindre Gérone en 25 min. 5/5 sur Google.',
+    },
+    image: '/hosts/maui-casa/1.jpg',
+    images: Array.from({ length: 6 }, (_, i) => `/hosts/maui-casa/${i + 1}.jpg`),
+    cardImages: [1, 2, 3].map(n => `/hosts/maui-casa/${n}.jpg`),
+    website: 'https://www.mauicasa.com',
+    badge: 'founding-host',
+    seal: true,
+    active: true,
+  },
+
   // ── Placeholder "joining soon" ────────────────────────────────────────────
   { id: 'soon-1', name: '', location: '', type: 'accommodation', tags: [], description: { en: '', es: '', ca: '' }, active: false },
 ]
