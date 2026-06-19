@@ -106,6 +106,8 @@ const ui = {
       { icon: '✈️', title: 'Airport transfer', desc: 'Girona or Barcelona airport — you and your bike.' },
       { icon: '📍', title: 'Route GPX files', desc: 'All routes on your device before you arrive.' },
       { icon: '🤝', title: 'Small group', desc: 'Max 10 riders. Real community, not a tour bus.' },
+      { icon: '🚴', title: 'Bike rental available', desc: 'No bike? We can arrange a rental through us for an extra supplement.' },
+      { icon: '🛏️', title: 'Double rooms (single option)', desc: 'Rooms are shared doubles. Want the room for yourself? A single occupancy supplement applies.' },
     ],
 
     locationTitle: 'Banyoles',
@@ -235,6 +237,8 @@ const ui = {
       { icon: '✈️', title: 'Transfer aeropuerto', desc: 'Aeropuerto de Girona o Barcelona — tú y tu bici.' },
       { icon: '📍', title: 'GPX de rutas', desc: 'Todas las rutas en tu dispositivo antes de llegar.' },
       { icon: '🤝', title: 'Grupo reducido', desc: 'Máx. 10 ciclistas. Comunidad real, no un autobús turístico.' },
+      { icon: '🚴', title: 'Alquiler de bici disponible', desc: '¿No tienes bici? La gestionamos nosotros por un suplemento adicional.' },
+      { icon: '🛏️', title: 'Habitaciones dobles (opción individual)', desc: 'Las habitaciones son dobles compartidas. ¿La quieres solo para ti? Se aplica un suplemento de uso individual.' },
     ],
 
     locationTitle: 'Banyoles',
@@ -364,6 +368,8 @@ const ui = {
       { icon: '✈️', title: 'Transfer aeroport', desc: "Aeroport de Girona o Barcelona — tu i la teva bici." },
       { icon: '📍', title: 'GPX de rutes', desc: 'Totes les rutes al teu dispositiu abans d\'arribar.' },
       { icon: '🤝', title: 'Grup reduït', desc: 'Màx. 10 ciclistes. Comunitat real, no un autobús turístic.' },
+      { icon: '🚴', title: 'Lloguer de bici disponible', desc: 'No tens bici? La gestionem nosaltres per un suplement addicional.' },
+      { icon: '🛏️', title: 'Habitacions dobles (opció individual)', desc: 'Les habitacions són dobles compartides. La vols només per a tu? S\'aplica un suplement d\'ús individual.' },
     ],
 
     locationTitle: 'Banyoles',
@@ -493,6 +499,8 @@ const ui = {
       { icon: '✈️', title: 'Transfert aéroport', desc: "Aéroport de Gérone ou Barcelone — vous et votre vélo." },
       { icon: '📍', title: 'Fichiers GPX', desc: 'Tous les parcours sur votre appareil avant votre arrivée.' },
       { icon: '🤝', title: 'Petit groupe', desc: 'Max. 10 cyclistes. Vraie communauté, pas un bus touristique.' },
+      { icon: '🚴', title: 'Location de vélo disponible', desc: 'Pas de vélo ? Nous pouvons en organiser un en location moyennant un supplément.' },
+      { icon: '🛏️', title: 'Chambres doubles (option single)', desc: 'Les chambres sont des doubles partagées. Vous souhaitez la chambre pour vous seul(e) ? Un supplément chambre individuelle s\'applique.' },
     ],
 
     locationTitle: 'Banyoles',
@@ -546,7 +554,7 @@ const homeHref = pathFor(lang, '/')
       <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"><defs><pattern id="hw" x="0" y="0" width="160" height="22" patternUnits="userSpaceOnUse"><path d="M0,11 Q40,2 80,11 T160,11" stroke="#A7B75D" stroke-width="1" fill="none"/></pattern></defs><rect width="100%" height="100%" fill="url(#hw)"/></svg>
     </div>
 
-    <div class="relative z-10 px-[5vw] pb-16 pt-28 max-w-4xl">
+    <div class="relative z-10 px-[5vw] pb-10 md:pb-16 pt-20 md:pt-28 max-w-4xl">
       <a href={homeHref} class="inline-flex items-center gap-1.5 text-xs uppercase tracking-[2px] font-semibold mb-8 transition hover:text-[#A7B75D]" style="color:#ffffff50">{c.back}</a>
 
       <!-- Badge -->
@@ -563,7 +571,7 @@ const homeHref = pathFor(lang, '/')
       <p class="text-2xl md:text-3xl font-black uppercase mb-4" style="color:#d4c4a8;font-family:'Oswald',sans-serif;letter-spacing:1px">{c.heroTagline}</p>
       <p class="text-base max-w-xl leading-relaxed mb-8" style="color:#a09078">{c.heroSub}</p>
 
-      <a href="#contact" class="inline-flex items-center gap-2 px-7 py-4 rounded-lg font-bold text-sm uppercase tracking-[1.5px] transition hover:scale-[1.03] hover:shadow-xl" style="background:#A7B75D;color:#2C2419">
+      <a href="#contact" class="inline-flex items-center justify-center gap-2 w-full sm:w-auto px-7 py-4 rounded-lg font-bold text-sm uppercase tracking-[1.5px] transition hover:scale-[1.03] hover:shadow-xl" style="background:#A7B75D;color:#2C2419">
         {c.heroCta}
         <svg class="w-4 h-4" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 3 11 8 6 13"/></svg>
       </a>
@@ -574,13 +582,13 @@ const homeHref = pathFor(lang, '/')
   <!-- ══════════════════════════════════════════
        WHAT IS IT?
   ══════════════════════════════════════════ -->
-  <section style="background:#F8EEDA;padding:5rem 5vw;">
+  <section class="wk-section" style="background:#F8EEDA;padding:5rem 5vw;">
     <div style="max-width:1100px;margin:0 auto;">
       <div style="text-align:center;margin-bottom:3rem;">
         <h2 class="font-display font-black uppercase leading-tight" style="font-size:clamp(28px,5vw,50px);color:#41372B;margin-bottom:0.75rem;">{c.whatTitle}</h2>
         <p style="color:#9a8c7a;font-size:1rem;max-width:520px;margin:0 auto;">{c.whatSub}</p>
       </div>
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem;">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.5rem;">
         {c.whatCards.map(card => (
           <div style="background:#41372B;border-radius:20px;padding:2rem;">
             <div style="font-size:2.2rem;margin-bottom:1rem;">{card.icon}</div>
@@ -596,7 +604,7 @@ const homeHref = pathFor(lang, '/')
   <!-- ══════════════════════════════════════════
        VISUAL ITINERARY
   ══════════════════════════════════════════ -->
-  <section style="background:#2C2419;padding:5rem 5vw;">
+  <section class="wk-section" style="background:#2C2419;padding:5rem 5vw;">
     <div style="max-width:1100px;margin:0 auto;">
       <div style="text-align:center;margin-bottom:3.5rem;">
         <p style="font-size:0.7rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#A7B75D;margin-bottom:0.75rem;">{c.itinTitle}</p>
@@ -605,7 +613,7 @@ const homeHref = pathFor(lang, '/')
 
       <div style="display:flex;flex-direction:column;gap:2px;">
         {c.days.map((day, i) => (
-          <div style={`border-radius:20px;overflow:hidden;${day.img ? 'display:grid;grid-template-columns:1fr 1fr;' : ''}`}>
+          <div class={day.img ? 'itin-photo-day' : ''} style={`border-radius:20px;overflow:hidden;${day.img ? 'display:grid;grid-template-columns:1fr 1fr;' : ''}`}>
 
             {/* Day 3 (i===2): text primer, foto després */}
             {day.img && i === 2 && (
@@ -706,7 +714,7 @@ const homeHref = pathFor(lang, '/')
   <!-- ══════════════════════════════════════════
        THE RIDES (gravel photos)
   ══════════════════════════════════════════ -->
-  <section style="background:#1e1910;padding:5rem 5vw;">
+  <section class="wk-section" style="background:#1e1910;padding:5rem 5vw;">
     <div style="max-width:1100px;margin:0 auto;">
       <div style="text-align:center;margin-bottom:3rem;">
         <p style="font-size:0.7rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#A7B75D;margin-bottom:0.75rem;">Gravel · Banyoles</p>
@@ -752,7 +760,7 @@ const homeHref = pathFor(lang, '/')
   <!-- ══════════════════════════════════════════
        THE HOUSE — Cal Santu
   ══════════════════════════════════════════ -->
-  <section style="background:#F8EEDA;padding:5rem 5vw;">
+  <section class="wk-section" style="background:#F8EEDA;padding:5rem 5vw;">
     <div style="max-width:1100px;margin:0 auto;">
       <div style="text-align:center;margin-bottom:2.5rem;">
         <p style="font-size:0.7rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#A7B75D;margin-bottom:0.75rem;">{c.houseTitle}</p>
@@ -761,9 +769,9 @@ const homeHref = pathFor(lang, '/')
       </div>
 
       <!-- Photo mosaic -->
-      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;grid-template-rows:260px 260px;gap:8px;border-radius:20px;overflow:hidden;">
+      <div class="house-mosaic" style="display:grid;grid-template-columns:1fr 1fr 1fr;grid-template-rows:260px 260px;gap:8px;border-radius:20px;overflow:hidden;">
         <div style="grid-column:1/3;grid-row:1/2;overflow:hidden;position:relative;">
-          <img src="/weekend/calsantu-3.jpg" alt="Cal Santu pool" style="width:100%;height:100%;object-fit:cover;transition:transform 0.5s;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'"/>
+          <img src="/weekend/calsantu-3.jpg" alt="Cal Santu pool" style="width:100%;height:100%;object-fit:cover;object-position:center 35%;filter:contrast(1.08) saturate(1.15) brightness(1.03);transition:transform 0.5s;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'"/>
           <div style="position:absolute;bottom:1rem;left:1rem;background:rgba(44,36,25,0.75);backdrop-filter:blur(4px);padding:4px 12px;border-radius:8px;">
             <span style="font-size:0.7rem;font-weight:700;color:#F8EEDA;text-transform:uppercase;letter-spacing:1px;">Cal Santu · Banyoles</span>
           </div>
@@ -785,7 +793,7 @@ const homeHref = pathFor(lang, '/')
       </div>
 
       <!-- House features -->
-      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:1.5rem;">
+      <div class="house-features" style="display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:1.5rem;">
         {c.houseFeatures.map(f => (
           <div style="display:flex;align-items:center;gap:0.75rem;background:#41372B;border-radius:12px;padding:1rem 1.25rem;">
             <span style="font-size:1.3rem;">{f.icon}</span>
@@ -800,7 +808,7 @@ const homeHref = pathFor(lang, '/')
   <!-- ══════════════════════════════════════════
        WHAT'S INCLUDED
   ══════════════════════════════════════════ -->
-  <section style="background:#494B30;padding:5rem 5vw;">
+  <section class="wk-section" style="background:#494B30;padding:5rem 5vw;">
     <div style="max-width:1100px;margin:0 auto;">
       <div style="text-align:center;margin-bottom:3rem;">
         <p style="font-size:0.7rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:rgba(248,238,218,0.5);margin-bottom:0.75rem;">{c.includedTitle}</p>
@@ -824,9 +832,9 @@ const homeHref = pathFor(lang, '/')
   <!-- ══════════════════════════════════════════
        BANYOLES — THE LOCATION
   ══════════════════════════════════════════ -->
-  <section style="background:#2C2419;padding:5rem 5vw;">
+  <section class="wk-section" style="background:#2C2419;padding:5rem 5vw;">
     <div style="max-width:1100px;margin:0 auto;">
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;">
+      <div class="location-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;">
         <!-- Text -->
         <div>
           <p style="font-size:0.7rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#A7B75D;margin-bottom:0.75rem;">{c.locationSub}</p>
@@ -857,7 +865,7 @@ const homeHref = pathFor(lang, '/')
   <!-- ══════════════════════════════════════════
        BOOK THIS TRIP
   ══════════════════════════════════════════ -->
-  <section id="contact" style="background:#1e1910;padding:5rem 5vw;">
+  <section id="contact" class="wk-section" style="background:#1e1910;padding:5rem 5vw;">
     <div style="max-width:520px;margin:0 auto;">
       <p style="font-size:0.7rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#A7B75D;margin-bottom:0.5rem;">{c.contactEyebrow}</p>
       <h2 class="font-display font-black uppercase" style="font-size:clamp(28px,5vw,48px);color:#F8EEDA;margin-bottom:0.5rem;">{c.contactTitle}</h2>
@@ -927,6 +935,63 @@ const homeHref = pathFor(lang, '/')
   </main>
   <Footer lang={lang} />
 </Layout>
+
+<style>
+  /* ── Mobile optimisations ────────────────────── */
+  @media (max-width: 640px) {
+    /* Section vertical padding */
+    .wk-section {
+      padding-top: 3.5rem !important;
+      padding-bottom: 3.5rem !important;
+    }
+
+    /* Itinerary: photo+text days stack vertically */
+    .itin-photo-day {
+      display: flex !important;
+      flex-direction: column !important;
+    }
+    /* Photo panels keep a fixed height when stacked */
+    .itin-photo-day > div[style*="min-height:360px"] {
+      min-height: 220px !important;
+    }
+
+    /* Cal Santu mosaic: 2-col layout */
+    .house-mosaic {
+      grid-template-columns: 1fr 1fr !important;
+      grid-template-rows: 200px 160px !important;
+    }
+    /* Big pool photo — full width top */
+    .house-mosaic > div:nth-child(1) {
+      grid-column: 1 / 3 !important;
+      grid-row: 1 / 2 !important;
+    }
+    /* Bedroom — bottom left */
+    .house-mosaic > div:nth-child(2) {
+      grid-column: 1 / 2 !important;
+      grid-row: 2 / 3 !important;
+    }
+    /* Dining — hidden on mobile */
+    .house-mosaic > div:nth-child(3) {
+      display: none !important;
+    }
+    /* Terrace — bottom right */
+    .house-mosaic > div:nth-child(4) {
+      grid-column: 2 / 3 !important;
+      grid-row: 2 / 3 !important;
+    }
+
+    /* House features: 2 cols instead of 3 */
+    .house-features {
+      grid-template-columns: repeat(2, 1fr) !important;
+    }
+
+    /* Location section: single column */
+    .location-grid {
+      grid-template-columns: 1fr !important;
+      gap: 2rem !important;
+    }
+  }
+</style>
 
 <script>
   const form = document.getElementById('weekend-form') as HTMLFormElement | null
