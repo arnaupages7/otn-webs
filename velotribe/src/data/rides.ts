@@ -36,6 +36,6 @@ export const rides: Ride[] = [
     spotsTotal: 12,
     spotsLeft: 12,
     comingSoon: true,
-    meetPoint: 'Girona',
+    meetPoint: 'Banyoles, Pla de l\'Estany',
   },
 ]

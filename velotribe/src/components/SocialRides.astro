@@ -137,6 +137,7 @@ const ridesData = rides.map(ride => ({
                 <!-- Coming soon + CTA -->
                 <div class="flex flex-col items-center gap-3 flex-1">
                   <span class="font-display font-black text-2xl uppercase tracking-widest" style="color:#F8EEDA">Coming Soon</span>
+                  <span class="text-xs font-semibold" style="color:#ffffff70">📍 {ride.meetPoint}</span>
                   <a href={waitlistHref} class="text-xs font-bold px-4 py-2 rounded-lg transition hover:opacity-90" style="background:#A7B75D;color:#2C2419">
                     Join the waitlist →
                   </a>
