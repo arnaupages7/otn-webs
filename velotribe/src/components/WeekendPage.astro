@@ -232,10 +232,10 @@ const homeHref = pathFor(lang, '/')
 
       <!-- Background image + overlays -->
       <img
-        src="/hero-2.jpg"
-        alt="Cycling in Girona"
+        src="/weekend/calsantu-1.jpg"
+        alt="Cal Santu — VeloTribe Weekend"
         class="absolute inset-0 w-full h-full object-cover"
-        style="opacity:0.25;object-position:center 40%"
+        style="opacity:0.45;object-position:center 60%"
         loading="eager"
       />
       <div class="absolute inset-0 pointer-events-none" style="background:linear-gradient(to top, #2C2419 30%, rgba(44,36,25,0.3) 70%, rgba(44,36,25,0.5) 100%)"></div>
@@ -364,6 +364,86 @@ const homeHref = pathFor(lang, '/')
             </div>
           ))}
         </div>
+      </div>
+    </section>
+
+
+    <!-- ── THE HOUSE ── -->
+    <section class="px-[5vw] py-20" style="background:#F8EEDA">
+      <div class="max-w-5xl mx-auto">
+
+        <div class="text-center mb-12 reveal">
+          <p class="text-[11px] font-bold tracking-[3px] uppercase mb-2.5" style="color:#A7B75D">
+            {lang === 'es' ? 'Dónde te alojas' : lang === 'ca' ? 'On t\'allotges' : lang === 'fr' ? 'Où vous logez' : 'Where you stay'}
+          </p>
+          <h2 class="font-display font-black uppercase leading-[0.95] mb-4" style="font-size:clamp(32px,6vw,56px);color:#41372B">
+            {lang === 'es' ? 'Cal Santu' : lang === 'ca' ? 'Cal Santu' : lang === 'fr' ? 'Cal Santu' : 'Cal Santu'}
+          </h2>
+          <p class="text-base max-w-lg mx-auto" style="color:#9a8c7a">
+            {lang === 'es'
+              ? 'Una masía de piedra del siglo XVIII completamente renovada. Piscina, terraza con vistas, cocina para todo el grupo. A 10 minutos del lago de Banyoles.'
+              : lang === 'ca'
+              ? 'Una masia de pedra del segle XVIII completament renovada. Piscina, terrassa amb vistes, cuina per a tot el grup. A 10 minuts del llac de Banyoles.'
+              : lang === 'fr'
+              ? 'Une ferme en pierre du XVIIIe siècle entièrement rénovée. Piscine, terrasse avec vue, cuisine pour tout le groupe. À 10 minutes du lac de Banyoles.'
+              : 'An 18th-century stone farmhouse, fully renovated. Pool, terrace with views, kitchen for the whole group. 10 minutes from Lake Banyoles.'}
+          </p>
+        </div>
+
+        <!-- Mosaic gallery -->
+        <div class="reveal" style="display:grid;grid-template-columns:1fr 1fr 1fr;grid-template-rows:260px 260px;gap:8px;">
+
+          <!-- Big left: pool + house -->
+          <div style="grid-column:1/3;grid-row:1/2;border-radius:16px;overflow:hidden;position:relative;">
+            <img src="/weekend/calsantu-3.jpg" alt="Cal Santu — pool and house"
+              style="width:100%;height:100%;object-fit:cover;transition:transform 0.5s;"
+              onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'"/>
+          </div>
+
+          <!-- Top right: bedroom -->
+          <div style="grid-column:3/4;grid-row:1/2;border-radius:16px;overflow:hidden;position:relative;">
+            <img src="/weekend/calsantu-4.jpg" alt="Cal Santu — bedroom"
+              style="width:100%;height:100%;object-fit:cover;transition:transform 0.5s;"
+              onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'"/>
+          </div>
+
+          <!-- Bottom left: interior dining -->
+          <div style="grid-column:1/2;grid-row:2/3;border-radius:16px;overflow:hidden;position:relative;">
+            <img src="/weekend/calsantu-2.jpg" alt="Cal Santu — dining room"
+              style="width:100%;height:100%;object-fit:cover;transition:transform 0.5s;"
+              onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'"/>
+          </div>
+
+          <!-- Bottom center+right: terrace with mountain views -->
+          <div style="grid-column:2/4;grid-row:2/3;border-radius:16px;overflow:hidden;position:relative;">
+            <img src="/weekend/calsantu-6.jpg" alt="Cal Santu — terrace with views"
+              style="width:100%;height:100%;object-fit:cover;transition:transform 0.5s;"
+              onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'"/>
+            <!-- Label -->
+            <div style="position:absolute;bottom:1rem;left:1rem;background:rgba(44,36,25,0.75);backdrop-filter:blur(4px);border-radius:8px;padding:0.4rem 0.85rem;">
+              <span style="font-size:0.7rem;font-weight:700;color:#F8EEDA;letter-spacing:1px;text-transform:uppercase;">
+                {lang === 'es' ? 'Terraza · Vistas a la montaña' : lang === 'ca' ? 'Terrassa · Vistes a la muntanya' : lang === 'fr' ? 'Terrasse · Vue montagne' : 'Terrace · Mountain views'}
+              </span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- House features -->
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-8 reveal">
+          {[
+            { icon: '🏊', label: lang === 'es' ? 'Piscina privada' : lang === 'ca' ? 'Piscina privada' : lang === 'fr' ? 'Piscine privée' : 'Private pool' },
+            { icon: '🍽️', label: lang === 'es' ? 'Cocina completa' : lang === 'ca' ? 'Cuina completa' : lang === 'fr' ? 'Cuisine équipée' : 'Full kitchen' },
+            { icon: '🛏️', label: lang === 'es' ? '5 habitaciones' : lang === 'ca' ? '5 habitacions' : lang === 'fr' ? '5 chambres' : '5 bedrooms' },
+            { icon: '🚲', label: lang === 'es' ? 'Garaje para bicis' : lang === 'ca' ? 'Garatge per a bicis' : lang === 'fr' ? 'Garage vélos' : 'Bike garage' },
+          ].map(f => (
+            <div class="flex flex-col items-center gap-2 p-5 rounded-xl text-center" style="background:#41372B">
+              <span style="font-size:1.5rem;">{f.icon}</span>
+              <span class="text-xs font-bold uppercase tracking-wide" style="color:#F8EEDA">{f.label}</span>
+            </div>
+          ))}
+        </div>
+
       </div>
     </section>
 
