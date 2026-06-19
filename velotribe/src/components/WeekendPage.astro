@@ -9,46 +9,122 @@ const { lang } = Astro.props
 
 const ui = {
   en: {
-    seoTitle: 'VeloTribe Weekend — Girona, September 2026',
-    seoDesc: 'An all-inclusive cycling weekend in the Province of Girona. Accommodation, guided rides and airport transfer included. Small groups only.',
+    seoTitle: 'VeloTribe Weekend — Gravel in Banyoles, September 2026',
+    seoDesc: 'A 3-day all-inclusive gravel cycling weekend in Banyoles, Girona. Accommodation at Cal Santu, guided gravel rides, airport transfer. Max 10 riders.',
     back: '← Back',
 
-    heroBadge: 'All-inclusive',
+    heroBadge: 'Sep 5–7, 2026 · Banyoles, Girona',
     heroTitle1: 'VeloTribe',
     heroTitle2: 'Weekend',
-    heroDate: 'Sep 5–7, 2026',
-    heroLocation: 'Province of Girona',
-    heroTagline: 'Two days in the saddle. Five days worth of memories.',
+    heroTagline: 'Three days. Pure gravel. One tribe.',
+    heroSub: 'An all-inclusive gravel cycling weekend in the heart of the Pla de l\'Estany. Arrive Friday, ride Saturday and Sunday, leave with memories that last.',
+    heroCta: 'Book this trip',
+    heroScroll: 'Discover what awaits',
 
-    includedEyebrow: 'What\'s included',
-    includedTitle: 'Everything taken care of',
-    includedSub: 'Show up with your bike. We handle everything else.',
-    inc: [
-      { title: 'Accommodation', desc: 'Two nights in a handpicked cycling-friendly property. Private rooms, storage for your bikes, a proper kitchen.' },
-      { title: 'Guided rides', desc: 'Two days of guided routes on the roads of Girona. Adapted to your level. Led by local experts who know every climb.' },
-      { title: 'Airport transfer', desc: 'Pick up and drop off from Girona or Barcelona airport. You and your bike — no logistics stress.' },
-      { title: 'Small groups', desc: 'Maximum 10 riders per group. Real conversations, real community.' },
+    whatTitle: 'What is VeloTribe Weekend?',
+    whatSub: 'A fully organised gravel cycling escape — everything taken care of from airport to saddle.',
+    whatCards: [
+      { icon: '🚲', title: 'Pure gravel', desc: 'Two days of guided gravel routes through the Pla de l\'Estany and the volcanic zone of the Garrotxa. Routes adapted to your level.' },
+      { icon: '🏡', title: 'Cal Santu', desc: 'An 18th-century stone farmhouse fully renovated. Pool, large terrace, full kitchen. Your base camp for the weekend.' },
+      { icon: '👥', title: 'Max 10 riders', desc: 'Small group on purpose. You\'ll know everyone by Friday night. Real conversations, real community.' },
     ],
 
-    programEyebrow: 'The programme',
-    programTitle: 'Three days, one tribe',
+    itinTitle: 'The programme',
+    itinSub: 'Three days designed around the ride — and the moments between rides.',
     days: [
-      { label: 'Friday', title: 'Arrival', desc: 'Transfer from the airport. Check-in, settle in, first dinner together. The tribe gathers.' },
-      { label: 'Saturday', title: 'The big ride', desc: 'Guided route on the most iconic roads around Girona. Lunch on the road. Late afternoon recovery.' },
-      { label: 'Sunday', title: 'Morning ride + farewell', desc: 'A second guided ride in the morning. Group lunch. Afternoon transfer back to the airport.' },
+      {
+        day: 'Day 1',
+        label: 'Friday · 5 Sep',
+        title: 'Arrival',
+        icon: '✈️',
+        color: '#A7B75D',
+        items: [
+          { time: 'Afternoon', desc: 'Transfer from Girona or Barcelona airport to Cal Santu, Banyoles.' },
+          { time: 'Evening', desc: 'Check-in, settle in, explore the house and the pool.' },
+          { time: 'Night', desc: 'First dinner together as a group. The tribe gathers.' },
+        ],
+      },
+      {
+        day: 'Day 2',
+        label: 'Saturday · 6 Sep',
+        title: 'The big ride',
+        icon: '🚵',
+        color: '#A7B75D',
+        img: '/weekend/gravel-1.jpg',
+        items: [
+          { time: '07:30', desc: 'Cyclist breakfast at Cal Santu with local produce.' },
+          { time: '08:30', desc: 'Gravel ride — main route. Pla de l\'Estany forests, volcanic trails of the Garrotxa. ~60km · 900m+.' },
+          { time: '13:30', desc: 'Lunch stop in a local village restaurant.' },
+          { time: 'Afternoon', desc: 'Return to Cal Santu. Pool, recovery, free time.' },
+          { time: 'Evening', desc: 'Group dinner at the house. Stories from the road.' },
+        ],
+      },
+      {
+        day: 'Day 3',
+        label: 'Sunday · 7 Sep',
+        title: 'Morning ride + farewell',
+        icon: '🌄',
+        color: '#A7B75D',
+        img: '/weekend/gravel-4.jpg',
+        items: [
+          { time: '07:30', desc: 'Breakfast at Cal Santu.' },
+          { time: '08:30', desc: 'Morning gravel loop around Lake Banyoles. Lighter route — ~35km · 400m+.' },
+          { time: '11:30', desc: 'Return, shower, pack up.' },
+          { time: '13:00', desc: 'Farewell group lunch.' },
+          { time: 'Afternoon', desc: 'Transfer back to Girona or Barcelona airport.' },
+        ],
+      },
     ],
 
-    gironaEyebrow: 'The destination',
-    gironaTitle: 'Girona. The cycling capital.',
-    gironaText1: 'A city where pro cyclists live, train and unwind. The roads here are legendary — La Molina, Rocacorba, the Costa Brava coast. The kind of terrain that makes you forget time.',
-    gironaText2: 'The Province of Girona combines mountain passes, coastal roads and medieval villages. It\'s not just where cyclists come to ride. It\'s where they come back.',
+    ridesTitle: 'The gravel',
+    ridesSub: 'Banyoles and the Pla de l\'Estany sit at the crossroads of three worlds: volcanic forest, mountain foothills and lake country. Pure gravel territory.',
+    route1Title: 'Pla de l\'Estany & Garrotxa',
+    route1Stats: '60 km · 900 m↑ · Mixed terrain',
+    route1Desc: 'From Cal Santu, head into the forests of the Pla de l\'Estany — dirt tracks between ancient oaks, no cars, no noise. Cross into the volcanic zone of the Garrotxa: beech forests, lava cones, hidden villages. Loop back via Banyoles lake.',
+    route2Title: 'Lake Banyoles Loop',
+    route2Stats: '35 km · 400 m↑ · Gravel & tarmac',
+    route2Desc: 'A shorter, sweeter morning loop. Circle the Olympic lake, climb into the hills above Porqueres, roll through fields of corn with the Pyrenees on the horizon. The perfect farewell ride.',
+
+    houseTitle: 'Where you stay',
+    houseName: 'Cal Santu',
+    houseSub: 'An 18th-century stone farmhouse fully renovated. 5 bedrooms, pool, covered terrace, kitchen for 14. 10 minutes from Lake Banyoles.',
+    houseFeatures: [
+      { icon: '🏊', label: 'Private pool' },
+      { icon: '🍽️', label: 'Full kitchen' },
+      { icon: '🛏️', label: '5 bedrooms' },
+      { icon: '🚲', label: 'Bike garage' },
+      { icon: '🌿', label: 'Garden & terrace' },
+      { icon: '🌄', label: 'Mountain views' },
+    ],
+
+    includedTitle: 'What\'s included',
+    includedSub: 'Show up with your bike. We handle everything else.',
+    included: [
+      { icon: '🏡', title: 'Accommodation', desc: 'Two nights at Cal Santu in private rooms.' },
+      { icon: '🚲', title: 'Guided gravel rides', desc: 'Both days guided by local experts who know every trail.' },
+      { icon: '🍳', title: 'Cyclist breakfast', desc: 'Both mornings: proper fuel with local produce.' },
+      { icon: '✈️', title: 'Airport transfer', desc: 'Girona or Barcelona airport — you and your bike.' },
+      { icon: '📍', title: 'Route GPX files', desc: 'All routes on your device before you arrive.' },
+      { icon: '🤝', title: 'Small group', desc: 'Max 10 riders. Real community, not a tour bus.' },
+    ],
+
+    locationTitle: 'Banyoles',
+    locationSub: 'The cycling secret of Girona',
+    locationText1: 'Banyoles sits in the Pla de l\'Estany — a flat, quiet plateau surrounded by forests and farmland, with the Pyrenees rising to the north. The Olympic lake — venue for the 1992 Barcelona Games — is 10 minutes from Cal Santu.',
+    locationText2: 'From here, world-class gravel is literally outside the door. The Garrotxa volcanic zone starts 20 minutes west. Rocacorba is 15 minutes south. The Costa Brava is 45 minutes east. Girona city is 25 minutes.',
+    locationStats: [
+      { value: '10\'', label: 'to Lake Banyoles' },
+      { value: '20\'', label: 'to Garrotxa gravel' },
+      { value: '25\'', label: 'to Girona city' },
+      { value: '15\'', label: 'to Rocacorba' },
+    ],
 
     contactEyebrow: 'Book this trip',
     contactTitle: 'Ride with us',
-    contactSub: 'Tell us who you are and how many. We\'ll send you all the details and pricing.',
+    contactSub: 'Tell us who you are and how many. We\'ll send you all the details and pricing within 48h.',
     labelName: 'Your name',
     labelEmail: 'Email',
-    labelParticipants: 'Participants',
+    labelParticipants: 'Number of riders',
     selectParticipants: 'Select',
     labelNotes: 'Questions or notes (optional)',
     submit: 'Send request',
@@ -56,51 +132,128 @@ const ui = {
     successTitle: 'Request received!',
     successSub: 'We\'ll get back to you with pricing and availability within 48 hours.',
     errorRequired: 'Please fill in your name, email and number of participants.',
-    errorGeneric: 'Something went wrong. Try again or email info@velotribe.cc.',
-    spotsNotice: 'Limited spots. Small groups only.',
+    errorGeneric: 'Something went wrong. Try again or email hello@velotribe.com.',
+    spotsNotice: 'Limited to 10 riders. Weekend fills fast.',
     legalNote: 'By submitting you agree to be contacted about VeloTribe Weekend.',
   },
+
   es: {
-    seoTitle: 'VeloTribe Weekend — Girona, Septiembre 2026',
-    seoDesc: 'Un fin de semana ciclista todo incluido en la Provincia de Girona. Alojamiento, salidas guiadas y transfer al aeropuerto incluidos. Solo grupos reducidos.',
+    seoTitle: 'VeloTribe Weekend — Gravel en Banyoles, Septiembre 2026',
+    seoDesc: 'Un fin de semana de gravel todo incluido en Banyoles, Girona. Alojamiento en Cal Santu, rutas guiadas de gravel, transfer aeropuerto. Máx. 10 ciclistas.',
     back: '← Volver',
 
-    heroBadge: 'Todo incluido',
+    heroBadge: '5–7 sep. 2026 · Banyoles, Girona',
     heroTitle1: 'VeloTribe',
     heroTitle2: 'Weekend',
-    heroDate: '5–7 sep. 2026',
-    heroLocation: 'Provincia de Girona',
-    heroTagline: 'Dos días sobre la bici. Recuerdos para cinco.',
+    heroTagline: 'Tres días. Gravel puro. Una tribu.',
+    heroSub: 'Un fin de semana de gravel todo incluido en el corazón del Pla de l\'Estany. Llegas el viernes, pedaleas sábado y domingo, te vas con recuerdos para siempre.',
+    heroCta: 'Reservar este viaje',
+    heroScroll: 'Descubre lo que te espera',
 
-    includedEyebrow: 'Qué incluye',
-    includedTitle: 'Todo organizado',
-    includedSub: 'Llega con tu bici. Del resto nos encargamos nosotros.',
-    inc: [
-      { title: 'Alojamiento', desc: 'Dos noches en un alojamiento seleccionado para ciclistas. Habitaciones privadas, almacenaje para bicis, cocina completa.' },
-      { title: 'Salidas guiadas', desc: 'Dos días de rutas guiadas por las carreteras de Girona. Adaptadas a tu nivel. Con guías locales que conocen cada puerto.' },
-      { title: 'Transfer aeropuerto', desc: 'Recogida y vuelta desde el aeropuerto de Girona o Barcelona. Tú y tu bici — sin estrés logístico.' },
-      { title: 'Grupos reducidos', desc: 'Máximo 10 ciclistas por grupo. Conversaciones reales, comunidad real.' },
+    whatTitle: '¿Qué es VeloTribe Weekend?',
+    whatSub: 'Una escapada de gravel completamente organizada — todo resuelto desde el aeropuerto hasta la bici.',
+    whatCards: [
+      { icon: '🚲', title: 'Gravel puro', desc: 'Dos días de rutas de gravel guiadas por el Pla de l\'Estany y la zona volcánica de la Garrotxa. Rutas adaptadas a tu nivel.' },
+      { icon: '🏡', title: 'Cal Santu', desc: 'Una masía de piedra del siglo XVIII completamente renovada. Piscina, terraza grande, cocina completa. Tu base de operaciones.' },
+      { icon: '👥', title: 'Máx. 10 ciclistas', desc: 'Grupo reducido a propósito. Conocerás a todos el viernes por la noche. Conversaciones reales, comunidad real.' },
     ],
 
-    programEyebrow: 'El programa',
-    programTitle: 'Tres días, una tribu',
+    itinTitle: 'El programa',
+    itinSub: 'Tres días diseñados alrededor de la ruta — y los momentos entre rutas.',
     days: [
-      { label: 'Viernes', title: 'Llegada', desc: 'Transfer desde el aeropuerto. Check-in, instalarse y primera cena en grupo. La tribu se reúne.' },
-      { label: 'Sábado', title: 'La gran ruta', desc: 'Ruta guiada por las carreteras más icónicas de Girona. Comida en ruta. Tarde de recuperación.' },
-      { label: 'Domingo', title: 'Ruta matinal + despedida', desc: 'Segunda ruta guiada por la mañana. Comida en grupo. Transfer de vuelta al aeropuerto por la tarde.' },
+      {
+        day: 'Día 1',
+        label: 'Viernes · 5 sep',
+        title: 'Llegada',
+        icon: '✈️',
+        color: '#A7B75D',
+        items: [
+          { time: 'Tarde', desc: 'Transfer desde el aeropuerto de Girona o Barcelona hasta Cal Santu, Banyoles.' },
+          { time: 'Noche', desc: 'Check-in, instalarse, descubrir la casa y la piscina.' },
+          { time: 'Cena', desc: 'Primera cena juntos en grupo. La tribu se reúne.' },
+        ],
+      },
+      {
+        day: 'Día 2',
+        label: 'Sábado · 6 sep',
+        title: 'La gran ruta',
+        icon: '🚵',
+        color: '#A7B75D',
+        img: '/weekend/gravel-1.jpg',
+        items: [
+          { time: '07:30', desc: 'Desayuno ciclista en Cal Santu con productos locales.' },
+          { time: '08:30', desc: 'Ruta de gravel principal. Bosques del Pla de l\'Estany, senderos volcánicos de la Garrotxa. ~60km · 900m+.' },
+          { time: '13:30', desc: 'Parada para comer en un restaurante de pueblo.' },
+          { time: 'Tarde', desc: 'Vuelta a Cal Santu. Piscina, recuperación, tiempo libre.' },
+          { time: 'Noche', desc: 'Cena en grupo en la casa. Historias de la ruta.' },
+        ],
+      },
+      {
+        day: 'Día 3',
+        label: 'Domingo · 7 sep',
+        title: 'Ruta matinal + despedida',
+        icon: '🌄',
+        color: '#A7B75D',
+        img: '/weekend/gravel-4.jpg',
+        items: [
+          { time: '07:30', desc: 'Desayuno en Cal Santu.' },
+          { time: '08:30', desc: 'Loop de gravel por el lago de Banyoles. Ruta más suave — ~35km · 400m+.' },
+          { time: '11:30', desc: 'Vuelta, ducha, hacer maletas.' },
+          { time: '13:00', desc: 'Comida de despedida en grupo.' },
+          { time: 'Tarde', desc: 'Transfer de vuelta al aeropuerto de Girona o Barcelona.' },
+        ],
+      },
     ],
 
-    gironaEyebrow: 'El destino',
-    gironaTitle: 'Girona. La capital del ciclismo.',
-    gironaText1: 'Una ciudad donde los pros viven, entrenan y descansan. Las carreteras son legendarias — La Molina, Rocacorba, la Costa Brava. El tipo de terreno que hace olvidar el tiempo.',
-    gironaText2: 'La Provincia de Girona combina puertos de montaña, carreteras costeras y pueblos medievales. No es solo donde los ciclistas vienen a pedalear. Es donde vuelven.',
+    ridesTitle: 'El gravel',
+    ridesSub: 'Banyoles y el Pla de l\'Estany están en el cruce de tres mundos: bosque volcánico, estribaciones de montaña y territorio lacustre. Territorio gravel puro.',
+    route1Title: 'Pla de l\'Estany & Garrotxa',
+    route1Stats: '60 km · 900 m↑ · Terreno mixto',
+    route1Desc: 'Desde Cal Santu, adentrarse en los bosques del Pla de l\'Estany — pistas de tierra entre robles centenarios, sin coches, sin ruido. Cruzar a la zona volcánica de la Garrotxa: hayedos, conos de lava, pueblos escondidos. Vuelta por el lago de Banyoles.',
+    route2Title: 'Loop lago de Banyoles',
+    route2Stats: '35 km · 400 m↑ · Gravel y asfalto',
+    route2Desc: 'Un loop matinal más corto y dulce. Rodear el lago Olímpico, subir a las colinas sobre Porqueres, rodar por campos de maíz con los Pirineos en el horizonte. La ruta de despedida perfecta.',
+
+    houseTitle: 'Dónde te alojas',
+    houseName: 'Cal Santu',
+    houseSub: 'Una masía de piedra del siglo XVIII totalmente renovada. 5 habitaciones, piscina, terraza cubierta, cocina para 14. A 10 min del lago de Banyoles.',
+    houseFeatures: [
+      { icon: '🏊', label: 'Piscina privada' },
+      { icon: '🍽️', label: 'Cocina completa' },
+      { icon: '🛏️', label: '5 habitaciones' },
+      { icon: '🚲', label: 'Garaje para bicis' },
+      { icon: '🌿', label: 'Jardín y terraza' },
+      { icon: '🌄', label: 'Vistas a la montaña' },
+    ],
+
+    includedTitle: 'Qué incluye',
+    includedSub: 'Llega con tu bici. Del resto nos encargamos nosotros.',
+    included: [
+      { icon: '🏡', title: 'Alojamiento', desc: 'Dos noches en Cal Santu en habitaciones privadas.' },
+      { icon: '🚲', title: 'Rutas guiadas de gravel', desc: 'Los dos días guiados por expertos locales que conocen cada sendero.' },
+      { icon: '🍳', title: 'Desayuno ciclista', desc: 'Ambas mañanas: combustible de verdad con productos locales.' },
+      { icon: '✈️', title: 'Transfer aeropuerto', desc: 'Aeropuerto de Girona o Barcelona — tú y tu bici.' },
+      { icon: '📍', title: 'GPX de rutas', desc: 'Todas las rutas en tu dispositivo antes de llegar.' },
+      { icon: '🤝', title: 'Grupo reducido', desc: 'Máx. 10 ciclistas. Comunidad real, no un autobús turístico.' },
+    ],
+
+    locationTitle: 'Banyoles',
+    locationSub: 'El secreto ciclista de Girona',
+    locationText1: 'Banyoles está en el Pla de l\'Estany — una meseta tranquila rodeada de bosques y campos, con los Pirineos al norte. El lago Olímpico — sede de los Juegos de Barcelona 1992 — está a 10 minutos de Cal Santu.',
+    locationText2: 'Desde aquí, el gravel de primer nivel está literalmente en la puerta. La Garrotxa volcánica empieza a 20 minutos al oeste. Rocacorba está a 15 minutos al sur. La Costa Brava a 45 minutos al este. Girona a 25 minutos.',
+    locationStats: [
+      { value: '10\'', label: 'al lago de Banyoles' },
+      { value: '20\'', label: 'al gravel de la Garrotxa' },
+      { value: '25\'', label: 'a la ciudad de Girona' },
+      { value: '15\'', label: 'a Rocacorba' },
+    ],
 
     contactEyebrow: 'Reservar este viaje',
     contactTitle: 'Pedalea con la tribu',
-    contactSub: 'Cuéntanos quién eres y cuántos sois. Te enviamos todos los detalles y el precio.',
+    contactSub: 'Cuéntanos quién eres y cuántos sois. Te respondemos con todos los detalles y el precio en 48h.',
     labelName: 'Tu nombre',
     labelEmail: 'Email',
-    labelParticipants: 'Participantes',
+    labelParticipants: 'Número de ciclistas',
     selectParticipants: 'Selecciona',
     labelNotes: 'Preguntas o notas (opcional)',
     submit: 'Enviar solicitud',
@@ -108,51 +261,128 @@ const ui = {
     successTitle: '¡Solicitud recibida!',
     successSub: 'Te respondemos con el precio y disponibilidad en menos de 48 horas.',
     errorRequired: 'Por favor rellena nombre, email y número de participantes.',
-    errorGeneric: 'Algo ha salido mal. Inténtalo o escríbenos a info@velotribe.cc.',
-    spotsNotice: 'Plazas limitadas. Solo grupos reducidos.',
+    errorGeneric: 'Algo ha salido mal. Inténtalo o escríbenos a hello@velotribe.com.',
+    spotsNotice: 'Limitado a 10 ciclistas. El fin de semana se llena rápido.',
     legalNote: 'Al enviar aceptas ser contactado sobre VeloTribe Weekend.',
   },
+
   ca: {
-    seoTitle: 'VeloTribe Weekend — Girona, Setembre 2026',
-    seoDesc: "Un cap de setmana ciclista tot inclòs a la Província de Girona. Allotjament, sortides guiades i transfer a l'aeroport inclosos. Grups reduïts.",
+    seoTitle: 'VeloTribe Weekend — Gravel a Banyoles, Setembre 2026',
+    seoDesc: "Un cap de setmana de gravel tot inclòs a Banyoles, Girona. Allotjament a Cal Santu, rutes guiades de gravel, transfer aeroport. Màx. 10 ciclistes.",
     back: '← Tornar',
 
-    heroBadge: 'Tot inclòs',
+    heroBadge: '5–7 set. 2026 · Banyoles, Girona',
     heroTitle1: 'VeloTribe',
     heroTitle2: 'Weekend',
-    heroDate: '5–7 set. 2026',
-    heroLocation: 'Província de Girona',
-    heroTagline: 'Dos dies a la sella. Records per a cinc.',
+    heroTagline: 'Tres dies. Gravel pur. Una tribu.',
+    heroSub: "Un cap de setmana de gravel tot inclòs al cor del Pla de l'Estany. Arribes divendres, pedales dissabte i diumenge, te'n vas amb records per sempre.",
+    heroCta: 'Reserva aquest viatge',
+    heroScroll: 'Descobreix el que t\'espera',
 
-    includedEyebrow: 'Què inclou',
-    includedTitle: 'Tot organitzat',
-    includedSub: 'Arriba amb la teva bici. De la resta ens encarreguem nosaltres.',
-    inc: [
-      { title: 'Allotjament', desc: "Dues nits en un allotjament seleccionat per a ciclistes. Habitacions privades, magatzem per a bicis, cuina completa." },
-      { title: 'Sortides guiades', desc: 'Dos dies de rutes guiades per les carreteres de Girona. Adaptades al teu nivell. Amb guies locals que coneixen cada coll.' },
-      { title: 'Transfer aeroport', desc: "Recollida i tornada des de l'aeroport de Girona o Barcelona. Tu i la teva bici — sense estrès logístic." },
-      { title: 'Grups reduïts', desc: 'Màxim 10 ciclistes per grup. Converses reals, comunitat real.' },
+    whatTitle: 'Què és VeloTribe Weekend?',
+    whatSub: "Una escapada de gravel completament organitzada — tot resolt des de l'aeroport fins a la bici.",
+    whatCards: [
+      { icon: '🚲', title: 'Gravel pur', desc: "Dos dies de rutes de gravel guiades pel Pla de l'Estany i la zona volcànica de la Garrotxa. Rutes adaptades al teu nivell." },
+      { icon: '🏡', title: 'Cal Santu', desc: "Una masia de pedra del segle XVIII completament renovada. Piscina, terrassa gran, cuina completa. La teva base d'operacions." },
+      { icon: '👥', title: 'Màx. 10 ciclistes', desc: "Grup reduït a propòsit. Coneixeràs tothom el divendres a la nit. Converses reals, comunitat real." },
     ],
 
-    programEyebrow: 'El programa',
-    programTitle: 'Tres dies, una tribu',
+    itinTitle: 'El programa',
+    itinSub: 'Tres dies dissenyats al voltant de la ruta — i els moments entre rutes.',
     days: [
-      { label: 'Divendres', title: 'Arribada', desc: 'Transfer des de l\'aeroport. Check-in, instal·lar-se i primer sopar en grup. La tribu es reuneix.' },
-      { label: 'Dissabte', title: 'La gran ruta', desc: 'Ruta guiada per les carreteres més icòniques de Girona. Dinar en ruta. Tarda de recuperació.' },
-      { label: 'Diumenge', title: 'Ruta matinal + comiat', desc: 'Segona ruta guiada al matí. Dinar en grup. Transfer de tornada a l\'aeroport a la tarda.' },
+      {
+        day: 'Dia 1',
+        label: 'Divendres · 5 set',
+        title: 'Arribada',
+        icon: '✈️',
+        color: '#A7B75D',
+        items: [
+          { time: 'Tarda', desc: "Transfer des de l'aeroport de Girona o Barcelona fins a Cal Santu, Banyoles." },
+          { time: 'Vespre', desc: 'Check-in, instal·lar-se, descobrir la casa i la piscina.' },
+          { time: 'Sopar', desc: 'Primer sopar junts en grup. La tribu es reuneix.' },
+        ],
+      },
+      {
+        day: 'Dia 2',
+        label: 'Dissabte · 6 set',
+        title: 'La gran ruta',
+        icon: '🚵',
+        color: '#A7B75D',
+        img: '/weekend/gravel-1.jpg',
+        items: [
+          { time: '07:30', desc: "Esmorzar ciclista a Cal Santu amb productes locals." },
+          { time: '08:30', desc: "Ruta de gravel principal. Boscos del Pla de l'Estany, camins volcànics de la Garrotxa. ~60km · 900m+." },
+          { time: '13:30', desc: 'Parada per dinar en un restaurant de poble.' },
+          { time: 'Tarda', desc: 'Tornada a Cal Santu. Piscina, recuperació, temps lliure.' },
+          { time: 'Nit', desc: 'Sopar en grup a la casa. Històries de la ruta.' },
+        ],
+      },
+      {
+        day: 'Dia 3',
+        label: 'Diumenge · 7 set',
+        title: 'Ruta matinal + comiat',
+        icon: '🌄',
+        color: '#A7B75D',
+        img: '/weekend/gravel-4.jpg',
+        items: [
+          { time: '07:30', desc: 'Esmorzar a Cal Santu.' },
+          { time: '08:30', desc: "Loop de gravel pel llac de Banyoles. Ruta més suau — ~35km · 400m+." },
+          { time: '11:30', desc: 'Tornada, dutxa, fer maletes.' },
+          { time: '13:00', desc: 'Dinar de comiat en grup.' },
+          { time: 'Tarda', desc: "Transfer de tornada a l'aeroport de Girona o Barcelona." },
+        ],
+      },
     ],
 
-    gironaEyebrow: 'La destinació',
-    gironaTitle: 'Girona. La capital del ciclisme.',
-    gironaText1: 'Una ciutat on els pros viuen, entrenen i descansen. Les carreteres són llegendàries — La Molina, Rocacorba, la Costa Brava. El tipus de terreny que fa oblidar el temps.',
-    gironaText2: 'La Província de Girona combina ports de muntanya, carreteres costeres i pobles medievals. No és només on els ciclistes venen a pedalar. És on tornen.',
+    ridesTitle: 'El gravel',
+    ridesSub: "Banyoles i el Pla de l'Estany estan al cruïlla de tres mons: bosc volcànic, contraforts de muntanya i territori lacustre. Territori gravel pur.",
+    route1Title: "Pla de l'Estany & Garrotxa",
+    route1Stats: '60 km · 900 m↑ · Terreny mixt',
+    route1Desc: "Des de Cal Santu, endinsar-se als boscos del Pla de l'Estany — pistes de terra entre roures centenaris, sense cotxes, sense soroll. Creuar a la zona volcànica de la Garrotxa: fagedes, cons de lava, pobles amagats. Tornada pel llac de Banyoles.",
+    route2Title: 'Loop llac de Banyoles',
+    route2Stats: '35 km · 400 m↑ · Gravel i asfalt',
+    route2Desc: "Un loop matinal més curt i dolç. Voltar el llac Olímpic, pujar a les collines sobre Porqueres, rodar per camps de blat de moro amb els Pirineus a l'horitzó. La ruta de comiat perfecta.",
+
+    houseTitle: "On t'allotges",
+    houseName: 'Cal Santu',
+    houseSub: "Una masia de pedra del segle XVIII totalment renovada. 5 habitacions, piscina, terrassa coberta, cuina per a 14. A 10 min del llac de Banyoles.",
+    houseFeatures: [
+      { icon: '🏊', label: 'Piscina privada' },
+      { icon: '🍽️', label: 'Cuina completa' },
+      { icon: '🛏️', label: '5 habitacions' },
+      { icon: '🚲', label: 'Garatge per a bicis' },
+      { icon: '🌿', label: 'Jardí i terrassa' },
+      { icon: '🌄', label: 'Vistes a la muntanya' },
+    ],
+
+    includedTitle: 'Què inclou',
+    includedSub: 'Arriba amb la teva bici. De la resta ens encarreguem nosaltres.',
+    included: [
+      { icon: '🏡', title: 'Allotjament', desc: 'Dues nits a Cal Santu en habitacions privades.' },
+      { icon: '🚲', title: 'Rutes guiades de gravel', desc: 'Els dos dies guiats per experts locals que coneixen cada sender.' },
+      { icon: '🍳', title: 'Esmorzar ciclista', desc: 'Els dos matins: combustible de veritat amb productes locals.' },
+      { icon: '✈️', title: 'Transfer aeroport', desc: "Aeroport de Girona o Barcelona — tu i la teva bici." },
+      { icon: '📍', title: 'GPX de rutes', desc: 'Totes les rutes al teu dispositiu abans d\'arribar.' },
+      { icon: '🤝', title: 'Grup reduït', desc: 'Màx. 10 ciclistes. Comunitat real, no un autobús turístic.' },
+    ],
+
+    locationTitle: 'Banyoles',
+    locationSub: 'El secret ciclista de Girona',
+    locationText1: "Banyoles és al Pla de l'Estany — una plana tranquil·la envoltada de boscos i camps, amb els Pirineus al nord. El llac Olímpic — seu dels Jocs de Barcelona 1992 — és a 10 minuts de Cal Santu.",
+    locationText2: "Des d'aquí, el gravel de primer nivell és literalment a la porta. La Garrotxa volcànica comença a 20 minuts a l'oest. Rocacorba és a 15 minuts al sud. La Costa Brava a 45 minuts a l'est. Girona a 25 minuts.",
+    locationStats: [
+      { value: '10\'', label: 'al llac de Banyoles' },
+      { value: '20\'', label: 'al gravel de la Garrotxa' },
+      { value: '25\'', label: 'a la ciutat de Girona' },
+      { value: '15\'', label: 'a Rocacorba' },
+    ],
 
     contactEyebrow: 'Reserva aquest viatge',
     contactTitle: 'Pedala amb la tribu',
-    contactSub: 'Explica\'ns qui ets i quants sou. T\'enviem tots els detalls i el preu.',
+    contactSub: "Explica'ns qui ets i quants sou. Et responem amb tots els detalls i el preu en 48h.",
     labelName: 'El teu nom',
     labelEmail: 'Email',
-    labelParticipants: 'Participants',
+    labelParticipants: 'Nombre de ciclistes',
     selectParticipants: 'Selecciona',
     labelNotes: 'Preguntes o notes (opcional)',
     submit: 'Enviar sol·licitud',
@@ -160,51 +390,128 @@ const ui = {
     successTitle: 'Sol·licitud rebuda!',
     successSub: 'Et responem amb el preu i disponibilitat en menys de 48 hores.',
     errorRequired: 'Si us plau, omple nom, email i nombre de participants.',
-    errorGeneric: 'Alguna cosa ha fallat. Torna-ho a intentar o escriu-nos a info@velotribe.cc.',
-    spotsNotice: 'Places limitades. Grups reduïts.',
+    errorGeneric: 'Alguna cosa ha fallat. Escriu-nos a hello@velotribe.com.',
+    spotsNotice: 'Limitat a 10 ciclistes. El cap de setmana s\'omple ràpid.',
     legalNote: "En enviar acceptes ser contactat sobre VeloTribe Weekend.",
   },
+
   fr: {
-    seoTitle: 'VeloTribe Weekend — Gérone, Septembre 2026',
-    seoDesc: 'Un week-end cycliste tout compris dans la Province de Gérone. Hébergement, sorties guidées et transfert aéroport inclus. Petits groupes uniquement.',
+    seoTitle: 'VeloTribe Weekend — Gravel à Banyoles, Septembre 2026',
+    seoDesc: "Un week-end gravel tout compris à Banyoles, Gérone. Hébergement à Cal Santu, sorties gravel guidées, transfert aéroport. Max. 10 cyclistes.",
     back: '← Retour',
 
-    heroBadge: 'Tout compris',
+    heroBadge: '5–7 sept. 2026 · Banyoles, Gérone',
     heroTitle1: 'VeloTribe',
     heroTitle2: 'Weekend',
-    heroDate: '5–7 sept. 2026',
-    heroLocation: 'Province de Gérone',
-    heroTagline: 'Deux jours en selle. Des souvenirs pour cinq.',
+    heroTagline: 'Trois jours. Gravel pur. Une tribu.',
+    heroSub: "Un week-end gravel tout compris au cœur du Pla de l'Estany. Arrivée vendredi, deux jours à rouler, repartez avec des souvenirs qui durent.",
+    heroCta: 'Réserver ce voyage',
+    heroScroll: 'Découvrez ce qui vous attend',
 
-    includedEyebrow: 'Ce qui est inclus',
-    includedTitle: 'Tout est organisé',
-    includedSub: 'Arrivez avec votre vélo. On s\'occupe du reste.',
-    inc: [
-      { title: 'Hébergement', desc: 'Deux nuits dans un hébergement sélectionné pour cyclistes. Chambres privées, stockage vélos, cuisine complète.' },
-      { title: 'Sorties guidées', desc: 'Deux jours de sorties guidées sur les routes de Gérone. Adaptées à votre niveau. Avec des guides locaux qui connaissent chaque col.' },
-      { title: 'Transfert aéroport', desc: 'Prise en charge et retour depuis l\'aéroport de Gérone ou Barcelone. Vous et votre vélo — sans stress logistique.' },
-      { title: 'Petits groupes', desc: 'Maximum 10 cyclistes par groupe. Des échanges vrais, une vraie communauté.' },
+    whatTitle: "Qu'est-ce que VeloTribe Weekend ?",
+    whatSub: "Une escapade gravel entièrement organisée — tout prévu de l'aéroport à la selle.",
+    whatCards: [
+      { icon: '🚲', title: 'Gravel pur', desc: "Deux jours de sorties gravel guidées dans le Pla de l'Estany et la zone volcanique de la Garrotxa. Parcours adaptés à votre niveau." },
+      { icon: '🏡', title: 'Cal Santu', desc: "Une ferme en pierre du XVIIIe siècle entièrement rénovée. Piscine, grande terrasse, cuisine complète. Votre camp de base pour le week-end." },
+      { icon: '👥', title: 'Max. 10 cyclistes', desc: "Petit groupe intentionnel. Vous connaîtrez tout le monde dès vendredi soir. Des échanges vrais, une vraie communauté." },
     ],
 
-    programEyebrow: 'Le programme',
-    programTitle: 'Trois jours, une tribu',
+    itinTitle: 'Le programme',
+    itinSub: 'Trois jours conçus autour de la sortie — et des moments entre les sorties.',
     days: [
-      { label: 'Vendredi', title: 'Arrivée', desc: 'Transfert depuis l\'aéroport. Check-in, installation et premier dîner en groupe. La tribu se réunit.' },
-      { label: 'Samedi', title: 'La grande sortie', desc: 'Sortie guidée sur les routes les plus emblématiques de Gérone. Déjeuner en route. Après-midi récupération.' },
-      { label: 'Dimanche', title: 'Sortie matinale + départ', desc: 'Deuxième sortie guidée le matin. Déjeuner en groupe. Transfert retour vers l\'aéroport l\'après-midi.' },
+      {
+        day: 'Jour 1',
+        label: 'Vendredi · 5 sept',
+        title: 'Arrivée',
+        icon: '✈️',
+        color: '#A7B75D',
+        items: [
+          { time: 'Après-midi', desc: "Transfert depuis l'aéroport de Gérone ou Barcelone vers Cal Santu, Banyoles." },
+          { time: 'Soir', desc: 'Check-in, installation, découverte de la maison et de la piscine.' },
+          { time: 'Dîner', desc: 'Premier dîner en groupe. La tribu se réunit.' },
+        ],
+      },
+      {
+        day: 'Jour 2',
+        label: 'Samedi · 6 sept',
+        title: 'La grande sortie',
+        icon: '🚵',
+        color: '#A7B75D',
+        img: '/weekend/gravel-1.jpg',
+        items: [
+          { time: '07:30', desc: 'Petit-déjeuner cycliste à Cal Santu avec produits locaux.' },
+          { time: '08:30', desc: "Sortie gravel principale. Forêts du Pla de l'Estany, sentiers volcaniques de la Garrotxa. ~60km · 900m+." },
+          { time: '13:30', desc: 'Déjeuner dans un restaurant de village.' },
+          { time: 'Après-midi', desc: 'Retour à Cal Santu. Piscine, récupération, temps libre.' },
+          { time: 'Soir', desc: 'Dîner en groupe à la maison. Histoires de la route.' },
+        ],
+      },
+      {
+        day: 'Jour 3',
+        label: 'Dimanche · 7 sept',
+        title: 'Sortie matinale + au revoir',
+        icon: '🌄',
+        color: '#A7B75D',
+        img: '/weekend/gravel-4.jpg',
+        items: [
+          { time: '07:30', desc: 'Petit-déjeuner à Cal Santu.' },
+          { time: '08:30', desc: 'Boucle gravel autour du lac de Banyoles. Parcours plus léger — ~35km · 400m+.' },
+          { time: '11:30', desc: 'Retour, douche, bagages.' },
+          { time: '13:00', desc: "Déjeuner d'au revoir en groupe." },
+          { time: 'Après-midi', desc: "Transfert retour vers l'aéroport de Gérone ou Barcelone." },
+        ],
+      },
     ],
 
-    gironaEyebrow: 'La destination',
-    gironaTitle: 'Gérone. La capitale du cyclisme.',
-    gironaText1: 'Une ville où les pros vivent, s\'entraînent et se ressourcent. Les routes sont légendaires — La Molina, Rocacorba, la Costa Brava. Le genre de terrain qui fait oublier le temps.',
-    gironaText2: 'La Province de Gérone combine cols de montagne, routes côtières et villages médiévaux. Ce n\'est pas juste là où les cyclistes viennent rouler. C\'est là où ils reviennent.',
+    ridesTitle: 'Le gravel',
+    ridesSub: "Banyoles et le Pla de l'Estany sont au carrefour de trois mondes : forêt volcanique, contreforts de montagne et pays des lacs. Territoire gravel pur.",
+    route1Title: "Pla de l'Estany & Garrotxa",
+    route1Stats: '60 km · 900 m↑ · Terrain mixte',
+    route1Desc: "Depuis Cal Santu, s'enfoncer dans les forêts du Pla de l'Estany — pistes de terre entre chênes centenaires, sans voitures, sans bruit. Pénétrer dans la zone volcanique de la Garrotxa : hêtraies, cônes de lave, villages cachés. Retour par le lac de Banyoles.",
+    route2Title: 'Boucle lac de Banyoles',
+    route2Stats: '35 km · 400 m↑ · Gravel et bitume',
+    route2Desc: "Une boucle matinale plus courte et douce. Longer le lac Olympique, monter sur les collines au-dessus de Porqueres, rouler dans les champs de maïs avec les Pyrénées à l'horizon. La sortie d'adieu parfaite.",
+
+    houseTitle: 'Où vous logez',
+    houseName: 'Cal Santu',
+    houseSub: "Une ferme en pierre du XVIIIe siècle entièrement rénovée. 5 chambres, piscine, terrasse couverte, cuisine pour 14. À 10 min du lac de Banyoles.",
+    houseFeatures: [
+      { icon: '🏊', label: 'Piscine privée' },
+      { icon: '🍽️', label: 'Cuisine complète' },
+      { icon: '🛏️', label: '5 chambres' },
+      { icon: '🚲', label: 'Garage vélos' },
+      { icon: '🌿', label: 'Jardin & terrasse' },
+      { icon: '🌄', label: 'Vue montagne' },
+    ],
+
+    includedTitle: 'Ce qui est inclus',
+    includedSub: 'Arrivez avec votre vélo. On s\'occupe du reste.',
+    included: [
+      { icon: '🏡', title: 'Hébergement', desc: 'Deux nuits à Cal Santu en chambres privées.' },
+      { icon: '🚲', title: 'Sorties gravel guidées', desc: 'Les deux jours guidés par des experts locaux qui connaissent chaque sentier.' },
+      { icon: '🍳', title: 'Petit-déjeuner cycliste', desc: 'Les deux matins : vrai carburant avec produits locaux.' },
+      { icon: '✈️', title: 'Transfert aéroport', desc: "Aéroport de Gérone ou Barcelone — vous et votre vélo." },
+      { icon: '📍', title: 'Fichiers GPX', desc: 'Tous les parcours sur votre appareil avant votre arrivée.' },
+      { icon: '🤝', title: 'Petit groupe', desc: 'Max. 10 cyclistes. Vraie communauté, pas un bus touristique.' },
+    ],
+
+    locationTitle: 'Banyoles',
+    locationSub: 'Le secret cycliste de Gérone',
+    locationText1: "Banyoles est situé dans le Pla de l'Estany — un plateau plat et tranquille entouré de forêts et de champs, avec les Pyrénées au nord. Le lac Olympique — site des Jeux de Barcelone 1992 — est à 10 minutes de Cal Santu.",
+    locationText2: "D'ici, le gravel de premier niveau est littéralement à la porte. La Garrotxa volcanique commence à 20 minutes à l'ouest. Rocacorba est à 15 minutes au sud. La Costa Brava à 45 minutes à l'est. Gérone à 25 minutes.",
+    locationStats: [
+      { value: '10\'', label: 'lac de Banyoles' },
+      { value: '20\'', label: 'gravel Garrotxa' },
+      { value: '25\'', label: 'ville de Gérone' },
+      { value: '15\'', label: 'Rocacorba' },
+    ],
 
     contactEyebrow: 'Réserver ce voyage',
     contactTitle: 'Roulez avec la tribu',
-    contactSub: 'Dites-nous qui vous êtes et combien vous êtes. Nous vous envoyons tous les détails et le tarif.',
+    contactSub: "Dites-nous qui vous êtes et combien vous êtes. Nous vous répondons avec tous les détails et le tarif sous 48h.",
     labelName: 'Votre nom',
     labelEmail: 'Email',
-    labelParticipants: 'Participants',
+    labelParticipants: 'Nombre de cyclistes',
     selectParticipants: 'Sélectionner',
     labelNotes: 'Questions ou notes (optionnel)',
     submit: 'Envoyer la demande',
@@ -212,9 +519,9 @@ const ui = {
     successTitle: 'Demande reçue !',
     successSub: 'Nous vous répondrons avec le tarif et les disponibilités sous 48 heures.',
     errorRequired: 'Merci de renseigner votre nom, email et nombre de participants.',
-    errorGeneric: 'Quelque chose s\'est mal passé. Réessayez ou écrivez à info@velotribe.cc.',
-    spotsNotice: 'Places limitées. Petits groupes uniquement.',
-    legalNote: 'En envoyant vous acceptez d\'être contacté(e) au sujet du VeloTribe Weekend.',
+    errorGeneric: 'Quelque chose s\'est mal passé. Écrivez-nous à hello@velotribe.com.',
+    spotsNotice: 'Limité à 10 cyclistes. Le week-end se remplit vite.',
+    legalNote: "En envoyant vous acceptez d'être contacté(e) au sujet du VeloTribe Weekend.",
   },
 }
 
@@ -224,403 +531,386 @@ const homeHref = pathFor(lang, '/')
 
 <Layout lang={lang} title={c.seoTitle} description={c.seoDesc}>
   <Nav lang={lang} />
-
   <main>
 
-    <!-- ── HERO ── -->
-    <section class="relative min-h-[80vh] flex flex-col justify-end overflow-hidden" style="background:#2C2419">
+  <!-- ══════════════════════════════════════════
+       HERO
+  ══════════════════════════════════════════ -->
+  <section class="relative min-h-[95vh] flex flex-col justify-end overflow-hidden" style="background:#2C2419">
+    <img src="/weekend/calsantu-1.jpg" alt="Cal Santu"
+      class="absolute inset-0 w-full h-full object-cover"
+      style="opacity:0.5;object-position:center 60%" loading="eager"/>
+    <div class="absolute inset-0" style="background:linear-gradient(to top, #2C2419 25%, rgba(44,36,25,0.2) 65%, rgba(44,36,25,0.55) 100%)"></div>
+    <!-- Wave overlay -->
+    <div class="absolute inset-0 pointer-events-none" style="opacity:0.05">
+      <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"><defs><pattern id="hw" x="0" y="0" width="160" height="22" patternUnits="userSpaceOnUse"><path d="M0,11 Q40,2 80,11 T160,11" stroke="#A7B75D" stroke-width="1" fill="none"/></pattern></defs><rect width="100%" height="100%" fill="url(#hw)"/></svg>
+    </div>
 
-      <!-- Background image + overlays -->
-      <img
-        src="/weekend/calsantu-1.jpg"
-        alt="Cal Santu — VeloTribe Weekend"
-        class="absolute inset-0 w-full h-full object-cover"
-        style="opacity:0.45;object-position:center 60%"
-        loading="eager"
-      />
-      <div class="absolute inset-0 pointer-events-none" style="background:linear-gradient(to top, #2C2419 30%, rgba(44,36,25,0.3) 70%, rgba(44,36,25,0.5) 100%)"></div>
+    <div class="relative z-10 px-[5vw] pb-16 pt-28 max-w-4xl">
+      <a href={homeHref} class="inline-flex items-center gap-1.5 text-xs uppercase tracking-[2px] font-semibold mb-8 transition hover:text-[#A7B75D]" style="color:#ffffff50">{c.back}</a>
 
-      <!-- Wave pattern overlay -->
-      <div class="absolute inset-0 pointer-events-none" style="opacity:0.06">
-        <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
-          <defs>
-            <pattern id="hero-waves" x="0" y="0" width="160" height="22" patternUnits="userSpaceOnUse">
-              <path d="M0,11 Q40,2 80,11 T160,11" stroke="#A7B75D" stroke-width="1" fill="none" stroke-linecap="round"/>
-            </pattern>
-          </defs>
-          <rect width="100%" height="100%" fill="url(#hero-waves)"/>
-        </svg>
+      <!-- Badge -->
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full mb-6" style="background:#A7B75D20;border:1px solid #A7B75D55">
+        <span class="w-2 h-2 rounded-full animate-pulse" style="background:#A7B75D"></span>
+        <span class="text-[11px] font-bold uppercase tracking-[2.5px]" style="color:#A7B75D">{c.heroBadge}</span>
       </div>
 
-      <!-- Radial glow -->
-      <div class="absolute inset-0 pointer-events-none" style="background:radial-gradient(ellipse 60% 50% at 30% 60%, #A7B75D0f 0%, transparent 65%)"></div>
+      <h1 class="font-display font-black uppercase leading-[0.88] mb-5" style="font-size:clamp(64px,13vw,130px);color:#F8EEDA">
+        {c.heroTitle1}<br>
+        <em class="not-italic" style="color:#A7B75D">{c.heroTitle2}</em>
+      </h1>
 
-      <!-- Content -->
-      <div class="relative z-10 px-[5vw] pb-16 pt-28 max-w-5xl">
+      <p class="text-2xl md:text-3xl font-black uppercase mb-4" style="color:#d4c4a8;font-family:'Oswald',sans-serif;letter-spacing:1px">{c.heroTagline}</p>
+      <p class="text-base max-w-xl leading-relaxed mb-8" style="color:#a09078">{c.heroSub}</p>
 
-        <!-- Breadcrumb -->
-        <a href={homeHref}
-           class="inline-flex items-center gap-1.5 text-xs uppercase tracking-[2px] font-semibold mb-8 transition hover:text-[#A7B75D]"
-           style="color:#ffffff50">
-          {c.back}
-        </a>
+      <a href="#contact" class="inline-flex items-center gap-2 px-7 py-4 rounded-lg font-bold text-sm uppercase tracking-[1.5px] transition hover:scale-[1.03] hover:shadow-xl" style="background:#A7B75D;color:#2C2419">
+        {c.heroCta}
+        <svg class="w-4 h-4" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 3 11 8 6 13"/></svg>
+      </a>
+    </div>
+  </section>
 
-        <!-- Badge -->
-        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full mb-6" style="background:#A7B75D20;border:1px solid #A7B75D55">
-          <svg class="w-3 h-3" viewBox="0 0 16 16" fill="none">
-            <path d="M8 1l1.8 3.6L14 5.6l-3 2.9.7 4.1L8 10.5l-3.7 1.9.7-4.1-3-2.9 4.2-.6z" fill="#A7B75D"/>
-          </svg>
-          <span class="text-[10px] font-bold uppercase tracking-[3px]" style="color:#A7B75D">{c.heroBadge}</span>
-        </div>
 
-        <!-- Title -->
-        <h1 class="font-display font-black uppercase leading-[0.88] mb-6" style="font-size:clamp(60px,12vw,120px);color:#F8EEDA;text-shadow:0 4px 30px rgba(0,0,0,0.6)">
-          {c.heroTitle1}<br>
-          <em class="not-italic" style="color:#A7B75D">{c.heroTitle2}</em>
-        </h1>
-
-        <!-- Date + location row -->
-        <div class="flex flex-wrap items-center gap-4 mb-4">
-          <span class="flex items-center gap-2 text-sm font-semibold uppercase tracking-[2px]" style="color:#ffffff70">
-            <svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
-              <rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
-            </svg>
-            {c.heroDate}
-          </span>
-          <span style="color:#ffffff25">·</span>
-          <span class="flex items-center gap-2 text-sm font-semibold uppercase tracking-[2px]" style="color:#ffffff70">
-            <svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
-              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/>
-            </svg>
-            {c.heroLocation}
-          </span>
-        </div>
-
-        <!-- Tagline -->
-        <p class="text-xl md:text-2xl font-light" style="color:#d4c4a8">{c.heroTagline}</p>
-
-        <!-- Scroll CTA -->
-        <a href="#contact" class="inline-flex items-center gap-2 mt-8 px-6 py-3.5 rounded-lg font-bold text-sm uppercase tracking-[1.5px] transition hover:scale-[1.03] hover:shadow-lg"
-           style="background:#A7B75D;color:#2C2419">
-          {c.contactEyebrow}
-          <svg class="w-4 h-4" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 3 11 8 6 13"/></svg>
-        </a>
+  <!-- ══════════════════════════════════════════
+       WHAT IS IT?
+  ══════════════════════════════════════════ -->
+  <section style="background:#F8EEDA;padding:5rem 5vw;">
+    <div style="max-width:1100px;margin:0 auto;">
+      <div style="text-align:center;margin-bottom:3rem;">
+        <h2 class="font-display font-black uppercase leading-tight" style="font-size:clamp(28px,5vw,50px);color:#41372B;margin-bottom:0.75rem;">{c.whatTitle}</h2>
+        <p style="color:#9a8c7a;font-size:1rem;max-width:520px;margin:0 auto;">{c.whatSub}</p>
       </div>
-    </section>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem;">
+        {c.whatCards.map(card => (
+          <div style="background:#41372B;border-radius:20px;padding:2rem;">
+            <div style="font-size:2.2rem;margin-bottom:1rem;">{card.icon}</div>
+            <h3 class="font-display font-black uppercase" style="color:#F8EEDA;font-size:1.2rem;margin-bottom:0.6rem;">{card.title}</h3>
+            <p style="color:#ffffff65;font-size:0.875rem;line-height:1.65;">{card.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
 
 
-    <!-- ── WHAT'S INCLUDED ── -->
-    <section class="px-[5vw] py-20" style="background:#F8EEDA">
-      <div class="max-w-5xl mx-auto">
-        <div class="text-center mb-14 reveal">
-          <p class="text-[11px] font-bold tracking-[3px] uppercase mb-2.5" style="color:#A7B75D">{c.includedEyebrow}</p>
-          <h2 class="font-display font-black uppercase leading-[0.95] mb-4" style="font-size:clamp(32px,6vw,56px);color:#41372B">{c.includedTitle}</h2>
-          <p class="text-base max-w-md mx-auto" style="color:#9a8c7a">{c.includedSub}</p>
-        </div>
+  <!-- ══════════════════════════════════════════
+       VISUAL ITINERARY
+  ══════════════════════════════════════════ -->
+  <section style="background:#2C2419;padding:5rem 5vw;">
+    <div style="max-width:1100px;margin:0 auto;">
+      <div style="text-align:center;margin-bottom:3.5rem;">
+        <p style="font-size:0.7rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#A7B75D;margin-bottom:0.75rem;">{c.itinTitle}</p>
+        <h2 class="font-display font-black uppercase" style="font-size:clamp(28px,5vw,50px);color:#F8EEDA;">{c.itinSub}</h2>
+      </div>
 
-        <div class="grid sm:grid-cols-2 gap-5 reveal">
-          {[
-            { icon: 'M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z M9 22V12h6v10', ...c.inc[0] },
-            { icon: 'M17 8A5 5 0 006.3 9.9a3 3 0 10-2.3 5.6H17a4 4 0 000-8z M12 12v4 M10 14h4', ...c.inc[1] },
-            { icon: 'M12 2a10 10 0 100 20A10 10 0 0012 2zm0 0v10l4.5 4.5', ...c.inc[2] },
-            { icon: 'M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2 M9 7a4 4 0 100 8 4 4 0 000-8z M23 21v-2a4 4 0 00-3-3.87 M16 3.13a4 4 0 010 7.75', ...c.inc[3] },
-          ].map((item, i) => (
-            <div class="flex gap-5 p-7 rounded-2xl" style="background:#41372B">
-              <div class="shrink-0 w-12 h-12 rounded-xl flex items-center justify-center mt-0.5" style="background:#A7B75D18">
-                <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="#A7B75D" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                  <path d={item.icon}/>
-                </svg>
+      <div style="display:flex;flex-direction:column;gap:2px;">
+        {c.days.map((day, i) => (
+          <div style={`border-radius:20px;overflow:hidden;${day.img ? 'display:grid;grid-template-columns:1fr 1fr;' : ''}`}>
+
+            {/* Day with photo (Saturday + Sunday) */}
+            {day.img && (
+              <div style="position:relative;min-height:360px;">
+                <img src={day.img} alt={day.title} style="width:100%;height:100%;object-fit:cover;object-position:center;"/>
+                <div style="position:absolute;inset:0;background:linear-gradient(to right, rgba(44,36,25,0.4) 0%, transparent 100%)"></div>
+                <div style="position:absolute;bottom:1.5rem;left:1.5rem;">
+                  <span style="background:#A7B75D;color:#2C2419;font-size:0.65rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:4px 12px;border-radius:999px;">{day.label}</span>
+                </div>
               </div>
-              <div>
-                <h3 class="font-display font-black uppercase text-lg mb-2" style="color:#F8EEDA">{item.title}</h3>
-                <p class="text-sm leading-relaxed" style="color:#ffffff60">{item.desc}</p>
+            )}
+
+            {/* Content panel */}
+            <div style={`background:#41372B;padding:2.5rem;${!day.img ? 'border-radius:20px;' : ''}`}>
+              {/* Day header */}
+              <div style="display:flex;align-items:center;gap:1rem;margin-bottom:1.75rem;">
+                <div style="width:52px;height:52px;border-radius:14px;background:#A7B75D20;border:1px solid #A7B75D44;display:flex;align-items:center;justify-content:center;font-size:1.5rem;flex-shrink:0;">
+                  {day.icon}
+                </div>
+                <div>
+                  <p style="font-size:0.65rem;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:#A7B75D;margin-bottom:0.2rem;">{day.day} · {!day.img ? day.label : ''}</p>
+                  <h3 class="font-display font-black uppercase" style="color:#F8EEDA;font-size:1.5rem;line-height:1;">{day.title}</h3>
+                </div>
+              </div>
+
+              {/* Timeline items */}
+              <div style="display:flex;flex-direction:column;gap:0;">
+                {day.items.map((item, j) => (
+                  <div style={`display:flex;gap:1rem;padding-bottom:${j < day.items.length - 1 ? '1.25rem' : '0'};position:relative;`}>
+                    {/* Vertical line */}
+                    {j < day.items.length - 1 && (
+                      <div style="position:absolute;left:10px;top:22px;bottom:0;width:1px;background:#A7B75D33;"></div>
+                    )}
+                    {/* Dot */}
+                    <div style="width:21px;height:21px;border-radius:50%;background:#A7B75D;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;z-index:1;">
+                      <div style="width:7px;height:7px;border-radius:50%;background:#2C2419;"></div>
+                    </div>
+                    <div>
+                      <span style="font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#A7B75D;">{item.time}</span>
+                      <p style="color:#ffffff70;font-size:0.875rem;line-height:1.55;margin:0.2rem 0 0;">{item.desc}</p>
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
-          ))}
-        </div>
+
+          </div>
+        ))}
       </div>
-    </section>
+    </div>
+  </section>
 
 
-    <!-- ── PROGRAMME ── -->
-    <section class="px-[5vw] py-20" style="background:#2C2419">
-      <div class="max-w-5xl mx-auto">
-
-        <div class="text-center mb-14 reveal">
-          <p class="text-[11px] font-bold tracking-[3px] uppercase mb-2.5" style="color:#A7B75D">{c.programEyebrow}</p>
-          <h2 class="font-display font-black uppercase leading-[0.95]" style="font-size:clamp(32px,6vw,56px);color:#F8EEDA">{c.programTitle}</h2>
-        </div>
-
-        <div class="grid md:grid-cols-3 gap-6 reveal">
-          {c.days.map((day, i) => (
-            <div class="relative p-8 rounded-2xl overflow-hidden" style="background:#41372B;border:1px solid #A7B75D22">
-              <!-- Day number background -->
-              <div class="absolute top-4 right-5 font-display font-black text-7xl leading-none pointer-events-none select-none" style="color:#ffffff05">
-                {String(i + 1).padStart(2, '0')}
-              </div>
-              <p class="text-[10px] font-bold uppercase tracking-[3px] mb-3" style="color:#A7B75D">{day.label}</p>
-              <h3 class="font-display font-black uppercase text-2xl mb-3 leading-tight" style="color:#F8EEDA">{day.title}</h3>
-              <p class="text-sm leading-relaxed" style="color:#ffffff55">{day.desc}</p>
-            </div>
-          ))}
-        </div>
+  <!-- ══════════════════════════════════════════
+       THE RIDES (gravel photos)
+  ══════════════════════════════════════════ -->
+  <section style="background:#1e1910;padding:5rem 5vw;">
+    <div style="max-width:1100px;margin:0 auto;">
+      <div style="text-align:center;margin-bottom:3rem;">
+        <p style="font-size:0.7rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#A7B75D;margin-bottom:0.75rem;">Gravel · Banyoles</p>
+        <h2 class="font-display font-black uppercase" style="font-size:clamp(28px,5vw,50px);color:#F8EEDA;margin-bottom:0.75rem;">{c.ridesTitle}</h2>
+        <p style="color:#a09078;font-size:0.95rem;max-width:540px;margin:0 auto;">{c.ridesSub}</p>
       </div>
-    </section>
 
-
-    <!-- ── THE HOUSE ── -->
-    <section class="px-[5vw] py-20" style="background:#F8EEDA">
-      <div class="max-w-5xl mx-auto">
-
-        <div class="text-center mb-12 reveal">
-          <p class="text-[11px] font-bold tracking-[3px] uppercase mb-2.5" style="color:#A7B75D">
-            {lang === 'es' ? 'Dónde te alojas' : lang === 'ca' ? 'On t\'allotges' : lang === 'fr' ? 'Où vous logez' : 'Where you stay'}
-          </p>
-          <h2 class="font-display font-black uppercase leading-[0.95] mb-4" style="font-size:clamp(32px,6vw,56px);color:#41372B">
-            {lang === 'es' ? 'Cal Santu' : lang === 'ca' ? 'Cal Santu' : lang === 'fr' ? 'Cal Santu' : 'Cal Santu'}
-          </h2>
-          <p class="text-base max-w-lg mx-auto" style="color:#9a8c7a">
-            {lang === 'es'
-              ? 'Una masía de piedra del siglo XVIII completamente renovada. Piscina, terraza con vistas, cocina para todo el grupo. A 10 minutos del lago de Banyoles.'
-              : lang === 'ca'
-              ? 'Una masia de pedra del segle XVIII completament renovada. Piscina, terrassa amb vistes, cuina per a tot el grup. A 10 minuts del llac de Banyoles.'
-              : lang === 'fr'
-              ? 'Une ferme en pierre du XVIIIe siècle entièrement rénovée. Piscine, terrasse avec vue, cuisine pour tout le groupe. À 10 minutes du lac de Banyoles.'
-              : 'An 18th-century stone farmhouse, fully renovated. Pool, terrace with views, kitchen for the whole group. 10 minutes from Lake Banyoles.'}
-          </p>
-        </div>
-
-        <!-- Mosaic gallery -->
-        <div class="reveal" style="display:grid;grid-template-columns:1fr 1fr 1fr;grid-template-rows:260px 260px;gap:8px;">
-
-          <!-- Big left: pool + house -->
-          <div style="grid-column:1/3;grid-row:1/2;border-radius:16px;overflow:hidden;position:relative;">
-            <img src="/weekend/calsantu-3.jpg" alt="Cal Santu — pool and house"
-              style="width:100%;height:100%;object-fit:cover;transition:transform 0.5s;"
-              onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'"/>
-          </div>
-
-          <!-- Top right: bedroom -->
-          <div style="grid-column:3/4;grid-row:1/2;border-radius:16px;overflow:hidden;position:relative;">
-            <img src="/weekend/calsantu-4.jpg" alt="Cal Santu — bedroom"
-              style="width:100%;height:100%;object-fit:cover;transition:transform 0.5s;"
-              onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'"/>
-          </div>
-
-          <!-- Bottom left: interior dining -->
-          <div style="grid-column:1/2;grid-row:2/3;border-radius:16px;overflow:hidden;position:relative;">
-            <img src="/weekend/calsantu-2.jpg" alt="Cal Santu — dining room"
-              style="width:100%;height:100%;object-fit:cover;transition:transform 0.5s;"
-              onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'"/>
-          </div>
-
-          <!-- Bottom center+right: terrace with mountain views -->
-          <div style="grid-column:2/4;grid-row:2/3;border-radius:16px;overflow:hidden;position:relative;">
-            <img src="/weekend/calsantu-6.jpg" alt="Cal Santu — terrace with views"
-              style="width:100%;height:100%;object-fit:cover;transition:transform 0.5s;"
-              onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'"/>
-            <!-- Label -->
-            <div style="position:absolute;bottom:1rem;left:1rem;background:rgba(44,36,25,0.75);backdrop-filter:blur(4px);border-radius:8px;padding:0.4rem 0.85rem;">
-              <span style="font-size:0.7rem;font-weight:700;color:#F8EEDA;letter-spacing:1px;text-transform:uppercase;">
-                {lang === 'es' ? 'Terraza · Vistas a la montaña' : lang === 'ca' ? 'Terrassa · Vistes a la muntanya' : lang === 'fr' ? 'Terrasse · Vue montagne' : 'Terrace · Mountain views'}
-              </span>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.5rem;">
+        <!-- Route 1 -->
+        <div style="border-radius:20px;overflow:hidden;background:#41372B;">
+          <div style="position:relative;height:260px;">
+            <img src="/weekend/gravel-2.jpg" alt="Gravel Pla de l'Estany" style="width:100%;height:100%;object-fit:cover;object-position:center 30%;"/>
+            <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(65,55,43,0.9) 0%,transparent 60%)"></div>
+            <div style="position:absolute;bottom:1.25rem;left:1.25rem;right:1.25rem;">
+              <span style="background:#A7B75D;color:#2C2419;font-size:0.65rem;font-weight:700;letter-spacing:1px;padding:3px 10px;border-radius:999px;text-transform:uppercase;">{c.route1Stats}</span>
             </div>
           </div>
-
-        </div>
-
-        <!-- House features -->
-        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-8 reveal">
-          {[
-            { icon: '🏊', label: lang === 'es' ? 'Piscina privada' : lang === 'ca' ? 'Piscina privada' : lang === 'fr' ? 'Piscine privée' : 'Private pool' },
-            { icon: '🍽️', label: lang === 'es' ? 'Cocina completa' : lang === 'ca' ? 'Cuina completa' : lang === 'fr' ? 'Cuisine équipée' : 'Full kitchen' },
-            { icon: '🛏️', label: lang === 'es' ? '5 habitaciones' : lang === 'ca' ? '5 habitacions' : lang === 'fr' ? '5 chambres' : '5 bedrooms' },
-            { icon: '🚲', label: lang === 'es' ? 'Garaje para bicis' : lang === 'ca' ? 'Garatge per a bicis' : lang === 'fr' ? 'Garage vélos' : 'Bike garage' },
-          ].map(f => (
-            <div class="flex flex-col items-center gap-2 p-5 rounded-xl text-center" style="background:#41372B">
-              <span style="font-size:1.5rem;">{f.icon}</span>
-              <span class="text-xs font-bold uppercase tracking-wide" style="color:#F8EEDA">{f.label}</span>
-            </div>
-          ))}
-        </div>
-
-      </div>
-    </section>
-
-
-    <!-- ── GIRONA ── -->
-    <section class="px-[5vw] py-20" style="background:#41372B">
-      <div class="max-w-5xl mx-auto reveal">
-        <div class="grid md:grid-cols-2 gap-12 items-center">
-
-          <!-- Text -->
-          <div>
-            <p class="text-[11px] font-bold tracking-[3px] uppercase mb-3" style="color:#A7B75D">{c.gironaEyebrow}</p>
-            <h2 class="font-display font-black uppercase leading-[0.95] mb-6" style="font-size:clamp(28px,5vw,48px);color:#F8EEDA">{c.gironaTitle}</h2>
-            <p class="text-base leading-relaxed mb-4" style="color:#ffffff70">{c.gironaText1}</p>
-            <p class="text-sm leading-relaxed" style="color:#ffffff45">{c.gironaText2}</p>
+          <div style="padding:1.5rem;">
+            <h3 class="font-display font-black uppercase" style="color:#F8EEDA;font-size:1.1rem;margin-bottom:0.6rem;">{c.route1Title}</h3>
+            <p style="color:#ffffff60;font-size:0.85rem;line-height:1.65;">{c.route1Desc}</p>
           </div>
+        </div>
 
-          <!-- Feature stats -->
-          <div class="grid grid-cols-2 gap-4">
-            {[
-              { value: '2', unit: lang === 'es' ? 'días' : lang === 'ca' ? 'dies' : lang === 'fr' ? 'jours' : 'days', label: lang === 'es' ? 'de pedaleo' : lang === 'ca' ? 'de pedaleig' : lang === 'fr' ? 'de vélo' : 'on the bike' },
-              { value: '10', unit: 'max', label: lang === 'es' ? 'ciclistas por grupo' : lang === 'ca' ? 'ciclistes per grup' : lang === 'fr' ? 'cyclistes par groupe' : 'riders per group' },
-              { value: '100%', unit: '', label: lang === 'es' ? 'todo incluido' : lang === 'ca' ? 'tot inclòs' : lang === 'fr' ? 'tout compris' : 'all-inclusive' },
-              { value: '1', unit: 'sep.', label: lang === 'es' ? 'primer fin de semana' : lang === 'ca' ? 'primer cap de setmana' : lang === 'fr' ? 'premier week-end' : 'first weekend' },
-            ].map(stat => (
-              <div class="p-5 rounded-xl text-center" style="background:#2C241950;border:1px solid #A7B75D22">
-                <p class="font-display font-black text-3xl" style="color:#A7B75D">{stat.value}<span class="text-lg ml-1" style="color:#A7B75D88">{stat.unit}</span></p>
-                <p class="text-xs mt-1 leading-snug" style="color:#ffffff50">{stat.label}</p>
+        <!-- Route 2 -->
+        <div style="border-radius:20px;overflow:hidden;background:#41372B;">
+          <div style="position:relative;height:260px;">
+            <img src="/weekend/gravel-3.jpg" alt="Lake Banyoles Loop" style="width:100%;height:100%;object-fit:cover;object-position:center 40%;"/>
+            <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(65,55,43,0.9) 0%,transparent 60%)"></div>
+            <div style="position:absolute;bottom:1.25rem;left:1.25rem;right:1.25rem;">
+              <span style="background:#A7B75D;color:#2C2419;font-size:0.65rem;font-weight:700;letter-spacing:1px;padding:3px 10px;border-radius:999px;text-transform:uppercase;">{c.route2Stats}</span>
+            </div>
+          </div>
+          <div style="padding:1.5rem;">
+            <h3 class="font-display font-black uppercase" style="color:#F8EEDA;font-size:1.1rem;margin-bottom:0.6rem;">{c.route2Title}</h3>
+            <p style="color:#ffffff60;font-size:0.85rem;line-height:1.65;">{c.route2Desc}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════
+       THE HOUSE — Cal Santu
+  ══════════════════════════════════════════ -->
+  <section style="background:#F8EEDA;padding:5rem 5vw;">
+    <div style="max-width:1100px;margin:0 auto;">
+      <div style="text-align:center;margin-bottom:2.5rem;">
+        <p style="font-size:0.7rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#A7B75D;margin-bottom:0.75rem;">{c.houseTitle}</p>
+        <h2 class="font-display font-black uppercase" style="font-size:clamp(28px,5vw,50px);color:#41372B;margin-bottom:0.75rem;">{c.houseName}</h2>
+        <p style="color:#9a8c7a;font-size:0.95rem;max-width:540px;margin:0 auto;">{c.houseSub}</p>
+      </div>
+
+      <!-- Photo mosaic -->
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;grid-template-rows:260px 260px;gap:8px;border-radius:20px;overflow:hidden;">
+        <div style="grid-column:1/3;grid-row:1/2;overflow:hidden;position:relative;">
+          <img src="/weekend/calsantu-3.jpg" alt="Cal Santu pool" style="width:100%;height:100%;object-fit:cover;transition:transform 0.5s;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'"/>
+          <div style="position:absolute;bottom:1rem;left:1rem;background:rgba(44,36,25,0.75);backdrop-filter:blur(4px);padding:4px 12px;border-radius:8px;">
+            <span style="font-size:0.7rem;font-weight:700;color:#F8EEDA;text-transform:uppercase;letter-spacing:1px;">Cal Santu · Banyoles</span>
+          </div>
+        </div>
+        <div style="grid-column:3/4;grid-row:1/2;overflow:hidden;">
+          <img src="/weekend/calsantu-4.jpg" alt="Cal Santu bedroom" style="width:100%;height:100%;object-fit:cover;transition:transform 0.5s;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'"/>
+        </div>
+        <div style="grid-column:1/2;grid-row:2/3;overflow:hidden;">
+          <img src="/weekend/calsantu-2.jpg" alt="Cal Santu dining" style="width:100%;height:100%;object-fit:cover;transition:transform 0.5s;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'"/>
+        </div>
+        <div style="grid-column:2/4;grid-row:2/3;overflow:hidden;position:relative;">
+          <img src="/weekend/calsantu-6.jpg" alt="Cal Santu terrace" style="width:100%;height:100%;object-fit:cover;transition:transform 0.5s;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'"/>
+          <div style="position:absolute;bottom:1rem;left:1rem;background:rgba(44,36,25,0.75);backdrop-filter:blur(4px);padding:4px 12px;border-radius:8px;">
+            <span style="font-size:0.7rem;font-weight:700;color:#A7B75D;text-transform:uppercase;letter-spacing:1px;">
+              {lang === 'es' ? 'Terraza · Vistas montaña' : lang === 'ca' ? 'Terrassa · Vistes muntanya' : lang === 'fr' ? 'Terrasse · Vue montagne' : 'Terrace · Mountain views'}
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <!-- House features -->
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:1.5rem;">
+        {c.houseFeatures.map(f => (
+          <div style="display:flex;align-items:center;gap:0.75rem;background:#41372B;border-radius:12px;padding:1rem 1.25rem;">
+            <span style="font-size:1.3rem;">{f.icon}</span>
+            <span style="font-size:0.82rem;font-weight:700;color:#F8EEDA;text-transform:uppercase;letter-spacing:0.5px;">{f.label}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════
+       WHAT'S INCLUDED
+  ══════════════════════════════════════════ -->
+  <section style="background:#494B30;padding:5rem 5vw;">
+    <div style="max-width:1100px;margin:0 auto;">
+      <div style="text-align:center;margin-bottom:3rem;">
+        <p style="font-size:0.7rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:rgba(248,238,218,0.5);margin-bottom:0.75rem;">{c.includedTitle}</p>
+        <h2 class="font-display font-black uppercase" style="font-size:clamp(28px,5vw,50px);color:#F8EEDA;">{c.includedSub}</h2>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1rem;">
+        {c.included.map(item => (
+          <div style="display:flex;gap:1rem;align-items:flex-start;background:rgba(0,0,0,0.2);border-radius:16px;padding:1.5rem;">
+            <span style="font-size:1.6rem;flex-shrink:0;">{item.icon}</span>
+            <div>
+              <h3 style="font-family:'Oswald',sans-serif;font-weight:700;font-size:0.9rem;text-transform:uppercase;color:#F8EEDA;margin-bottom:0.3rem;">{item.title}</h3>
+              <p style="font-size:0.8rem;color:rgba(248,238,218,0.55);line-height:1.55;">{item.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════
+       BANYOLES — THE LOCATION
+  ══════════════════════════════════════════ -->
+  <section style="background:#2C2419;padding:5rem 5vw;">
+    <div style="max-width:1100px;margin:0 auto;">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;">
+        <!-- Text -->
+        <div>
+          <p style="font-size:0.7rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#A7B75D;margin-bottom:0.75rem;">{c.locationSub}</p>
+          <h2 class="font-display font-black uppercase" style="font-size:clamp(32px,5vw,56px);color:#F8EEDA;margin-bottom:1.5rem;">{c.locationTitle}</h2>
+          <p style="color:#a09078;font-size:0.95rem;line-height:1.7;margin-bottom:1rem;">{c.locationText1}</p>
+          <p style="color:#706050;font-size:0.875rem;line-height:1.65;">{c.locationText2}</p>
+        </div>
+        <!-- Stats + photo -->
+        <div style="display:flex;flex-direction:column;gap:1rem;">
+          <div style="border-radius:16px;overflow:hidden;height:200px;position:relative;">
+            <img src="/weekend/calsantu-3.jpg" alt="Banyoles" style="width:100%;height:100%;object-fit:cover;object-position:center 30%;"/>
+            <div style="position:absolute;inset:0;background:rgba(44,36,25,0.3)"></div>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;">
+            {c.locationStats.map(s => (
+              <div style="background:#41372B;border-radius:12px;padding:1rem;text-align:center;">
+                <div style="font-family:'Oswald',sans-serif;font-weight:900;font-size:1.5rem;color:#A7B75D;">{s.value}</div>
+                <div style="font-size:0.7rem;color:#a09078;text-transform:uppercase;letter-spacing:1px;margin-top:0.2rem;">{s.label}</div>
               </div>
             ))}
           </div>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
 
-    <!-- ── CONTACT FORM ── -->
-    <section id="contact" class="px-[5vw] py-20" style="background:#2C2419">
-      <div class="max-w-lg mx-auto reveal">
+  <!-- ══════════════════════════════════════════
+       BOOK THIS TRIP
+  ══════════════════════════════════════════ -->
+  <section id="contact" style="background:#1e1910;padding:5rem 5vw;">
+    <div style="max-width:520px;margin:0 auto;">
+      <p style="font-size:0.7rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#A7B75D;margin-bottom:0.5rem;">{c.contactEyebrow}</p>
+      <h2 class="font-display font-black uppercase" style="font-size:clamp(28px,5vw,48px);color:#F8EEDA;margin-bottom:0.5rem;">{c.contactTitle}</h2>
+      <p style="font-size:0.875rem;color:#ffffff50;margin-bottom:2rem;">{c.contactSub}</p>
 
-        <p class="text-[11px] font-bold tracking-[3px] uppercase mb-2" style="color:#A7B75D">{c.contactEyebrow}</p>
-        <h2 class="font-display font-black uppercase mb-2 leading-tight" style="font-size:clamp(28px,5vw,48px);color:#F8EEDA">{c.contactTitle}</h2>
-        <p class="text-sm mb-8" style="color:#ffffff50">{c.contactSub}</p>
-
-        <!-- Spots notice -->
-        <div class="flex items-center gap-2 px-4 py-3 rounded-xl mb-8" style="background:#A7B75D12;border:1px solid #A7B75D33">
-          <svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="#A7B75D" stroke-width="2" stroke-linecap="round">
-            <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
-          </svg>
-          <p class="text-xs" style="color:#A7B75D">{c.spotsNotice}</p>
-        </div>
-
-        <!-- Form -->
-        <form id="weekend-form" novalidate
-          data-submit={c.submit}
-          data-sending={c.sending}
-          data-success-title={c.successTitle}
-          data-success-sub={c.successSub}
-          data-error-required={c.errorRequired}
-          data-error-generic={c.errorGeneric}
-          data-locale={lang}>
-
-          <!-- Name -->
-          <div class="mb-4">
-            <label class="block text-[10px] font-bold uppercase tracking-[2px] mb-1.5" style="color:#A7B75D">
-              {c.labelName} <span style="color:#ff8080">*</span>
-            </label>
-            <input type="text" name="name" required autocomplete="name"
-              class="w-full px-4 py-3 rounded-lg text-sm outline-none focus:ring-2"
-              style="background:#3d3020;border:1px solid #ffffff18;color:#F8EEDA" />
-          </div>
-
-          <!-- Email -->
-          <div class="mb-4">
-            <label class="block text-[10px] font-bold uppercase tracking-[2px] mb-1.5" style="color:#A7B75D">
-              {c.labelEmail} <span style="color:#ff8080">*</span>
-            </label>
-            <input type="email" name="email" required autocomplete="email"
-              class="w-full px-4 py-3 rounded-lg text-sm outline-none"
-              style="background:#3d3020;border:1px solid #ffffff18;color:#F8EEDA" />
-          </div>
-
-          <!-- Participants -->
-          <div class="mb-4">
-            <label class="block text-[10px] font-bold uppercase tracking-[2px] mb-1.5" style="color:#A7B75D">
-              {c.labelParticipants} <span style="color:#ff8080">*</span>
-            </label>
-            <select name="participants" required
-              class="w-full px-4 py-3 rounded-lg text-sm outline-none appearance-none"
-              style="background:#3d3020;border:1px solid #ffffff18;color:#F8EEDA">
-              <option value="" disabled selected style="color:#ffffff40">{c.selectParticipants}</option>
-              {[1,2,3,4,5,6,7,8,9,10].map(n => (
-                <option value={String(n)} style="background:#3d3020">{n}</option>
-              ))}
-            </select>
-          </div>
-
-          <!-- Notes -->
-          <div class="mb-6">
-            <label class="block text-[10px] font-bold uppercase tracking-[2px] mb-1.5" style="color:#A7B75D">
-              {c.labelNotes}
-            </label>
-            <textarea name="notes" rows={3}
-              class="w-full px-4 py-3 rounded-lg text-sm outline-none resize-none"
-              style="background:#3d3020;border:1px solid #ffffff18;color:#F8EEDA"></textarea>
-          </div>
-
-          <!-- Submit -->
-          <button id="weekend-submit" type="submit"
-            class="w-full py-4 rounded-lg font-bold text-sm transition hover:scale-[1.015] hover:shadow-lg active:scale-100 disabled:opacity-60 disabled:cursor-not-allowed"
-            style="background:#A7B75D;color:#2C2419">
-            {c.submit}
-          </button>
-
-          <!-- Error -->
-          <p id="weekend-error" class="hidden text-xs mt-3 text-center" style="color:#ff8888"></p>
-
-          <!-- Legal note -->
-          <p class="text-[11px] text-center mt-4" style="color:#ffffff25">{c.legalNote}</p>
-        </form>
-
-        <!-- Success state -->
-        <div id="weekend-success" class="hidden text-center py-12">
-          <div class="w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-5"
-               style="background:#A7B75D22;border:1px solid #A7B75D55">
-            <svg class="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="#A7B75D" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-              <polyline points="4 12 9 17 20 6"/>
-            </svg>
-          </div>
-          <p id="weekend-success-title" class="font-display font-black uppercase text-2xl mb-2" style="color:#F8EEDA">{c.successTitle}</p>
-          <p id="weekend-success-sub" class="text-sm" style="color:#ffffff50">{c.successSub}</p>
-        </div>
-
+      <!-- Spots notice -->
+      <div style="display:flex;align-items:center;gap:0.75rem;padding:0.875rem 1.25rem;border-radius:12px;margin-bottom:2rem;background:#A7B75D12;border:1px solid #A7B75D33;">
+        <span style="font-size:1.1rem;">⚡</span>
+        <p style="font-size:0.82rem;color:#A7B75D;font-weight:600;margin:0;">{c.spotsNotice}</p>
       </div>
-    </section>
+
+      <form id="weekend-form" novalidate
+        data-submit={c.submit} data-sending={c.sending}
+        data-success-title={c.successTitle} data-success-sub={c.successSub}
+        data-error-required={c.errorRequired} data-error-generic={c.errorGeneric}
+        data-locale={lang}
+        style="display:flex;flex-direction:column;gap:1rem;">
+
+        <div>
+          <label style="display:block;font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:#A7B75D;margin-bottom:0.5rem;">{c.labelName} <span style="color:#ff8080">*</span></label>
+          <input type="text" name="name" required autocomplete="name"
+            style="width:100%;padding:0.875rem 1rem;border-radius:10px;border:1px solid #ffffff18;background:#2a2018;color:#F8EEDA;font-size:0.9rem;outline:none;box-sizing:border-box;"/>
+        </div>
+
+        <div>
+          <label style="display:block;font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:#A7B75D;margin-bottom:0.5rem;">{c.labelEmail} <span style="color:#ff8080">*</span></label>
+          <input type="email" name="email" required autocomplete="email"
+            style="width:100%;padding:0.875rem 1rem;border-radius:10px;border:1px solid #ffffff18;background:#2a2018;color:#F8EEDA;font-size:0.9rem;outline:none;box-sizing:border-box;"/>
+        </div>
+
+        <div>
+          <label style="display:block;font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:#A7B75D;margin-bottom:0.5rem;">{c.labelParticipants} <span style="color:#ff8080">*</span></label>
+          <select name="participants" required
+            style="width:100%;padding:0.875rem 1rem;border-radius:10px;border:1px solid #ffffff18;background:#2a2018;color:#F8EEDA;font-size:0.9rem;outline:none;appearance:none;box-sizing:border-box;">
+            <option value="" disabled selected style="color:#ffffff40">{c.selectParticipants}</option>
+            {[1,2,3,4,5,6,7,8,9,10].map(n => (
+              <option value={String(n)} style="background:#2a2018">{n}</option>
+            ))}
+          </select>
+        </div>
+
+        <div>
+          <label style="display:block;font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:#A7B75D;margin-bottom:0.5rem;">{c.labelNotes}</label>
+          <textarea name="notes" rows={3}
+            style="width:100%;padding:0.875rem 1rem;border-radius:10px;border:1px solid #ffffff18;background:#2a2018;color:#F8EEDA;font-size:0.9rem;outline:none;resize:none;box-sizing:border-box;"></textarea>
+        </div>
+
+        <button id="weekend-submit" type="submit"
+          style="width:100%;padding:1rem;border-radius:10px;border:none;background:#A7B75D;color:#2C2419;font-family:'Oswald',sans-serif;font-weight:700;font-size:0.95rem;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;transition:opacity 0.2s;">
+          {c.submit}
+        </button>
+
+        <p id="weekend-error" style="display:none;font-size:0.8rem;text-align:center;color:#ff8888;"></p>
+        <p style="font-size:0.7rem;text-align:center;color:#ffffff25;">{c.legalNote}</p>
+      </form>
+
+      <div id="weekend-success" style="display:none;text-align:center;padding:3rem 0;">
+        <div style="width:56px;height:56px;border-radius:50%;background:#A7B75D22;border:1px solid #A7B75D55;display:flex;align-items:center;justify-content:center;margin:0 auto 1.25rem;">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#A7B75D" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 12 9 17 20 6"/></svg>
+        </div>
+        <p id="weekend-success-title" class="font-display font-black uppercase" style="font-size:1.5rem;color:#F8EEDA;"></p>
+        <p id="weekend-success-sub" style="font-size:0.875rem;color:#ffffff50;margin-top:0.5rem;"></p>
+      </div>
+    </div>
+  </section>
 
   </main>
-
   <Footer lang={lang} />
 </Layout>
 
 <script>
-  const form    = document.getElementById('weekend-form')    as HTMLFormElement | null
-  const btn     = document.getElementById('weekend-submit')  as HTMLButtonElement | null
-  const errorEl = document.getElementById('weekend-error')
-  const successEl = document.getElementById('weekend-success')
+  const form = document.getElementById('weekend-form') as HTMLFormElement | null
+  const btn = document.getElementById('weekend-submit') as HTMLButtonElement | null
+  const errorEl = document.getElementById('weekend-error') as HTMLElement | null
+  const successEl = document.getElementById('weekend-success') as HTMLElement | null
 
   form?.addEventListener('submit', async (e) => {
     e.preventDefault()
     if (!form || !btn) return
-
     const data = new FormData(form)
-    const name         = (data.get('name')         as string ?? '').trim()
-    const email        = (data.get('email')        as string ?? '').trim()
+    const name = (data.get('name') as string ?? '').trim()
+    const email = (data.get('email') as string ?? '').trim()
     const participants = (data.get('participants') as string ?? '').trim()
-    const notes        = (data.get('notes')        as string ?? '').trim()
-    const locale       = (form.dataset.locale ?? 'en')
-
+    const notes = (data.get('notes') as string ?? '').trim()
+    const locale = form.dataset.locale ?? 'en'
     const errorRequired = form.dataset.errorRequired ?? ''
-    const errorGeneric  = form.dataset.errorGeneric  ?? ''
-    const labelSending  = form.dataset.sending       ?? '…'
-    const labelSubmit   = form.dataset.submit        ?? 'Send'
-
-    function showError(msg: string) {
-      if (!errorEl) return
-      errorEl.textContent = msg
-      errorEl.classList.remove('hidden')
-    }
+    const errorGeneric = form.dataset.errorGeneric ?? ''
+    const labelSending = form.dataset.sending ?? '…'
+    const labelSubmit = form.dataset.submit ?? 'Send'
 
     if (!name || !email || !participants) {
-      showError(errorRequired)
+      if (errorEl) { errorEl.textContent = errorRequired; errorEl.style.display = 'block' }
       return
     }
-
     btn.disabled = true
     btn.textContent = labelSending
-    errorEl?.classList.add('hidden')
+    if (errorEl) errorEl.style.display = 'none'
 
     try {
       const res = await fetch('/api/weekend-inquiry', {
@@ -629,17 +919,20 @@ const homeHref = pathFor(lang, '/')
         body: JSON.stringify({ name, email, participants, notes, locale }),
       })
       const json = await res.json() as { ok: boolean; error?: string }
-
       if (json.ok) {
-        form.classList.add('hidden')
-        successEl?.classList.remove('hidden')
-      } else {
-        throw new Error(json.error ?? 'unknown')
-      }
+        form.style.display = 'none'
+        if (successEl) {
+          successEl.style.display = 'block'
+          const titleEl = document.getElementById('weekend-success-title')
+          const subEl = document.getElementById('weekend-success-sub')
+          if (titleEl) titleEl.textContent = form.dataset.successTitle ?? ''
+          if (subEl) subEl.textContent = form.dataset.successSub ?? ''
+        }
+      } else throw new Error(json.error ?? 'unknown')
     } catch {
       btn.disabled = false
       btn.textContent = labelSubmit
-      showError(errorGeneric)
+      if (errorEl) { errorEl.textContent = errorGeneric; errorEl.style.display = 'block' }
     }
   })
 </script>
