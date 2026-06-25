@@ -128,7 +128,7 @@ export const ui = {
     'step2.submit': 'Send',
     'step2.skip': 'Skip',
 
-    'footer.tagline': 'The platform where cyclists and local hosts meet, book and grow together.',
+    'footer.tagline': 'Connect · Ride · Belong',
     'footer.privacy': 'Privacy',
     'footer.legal': 'Legal notice',
     'footer.cookies': 'Cookies',
@@ -261,7 +261,7 @@ export const ui = {
     'step2.submit': 'Enviar',
     'step2.skip': 'Saltar',
 
-    'footer.tagline': 'La plataforma donde ciclistas y anfitriones locales se encuentran, reservan y crecen juntos.',
+    'footer.tagline': 'Connect · Ride · Belong',
     'footer.privacy': 'Privacidad',
     'footer.legal': 'Aviso legal',
     'footer.cookies': 'Cookies',
@@ -394,7 +394,7 @@ export const ui = {
     'step2.submit': 'Enviar',
     'step2.skip': 'Saltar',
 
-    'footer.tagline': 'La plataforma on ciclistes i amfitrions locals es troben, reserven i creixen junts.',
+    'footer.tagline': 'Connect · Ride · Belong',
     'footer.privacy': 'Privacitat',
     'footer.legal': 'Avís legal',
     'footer.cookies': 'Galetes',
@@ -527,7 +527,7 @@ export const ui = {
     'step2.submit': 'Envoyer',
     'step2.skip': 'Passer',
 
-    'footer.tagline': 'La plateforme où cyclistes et hôtes locaux se rencontrent, réservent et grandissent ensemble.',
+    'footer.tagline': 'Connect · Ride · Belong',
     'footer.privacy': 'Confidentialité',
     'footer.legal': 'Mentions légales',
     'footer.cookies': 'Cookies',
