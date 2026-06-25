@@ -63,10 +63,10 @@ const c = t[lang] ?? t.en
 const weekendPath = pathFor(lang, '/weekend')
 ---
 
-<section id="weekend-banner" class="relative overflow-hidden" style="background:#2C2419">
+<section id="weekend-banner" class="relative overflow-hidden" style="background:#F8EEDA">
 
   <!-- Wave pattern (same as hero) -->
-  <div class="absolute inset-0 pointer-events-none" style="opacity:0.07">
+  <div class="absolute inset-0 pointer-events-none" style="opacity:0.12">
     <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
       <defs>
         <pattern id="wb-waves" x="0" y="0" width="160" height="22" patternUnits="userSpaceOnUse">
@@ -76,9 +76,6 @@ const weekendPath = pathFor(lang, '/weekend')
       <rect width="100%" height="100%" fill="url(#wb-waves)"/>
     </svg>
   </div>
-
-  <!-- Radial glow -->
-  <div class="absolute inset-0 pointer-events-none" style="background:radial-gradient(ellipse 60% 80% at 80% 50%, #A7B75D0f 0%, transparent 70%), radial-gradient(ellipse 40% 60% at 10% 50%, #41372B80 0%, transparent 60%)"></div>
 
   <!-- Divider top -->
   <div class="w-full h-px" style="background:linear-gradient(to right, transparent, #A7B75D44, transparent)"></div>
@@ -96,13 +93,13 @@ const weekendPath = pathFor(lang, '/weekend')
         </div>
 
         <!-- Title -->
-        <h2 class="font-display font-black uppercase leading-[0.88] mb-5" style="font-size:clamp(52px,10vw,100px);color:#F8EEDA">
+        <h2 class="font-display font-black uppercase leading-[0.88] mb-5" style="font-size:clamp(52px,10vw,100px);color:#2C2419">
           {c.title1}<br>
           <em class="not-italic" style="color:#A7B75D">{c.title2}</em>
         </h2>
 
         <!-- Date + location -->
-        <p class="text-sm font-semibold uppercase tracking-[3px] mb-3 flex items-center gap-2 justify-center lg:justify-start" style="color:#ffffff50">
+        <p class="text-sm font-semibold uppercase tracking-[3px] mb-3 flex items-center gap-2 justify-center lg:justify-start" style="color:#9a8c7a">
           <svg class="w-3.5 h-3.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
             <rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
           </svg>
@@ -110,7 +107,7 @@ const weekendPath = pathFor(lang, '/weekend')
         </p>
 
         <!-- Tagline -->
-        <p class="text-lg md:text-xl font-light leading-relaxed mb-8" style="color:#d4c4a8">{c.tagline}</p>
+        <p class="text-lg md:text-xl font-light leading-relaxed mb-8" style="color:#41372B">{c.tagline}</p>
 
         <!-- Included pills -->
         <div class="flex flex-wrap gap-2.5 mb-10 justify-center lg:justify-start">
@@ -138,7 +135,7 @@ const weekendPath = pathFor(lang, '/weekend')
           </a>
           <a href={weekendPath}
              class="inline-flex items-center gap-2 px-6 py-3.5 rounded-lg font-bold text-sm uppercase tracking-[1.5px] transition hover:opacity-80"
-             style="color:#F8EEDA;border:1px solid #ffffff25">
+             style="color:#41372B;border:1px solid #41372B40">
             {c.info}
           </a>
         </div>

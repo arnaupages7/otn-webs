@@ -19,35 +19,35 @@ const hostSteps = [
 ]
 ---
 
-<section id="how" class="px-[5vw] py-20 bg-white">
+<section id="how" class="px-[5vw] py-20" style="background:#2C2419">
   <div class="max-w-5xl mx-auto">
     <div class="reveal flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6 mb-12">
       <div>
         <p class="text-[11px] font-bold tracking-[3px] uppercase mb-2.5" style="color:#A7B75D">{t('how.eyebrow')}</p>
-        <h2 class="font-display font-black uppercase leading-[0.95]" style="color:#41372B;font-size:clamp(32px, 6vw, 58px)" set:html={t('how.title')}></h2>
+        <h2 class="font-display font-black uppercase leading-[0.95]" style="color:#F8EEDA;font-size:clamp(32px, 6vw, 58px)" set:html={t('how.title')}></h2>
       </div>
-      <div class="how-toggle flex rounded-lg overflow-hidden border text-sm font-bold" style="border-color:#e5ddd0">
-        <button id="how-tab-cyclist" class="how-tab px-5 py-2.5 transition" data-tab="cyclist" style="background:#41372B;color:#F8EEDA">{t('how.toggle.cyclist')}</button>
-        <button id="how-tab-host" class="how-tab px-5 py-2.5 transition" data-tab="host" style="background:transparent;color:#9a8c7a">{t('how.toggle.host')}</button>
+      <div class="how-toggle flex rounded-lg overflow-hidden border text-sm font-bold" style="border-color:#ffffff22">
+        <button id="how-tab-cyclist" class="how-tab px-5 py-2.5 transition" data-tab="cyclist" style="background:#A7B75D;color:#2C2419">{t('how.toggle.cyclist')}</button>
+        <button id="how-tab-host" class="how-tab px-5 py-2.5 transition" data-tab="host" style="background:transparent;color:#F8EEDA80">{t('how.toggle.host')}</button>
       </div>
     </div>
 
-    <div id="how-cyclist" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-0 rounded-xl overflow-hidden border border-neutral-200 reveal">
+    <div id="how-cyclist" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-0 rounded-xl overflow-hidden border border-white/10 reveal">
       {cyclistSteps.map((s, i) => (
-        <div class:list={['p-7 lg:p-8 relative bg-white transition hover:bg-cream/40 group', i < 3 ? 'lg:border-r border-neutral-200' : '', i < 2 ? 'sm:border-b lg:border-b-0 border-neutral-200' : '']}>
+        <div class:list={['p-7 lg:p-8 relative transition group', i < 3 ? 'lg:border-r border-white/10' : '', i < 2 ? 'sm:border-b lg:border-b-0 border-white/10' : '']} style="background:#41372B">
           <div class="font-display font-black text-5xl leading-none mb-3 opacity-40 transition group-hover:opacity-100 group-hover:scale-110 origin-left" style="color:#A7B75D">0{i + 1}</div>
-          <h4 class="font-bold text-sm mb-2 leading-tight" style="color:#41372B">{s.t}</h4>
-          <p class="text-xs leading-relaxed" style="color:#9a8c7a">{s.d}</p>
+          <h4 class="font-bold text-sm mb-2 leading-tight" style="color:#F8EEDA">{s.t}</h4>
+          <p class="text-xs leading-relaxed" style="color:#ffffff55">{s.d}</p>
         </div>
       ))}
     </div>
 
-    <div id="how-host" class="hidden grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-0 rounded-xl overflow-hidden border border-neutral-200 reveal">
+    <div id="how-host" class="hidden grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-0 rounded-xl overflow-hidden border border-white/10 reveal">
       {hostSteps.map((s, i) => (
-        <div class:list={['p-7 lg:p-8 relative bg-white transition hover:bg-cream/40 group', i < 3 ? 'lg:border-r border-neutral-200' : '', i < 2 ? 'sm:border-b lg:border-b-0 border-neutral-200' : '']}>
+        <div class:list={['p-7 lg:p-8 relative transition group', i < 3 ? 'lg:border-r border-white/10' : '', i < 2 ? 'sm:border-b lg:border-b-0 border-white/10' : '']} style="background:#41372B">
           <div class="font-display font-black text-5xl leading-none mb-3 opacity-40 transition group-hover:opacity-100 group-hover:scale-110 origin-left" style="color:#A7B75D">0{i + 1}</div>
-          <h4 class="font-bold text-sm mb-2 leading-tight" style="color:#41372B">{s.t}</h4>
-          <p class="text-xs leading-relaxed" style="color:#9a8c7a">{s.d}</p>
+          <h4 class="font-bold text-sm mb-2 leading-tight" style="color:#F8EEDA">{s.t}</h4>
+          <p class="text-xs leading-relaxed" style="color:#ffffff55">{s.d}</p>
         </div>
       ))}
     </div>
@@ -65,13 +65,13 @@ const hostSteps = [
       if (tab === 'cyclist') {
         cyclist.classList.remove('hidden')
         host.classList.add('hidden')
-        document.getElementById('how-tab-cyclist')!.style.cssText = 'background:#41372B;color:#F8EEDA'
-        document.getElementById('how-tab-host')!.style.cssText = 'background:transparent;color:#9a8c7a'
+        document.getElementById('how-tab-cyclist')!.style.cssText = 'background:#A7B75D;color:#2C2419'
+        document.getElementById('how-tab-host')!.style.cssText = 'background:transparent;color:#F8EEDA80'
       } else {
         host.classList.remove('hidden')
         cyclist.classList.add('hidden')
-        document.getElementById('how-tab-host')!.style.cssText = 'background:#41372B;color:#F8EEDA'
-        document.getElementById('how-tab-cyclist')!.style.cssText = 'background:transparent;color:#9a8c7a'
+        document.getElementById('how-tab-host')!.style.cssText = 'background:#A7B75D;color:#2C2419'
+        document.getElementById('how-tab-cyclist')!.style.cssText = 'background:transparent;color:#F8EEDA80'
       }
     })
   })
