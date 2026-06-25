@@ -27,6 +27,13 @@ const currentLang = langs.find(l => l.code === lang)!
   </a>
 
   <div class="flex items-center gap-2 md:gap-4 shrink-0">
+    <!-- Quote CTA link -->
+    <a href={pathFor(lang, '/quote')}
+       class="hidden md:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md text-[10px] font-bold uppercase tracking-[1.5px] transition hover:opacity-90 whitespace-nowrap"
+       style="color:#ffffff60;border:1px solid #ffffff18">
+      {lang === 'es' ? 'Presupuesto' : lang === 'ca' ? 'Pressupost' : lang === 'fr' ? 'Devis' : 'Get a quote'}
+    </a>
+
     <!-- Weekend link -->
     <a href={pathFor(lang, '/weekend')}
        class="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md text-[10px] font-bold uppercase tracking-[1.5px] transition hover:opacity-90 whitespace-nowrap"

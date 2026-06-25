@@ -1,0 +1,788 @@
+---
+import { pathFor, type Lang } from '../i18n/utils'
+import Layout from '../layouts/Layout.astro'
+import Nav from './Nav.astro'
+import Footer from './Footer.astro'
+
+interface Props { lang: Lang }
+const { lang } = Astro.props
+
+const ui = {
+  en: {
+    seoTitle: 'Get a quote — Custom cycling weekend in Girona · VeloTribe',
+    seoDesc: 'Plan your custom cycling weekend in Girona. Accommodation, guided rides and airport transfer. Tell us what you need.',
+    back: '← Back',
+    heroEyebrow: 'Free quote · No commitment',
+    heroTitle: 'Plan your Girona weekend',
+    heroSub: 'Answer a few questions. We\'ll send you a tailored proposal within 48 hours.',
+
+    s1: 'When?',
+    s1sub: 'Your preferred dates',
+    labelFrom: 'Start date',
+    labelTo: 'End date',
+    labelFlexible: 'Date flexibility',
+    flexOptions: [
+      { value: 'fixed',   label: 'Fixed dates — no flexibility' },
+      { value: 'flex3',   label: 'Flexible ±3 days' },
+      { value: 'flex7',   label: 'Flexible ±1 week' },
+      { value: 'open',    label: 'Very flexible — open dates' },
+    ],
+
+    s2: 'Who?',
+    s2sub: 'Your group',
+    labelPeople: 'Number of participants',
+    peopleOptions: ['1','2','3','4','5','6','7','8','9','10','11–15','15+'],
+
+    s3: 'How?',
+    s3sub: 'Cycling preferences',
+    labelBudget: 'Budget per person',
+    budgetOptions: [
+      { value: 'u300',      label: 'Under €300' },
+      { value: '300-500',   label: '€300 – €500' },
+      { value: '500-800',   label: '€500 – €800' },
+      { value: '800-1200',  label: '€800 – €1,200' },
+      { value: '1200p',     label: '€1,200+' },
+      { value: 'open',      label: 'No set budget' },
+    ],
+    labelRouteType: 'Type of cycling',
+    routeTypeOptions: [
+      { value: 'road',    label: 'Road' },
+      { value: 'gravel',  label: 'Gravel' },
+      { value: 'mtb',     label: 'Mountain bike (MTB)' },
+      { value: 'mixed',   label: 'Mixed — road + gravel' },
+    ],
+    labelDifficulty: 'Difficulty / fitness level',
+    difficultyOptions: [
+      { value: 'easy',      label: 'Easy — social pace, under 60 km/day' },
+      { value: 'moderate',  label: 'Moderate — 60–100 km/day' },
+      { value: 'sportive',  label: 'Sportive — 100–140 km/day' },
+      { value: 'hard',      label: 'Challenging — 140+ km, big climbs' },
+    ],
+    labelDays: 'Cycling days',
+    daysOptions: [
+      { value: '1', label: '1 day' },
+      { value: '2', label: '2 days' },
+      { value: '3', label: '3 days' },
+      { value: '4p', label: '4 or more days' },
+    ],
+
+    s4: 'Extras',
+    s4sub: 'Accommodation & services',
+    labelAccommodation: 'Accommodation style',
+    accommodationOptions: [
+      { value: 'rustic',    label: 'Rustic & cozy — charm over comfort' },
+      { value: 'standard',  label: 'Comfortable & mid-range' },
+      { value: 'premium',   label: 'Premium & curated' },
+    ],
+    labelExtras: 'Additional services (select all that apply)',
+    extrasOptions: [
+      { value: 'bike-rental',    label: 'Bike rental' },
+      { value: 'transfer',       label: 'Airport transfer' },
+      { value: 'guided',         label: 'Guided rides' },
+      { value: 'support-vehicle',label: 'Support vehicle' },
+      { value: 'meals',          label: 'Breakfast & meals' },
+    ],
+
+    s5: 'Contact',
+    s5sub: 'So we can reach you',
+    labelName: 'Full name',
+    labelEmail: 'Email',
+    labelPhone: 'Phone (optional)',
+    labelNotes: 'Anything else we should know? (optional)',
+    notesPlaceholder: 'Special needs, fitness notes, bike dimensions for rental, preferred pick-up city…',
+    submit: 'Send my quote request',
+    sending: 'Sending…',
+    successTitle: 'Request received!',
+    successSub: 'We\'ll send you a tailored proposal within 48 hours. Check your inbox.',
+    errorRequired: 'Please fill in your name, email and number of participants.',
+    errorGeneric: 'Something went wrong. Try again or email info@velotribe.cc.',
+    selectPlaceholder: 'Select…',
+  },
+  es: {
+    seoTitle: 'Pedir presupuesto — Fin de semana ciclista en Girona · VeloTribe',
+    seoDesc: 'Planifica tu fin de semana ciclista a medida en Girona. Alojamiento, salidas guiadas y transfer. Cuéntanos qué necesitas.',
+    back: '← Volver',
+    heroEyebrow: 'Presupuesto gratis · Sin compromiso',
+    heroTitle: 'Planifica tu fin de semana en Girona',
+    heroSub: 'Responde unas preguntas. Te enviamos una propuesta personalizada en menos de 48 horas.',
+
+    s1: '¿Cuándo?',
+    s1sub: 'Tus fechas preferidas',
+    labelFrom: 'Fecha de llegada',
+    labelTo: 'Fecha de salida',
+    labelFlexible: 'Flexibilidad de fechas',
+    flexOptions: [
+      { value: 'fixed',   label: 'Fechas fijas — sin flexibilidad' },
+      { value: 'flex3',   label: 'Flexible ±3 días' },
+      { value: 'flex7',   label: 'Flexible ±1 semana' },
+      { value: 'open',    label: 'Muy flexible — fechas abiertas' },
+    ],
+
+    s2: '¿Quién?',
+    s2sub: 'Tu grupo',
+    labelPeople: 'Número de participantes',
+    peopleOptions: ['1','2','3','4','5','6','7','8','9','10','11–15','15+'],
+
+    s3: '¿Cómo?',
+    s3sub: 'Preferencias ciclistas',
+    labelBudget: 'Presupuesto por persona',
+    budgetOptions: [
+      { value: 'u300',      label: 'Menos de €300' },
+      { value: '300-500',   label: '€300 – €500' },
+      { value: '500-800',   label: '€500 – €800' },
+      { value: '800-1200',  label: '€800 – €1.200' },
+      { value: '1200p',     label: '€1.200+' },
+      { value: 'open',      label: 'Sin presupuesto definido' },
+    ],
+    labelRouteType: 'Tipo de ciclismo',
+    routeTypeOptions: [
+      { value: 'road',    label: 'Carretera' },
+      { value: 'gravel',  label: 'Gravel' },
+      { value: 'mtb',     label: 'Mountain bike (MTB)' },
+      { value: 'mixed',   label: 'Mixto — carretera + gravel' },
+    ],
+    labelDifficulty: 'Dificultad / forma física',
+    difficultyOptions: [
+      { value: 'easy',      label: 'Fácil — ritmo social, menos de 60 km/día' },
+      { value: 'moderate',  label: 'Moderado — 60–100 km/día' },
+      { value: 'sportive',  label: 'Deportivo — 100–140 km/día' },
+      { value: 'hard',      label: 'Exigente — 140+ km, grandes puertos' },
+    ],
+    labelDays: 'Días de ciclismo',
+    daysOptions: [
+      { value: '1', label: '1 día' },
+      { value: '2', label: '2 días' },
+      { value: '3', label: '3 días' },
+      { value: '4p', label: '4 o más días' },
+    ],
+
+    s4: 'Extras',
+    s4sub: 'Alojamiento y servicios',
+    labelAccommodation: 'Tipo de alojamiento',
+    accommodationOptions: [
+      { value: 'rustic',    label: 'Rústico & acogedor — encanto antes que confort' },
+      { value: 'standard',  label: 'Confortable & estándar' },
+      { value: 'premium',   label: 'Premium & seleccionado' },
+    ],
+    labelExtras: 'Servicios adicionales (selecciona todos los que quieras)',
+    extrasOptions: [
+      { value: 'bike-rental',    label: 'Alquiler de bici' },
+      { value: 'transfer',       label: 'Transfer aeropuerto' },
+      { value: 'guided',         label: 'Salidas guiadas' },
+      { value: 'support-vehicle',label: 'Vehículo de apoyo' },
+      { value: 'meals',          label: 'Desayuno y comidas' },
+    ],
+
+    s5: 'Contacto',
+    s5sub: 'Para poder responderte',
+    labelName: 'Nombre completo',
+    labelEmail: 'Email',
+    labelPhone: 'Teléfono (opcional)',
+    labelNotes: '¿Algo más que debamos saber? (opcional)',
+    notesPlaceholder: 'Necesidades especiales, nivel de forma física, medidas de bici para alquiler, ciudad de recogida preferida…',
+    submit: 'Enviar solicitud de presupuesto',
+    sending: 'Enviando…',
+    successTitle: '¡Solicitud recibida!',
+    successSub: 'Te enviamos una propuesta personalizada en menos de 48 horas. Revisa tu bandeja de entrada.',
+    errorRequired: 'Por favor rellena tu nombre, email y número de participantes.',
+    errorGeneric: 'Algo ha salido mal. Inténtalo de nuevo o escríbenos a info@velotribe.cc.',
+    selectPlaceholder: 'Seleccionar…',
+  },
+  ca: {
+    seoTitle: 'Demana pressupost — Cap de setmana ciclista a Girona · VeloTribe',
+    seoDesc: "Planifica el teu cap de setmana ciclista a mida a Girona. Allotjament, sortides guiades i transfer. Explica'ns el que necessites.",
+    back: '← Tornar',
+    heroEyebrow: 'Pressupost gratis · Sense compromís',
+    heroTitle: 'Planifica el teu cap de setmana a Girona',
+    heroSub: 'Respon unes preguntes. T\'enviem una proposta personalitzada en menys de 48 hores.',
+
+    s1: 'Quan?',
+    s1sub: 'Les teves dates preferides',
+    labelFrom: 'Data d\'arribada',
+    labelTo: 'Data de sortida',
+    labelFlexible: 'Flexibilitat de dates',
+    flexOptions: [
+      { value: 'fixed',   label: 'Dates fixes — sense flexibilitat' },
+      { value: 'flex3',   label: 'Flexible ±3 dies' },
+      { value: 'flex7',   label: 'Flexible ±1 setmana' },
+      { value: 'open',    label: 'Molt flexible — dates obertes' },
+    ],
+
+    s2: 'Qui?',
+    s2sub: 'El teu grup',
+    labelPeople: 'Nombre de participants',
+    peopleOptions: ['1','2','3','4','5','6','7','8','9','10','11–15','15+'],
+
+    s3: 'Com?',
+    s3sub: 'Preferències ciclistes',
+    labelBudget: 'Pressupost per persona',
+    budgetOptions: [
+      { value: 'u300',      label: 'Menys de €300' },
+      { value: '300-500',   label: '€300 – €500' },
+      { value: '500-800',   label: '€500 – €800' },
+      { value: '800-1200',  label: '€800 – €1.200' },
+      { value: '1200p',     label: '€1.200+' },
+      { value: 'open',      label: 'Sense pressupost definit' },
+    ],
+    labelRouteType: 'Tipus de ciclisme',
+    routeTypeOptions: [
+      { value: 'road',    label: 'Carretera' },
+      { value: 'gravel',  label: 'Gravel' },
+      { value: 'mtb',     label: 'Mountain bike (MTB)' },
+      { value: 'mixed',   label: 'Mixt — carretera + gravel' },
+    ],
+    labelDifficulty: 'Dificultat / forma física',
+    difficultyOptions: [
+      { value: 'easy',      label: 'Fàcil — ritme social, menys de 60 km/dia' },
+      { value: 'moderate',  label: 'Moderat — 60–100 km/dia' },
+      { value: 'sportive',  label: 'Esportiu — 100–140 km/dia' },
+      { value: 'hard',      label: 'Exigent — 140+ km, grans colls' },
+    ],
+    labelDays: 'Dies de ciclisme',
+    daysOptions: [
+      { value: '1', label: '1 dia' },
+      { value: '2', label: '2 dies' },
+      { value: '3', label: '3 dies' },
+      { value: '4p', label: '4 o més dies' },
+    ],
+
+    s4: 'Extras',
+    s4sub: 'Allotjament i serveis',
+    labelAccommodation: "Tipus d'allotjament",
+    accommodationOptions: [
+      { value: 'rustic',    label: 'Rústic & acollidor — encant per davant del confort' },
+      { value: 'standard',  label: 'Còmode & estàndard' },
+      { value: 'premium',   label: 'Premium & seleccionat' },
+    ],
+    labelExtras: 'Serveis addicionals (selecciona tots els que vulguis)',
+    extrasOptions: [
+      { value: 'bike-rental',    label: 'Lloguer de bici' },
+      { value: 'transfer',       label: 'Transfer aeroport' },
+      { value: 'guided',         label: 'Sortides guiades' },
+      { value: 'support-vehicle',label: 'Vehicle de suport' },
+      { value: 'meals',          label: 'Esmorzar i àpats' },
+    ],
+
+    s5: 'Contacte',
+    s5sub: 'Per poder respondre-te',
+    labelName: 'Nom complet',
+    labelEmail: 'Email',
+    labelPhone: 'Telèfon (opcional)',
+    labelNotes: 'Alguna cosa més que haguem de saber? (opcional)',
+    notesPlaceholder: "Necessitats especials, nivell de forma física, mides de bici per a lloguer, ciutat de recollida preferida…",
+    submit: 'Enviar sol·licitud de pressupost',
+    sending: 'Enviant…',
+    successTitle: 'Sol·licitud rebuda!',
+    successSub: "T'enviem una proposta personalitzada en menys de 48 hores. Comprova la teva safata d'entrada.",
+    errorRequired: 'Si us plau, omple el teu nom, email i nombre de participants.',
+    errorGeneric: 'Alguna cosa ha fallat. Torna-ho a intentar o escriu-nos a info@velotribe.cc.',
+    selectPlaceholder: 'Selecciona…',
+  },
+  fr: {
+    seoTitle: 'Demander un devis — Week-end cycliste à Gérone · VeloTribe',
+    seoDesc: 'Planifiez votre week-end cycliste sur mesure à Gérone. Hébergement, sorties guidées et transfert. Dites-nous ce dont vous avez besoin.',
+    back: '← Retour',
+    heroEyebrow: 'Devis gratuit · Sans engagement',
+    heroTitle: 'Planifiez votre week-end à Gérone',
+    heroSub: 'Répondez à quelques questions. Nous vous envoyons une proposition personnalisée sous 48 heures.',
+
+    s1: 'Quand ?',
+    s1sub: 'Vos dates de préférence',
+    labelFrom: 'Date d\'arrivée',
+    labelTo: 'Date de départ',
+    labelFlexible: 'Flexibilité des dates',
+    flexOptions: [
+      { value: 'fixed',   label: 'Dates fixes — sans flexibilité' },
+      { value: 'flex3',   label: 'Flexible ±3 jours' },
+      { value: 'flex7',   label: 'Flexible ±1 semaine' },
+      { value: 'open',    label: 'Très flexible — dates ouvertes' },
+    ],
+
+    s2: 'Qui ?',
+    s2sub: 'Votre groupe',
+    labelPeople: 'Nombre de participants',
+    peopleOptions: ['1','2','3','4','5','6','7','8','9','10','11–15','15+'],
+
+    s3: 'Comment ?',
+    s3sub: 'Vos préférences cyclistes',
+    labelBudget: 'Budget par personne',
+    budgetOptions: [
+      { value: 'u300',      label: 'Moins de €300' },
+      { value: '300-500',   label: '€300 – €500' },
+      { value: '500-800',   label: '€500 – €800' },
+      { value: '800-1200',  label: '€800 – €1 200' },
+      { value: '1200p',     label: '€1 200+' },
+      { value: 'open',      label: 'Pas de budget défini' },
+    ],
+    labelRouteType: 'Type de cyclisme',
+    routeTypeOptions: [
+      { value: 'road',    label: 'Route' },
+      { value: 'gravel',  label: 'Gravel' },
+      { value: 'mtb',     label: 'VTT (Mountain bike)' },
+      { value: 'mixed',   label: 'Mixte — route + gravel' },
+    ],
+    labelDifficulty: 'Difficulté / forme physique',
+    difficultyOptions: [
+      { value: 'easy',      label: 'Facile — allure sociale, moins de 60 km/jour' },
+      { value: 'moderate',  label: 'Modéré — 60–100 km/jour' },
+      { value: 'sportive',  label: 'Sportif — 100–140 km/jour' },
+      { value: 'hard',      label: 'Exigeant — 140+ km, grandes montées' },
+    ],
+    labelDays: 'Jours de vélo',
+    daysOptions: [
+      { value: '1', label: '1 jour' },
+      { value: '2', label: '2 jours' },
+      { value: '3', label: '3 jours' },
+      { value: '4p', label: '4 jours ou plus' },
+    ],
+
+    s4: 'Extras',
+    s4sub: 'Hébergement et services',
+    labelAccommodation: 'Style d\'hébergement',
+    accommodationOptions: [
+      { value: 'rustic',    label: 'Rustique & chaleureux — charme avant le confort' },
+      { value: 'standard',  label: 'Confortable & standard' },
+      { value: 'premium',   label: 'Premium & sélectionné' },
+    ],
+    labelExtras: 'Services supplémentaires (sélectionnez tout ce qui s\'applique)',
+    extrasOptions: [
+      { value: 'bike-rental',    label: 'Location de vélo' },
+      { value: 'transfer',       label: 'Transfert aéroport' },
+      { value: 'guided',         label: 'Sorties guidées' },
+      { value: 'support-vehicle',label: 'Véhicule d\'assistance' },
+      { value: 'meals',          label: 'Petit-déjeuner et repas' },
+    ],
+
+    s5: 'Contact',
+    s5sub: 'Pour pouvoir vous répondre',
+    labelName: 'Nom complet',
+    labelEmail: 'Email',
+    labelPhone: 'Téléphone (optionnel)',
+    labelNotes: 'Autre chose que nous devrions savoir ? (optionnel)',
+    notesPlaceholder: "Besoins spéciaux, niveau de forme, dimensions du vélo pour la location, ville de prise en charge préférée…",
+    submit: 'Envoyer ma demande de devis',
+    sending: 'Envoi…',
+    successTitle: 'Demande reçue !',
+    successSub: 'Nous vous envoyons une proposition personnalisée sous 48 heures. Consultez votre boîte mail.',
+    errorRequired: 'Merci de renseigner votre nom, email et nombre de participants.',
+    errorGeneric: 'Quelque chose s\'est mal passé. Réessayez ou écrivez-nous à info@velotribe.cc.',
+    selectPlaceholder: 'Sélectionner…',
+  },
+}
+
+const c = ui[lang] ?? ui.en
+
+const inputStyle = "background:#3d3020;border:1px solid #ffffff18;color:#F8EEDA"
+const selectStyle = "background:#3d3020;border:1px solid #ffffff18;color:#F8EEDA;appearance:none"
+const fieldClass = "w-full px-4 py-3 rounded-lg text-sm outline-none focus:ring-1 focus:ring-[#A7B75D]"
+
+const sections = [
+  { num: '01', title: c.s1, sub: c.s1sub },
+  { num: '02', title: c.s2, sub: c.s2sub },
+  { num: '03', title: c.s3, sub: c.s3sub },
+  { num: '04', title: c.s4, sub: c.s4sub },
+  { num: '05', title: c.s5, sub: c.s5sub },
+]
+---
+
+<Layout lang={lang} title={c.seoTitle} description={c.seoDesc}>
+  <Nav lang={lang} />
+
+  <main style="background:#2C2419">
+
+    <!-- ── PAGE HERO ── -->
+    <section class="relative px-[5vw] pt-28 pb-16 overflow-hidden" style="background:#2C2419">
+      <div class="absolute inset-0 pointer-events-none" style="opacity:0.05">
+        <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+          <defs>
+            <pattern id="qp-waves" x="0" y="0" width="160" height="22" patternUnits="userSpaceOnUse">
+              <path d="M0,11 Q40,2 80,11 T160,11" stroke="#A7B75D" stroke-width="1" fill="none" stroke-linecap="round"/>
+            </pattern>
+          </defs>
+          <rect width="100%" height="100%" fill="url(#qp-waves)"/>
+        </svg>
+      </div>
+      <div class="relative max-w-3xl mx-auto text-center">
+        <a href={pathFor(lang, '/')} class="inline-flex items-center gap-1.5 text-xs uppercase tracking-[2px] font-semibold mb-8 transition hover:text-[#A7B75D]" style="color:#ffffff40">
+          {c.back}
+        </a>
+        <p class="text-[10px] font-bold uppercase tracking-[3px] mb-3" style="color:#A7B75D">{c.heroEyebrow}</p>
+        <h1 class="font-display font-black uppercase leading-[0.9] mb-5" style="font-size:clamp(36px,7vw,72px);color:#F8EEDA">{c.heroTitle}</h1>
+        <p class="text-base md:text-lg font-light" style="color:#c8b89a">{c.heroSub}</p>
+      </div>
+    </section>
+
+    <!-- ── FORM ── -->
+    <section class="px-[5vw] pb-24" style="background:#2C2419">
+      <div class="max-w-2xl mx-auto">
+
+        <form id="quote-form" novalidate
+          data-submit={c.submit}
+          data-sending={c.sending}
+          data-success-title={c.successTitle}
+          data-success-sub={c.successSub}
+          data-error-required={c.errorRequired}
+          data-error-generic={c.errorGeneric}
+          data-locale={lang}>
+
+          <!-- ── S1: DATES ── -->
+          <div class="mb-6 rounded-2xl overflow-hidden" style="border:1px solid #ffffff10">
+            <div class="flex items-center gap-4 px-7 py-5" style="background:#41372B">
+              <span class="font-display font-black text-3xl" style="color:#A7B75D22">{sections[0].num}</span>
+              <div>
+                <p class="font-display font-black uppercase text-xl" style="color:#F8EEDA">{sections[0].title}</p>
+                <p class="text-xs" style="color:#ffffff40">{sections[0].sub}</p>
+              </div>
+            </div>
+            <div class="p-7 grid sm:grid-cols-2 gap-5" style="background:#3a2f22">
+              <div>
+                <label class="block text-[10px] font-bold uppercase tracking-[2px] mb-1.5" style="color:#A7B75D">{c.labelFrom}</label>
+                <input type="date" name="dateFrom" class={fieldClass} style={inputStyle} />
+              </div>
+              <div>
+                <label class="block text-[10px] font-bold uppercase tracking-[2px] mb-1.5" style="color:#A7B75D">{c.labelTo}</label>
+                <input type="date" name="dateTo" class={fieldClass} style={inputStyle} />
+              </div>
+              <div class="sm:col-span-2">
+                <label class="block text-[10px] font-bold uppercase tracking-[2px] mb-1.5" style="color:#A7B75D">{c.labelFlexible}</label>
+                <div class="grid grid-cols-2 gap-2">
+                  {c.flexOptions.map(opt => (
+                    <label class="flex items-center gap-2.5 px-4 py-3 rounded-lg cursor-pointer transition-all" style="background:#2C241960;border:1px solid #ffffff12">
+                      <input type="radio" name="dateFlexible" value={opt.value} class="accent-[#A7B75D] shrink-0" />
+                      <span class="text-xs" style="color:#d4c4a8">{opt.label}</span>
+                    </label>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ── S2: PEOPLE ── -->
+          <div class="mb-6 rounded-2xl overflow-hidden" style="border:1px solid #ffffff10">
+            <div class="flex items-center gap-4 px-7 py-5" style="background:#41372B">
+              <span class="font-display font-black text-3xl" style="color:#A7B75D22">{sections[1].num}</span>
+              <div>
+                <p class="font-display font-black uppercase text-xl" style="color:#F8EEDA">{sections[1].title}</p>
+                <p class="text-xs" style="color:#ffffff40">{sections[1].sub}</p>
+              </div>
+            </div>
+            <div class="p-7" style="background:#3a2f22">
+              <label class="block text-[10px] font-bold uppercase tracking-[2px] mb-3" style="color:#A7B75D">
+                {c.labelPeople} <span style="color:#ff8080">*</span>
+              </label>
+              <div class="flex flex-wrap gap-2">
+                {c.peopleOptions.map(n => (
+                  <label class="cursor-pointer">
+                    <input type="radio" name="people" value={n} class="sr-only peer" required />
+                    <span class="inline-block px-4 py-2.5 rounded-lg text-sm font-bold transition-all peer-checked:text-[#2C2419]"
+                      style="background:#2C241960;border:1px solid #ffffff15;color:#d4c4a8"
+                      data-people-label>
+                      {n}
+                    </span>
+                  </label>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <!-- ── S3: HOW ── -->
+          <div class="mb-6 rounded-2xl overflow-hidden" style="border:1px solid #ffffff10">
+            <div class="flex items-center gap-4 px-7 py-5" style="background:#41372B">
+              <span class="font-display font-black text-3xl" style="color:#A7B75D22">{sections[2].num}</span>
+              <div>
+                <p class="font-display font-black uppercase text-xl" style="color:#F8EEDA">{sections[2].title}</p>
+                <p class="text-xs" style="color:#ffffff40">{sections[2].sub}</p>
+              </div>
+            </div>
+            <div class="p-7 grid gap-6" style="background:#3a2f22">
+
+              <!-- Budget -->
+              <div>
+                <label class="block text-[10px] font-bold uppercase tracking-[2px] mb-3" style="color:#A7B75D">{c.labelBudget}</label>
+                <div class="grid sm:grid-cols-2 gap-2">
+                  {c.budgetOptions.map(opt => (
+                    <label class="flex items-center gap-2.5 px-4 py-3 rounded-lg cursor-pointer" style="background:#2C241960;border:1px solid #ffffff12">
+                      <input type="radio" name="budget" value={opt.value} class="accent-[#A7B75D] shrink-0" />
+                      <span class="text-xs" style="color:#d4c4a8">{opt.label}</span>
+                    </label>
+                  ))}
+                </div>
+              </div>
+
+              <!-- Route type -->
+              <div>
+                <label class="block text-[10px] font-bold uppercase tracking-[2px] mb-3" style="color:#A7B75D">{c.labelRouteType}</label>
+                <div class="grid grid-cols-2 gap-2">
+                  {c.routeTypeOptions.map(opt => (
+                    <label class="flex items-center gap-2.5 px-4 py-3 rounded-lg cursor-pointer" style="background:#2C241960;border:1px solid #ffffff12">
+                      <input type="radio" name="routeType" value={opt.value} class="accent-[#A7B75D] shrink-0" />
+                      <span class="text-xs" style="color:#d4c4a8">{opt.label}</span>
+                    </label>
+                  ))}
+                </div>
+              </div>
+
+              <!-- Difficulty -->
+              <div>
+                <label class="block text-[10px] font-bold uppercase tracking-[2px] mb-3" style="color:#A7B75D">{c.labelDifficulty}</label>
+                <div class="grid sm:grid-cols-2 gap-2">
+                  {c.difficultyOptions.map(opt => (
+                    <label class="flex items-center gap-2.5 px-4 py-3 rounded-lg cursor-pointer" style="background:#2C241960;border:1px solid #ffffff12">
+                      <input type="radio" name="difficulty" value={opt.value} class="accent-[#A7B75D] shrink-0" />
+                      <span class="text-xs" style="color:#d4c4a8">{opt.label}</span>
+                    </label>
+                  ))}
+                </div>
+              </div>
+
+              <!-- Days -->
+              <div>
+                <label class="block text-[10px] font-bold uppercase tracking-[2px] mb-3" style="color:#A7B75D">{c.labelDays}</label>
+                <div class="flex flex-wrap gap-2">
+                  {c.daysOptions.map(opt => (
+                    <label class="flex items-center gap-2.5 px-4 py-3 rounded-lg cursor-pointer" style="background:#2C241960;border:1px solid #ffffff12">
+                      <input type="radio" name="days" value={opt.value} class="accent-[#A7B75D] shrink-0" />
+                      <span class="text-sm" style="color:#d4c4a8">{opt.label}</span>
+                    </label>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ── S4: EXTRAS ── -->
+          <div class="mb-6 rounded-2xl overflow-hidden" style="border:1px solid #ffffff10">
+            <div class="flex items-center gap-4 px-7 py-5" style="background:#41372B">
+              <span class="font-display font-black text-3xl" style="color:#A7B75D22">{sections[3].num}</span>
+              <div>
+                <p class="font-display font-black uppercase text-xl" style="color:#F8EEDA">{sections[3].title}</p>
+                <p class="text-xs" style="color:#ffffff40">{sections[3].sub}</p>
+              </div>
+            </div>
+            <div class="p-7 grid gap-6" style="background:#3a2f22">
+
+              <!-- Accommodation -->
+              <div>
+                <label class="block text-[10px] font-bold uppercase tracking-[2px] mb-3" style="color:#A7B75D">{c.labelAccommodation}</label>
+                <div class="grid gap-2">
+                  {c.accommodationOptions.map(opt => (
+                    <label class="flex items-center gap-2.5 px-4 py-3 rounded-lg cursor-pointer" style="background:#2C241960;border:1px solid #ffffff12">
+                      <input type="radio" name="accommodation" value={opt.value} class="accent-[#A7B75D] shrink-0" />
+                      <span class="text-xs" style="color:#d4c4a8">{opt.label}</span>
+                    </label>
+                  ))}
+                </div>
+              </div>
+
+              <!-- Extras checkboxes -->
+              <div>
+                <label class="block text-[10px] font-bold uppercase tracking-[2px] mb-3" style="color:#A7B75D">{c.labelExtras}</label>
+                <div class="grid sm:grid-cols-2 gap-2">
+                  {c.extrasOptions.map(opt => (
+                    <label class="flex items-center gap-2.5 px-4 py-3 rounded-lg cursor-pointer" style="background:#2C241960;border:1px solid #ffffff12">
+                      <input type="checkbox" name="extras" value={opt.value} class="accent-[#A7B75D] shrink-0 rounded" />
+                      <span class="text-xs" style="color:#d4c4a8">{opt.label}</span>
+                    </label>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ── S5: CONTACT ── -->
+          <div class="mb-8 rounded-2xl overflow-hidden" style="border:1px solid #ffffff10">
+            <div class="flex items-center gap-4 px-7 py-5" style="background:#41372B">
+              <span class="font-display font-black text-3xl" style="color:#A7B75D22">{sections[4].num}</span>
+              <div>
+                <p class="font-display font-black uppercase text-xl" style="color:#F8EEDA">{sections[4].title}</p>
+                <p class="text-xs" style="color:#ffffff40">{sections[4].sub}</p>
+              </div>
+            </div>
+            <div class="p-7 grid sm:grid-cols-2 gap-5" style="background:#3a2f22">
+              <div>
+                <label class="block text-[10px] font-bold uppercase tracking-[2px] mb-1.5" style="color:#A7B75D">
+                  {c.labelName} <span style="color:#ff8080">*</span>
+                </label>
+                <input type="text" name="name" required autocomplete="name" class={fieldClass} style={inputStyle} />
+              </div>
+              <div>
+                <label class="block text-[10px] font-bold uppercase tracking-[2px] mb-1.5" style="color:#A7B75D">
+                  {c.labelEmail} <span style="color:#ff8080">*</span>
+                </label>
+                <input type="email" name="email" required autocomplete="email" class={fieldClass} style={inputStyle} />
+              </div>
+              <div class="sm:col-span-2">
+                <label class="block text-[10px] font-bold uppercase tracking-[2px] mb-1.5" style="color:#A7B75D">{c.labelPhone}</label>
+                <input type="tel" name="phone" autocomplete="tel" class={fieldClass} style={inputStyle} />
+              </div>
+              <div class="sm:col-span-2">
+                <label class="block text-[10px] font-bold uppercase tracking-[2px] mb-1.5" style="color:#A7B75D">{c.labelNotes}</label>
+                <textarea name="notes" rows={4} placeholder={c.notesPlaceholder}
+                  class={`${fieldClass} resize-none`}
+                  style={`${inputStyle};placeholder-color:#ffffff30`}></textarea>
+              </div>
+            </div>
+          </div>
+
+          <!-- Submit -->
+          <button id="quote-submit" type="submit"
+            class="w-full py-5 rounded-xl font-black text-base uppercase tracking-[2px] transition hover:scale-[1.015] hover:shadow-xl active:scale-100 disabled:opacity-60 disabled:cursor-not-allowed"
+            style="background:#A7B75D;color:#2C2419;box-shadow:0 8px 32px #A7B75D22">
+            {c.submit}
+          </button>
+
+          <!-- Error -->
+          <p id="quote-error" class="hidden text-xs mt-4 text-center" style="color:#ff8888"></p>
+        </form>
+
+        <!-- Success -->
+        <div id="quote-success" class="hidden text-center py-16">
+          <div class="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6" style="background:#A7B75D22;border:2px solid #A7B75D55">
+            <svg class="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="#A7B75D" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="4 12 9 17 20 6"/>
+            </svg>
+          </div>
+          <p id="quote-success-title" class="font-display font-black uppercase text-3xl mb-3" style="color:#F8EEDA"></p>
+          <p id="quote-success-sub" class="text-sm max-w-sm mx-auto leading-relaxed" style="color:#ffffff50"></p>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <Footer lang={lang} />
+</Layout>
+
+<script>
+  // Highlight selected people pill
+  document.querySelectorAll<HTMLInputElement>('input[name="people"]').forEach(radio => {
+    radio.addEventListener('change', () => {
+      document.querySelectorAll<HTMLInputElement>('input[name="people"]').forEach(r => {
+        const span = r.nextElementSibling as HTMLElement | null
+        if (span) {
+          if (r.checked) {
+            span.style.background = '#A7B75D'
+            span.style.borderColor = '#A7B75D'
+            span.style.color = '#2C2419'
+          } else {
+            span.style.background = '#2C241960'
+            span.style.borderColor = '#ffffff15'
+            span.style.color = '#d4c4a8'
+          }
+        }
+      })
+    })
+  })
+
+  // Highlight selected radio cards generically
+  document.querySelectorAll<HTMLInputElement>('input[type="radio"]:not([name="people"])').forEach(radio => {
+    radio.addEventListener('change', () => {
+      const group = document.querySelectorAll<HTMLInputElement>(`input[name="${radio.name}"]`)
+      group.forEach(r => {
+        const label = r.closest('label') as HTMLElement | null
+        if (label) {
+          if (r.checked) {
+            label.style.borderColor = '#A7B75D66'
+            label.style.background = '#A7B75D18'
+          } else {
+            label.style.borderColor = '#ffffff12'
+            label.style.background = '#2C241960'
+          }
+        }
+      })
+    })
+  })
+
+  // Checkbox highlight
+  document.querySelectorAll<HTMLInputElement>('input[type="checkbox"]').forEach(cb => {
+    cb.addEventListener('change', () => {
+      const label = cb.closest('label') as HTMLElement | null
+      if (label) {
+        if (cb.checked) {
+          label.style.borderColor = '#A7B75D66'
+          label.style.background = '#A7B75D18'
+        } else {
+          label.style.borderColor = '#ffffff12'
+          label.style.background = '#2C241960'
+        }
+      }
+    })
+  })
+
+  // Form submit
+  const form    = document.getElementById('quote-form')    as HTMLFormElement | null
+  const btn     = document.getElementById('quote-submit')  as HTMLButtonElement | null
+  const errorEl = document.getElementById('quote-error')
+  const successEl = document.getElementById('quote-success')
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault()
+    if (!form || !btn) return
+
+    const data         = new FormData(form)
+    const name         = (data.get('name')         as string ?? '').trim()
+    const email        = (data.get('email')        as string ?? '').trim()
+    const phone        = (data.get('phone')        as string ?? '').trim()
+    const dateFrom     = (data.get('dateFrom')     as string ?? '').trim()
+    const dateTo       = (data.get('dateTo')       as string ?? '').trim()
+    const dateFlexible = (data.get('dateFlexible') as string ?? '').trim()
+    const people       = (data.get('people')       as string ?? '').trim()
+    const budget       = (data.get('budget')       as string ?? '').trim()
+    const routeType    = (data.get('routeType')    as string ?? '').trim()
+    const difficulty   = (data.get('difficulty')   as string ?? '').trim()
+    const days         = (data.get('days')         as string ?? '').trim()
+    const accommodation = (data.get('accommodation') as string ?? '').trim()
+    const extras       = data.getAll('extras') as string[]
+    const notes        = (data.get('notes')        as string ?? '').trim()
+    const locale       = (form.dataset.locale ?? 'en')
+
+    const errorRequired = form.dataset.errorRequired ?? ''
+    const errorGeneric  = form.dataset.errorGeneric  ?? ''
+    const labelSending  = form.dataset.sending       ?? '…'
+    const labelSubmit   = form.dataset.submit        ?? 'Send'
+
+    function showError(msg: string) {
+      if (!errorEl) return
+      errorEl.textContent = msg
+      errorEl.classList.remove('hidden')
+    }
+
+    if (!name || !email || !people) {
+      showError(errorRequired)
+      return
+    }
+
+    btn.disabled = true
+    btn.textContent = labelSending
+    errorEl?.classList.add('hidden')
+
+    try {
+      const res = await fetch('/api/quote-request', {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({
+          name, email, phone, dateFrom, dateTo, dateFlexible,
+          people, budget, routeType, difficulty, days,
+          accommodation, extras, notes, locale,
+        }),
+      })
+      const json = await res.json() as { ok: boolean; error?: string }
+
+      if (json.ok) {
+        form.classList.add('hidden')
+        const titleEl = document.getElementById('quote-success-title')
+        const subEl   = document.getElementById('quote-success-sub')
+        if (titleEl) titleEl.textContent = form.dataset.successTitle ?? ''
+        if (subEl)   subEl.textContent   = form.dataset.successSub   ?? ''
+        successEl?.classList.remove('hidden')
+        successEl?.scrollIntoView({ behavior: 'smooth', block: 'center' })
+      } else {
+        throw new Error(json.error ?? 'unknown')
+      }
+    } catch {
+      btn.disabled = false
+      btn.textContent = labelSubmit
+      showError(errorGeneric)
+    }
+  })
+</script>
