@@ -9,6 +9,13 @@ const ctaHost = t('nav.cta.host')
 
 const path = Astro.url.pathname.replace(/^\/(es|ca|fr)/, '') || '/'
 
+const subnavLabels = {
+  weekend: 'VeloTribe Weekend',
+  plan: lang === 'es' ? 'Planea tu viaje' : lang === 'ca' ? 'Planeja el teu viatge' : lang === 'fr' ? 'Planifiez votre voyage' : 'Plan your trip',
+}
+const isWeekend = path.startsWith('/weekend')
+const isPlan    = path.startsWith('/quote')
+
 const senyeraSvg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 14" class="w-5 h-3.5 rounded-sm overflow-hidden flex-shrink-0"><rect width="20" height="14" fill="#FCDD09"/><rect y="1.556" width="20" height="1.556" fill="#DA121A"/><rect y="4.667" width="20" height="1.556" fill="#DA121A"/><rect y="7.778" width="20" height="1.556" fill="#DA121A"/><rect y="10.889" width="20" height="1.556" fill="#DA121A"/></svg>`
 
 const langs = [
@@ -93,6 +100,22 @@ const currentLang = langs.find(l => l.code === lang)!
     </a>
   </div>
 </nav>
+
+<!-- ── Sub-navigation bar ── -->
+<div style="margin-top:60px;background:#F8EEDA;border-bottom:1px solid rgba(65,55,43,0.12);">
+  <div style="max-width:1100px;margin:0 auto;padding:0 5vw;display:flex;align-items:center;gap:0.5rem;height:44px;">
+    <a href={pathFor(lang, '/weekend')}
+       style={`display:inline-flex;align-items:center;gap:0.5rem;padding:0.35rem 1rem;border-radius:999px;font-size:0.72rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;text-decoration:none;transition:all 0.15s;${isWeekend ? 'background:#41372B;color:#F8EEDA;' : 'color:#9a8c7a;background:transparent;'}`}>
+      {isWeekend && <span style="width:6px;height:6px;border-radius:50%;background:#A7B75D;flex-shrink:0;"></span>}
+      {subnavLabels.weekend}
+    </a>
+    <a href={pathFor(lang, '/quote')}
+       style={`display:inline-flex;align-items:center;gap:0.5rem;padding:0.35rem 1rem;border-radius:999px;font-size:0.72rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;text-decoration:none;transition:all 0.15s;${isPlan ? 'background:#41372B;color:#F8EEDA;' : 'color:#9a8c7a;background:transparent;'}`}>
+      {isPlan && <span style="width:6px;height:6px;border-radius:50%;background:#A7B75D;flex-shrink:0;"></span>}
+      {subnavLabels.plan}
+    </a>
+  </div>
+</div>
 
 <script>
   // Language dropdown
