@@ -29,6 +29,28 @@ const durations = [
   { v: 'long', l: t('step2.duration.long') },
   { v: 'local', l: t('step2.duration.local') },
 ]
+
+const volumes = [
+  { v: 'few', l: t('step2.host.volume.few') },
+  { v: 'some', l: t('step2.host.volume.some') },
+  { v: 'many', l: t('step2.host.volume.many') },
+  { v: 'lots', l: t('step2.host.volume.lots') },
+]
+
+const seasons = [
+  { v: 'spring', l: t('step2.host.season.spring') },
+  { v: 'summer', l: t('step2.host.season.summer') },
+  { v: 'autumn', l: t('step2.host.season.autumn') },
+  { v: 'yearround', l: t('step2.host.season.yearround') },
+]
+
+const challenges = [
+  { v: 'visibility', l: t('step2.host.challenge.visibility') },
+  { v: 'commissions', l: t('step2.host.challenge.commissions') },
+  { v: 'reviews', l: t('step2.host.challenge.reviews') },
+  { v: 'bookings', l: t('step2.host.challenge.bookings') },
+  { v: 'comms', l: t('step2.host.challenge.comms') },
+]
 ---
 
 <section id="step2" class="px-[5vw] py-20 scroll-mt-20" style="background:#F8EEDA">
@@ -37,63 +59,119 @@ const durations = [
     <p class="text-sm mb-8" style="color:#9a8c7a">{t('step2.sub')}</p>
 
     <form id="step2-form" class="rounded-2xl p-7 md:p-9 flex flex-col gap-6 shadow-2xl shadow-black/10" style="background:#41372B" novalidate>
-      <!-- Country -->
+      <!-- Country (shared) -->
       <label class="block">
         <span class="text-xs font-semibold uppercase tracking-wider mb-2 block" style="color:#F8EEDA">{t('step2.country')}</span>
-        <input name="country" type="text" placeholder="United Kingdom"
+        <input name="country" type="text" placeholder="España"
           class="w-full px-4 py-3 rounded-lg border outline-none transition focus:border-[#A7B75D] focus:bg-white/15"
           style="background:#ffffff10;border-color:#ffffff20;color:#F8EEDA" />
       </label>
 
-      <!-- Experience -->
-      <fieldset class="block">
-        <legend class="text-xs font-semibold uppercase tracking-wider mb-2 block" style="color:#F8EEDA">{t('step2.experience')}</legend>
-        <div class="grid grid-cols-2 gap-2">
-          {experiences.map((e) => (
-            <label class="pill-radio flex items-center gap-2 px-3 py-2 rounded-lg border cursor-pointer text-sm transition hover:border-[#A7B75D]" style="background:#ffffff08;border-color:#ffffff20;color:#F8EEDA">
-              <input type="radio" name="experience" value={e.v} class="sr-only" />
-              <span class="dot w-3 h-3 rounded-full border transition" style="border-color:#ffffff60"></span>
-              <span>{e.l}</span>
-            </label>
-          ))}
-        </div>
-      </fieldset>
+      <!-- ── CYCLIST FIELDS ── -->
+      <div data-audience="cyclist" class="contents">
+        <!-- Experience -->
+        <fieldset class="block">
+          <legend class="text-xs font-semibold uppercase tracking-wider mb-2 block" style="color:#F8EEDA">{t('step2.experience')}</legend>
+          <div class="grid grid-cols-2 gap-2">
+            {experiences.map((e) => (
+              <label class="pill-radio flex items-center gap-2 px-3 py-2 rounded-lg border cursor-pointer text-sm transition hover:border-[#A7B75D]" style="background:#ffffff08;border-color:#ffffff20;color:#F8EEDA">
+                <input type="radio" name="experience" value={e.v} class="sr-only" />
+                <span class="dot w-3 h-3 rounded-full border transition" style="border-color:#ffffff60"></span>
+                <span>{e.l}</span>
+              </label>
+            ))}
+          </div>
+        </fieldset>
 
-      <!-- Dream Trip (multi-select) -->
-      <fieldset class="block">
-        <legend class="text-xs font-semibold uppercase tracking-wider mb-2 block" style="color:#F8EEDA">{t('step2.dream')}</legend>
-        <div class="flex flex-wrap gap-2">
-          {dreams.map((d) => (
-            <label class="pill inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full border cursor-pointer text-sm transition hover:scale-105 active:scale-100" style="background:#ffffff08;border-color:#ffffff20;color:#F8EEDA">
-              <input type="checkbox" name="dream" value={d.v} class="sr-only" />
-              <span class="check-icon hidden">✓</span>
-              <span>{d.l}</span>
-            </label>
-          ))}
-        </div>
-      </fieldset>
+        <!-- Dream Trip (multi-select) -->
+        <fieldset class="block">
+          <legend class="text-xs font-semibold uppercase tracking-wider mb-2 block" style="color:#F8EEDA">{t('step2.dream')}</legend>
+          <div class="flex flex-wrap gap-2">
+            {dreams.map((d) => (
+              <label class="pill inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full border cursor-pointer text-sm transition hover:scale-105 active:scale-100" style="background:#ffffff08;border-color:#ffffff20;color:#F8EEDA">
+                <input type="checkbox" name="dream" value={d.v} class="sr-only" />
+                <span class="check-icon hidden">✓</span>
+                <span>{d.l}</span>
+              </label>
+            ))}
+          </div>
+        </fieldset>
 
-      <!-- Duration -->
-      <fieldset class="block">
-        <legend class="text-xs font-semibold uppercase tracking-wider mb-2 block" style="color:#F8EEDA">{t('step2.duration')}</legend>
-        <div class="flex flex-wrap gap-2">
-          {durations.map((d) => (
-            <label class="pill inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full border cursor-pointer text-sm transition hover:scale-105 active:scale-100" style="background:#ffffff08;border-color:#ffffff20;color:#F8EEDA">
-              <input type="radio" name="duration" value={d.v} class="sr-only" />
-              <span class="check-icon hidden">✓</span>
-              <span>{d.l}</span>
-            </label>
-          ))}
-        </div>
-      </fieldset>
+        <!-- Duration -->
+        <fieldset class="block">
+          <legend class="text-xs font-semibold uppercase tracking-wider mb-2 block" style="color:#F8EEDA">{t('step2.duration')}</legend>
+          <div class="flex flex-wrap gap-2">
+            {durations.map((d) => (
+              <label class="pill inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full border cursor-pointer text-sm transition hover:scale-105 active:scale-100" style="background:#ffffff08;border-color:#ffffff20;color:#F8EEDA">
+                <input type="radio" name="duration" value={d.v} class="sr-only" />
+                <span class="check-icon hidden">✓</span>
+                <span>{d.l}</span>
+              </label>
+            ))}
+          </div>
+        </fieldset>
 
-      <!-- Open text -->
-      <label class="block">
-        <span class="text-xs font-semibold uppercase tracking-wider mb-2 block" style="color:#F8EEDA">{t('step2.text')}</span>
-        <textarea name="dream_text" rows="3" maxlength="500"
-          class="w-full px-4 py-3 rounded-lg border outline-none transition focus:border-[#A7B75D] focus:bg-white/15 resize-none"
-          style="background:#ffffff10;border-color:#ffffff20;color:#F8EEDA"></textarea>
-      </label>
+        <!-- Open text cyclist -->
+        <label class="block">
+          <span class="text-xs font-semibold uppercase tracking-wider mb-2 block" style="color:#F8EEDA">{t('step2.text')}</span>
+          <textarea name="dream_text" rows="3" maxlength="500"
+            class="w-full px-4 py-3 rounded-lg border outline-none transition focus:border-[#A7B75D] focus:bg-white/15 resize-none"
+            style="background:#ffffff10;border-color:#ffffff20;color:#F8EEDA"></textarea>
+        </label>
+      </div>
+
+      <!-- ── HOST FIELDS ── -->
+      <div data-audience="host" class="contents hidden">
+        <!-- Volume -->
+        <fieldset class="block">
+          <legend class="text-xs font-semibold uppercase tracking-wider mb-2 block" style="color:#F8EEDA">{t('step2.host.volume')}</legend>
+          <div class="grid grid-cols-2 gap-2">
+            {volumes.map((v) => (
+              <label class="pill-radio flex items-center gap-2 px-3 py-2 rounded-lg border cursor-pointer text-sm transition hover:border-[#A7B75D]" style="background:#ffffff08;border-color:#ffffff20;color:#F8EEDA">
+                <input type="radio" name="host_volume" value={v.v} class="sr-only" />
+                <span class="dot w-3 h-3 rounded-full border transition" style="border-color:#ffffff60"></span>
+                <span>{v.l}</span>
+              </label>
+            ))}
+          </div>
+        </fieldset>
+
+        <!-- Season (multi-select) -->
+        <fieldset class="block">
+          <legend class="text-xs font-semibold uppercase tracking-wider mb-2 block" style="color:#F8EEDA">{t('step2.host.season')}</legend>
+          <div class="flex flex-wrap gap-2">
+            {seasons.map((s) => (
+              <label class="pill inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full border cursor-pointer text-sm transition hover:scale-105 active:scale-100" style="background:#ffffff08;border-color:#ffffff20;color:#F8EEDA">
+                <input type="checkbox" name="host_season" value={s.v} class="sr-only" />
+                <span class="check-icon hidden">✓</span>
+                <span>{s.l}</span>
+              </label>
+            ))}
+          </div>
+        </fieldset>
+
+        <!-- Challenges (multi-select) -->
+        <fieldset class="block">
+          <legend class="text-xs font-semibold uppercase tracking-wider mb-2 block" style="color:#F8EEDA">{t('step2.host.challenge')}</legend>
+          <div class="flex flex-wrap gap-2">
+            {challenges.map((c) => (
+              <label class="pill inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full border cursor-pointer text-sm transition hover:scale-105 active:scale-100" style="background:#ffffff08;border-color:#ffffff20;color:#F8EEDA">
+                <input type="checkbox" name="host_challenge" value={c.v} class="sr-only" />
+                <span class="check-icon hidden">✓</span>
+                <span>{c.l}</span>
+              </label>
+            ))}
+          </div>
+        </fieldset>
+
+        <!-- Open text host -->
+        <label class="block">
+          <span class="text-xs font-semibold uppercase tracking-wider mb-2 block" style="color:#F8EEDA">{t('step2.host.text')}</span>
+          <textarea name="host_text" rows="3" maxlength="500"
+            class="w-full px-4 py-3 rounded-lg border outline-none transition focus:border-[#A7B75D] focus:bg-white/15 resize-none"
+            style="background:#ffffff10;border-color:#ffffff20;color:#F8EEDA"></textarea>
+        </label>
+      </div>
 
       <div class="flex gap-3 mt-2">
         <button type="submit" class="flex-1 py-3.5 rounded-lg font-bold text-sm transition hover:scale-[1.02] active:scale-100 hover:shadow-lg" style="background:#A7B75D;color:#2C2419">
@@ -111,7 +189,6 @@ const durations = [
 </section>
 
 <style>
-  /* Active states per pills (sense :has() per màxima compatibilitat) */
   .pill[data-checked="true"],
   .pill-radio[data-checked="true"] {
     background: #A7B75D !important;
@@ -130,28 +207,38 @@ const durations = [
   const form = document.getElementById('step2-form') as HTMLFormElement | null
   if (form) {
     const params = new URLSearchParams(window.location.search)
-    // L'email ve del paràmetre ?e= que passa el formulari de l'step1 a la URL
     const email = decodeURIComponent(params.get('e') || '')
     const audience = params.get('a') || 'cyclist'
     const errorEl = form.querySelector<HTMLElement>('[data-step2-error]')!
     const successEl = form.querySelector<HTMLElement>('[data-step2-success]')!
 
-    // Si no tenim email (accés directe a /thanks sense passar pel formulari), amaguem el formulari
+    // Si no tenim email (accés directe sense passar pel formulari), amaguem el formulari
     if (!email) {
       form.closest('section')?.remove()
     }
+
+    // Mostrar els camps correctes segons audiència
+    const cyclistFields = form.querySelector<HTMLElement>('[data-audience="cyclist"]')
+    const hostFields = form.querySelector<HTMLElement>('[data-audience="host"]')
+    if (audience === 'host') {
+      cyclistFields?.classList.add('hidden')
+      hostFields?.classList.remove('hidden')
+    } else {
+      cyclistFields?.classList.remove('hidden')
+      hostFields?.classList.add('hidden')
+    }
+
     const skipBtn = document.getElementById('skip-btn') as HTMLButtonElement
     skipBtn?.addEventListener('click', () => {
       window.scrollTo({ top: 0, behavior: 'smooth' })
       form.style.display = 'none'
     })
 
-    // Active state via data-checked (no depen de :has())
+    // Active state via data-checked
     function syncPill(input: HTMLInputElement) {
       const label = input.closest('label')
       if (!label) return
       if (input.type === 'radio') {
-        // Buidem tots els del mateix name primer
         form.querySelectorAll<HTMLInputElement>(`input[type="radio"][name="${input.name}"]`).forEach((r) => {
           r.closest('label')?.removeAttribute('data-checked')
         })
@@ -161,7 +248,6 @@ const durations = [
     }
 
     form.querySelectorAll<HTMLInputElement>('input[type="checkbox"], input[type="radio"]').forEach((input) => {
-      // Estat inicial
       if (input.checked) syncPill(input)
       input.addEventListener('change', () => syncPill(input))
     })
@@ -171,17 +257,32 @@ const durations = [
       errorEl.classList.add('hidden')
 
       const fd = new FormData(form)
-      const dreams: string[] = []
-      fd.getAll('dream').forEach((v) => dreams.push(String(v)))
 
-      const payload = {
-        email,
-        audience,
-        country: fd.get('country') || '',
-        experience: fd.get('experience') || '',
-        dream: dreams,
-        duration: fd.get('duration') || '',
-        dream_text: fd.get('dream_text') || '',
+      let payload: Record<string, unknown>
+
+      if (audience === 'host') {
+        const seasons: string[] = fd.getAll('host_season').map(String)
+        const challenges: string[] = fd.getAll('host_challenge').map(String)
+        payload = {
+          email,
+          audience,
+          country: fd.get('country') || '',
+          host_volume: fd.get('host_volume') || '',
+          host_season: seasons,
+          host_challenge: challenges,
+          host_text: fd.get('host_text') || '',
+        }
+      } else {
+        const dreams: string[] = fd.getAll('dream').map(String)
+        payload = {
+          email,
+          audience,
+          country: fd.get('country') || '',
+          experience: fd.get('experience') || '',
+          dream: dreams,
+          duration: fd.get('duration') || '',
+          dream_text: fd.get('dream_text') || '',
+        }
       }
 
       try {

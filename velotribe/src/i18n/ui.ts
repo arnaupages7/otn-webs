@@ -105,6 +105,8 @@ export const ui = {
     'step2.title': 'One more thing that helps us a lot',
     'step2.sub': 'Optional — but the more we know, the better we can build VeloTribe for you.',
     'step2.country': 'Country of residence',
+
+    // Cyclist-specific
     'step2.experience': 'Your experience with Girona',
     'step2.experience.first': 'First time visiting',
     'step2.experience.few': "Been 2-3 times",
@@ -125,6 +127,26 @@ export const ui = {
     'step2.duration.long': '2+ weeks',
     'step2.duration.local': 'I live here',
     'step2.text': 'What would make you book today? (optional)',
+
+    // Host-specific
+    'step2.host.volume': 'How many cyclists do you receive per year?',
+    'step2.host.volume.few': 'Less than 50',
+    'step2.host.volume.some': '50–200',
+    'step2.host.volume.many': '200–500',
+    'step2.host.volume.lots': 'More than 500',
+    'step2.host.season': 'When is your peak season? (multi-select)',
+    'step2.host.season.spring': 'Spring',
+    'step2.host.season.summer': 'Summer',
+    'step2.host.season.autumn': 'Autumn',
+    'step2.host.season.yearround': 'All year',
+    'step2.host.challenge': 'What is your biggest challenge attracting cyclists? (multi-select)',
+    'step2.host.challenge.visibility': 'Online visibility',
+    'step2.host.challenge.commissions': 'High commissions',
+    'step2.host.challenge.reviews': 'No specialist reviews',
+    'step2.host.challenge.bookings': 'Booking management',
+    'step2.host.challenge.comms': 'Communication with guests',
+    'step2.host.text': 'What would you need from VeloTribe to join today? (optional)',
+
     'step2.submit': 'Send',
     'step2.skip': 'Skip',
 
@@ -238,6 +260,8 @@ export const ui = {
     'step2.title': 'Una cosa más que nos ayuda mucho',
     'step2.sub': 'Opcional — pero cuanto más sepamos, mejor podremos construir VeloTribe para ti.',
     'step2.country': 'País de residencia',
+
+    // Ciclista
     'step2.experience': 'Tu experiencia con Girona',
     'step2.experience.first': 'Primera vez',
     'step2.experience.few': 'He venido 2-3 veces',
@@ -258,6 +282,26 @@ export const ui = {
     'step2.duration.long': '2+ semanas',
     'step2.duration.local': 'Vivo aquí',
     'step2.text': '¿Qué te haría reservar hoy mismo? (opcional)',
+
+    // Anfitrión
+    'step2.host.volume': '¿Cuántos ciclistas recibes al año aproximadamente?',
+    'step2.host.volume.few': 'Menos de 50',
+    'step2.host.volume.some': '50–200',
+    'step2.host.volume.many': '200–500',
+    'step2.host.volume.lots': 'Más de 500',
+    'step2.host.season': '¿En qué temporada tienes más actividad? (multi-selección)',
+    'step2.host.season.spring': 'Primavera',
+    'step2.host.season.summer': 'Verano',
+    'step2.host.season.autumn': 'Otoño',
+    'step2.host.season.yearround': 'Todo el año',
+    'step2.host.challenge': '¿Cuál es tu mayor reto para captar ciclistas? (multi-selección)',
+    'step2.host.challenge.visibility': 'Visibilidad online',
+    'step2.host.challenge.commissions': 'Comisiones altas',
+    'step2.host.challenge.reviews': 'Sin reseñas especializadas',
+    'step2.host.challenge.bookings': 'Gestión de reservas',
+    'step2.host.challenge.comms': 'Comunicación con el cliente',
+    'step2.host.text': '¿Qué necesitarías de VeloTribe para unirte hoy? (opcional)',
+
     'step2.submit': 'Enviar',
     'step2.skip': 'Saltar',
 
@@ -371,6 +415,8 @@ export const ui = {
     'step2.title': 'Una cosa més que ens ajuda molt',
     'step2.sub': 'Opcional — però com més sapiguem, millor podrem construir VeloTribe per a tu.',
     'step2.country': 'País de residència',
+
+    // Ciclista
     'step2.experience': 'La teva experiència amb Girona',
     'step2.experience.first': 'Primera vegada',
     'step2.experience.few': 'He vingut 2-3 vegades',
@@ -391,6 +437,26 @@ export const ui = {
     'step2.duration.long': '2+ setmanes',
     'step2.duration.local': 'Visc aquí',
     'step2.text': 'Què et faria reservar avui mateix? (opcional)',
+
+    // Amfitrió
+    'step2.host.volume': 'Quants ciclistes reps a l\'any aproximadament?',
+    'step2.host.volume.few': 'Menys de 50',
+    'step2.host.volume.some': '50–200',
+    'step2.host.volume.many': '200–500',
+    'step2.host.volume.lots': 'Més de 500',
+    'step2.host.season': 'Quina és la teva temporada alta? (multi-selecció)',
+    'step2.host.season.spring': 'Primavera',
+    'step2.host.season.summer': 'Estiu',
+    'step2.host.season.autumn': 'Tardor',
+    'step2.host.season.yearround': 'Tot l\'any',
+    'step2.host.challenge': 'Quin és el teu repte més gran per captar ciclistes? (multi-selecció)',
+    'step2.host.challenge.visibility': 'Visibilitat online',
+    'step2.host.challenge.commissions': 'Comissions altes',
+    'step2.host.challenge.reviews': 'Sense ressenyes especialitzades',
+    'step2.host.challenge.bookings': 'Gestió de reserves',
+    'step2.host.challenge.comms': 'Comunicació amb el client',
+    'step2.host.text': 'Què necessitaries de VeloTribe per unir-te avui? (opcional)',
+
     'step2.submit': 'Enviar',
     'step2.skip': 'Saltar',
 
@@ -504,6 +570,8 @@ export const ui = {
     'step2.title': 'Encore une chose qui nous aide beaucoup',
     'step2.sub': 'Facultatif — mais plus nous en savons, mieux nous pouvons construire VeloTribe pour vous.',
     'step2.country': 'Pays de résidence',
+
+    // Cycliste
     'step2.experience': 'Votre expérience avec Gérone',
     'step2.experience.first': 'Première visite',
     'step2.experience.few': "2-3 fois déjà",
@@ -524,6 +592,26 @@ export const ui = {
     'step2.duration.long': '2+ semaines',
     'step2.duration.local': 'Je vis ici',
     'step2.text': 'Qu\'est-ce qui vous ferait réserver aujourd\'hui ? (facultatif)',
+
+    // Hôte
+    'step2.host.volume': 'Combien de cyclistes accueillez-vous par an ?',
+    'step2.host.volume.few': 'Moins de 50',
+    'step2.host.volume.some': '50–200',
+    'step2.host.volume.many': '200–500',
+    'step2.host.volume.lots': 'Plus de 500',
+    'step2.host.season': 'Quelle est votre haute saison ? (multi-sélection)',
+    'step2.host.season.spring': 'Printemps',
+    'step2.host.season.summer': 'Été',
+    'step2.host.season.autumn': 'Automne',
+    'step2.host.season.yearround': 'Toute l\'année',
+    'step2.host.challenge': 'Quel est votre plus grand défi pour attirer des cyclistes ? (multi-sélection)',
+    'step2.host.challenge.visibility': 'Visibilité en ligne',
+    'step2.host.challenge.commissions': 'Commissions élevées',
+    'step2.host.challenge.reviews': 'Pas d\'avis spécialisés',
+    'step2.host.challenge.bookings': 'Gestion des réservations',
+    'step2.host.challenge.comms': 'Communication avec les clients',
+    'step2.host.text': 'Que vous faudrait-il de VeloTribe pour rejoindre aujourd\'hui ? (facultatif)',
+
     'step2.submit': 'Envoyer',
     'step2.skip': 'Passer',
 
