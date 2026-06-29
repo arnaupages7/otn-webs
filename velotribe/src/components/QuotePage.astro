@@ -390,30 +390,8 @@ const sections = [
 
   <main style="background:#2C2419">
 
-    <!-- ── PAGE HERO ── -->
-    <section class="relative px-[5vw] pt-28 pb-16 overflow-hidden" style="background:#2C2419">
-      <div class="absolute inset-0 pointer-events-none" style="opacity:0.05">
-        <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
-          <defs>
-            <pattern id="qp-waves" x="0" y="0" width="160" height="22" patternUnits="userSpaceOnUse">
-              <path d="M0,11 Q40,2 80,11 T160,11" stroke="#A7B75D" stroke-width="1" fill="none" stroke-linecap="round"/>
-            </pattern>
-          </defs>
-          <rect width="100%" height="100%" fill="url(#qp-waves)"/>
-        </svg>
-      </div>
-      <div class="relative max-w-3xl mx-auto text-center">
-        <a href={pathFor(lang, '/')} class="inline-flex items-center gap-1.5 text-xs uppercase tracking-[2px] font-semibold mb-8 transition hover:text-[#A7B75D]" style="color:#ffffff40">
-          {c.back}
-        </a>
-        <p class="text-[10px] font-bold uppercase tracking-[3px] mb-3" style="color:#A7B75D">{c.heroEyebrow}</p>
-        <h1 class="font-display font-black uppercase leading-[0.9] mb-5" style="font-size:clamp(36px,7vw,72px);color:#F8EEDA">{c.heroTitle}</h1>
-        <p class="text-base md:text-lg font-light" style="color:#c8b89a">{c.heroSub}</p>
-      </div>
-    </section>
-
     <!-- ── FORM ── -->
-    <section class="px-[5vw] pb-24" style="background:#2C2419">
+    <section class="px-[5vw] pt-8 pb-24" style="background:#2C2419">
       <div class="max-w-2xl mx-auto">
 
         <form id="quote-form" novalidate
